@@ -13,27 +13,27 @@ export function EventoCard({ evento }: { evento: Evento }) {
 
   return (
     <Card className="overflow-hidden flex flex-col h-full hover:shadow-md transition-shadow">
-      {evento.imagem && <img src={evento.imagem} alt={evento.nome} className="w-full h-40 object-cover" />}
-      <CardHeader className="p-4 pb-2">
-        <CardTitle className="text-lg line-clamp-1">{evento.nome}</CardTitle>
-        <p className="text-sm text-purple-600 font-medium">{evento.categoria}</p>
+      {evento.imagem && <img src={evento.imagem} alt={evento.nome} className="w-full h-32 sm:h-40 object-cover" />}
+      <CardHeader className="p-3 sm:p-4 pb-1 sm:pb-2">
+        <CardTitle className="text-base sm:text-lg line-clamp-1">{evento.nome}</CardTitle>
+        <p className="text-xs sm:text-sm text-purple-600 font-medium">{evento.categoria}</p>
       </CardHeader>
-      <CardContent className="p-4 pt-0 flex-1">
-        <p className="text-sm text-gray-600 line-clamp-2 mb-3">{evento.descricao}</p>
-        <div className="flex items-center gap-2 text-xs text-gray-500 mb-1">
-          <Calendar className="w-4 h-4" />
+      <CardContent className="p-3 sm:p-4 pt-0 flex-1">
+        <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 mb-2 sm:mb-3">{evento.descricao}</p>
+        <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500 mb-1">
+          <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           <span>{formattedStart} - {formattedEndTime}</span>
         </div>
         {evento.localizacao && (
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <MapPin className="w-4 h-4" />
+          <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-500">
+            <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <span className="line-clamp-1">{evento.localizacao}</span>
           </div>
         )}
       </CardContent>
-      <CardFooter className="p-4 pt-0 mt-auto flex gap-2">
+      <CardFooter className="p-3 sm:p-4 pt-0 mt-auto">
          <Link to="/mapa" className="w-full">
-            <Button variant="default" className="w-full">Ver no Mapa</Button>
+            <Button variant="default" className="w-full h-9 sm:h-10 text-xs sm:text-sm">Ver no Mapa</Button>
          </Link>
       </CardFooter>
     </Card>

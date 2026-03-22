@@ -36,20 +36,20 @@ const pratosCulinarios = [
 
 export function Culinaria() {
   return (
-    <div className="container mx-auto px-6 py-12 max-w-7xl md:pb-0 pb-24">
-      <div className="flex flex-col space-y-4 mb-12">
+    <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12 max-w-7xl md:pb-0 pb-24">
+      <div className="flex flex-col space-y-4 mb-8 md:mb-12">
         <div className="flex items-center gap-3">
-            <div className="p-3 bg-orange-100 rounded-2xl text-orange-600">
-                <UtensilsCrossed className="w-8 h-8" />
+            <div className="p-2 sm:p-3 bg-orange-100 rounded-xl sm:rounded-2xl text-orange-600">
+                <UtensilsCrossed className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 tracking-tight">Sabores de Aracaju</h1>
+            <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 tracking-tight">Sabores de Aracaju</h1>
         </div>
-        <p className="text-gray-500 text-lg max-w-2xl leading-relaxed">
+        <p className="text-gray-500 text-base sm:text-lg max-w-2xl leading-relaxed">
           Explore a riqueza gastronômica de Sergipe. Dos crustáceos dos nossos mangues às delícias do nosso sertão.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
         {pratosCulinarios.map((prato, index) => {
           const Icon = prato.icone;
           return (

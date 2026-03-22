@@ -35,7 +35,7 @@ export function RecommendedFilters({
       {/* Botão Scroll Esquerdo */}
       <button
         onClick={() => scrollFiltros('left')}
-        className="absolute left-[-12px] z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0]"
+        className="absolute left-[-12px] z-10 p-2 bg-white rounded-full shadow-md opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0] hidden md:block"
         aria-label="Scroll left"
       >
         <ChevronLeft className="w-5 h-5 text-[#5f6368]" />
@@ -44,7 +44,7 @@ export function RecommendedFilters({
       {/* Wrapper de Filtros */}
       <div
         ref={scrollRef}
-        className="recommended-filters-wrapper flex overflow-x-auto scrollbar-hide gap-2 px-1 py-1 scroll-smooth"
+        className="recommended-filters-wrapper flex overflow-x-auto scrollbar-hide gap-2 px-4 md:px-1 py-1 scroll-smooth"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {chips.map((chip) => {
@@ -74,7 +74,7 @@ export function RecommendedFilters({
       {/* Botão Scroll Direito */}
       <button
         onClick={() => scrollFiltros('right')}
-        className="absolute right-[-12px] z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0]"
+        className="absolute right-[-12px] z-10 p-2 bg-white rounded-full shadow-md opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0] hidden md:block"
         aria-label="Scroll right"
       >
         <ChevronRight className="w-5 h-5 text-[#5f6368]" />

@@ -49,22 +49,22 @@ export function ComercioDetalhe() {
   };
 
   return (
-    <div className="container mx-auto px-6 py-12 max-w-6xl bg-white min-h-screen">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12 max-w-6xl bg-white min-h-screen md:pb-0 pb-24">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
         
         {/* Main Content */}
-        <div className="lg:col-span-2 space-y-10">
-          <div className="relative h-80 md:h-112.5 w-full overflow-hidden rounded-4xl border border-[#dadce0] shadow-sm">
+        <div className="lg:col-span-2 space-y-8 md:space-y-10">
+          <div className="relative h-56 sm:h-80 md:h-112.5 w-full overflow-hidden rounded-3xl sm:rounded-4xl border border-[#dadce0] shadow-sm">
              <img src={comercio.imagem} alt={comercio.nome} className="w-full h-full object-cover" />
              <div className="absolute inset-0 bg-black/5" />
           </div>
           
           <div className="space-y-6">
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
               <div className="space-y-2">
-                <div className="flex items-center gap-3">
-                  <h1 className="text-3xl md:text-4xl font-medium text-[#202124] tracking-tight">{comercio.nome}</h1>
-                  <div className={`px-2 py-0.5 rounded-md text-[10px] font-medium tracking-wide shadow-sm border ${
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#202124] tracking-tight">{comercio.nome}</h1>
+                  <div className={`px-2 py-0.5 rounded-md text-[10px] font-medium tracking-wide shadow-sm border whitespace-nowrap ${
                     comercio.statusAberto 
                       ? 'bg-emerald-50 text-emerald-700 border-emerald-100' 
                       : 'bg-rose-50 text-rose-700 border-rose-100'
@@ -72,58 +72,60 @@ export function ComercioDetalhe() {
                     {comercio.statusAberto ? 'ABERTO' : 'FECHADO'}
                   </div>
                 </div>
-                <p className="text-[#5f6368] text-lg font-normal">{comercio.categoria}</p>
+                <p className="text-[#5f6368] text-base sm:text-lg font-normal">{comercio.categoria}</p>
               </div>
               
-              <div className="flex items-center gap-2 bg-[#fef7e0] text-[#202124] px-4 py-2 rounded-2xl border border-[#feefc3] shadow-sm">
-                <Star className="w-5 h-5 text-[#fbbc04] fill-current" />
-                <span className="text-xl font-medium">{mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}</span>
+              <div className="flex items-center gap-2 bg-[#fef7e0] text-[#202124] px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl border border-[#feefc3] shadow-sm w-fit">
+                <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#fbbc04] fill-current" />
+                <span className="text-lg sm:text-xl font-medium">{mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}</span>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-2">
               {comercio.tags.map(tag => (
-                <Badge key={tag} variant="outline" className="rounded-full px-4 py-1 text-[#5f6368] border-[#dadce0] bg-white">
+                <Badge key={tag} variant="outline" className="rounded-full px-3 sm:px-4 py-0.5 sm:py-1 text-[10px] sm:text-xs text-[#5f6368] border-[#dadce0] bg-white">
                   {tag}
                 </Badge>
               ))}
             </div>
 
-            <div className="flex gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
               {comercio.telefone !== 'N/A' && (
                 <a href={`https://wa.me/55${comercio.telefone?.replace(/\D/g, '')}`} target="_blank" rel="noreferrer" className="flex-1">
-                  <Button className="w-full rounded-full h-12 bg-[#25d366] hover:bg-[#20bd5c] text-white border-none shadow-sm flex items-center justify-center gap-2">
+                  <Button className="w-full rounded-full h-11 sm:h-12 bg-[#25d366] hover:bg-[#20bd5c] text-white border-none shadow-sm flex items-center justify-center gap-2 text-sm">
                     <MessageCircle className="w-5 h-5" /> WhatsApp
                   </Button>
                 </a>
               )}
-              <Button 
-                onClick={handleOpenGoogleMaps}
-                className="flex-1 rounded-full h-12 flex items-center justify-center gap-2 shadow-sm"
-              >
-                <Navigation className="w-5 h-5" /> Traçar Rota
-              </Button>
-              <Button variant="ghost" onClick={() => setIsReportModalOpen(true)} className="w-12 h-12 rounded-full p-0 text-[#5f6368] hover:text-[#d93025] hover:bg-[#fce8e6]">
-                <AlertTriangle className="w-5 h-5" />
-              </Button>
+              <div className="flex-1 flex gap-2">
+                <Button 
+                  onClick={handleOpenGoogleMaps}
+                  className="flex-1 rounded-full h-11 sm:h-12 flex items-center justify-center gap-2 shadow-sm text-sm"
+                >
+                  <Navigation className="w-5 h-5" /> Traçar Rota
+                </Button>
+                <Button variant="ghost" onClick={() => setIsReportModalOpen(true)} className="w-11 h-11 sm:w-12 sm:h-12 rounded-full p-0 text-[#5f6368] hover:text-[#d93025] hover:bg-[#fce8e6] shrink-0">
+                  <AlertTriangle className="w-5 h-5" />
+                </Button>
+              </div>
             </div>
           </div>
 
           <div className="space-y-6 pt-6 border-t border-[#dadce0]">
-            <h2 className="text-2xl font-medium text-[#202124]">Produtos em destaque</h2>
+            <h2 className="text-xl sm:text-2xl font-medium text-[#202124]">Produtos em destaque</h2>
             {comercio.produtos.length === 0 ? (
-              <div className="p-8 bg-[#f8f9fa] rounded-3xl text-center border border-[#dadce0] border-dashed">
+              <div className="p-6 sm:p-8 bg-[#f8f9fa] rounded-2xl sm:rounded-3xl text-center border border-[#dadce0] border-dashed">
                 <p className="text-[#5f6368] text-sm italic">O catálogo de produtos ainda está sendo atualizado.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {comercio.produtos.map(p => (
-                  <div key={p.id} className="bg-white border border-[#dadce0] p-6 rounded-2xl hover:shadow-md transition-shadow flex justify-between items-center">
-                    <div className="space-y-1">
-                      <h3 className="font-medium text-[#202124]">{p.nome}</h3>
-                      <p className="text-xs text-[#5f6368]">{p.descricao}</p>
+                  <div key={p.id} className="bg-white border border-[#dadce0] p-4 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-md transition-shadow flex justify-between items-center gap-4">
+                    <div className="space-y-1 overflow-hidden">
+                      <h3 className="font-medium text-sm sm:text-base text-[#202124] truncate">{p.nome}</h3>
+                      <p className="text-[10px] sm:text-xs text-[#5f6368] line-clamp-2">{p.descricao}</p>
                     </div>
-                    <div className="font-medium text-[#1a73e8] text-lg">R$ {p.preco.toFixed(2)}</div>
+                    <div className="font-medium text-[#1a73e8] text-base sm:text-lg whitespace-nowrap">R$ {p.preco.toFixed(2)}</div>
                   </div>
                 ))}
               </div>

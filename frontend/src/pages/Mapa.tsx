@@ -181,14 +181,14 @@ export function Mapa() {
       <div className={`md:hidden absolute top-4 z-20 flex gap-2 transition-all ${showMap ? 'left-1/2 -translate-x-1/2' : 'right-4'}`}>
         <button
           onClick={() => setShowMap(false)}
-          className={`p-2.5 rounded-lg transition-all ${!showMap ? 'bg-[#1a73e8] text-white shadow-md' : 'bg-white text-[#5f6368] border border-[#dadce0]'}`}
+          className={`p-2.5 rounded-xl transition-all ${!showMap ? 'bg-[#1a73e8] text-white shadow-lg' : 'bg-white text-[#5f6368] border border-[#dadce0] shadow-sm'}`}
           title="Ver menu"
         >
           <Menu className="w-5 h-5" />
         </button>
         <button
           onClick={() => setShowMap(true)}
-          className={`p-2.5 rounded-lg transition-all ${showMap ? 'bg-[#1a73e8] text-white shadow-md' : 'bg-white text-[#5f6368] border border-[#dadce0]'}`}
+          className={`p-2.5 rounded-xl transition-all ${showMap ? 'bg-[#1a73e8] text-white shadow-lg' : 'bg-white text-[#5f6368] border border-[#dadce0] shadow-sm'}`}
           title="Ver mapa"
         >
           <Map className="w-5 h-5" />
@@ -196,30 +196,30 @@ export function Mapa() {
       </div>
 
       {/* Sidebar - Local Data Only */}
-      <div className={`w-full md:w-90 bg-white z-10 flex flex-col p-6 gap-6 md:h-full shrink-0 overflow-y-auto border-r border-[#dadce0] transition-all md:pb-0 pb-24 ${showMap ? 'hidden md:flex' : 'flex md:flex'}`}>
+      <div className={`w-full md:w-80 lg:w-90 bg-white z-10 flex flex-col p-4 sm:p-6 gap-4 sm:gap-6 md:h-full shrink-0 overflow-y-auto border-r border-[#dadce0] transition-all md:pb-0 pb-24 ${showMap ? 'hidden md:flex' : 'flex md:flex'}`}>
         <div className="space-y-1">
-          <h1 className="text-xl font-medium flex items-center gap-2 text-[#202124]">
+          <h1 className="text-lg sm:text-xl font-medium flex items-center gap-2 text-[#202124]">
             <ShoppingBag className="text-[#1a73e8] w-5 h-5" /> VivaJu Centro
           </h1>
-          <p className="text-xs text-[#5f6368]">Locais exatos e atualizados</p>
+          <p className="text-[10px] sm:text-xs text-[#5f6368]">Locais exatos e atualizados</p>
         </div>
         
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5f6368]" />
           <Input
             placeholder="Buscar lojas..."
-            className="pl-10 h-12 bg-white border-[#dadce0] rounded-full text-sm placeholder:text-[#5f6368] focus-visible:ring-1 focus-visible:ring-[#1a73e8] focus-visible:border-transparent shadow-sm"
+            className="pl-10 h-10 sm:h-12 bg-white border-[#dadce0] rounded-full text-xs sm:text-sm placeholder:text-[#5f6368] focus-visible:ring-1 focus-visible:ring-[#1a73e8] focus-visible:border-transparent shadow-sm w-full"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        <Button onClick={handleGetLocation} variant="outline" className="w-full rounded-full text-xs h-10 border-[#dadce0]">
+        <Button onClick={handleGetLocation} variant="outline" className="w-full rounded-full text-[10px] sm:text-xs h-9 sm:h-10 border-[#dadce0]">
           <LocateFixed className="w-4 h-4 mr-2" /> Onde Estou
         </Button>
 
-        <div className="flex-1 overflow-y-auto space-y-4">
-          <p className="text-xs font-medium text-[#5f6368] uppercase tracking-wider pl-1">Lista de Estabelecimentos</p>
+        <div className="flex-1 overflow-y-auto space-y-3 sm:space-y-4">
+          <p className="text-[10px] font-medium text-[#5f6368] uppercase tracking-wider pl-1">Lista de Estabelecimentos</p>
           {filteredComercios.length === 0 && (
             <p className="text-sm text-[#5f6368] text-center py-10 italic">Nenhuma loja encontrada.</p>
           )}
@@ -227,11 +227,11 @@ export function Mapa() {
             <div 
               key={c.id} 
               onClick={() => handleOpenDetails(c.id)}
-              className="p-4 bg-white border border-[#dadce0] rounded-2xl hover:bg-[#f8f9fa] cursor-pointer transition-all group"
+              className="p-3 sm:p-4 bg-white border border-[#dadce0] rounded-xl sm:rounded-2xl hover:bg-[#f8f9fa] cursor-pointer transition-all group"
             >
-              <h3 className="font-medium text-sm text-[#202124] group-hover:text-[#1a73e8] transition-colors">{c.nome}</h3>
-              <div className="flex items-center gap-2 mt-2">
-                <p className="text-[11px] text-[#5f6368] capitalize truncate">{c.categoria}</p>
+              <h3 className="font-medium text-xs sm:text-sm text-[#202124] group-hover:text-[#1a73e8] transition-colors line-clamp-1">{c.nome}</h3>
+              <div className="flex items-center gap-2 mt-1 sm:mt-2">
+                <p className="text-[10px] sm:text-[11px] text-[#5f6368] capitalize truncate">{c.categoria}</p>
               </div>
             </div>
           ))}

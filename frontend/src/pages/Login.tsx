@@ -60,10 +60,10 @@ export function Login() {
   };
 
   return (
-    <div className="flex-1 flex items-center justify-center p-4 bg-gray-50">
-      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-sm border">
-        <h1 className="text-2xl font-bold text-center mb-2">Entrar no VIVAJU</h1>
-        <p className="text-gray-500 text-center mb-6">Acesse sua conta para continuar</p>
+    <div className="flex-1 flex items-center justify-center p-4 sm:p-6 bg-gray-50 min-h-[calc(100vh-64px)] pb-32 md:pb-8">
+      <div className="w-full max-w-md bg-white p-6 sm:p-8 rounded-2xl shadow-sm border">
+        <h1 className="text-xl sm:text-2xl font-bold text-center mb-2">Entrar no VIVAJU</h1>
+        <p className="text-gray-500 text-sm sm:text-base text-center mb-6">Acesse sua conta para continuar</p>
         
         {error && (
           <div className="mb-4 p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100">
@@ -73,12 +73,12 @@ export function Login() {
 
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1 text-gray-700">Tipo de conta</label>
-            <div className="flex gap-4 p-1 bg-gray-100 rounded-lg">
+            <label className="block text-sm font-medium mb-1.5 text-gray-700">Tipo de conta</label>
+            <div className="flex gap-2 p-1 bg-gray-100 rounded-xl">
               <button
                 type="button"
                 onClick={() => setTipo('cliente')}
-                className={`flex-1 py-2 text-sm font-medium rounded-md transition-all ${
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
                   tipo === 'cliente' ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
@@ -87,7 +87,7 @@ export function Login() {
               <button
                 type="button"
                 onClick={() => setTipo('comerciante')}
-                className={`flex-1 py-2 text-sm font-medium rounded-md transition-all ${
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
                   tipo === 'comerciante' ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
@@ -96,35 +96,40 @@ export function Login() {
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1 text-gray-700">E-mail</label>
-            <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="seu@email.com" required disabled={loading} />
-          </div>
-          <div>
-            <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-gray-700">Senha</label>
-              <Link to="#" className="text-xs text-blue-600 hover:underline">Esqueceu a senha?</Link>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-1.5 text-gray-700">E-mail</label>
+              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="seu@email.com" required disabled={loading} className="h-11" />
             </div>
-            <Input type="password" value={senha} onChange={e => setSenha(e.target.value)} placeholder="Sua senha" required disabled={loading} />
+            <div>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-sm font-medium text-gray-700">Senha</label>
+                <Link to="#" className="text-xs text-blue-600 font-medium hover:underline">Esqueceu a senha?</Link>
+              </div>
+              <Input type="password" value={senha} onChange={e => setSenha(e.target.value)} placeholder="Sua senha" required disabled={loading} className="h-11" />
+            </div>
           </div>
-          <Button type="submit" className="w-full h-11 text-base font-semibold" disabled={loading}>
+
+          <Button type="submit" className="w-full h-12 text-base font-bold mt-2" disabled={loading}>
             {loading ? 'Entrando...' : 'Entrar'}
           </Button>
         </form>
         
         <div className="mt-8 pt-6 border-t text-center">
-          <p className="text-sm text-gray-600 mb-2">Ainda não faz parte do VIVAJU?</p>
-          <div className="flex flex-col gap-2">
-            <Link to="/cadastro" className="text-blue-600 font-semibold hover:underline">Criar conta de Visitante</Link>
-            <Link to="/cadastro" className="text-gray-700 font-medium hover:text-blue-600 transition-colors">
-              Sou comerciante e quero <span className="text-blue-600 font-semibold">cadastrar minha loja</span>
+          <p className="text-sm text-gray-500 mb-4">Ainda não faz parte do VIVAJU?</p>
+          <div className="flex flex-col gap-3">
+            <Link to="/cadastro" className="text-blue-600 font-bold hover:underline py-1">
+              Criar conta de Visitante
+            </Link>
+            <Link to="/cadastro" className="text-gray-700 text-sm font-medium hover:text-blue-600 transition-colors py-1">
+              Sou comerciante e quero <span className="text-blue-600 font-bold">cadastrar minha loja</span>
             </Link>
             <button 
               type="button"
               onClick={() => { setEmail('admin@prefeitura.aju'); setSenha('admin123'); }}
-              className="text-xs text-gray-400 hover:text-blue-500 transition-colors mt-2"
+              className="text-[10px] uppercase tracking-widest text-gray-400 hover:text-blue-500 transition-colors mt-4 font-bold"
             >
-              Login da Prefeitura
+              Acesso Restrito Prefeitura
             </button>
           </div>
         </div>

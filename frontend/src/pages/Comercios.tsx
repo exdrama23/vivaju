@@ -47,23 +47,23 @@ export function Comercios() {
   });
 
   return (
-    <div className="container mx-auto px-6 py-12 max-w-7xl md:pb-0 pb-24">
-      <div className="flex flex-col space-y-6 mb-12">
+    <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12 max-w-7xl md:pb-0 pb-24">
+      <div className="flex flex-col space-y-6 mb-8 md:mb-12">
         <div className="space-y-2">
-          <h1 className="text-3xl font-medium text-[#202124] tracking-tight">Comércios Locais</h1>
-          <p className="text-[#5f6368] text-lg max-w-2xl font-normal">
+          <h1 className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">Comércios Locais</h1>
+          <p className="text-[#5f6368] text-base sm:text-lg max-w-2xl font-normal">
             Explore as melhores lojas e serviços do centro de Aracaju.
           </p>
         </div>
 
-        <div className="max-w-2xl relative group">
+        <div className="w-full max-w-2xl relative group">
           <Search className={cn(
             "absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors z-10",
             searchData.active ? "text-[#1a73e8]" : "text-[#5f6368] group-focus-within:text-[#1a73e8]"
           )} />
           <Input 
             placeholder="O que você está procurando?" 
-            className="pl-12 h-14 text-base rounded-full border-[#dadce0] bg-white shadow-sm focus-visible:ring-1 focus-visible:ring-[#1a73e8] focus-visible:border-transparent transition-all"
+            className="pl-12 h-12 sm:h-14 text-sm sm:text-base rounded-full border-[#dadce0] bg-white shadow-sm focus-visible:ring-1 focus-visible:ring-[#1a73e8] focus-visible:border-transparent transition-all w-full"
             value={search}
             onChange={handleSearchChange}
           />
@@ -85,13 +85,13 @@ export function Comercios() {
           <p className="text-[#5f6368] font-medium text-sm">Buscando estabelecimentos...</p>
         </div>
       ) : filteredComercios.length === 0 ? (
-        <div className="text-center py-20 bg-[#f8f9fa] rounded-4xl border border-[#dadce0] border-dashed">
-          <Search className="w-12 h-12 text-[#bdc1c6] mx-auto mb-4" />
-          <h3 className="text-xl font-medium text-[#202124]">Nenhum comércio encontrado</h3>
-          <p className="text-[#5f6368] text-sm mt-1">Tente ajustar seus filtros ou termo de busca.</p>
+        <div className="text-center py-12 sm:py-20 bg-[#f8f9fa] rounded-3xl sm:rounded-4xl border border-[#dadce0] border-dashed px-4">
+          <Search className="w-10 h-10 sm:w-12 h-12 text-[#bdc1c6] mx-auto mb-4" />
+          <h3 className="text-lg sm:text-xl font-medium text-[#202124]">Nenhum comércio encontrado</h3>
+          <p className="text-[#5f6368] text-xs sm:text-sm mt-1">Tente ajustar seus filtros ou termo de busca.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-12">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 sm:gap-x-6 gap-y-8 sm:gap-y-12">
           {filteredComercios.map(c => (
             <ComercioCard key={c.id} comercio={c} />
           ))}

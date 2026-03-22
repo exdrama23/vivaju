@@ -55,23 +55,23 @@ export function Eventos() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 md:pb-0 pb-24 max-w-7xl">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-        <h1 className="text-3xl font-bold">Eventos Culturais</h1>
+    <div className="container mx-auto px-4 sm:px-6 py-8 md:pb-0 pb-24 max-w-7xl">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold">Eventos Culturais</h1>
         
         {/* Barra de Filtros */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full md:w-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full lg:w-auto">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
             <Input 
               placeholder="Buscar evento..." 
               value={nome}
               onChange={e => setNome(e.target.value)}
-              className="pl-9"
+              className="pl-9 h-11"
             />
           </div>
           
-          <Select value={situacao} onChange={(e: any) => setSituacao(e.target.value)}>
+          <Select value={situacao} onChange={(e: any) => setSituacao(e.target.value)} className="h-11">
             <option value="todos">Todas situações</option>
             <option value="disponivel">Disponíveis</option>
             <option value="acontecendo">Acontecendo Agora</option>
@@ -82,19 +82,20 @@ export function Eventos() {
             placeholder="Categoria..." 
             value={categoria}
             onChange={e => setCategoria(e.target.value)}
+            className="h-11"
           />
         </div>
       </div>
       
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-pulse">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 animate-pulse">
           {[...Array(8)].map((_, i) => (
-            <div key={i} className="bg-gray-100 h-80 rounded-2xl" />
+            <div key={i} className="bg-gray-100 h-64 sm:h-80 rounded-2xl" />
           ))}
         </div>
       ) : listaEventos.length === 0 ? (
-        <div className="text-center py-20 bg-gray-50 rounded-3xl border-2 border-dashed">
-          <p className="text-gray-500 text-lg">Nenhum evento encontrado com esses filtros.</p>
+        <div className="text-center py-12 sm:py-20 bg-gray-50 rounded-3xl border-2 border-dashed px-4">
+          <p className="text-gray-500 text-base sm:text-lg">Nenhum evento encontrado com esses filtros.</p>
           <Button 
             variant="ghost" 
             className="mt-4 text-blue-600"
@@ -105,7 +106,7 @@ export function Eventos() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {listaEventos.map(e => (
               <EventoCard key={e.id} evento={e} />
             ))}

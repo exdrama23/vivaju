@@ -47,23 +47,23 @@ export function ComercioCard({ comercio }: { comercio: ComercioExtendido }) {
         </button>
       </Link>
 
-      <div className="flex flex-col px-1">
-        <h3 className="text-[15px] font-medium text-[#202124] line-clamp-1 leading-snug group-hover:text-[#1a73e8] transition-colors">
+      <div className="flex flex-col px-0.5 sm:px-1">
+        <h3 className="text-sm sm:text-[15px] font-medium text-[#202124] line-clamp-1 leading-snug group-hover:text-[#1a73e8] transition-colors">
           {comercio.nome}
         </h3>
         
-        <div className="flex flex-col text-xs text-[#5f6368] mt-0.5">
-          <p className="font-normal">{comercio.categoria}</p>
+        <div className="flex flex-col text-[10px] sm:text-xs text-[#5f6368] mt-0.5">
+          <p className="font-normal truncate">{comercio.categoria}</p>
           
           <div className="flex items-center gap-1 mt-0.5">
             <div className="flex items-center gap-0.5 text-[#e37400] font-medium">
               <span>{mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}</span>
-              <Star className="w-3 h-3 fill-current" />
+              <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-current" />
             </div>
             {comercio.resumo_avaliacoes && (
               <>
-                <span className="text-[#bdc1c6]">•</span>
-                <span className="truncate max-w-[120px]">{comercio.resumo_avaliacoes}</span>
+                <span className="text-[#bdc1c6] hidden sm:inline">•</span>
+                <span className="truncate max-w-[80px] sm:max-w-[120px] hidden sm:inline">{comercio.resumo_avaliacoes}</span>
               </>
             )}
           </div>

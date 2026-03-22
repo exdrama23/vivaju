@@ -18,12 +18,12 @@ export function Layout() {
   ];
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen bg-white overflow-hidden">
       <header className="sticky top-0 z-50 w-full border-b border-[#dadce0] bg-white shrink-0">
-        <div className="container mx-auto flex h-16 items-center justify-between px-6">
-          <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-2">
-              <img src={logoCaju} alt="VIVAJU" className="h-10 w-auto object-contain" />
+        <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
+          <div className="flex items-center gap-4 sm:gap-8">
+            <Link to="/" className="flex items-center gap-2 shrink-0">
+              <img src={logoCaju} alt="VIVAJU" className="h-8 sm:h-10 w-auto object-contain" />
             </Link>
             <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (
