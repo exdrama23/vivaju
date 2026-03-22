@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model categoria {
+  id                String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nome              String             @unique @db.VarChar(150)
+  dataCriacao       DateTime           @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  categoriaLoja     categoriaLoja[]
+  categoriaProdutos categoriaProduto[]
+}
+
+model categoriaLoja {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lojaId      String    @map("loja_id") @db.Uuid
+  categoriaId String    @map("categoria_id") @db.Uuid
+  dataCriacao DateTime  @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  categoria   categoria @relation(fields: [categoriaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  loja        loja      @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([lojaId, categoriaId])
+  @@map("categoria_loja")
+}
+
+model categoriaProduto {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  categoriaId String    @map("categoria_id") @db.Uuid
+  produtoId   String    @map("produto_id") @db.Uuid
+  dataCriacao DateTime  @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  categoria   categoria @relation(fields: [categoriaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  produto     produto   @relation(fields: [produtoId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([categoriaId, produtoId])
+  @@map("categoria_produto")
+}
+
+model cliente {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email           String   @unique @db.VarChar(254)
+  senha           String   @db.VarChar(255)
+  telefone        String?  @db.VarChar(13)
+  nome            String   @db.VarChar(150)
+  dataCriacao     DateTime @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  dataAtualizacao DateTime @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
+}
+
+model evento {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nome            String   @db.VarChar(150)
+  nomeNormalizado String   @map("nome_normalizado") @db.VarChar(150)
+  descricao       String   @db.VarChar(3000)
+  inicio          DateTime @db.Timestamptz(6)
+  fim             DateTime @db.Timestamptz(6)
+  localizacao     String   @db.VarChar(300)
+  categoria       String   @db.VarChar(30)
+  dataCriacao     DateTime @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  dataAtualizacao DateTime @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
+}
+
+model loja {
+  id                 String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email              String               @unique @db.VarChar(254)
+  senha              String               @db.VarChar(255)
+  nome               String               @db.VarChar(150)
+  nomeNormalizado    String               @map("nome_normalizado") @db.VarChar(150)
+  descricao          String               @db.VarChar(3000)
+  vendedorAmbulante  Boolean              @map("vendedor_ambulante")
+  cep                String?              @db.VarChar(8)
+  telefoneContato    String?              @map("telefone_contato") @db.VarChar(13)
+  logradouro         String?              @db.VarChar(100)
+  numEndereco        String?              @map("num_endereco") @db.VarChar(20)
+  complemento        String?              @db.VarChar(300)
+  estacionamento     Boolean              @default(false)
+  dataCriacao        DateTime             @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  dataAtualizacao    DateTime             @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
+  categoriaLoja      categoriaLoja[]
+  lojaEstacionamento lojaEstacionamento[]
+  lojaFuncionamento  lojaFuncionamento[]
+  produtoLoja        produtoLoja[]
+}
+
+model lojaEstacionamento {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lojaId          String   @unique @map("loja_id") @db.Uuid
+  preco           Decimal  @db.Decimal(10, 2)
+  tempoPreco      String   @map("tempo_preco") @db.VarChar(20)
+  dataCriacao     DateTime @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  dataAtualizacao DateTime @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
+  loja            loja     @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@map("loja_estacionamento")
+}
+
+model lojaFuncionamento {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lojaId          String    @unique @map("loja_id") @db.Uuid
+  segAbr          DateTime? @map("seg_abr") @db.Time(6)
+  segFec          DateTime? @map("seg_fec") @db.Time(6)
+  terAbr          DateTime? @map("ter_abr") @db.Time(6)
+  terFec          DateTime? @map("ter_fec") @db.Time(6)
+  quaAbr          DateTime? @map("qua_abr") @db.Time(6)
+  quaFec          DateTime? @map("qua_fec") @db.Time(6)
+  quiAbr          DateTime? @map("qui_abr") @db.Time(6)
+  quiFec          DateTime? @map("qui_fec") @db.Time(6)
+  sexAbr          DateTime? @map("sex_abr") @db.Time(6)
+  sexFec          DateTime? @map("sex_fec") @db.Time(6)
+  sabAbr          DateTime? @map("sab_abr") @db.Time(6)
+  sabFec          DateTime? @map("sab_fec") @db.Time(6)
+  domAbr          DateTime? @map("dom_abr") @db.Time(6)
+  domFec          DateTime? @map("dom_fec") @db.Time(6)
+  feriadoAbr      DateTime? @map("feriado_abr") @db.Time(6)
+  feriadoFec      DateTime? @map("feriado_fec") @db.Time(6)
+  dataCriacao     DateTime  @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  dataAtualizacao DateTime  @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
+  loja            loja      @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@map("loja_funcionamento")
+}
+
+model pontoTuristico {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nome            String   @db.VarChar(200)
+  nomeNormalizado String   @map("nome_normalizado") @db.VarChar(200)
+  descricao       String   @db.VarChar(5000)
+  localizacao     String   @db.VarChar(300)
+  dataCriacao     DateTime @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  dataAtualizacao DateTime @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
+
+  @@map("ponto_turistico")
+}
+
+model produto {
+  id                String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nome              String             @unique @db.VarChar(150)
+  dataCriacao       DateTime           @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  categoriaProdutos categoriaProduto[]
+  produtoLoja       produtoLoja[]
+}
+
+model produtoLoja {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  lojaId          String   @map("loja_id") @db.Uuid
+  produtoId       String   @map("produto_id") @db.Uuid
+  preco           Decimal  @db.Decimal(10, 2)
+  marca           String?  @db.VarChar(200)
+  dataCriacao     DateTime @default(now()) @map("data_criacao") @db.Timestamptz(6)
+  dataAtualizacao DateTime @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
+  loja            loja     @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  produto         produto  @relation(fields: [produtoId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@map("produto_loja")
+}
