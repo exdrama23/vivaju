@@ -12,7 +12,7 @@ interface MapFiltersProps {
 
 export function MapFilters({ activeFilters, onFilterChange }: MapFiltersProps) {
   return (
-    <div className="absolute top-4 left-4 z-[400] flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide max-w-[calc(100%-2rem)]">
+    <div className="absolute md:top-4 md:left-4 bottom-4 left-4 right-4 md:bottom-auto z-40 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide md:max-w-[calc(100%-2rem)]">
       <button
         onClick={() => onFilterChange('comercios')}
         className={cn(

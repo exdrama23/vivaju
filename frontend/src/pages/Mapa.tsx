@@ -5,7 +5,7 @@ import { MapFilters } from '@/components/map/MapFilters';
 import { MapPopup } from '@/components/map/MapPopup';
 import { LocationDetailModal } from '@/components/map/LocationDetailModal';
 import { useData } from '@/context/DataContext';
-import { LocateFixed, ShoppingBag, Search } from 'lucide-react';
+import { LocateFixed, ShoppingBag, Search, Map, Menu } from 'lucide-react';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Polyline, Marker, Popup } from 'react-leaflet';
@@ -15,6 +15,7 @@ import type { Comercio } from '@/types';
 export function Mapa() {
   const { comercios, estacionamentos } = useData();
   
+  const [showMap, setShowMap] = useState(false);
   const [filters, setFilters] = useState({
     comercios: true,
     eventos: true,
@@ -93,8 +94,26 @@ export function Mapa() {
 
   return (
     <div className="flex flex-col md:flex-row flex-1 w-full h-full relative overflow-hidden bg-white">
+      {/* Toggle Button - Mobile Only */}
+      <div className={`md:hidden absolute top-4 z-20 flex gap-2 transition-all ${showMap ? 'left-1/2 -translate-x-1/2' : 'right-4'}`}>
+        <button
+          onClick={() => setShowMap(false)}
+          className={`p-2.5 rounded-lg transition-all ${!showMap ? 'bg-[#1a73e8] text-white shadow-md' : 'bg-white text-[#5f6368] border border-[#dadce0]'}`}
+          title="Ver menu"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+        <button
+          onClick={() => setShowMap(true)}
+          className={`p-2.5 rounded-lg transition-all ${showMap ? 'bg-[#1a73e8] text-white shadow-md' : 'bg-white text-[#5f6368] border border-[#dadce0]'}`}
+          title="Ver mapa"
+        >
+          <Map className="w-5 h-5" />
+        </button>
+      </div>
+
       {/* Sidebar - Local Data Only */}
-      <div className="w-full md:w-[360px] bg-white z-10 flex flex-col p-6 gap-6 md:h-full shrink-0 overflow-y-auto border-r border-[#dadce0]">
+      <div className={`w-full md:w-[360px] bg-white z-10 flex flex-col p-6 gap-6 md:h-full shrink-0 overflow-y-auto border-r border-[#dadce0] transition-all md:pb-0 pb-24 ${showMap ? 'hidden md:flex' : 'flex md:flex'}`}>
         <div className="space-y-1">
           <h1 className="text-xl font-medium flex items-center gap-2 text-[#202124]">
             <ShoppingBag className="text-[#1a73e8] w-5 h-5" /> VivaJu Centro
@@ -136,7 +155,7 @@ export function Mapa() {
         </div>
       </div>
 
-      <div className="flex-1 relative bg-[#f1f3f4]">
+      <div className={`flex-1 relative bg-[#f1f3f4] transition-all ${showMap ? 'flex md:flex' : 'hidden md:flex'}`}>
         <MapFilters activeFilters={filters} onFilterChange={handleFilterChange} />
         <MapContainer center={defaultCenter} zoom={18} className="w-full h-full">
           {routeCoords.length > 0 && (

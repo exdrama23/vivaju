@@ -11,7 +11,7 @@ export function Eventos() {
   const temMais = eventos.length > 8;
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 md:pb-0 pb-24">
       <h1 className="text-3xl font-bold mb-8">Eventos Culturais</h1>
       
       {eventos.length === 0 ? (

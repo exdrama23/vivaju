@@ -6,7 +6,7 @@ export function Estacionamentos() {
   const { estacionamentos } = useData();
 
   return (
-    <div className="container mx-auto px-6 py-12 max-w-7xl">
+    <div className="container mx-auto px-6 py-12 max-w-7xl md:pb-0 pb-24">
       <div className="flex flex-col space-y-2 mb-10">
         <h1 className="text-3xl font-medium text-[#202124] tracking-tight">Estacionamentos Próximos</h1>
         <p className="text-[#5f6368] text-lg font-normal">

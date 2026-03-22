@@ -47,7 +47,7 @@ export function Comercios() {
   });
 
   return (
-    <div className="container mx-auto px-6 py-12 max-w-7xl">
+    <div className="container mx-auto px-6 py-12 max-w-7xl md:pb-0 pb-24">
       <div className="flex flex-col space-y-6 mb-12">
         <div className="space-y-2">
           <h1 className="text-3xl font-medium text-[#202124] tracking-tight">Comércios Locais</h1>

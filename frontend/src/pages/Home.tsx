@@ -29,7 +29,7 @@ export function Home() {
       </section>
 
       {/* Navegação rápida por categorias */}
-      <div className="bg-white border-b border-[#dadce0] sticky top-14 z-30 py-3">
+      <div className="bg-white border-b border-[#dadce0] sticky top-16 z-30 py-3">
         <div className="container mx-auto px-6">
           <RecommendedFilters 
             filtrosRecomendados={randomCategories}
@@ -40,7 +40,7 @@ export function Home() {
       </div>
 
       {/* Conteúdo Principal */}
-      <main className="container mx-auto px-6 py-12 space-y-20">
+      <main className="container mx-auto px-6 py-12 space-y-20 md:pb-0 pb-24">
         {/* Lojas Section */}
         <section className="space-y-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">

@@ -74,7 +74,7 @@ export function StoreSlider({ stores }: StoreSliderProps) {
         </div>
 
         {/* Image Section */}
-        <div className={`relative flex-1 md:w-1/2 overflow-hidden bg-[#f1f3f4] transition-all duration-700 ${isTransitioning ? 'opacity-50 scale-105' : 'opacity-100 scale-100'}`}>
+        <div className={`hidden md:flex relative flex-1 md:w-1/2 overflow-hidden bg-[#f1f3f4] transition-all duration-700 ${isTransitioning ? 'opacity-50 scale-105' : 'opacity-100 scale-100'}`}>
           <img 
             src={currentStore.imagem} 
             alt={currentStore.nome} 

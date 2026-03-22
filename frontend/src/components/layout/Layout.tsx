@@ -69,7 +69,7 @@ export function Layout() {
 
       {/* Mobile Bottom Navigation - M3 Style */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-[#dadce0] bg-white pb-safe">
-        <div className="flex h-20 items-center justify-around px-2">
+        <div className="flex h-24 items-center justify-around px-2">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
