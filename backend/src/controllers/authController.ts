@@ -17,6 +17,7 @@ export default class AuthController {
                 where: {email: dto.email},
                 select: {
                     id: true,
+                    nome: true,
                     senha: true
                 }
             });
@@ -27,7 +28,14 @@ export default class AuthController {
                 throw new Errors.InvalidCredentialsError("Credenciais inválidas.");
             const accessToken = CookieUtils.generateAccessToken(lojaPorEmail.id, "loja");
             CookieUtils.saveCookieAccessToken(res, accessToken);
-            ResponseVS(res, {message: "Logado com sucesso."});
+            ResponseVS(res, {
+                message: "Logado com sucesso.",
+                data: {
+                    id: lojaPorEmail.id,
+                    nome: lojaPorEmail.nome,
+                    tipo: "comerciante"
+                }
+            });
         } catch (err) {
             const erro = err as ErrorCustomVS;
             next(erro);
@@ -41,6 +49,7 @@ export default class AuthController {
                 where: {email: dto.email},
                 select: {
                     id: true,
+                    nome: true,
                     senha: true
                 }
             });
@@ -51,7 +60,14 @@ export default class AuthController {
                 throw new Errors.InvalidCredentialsError("Credenciais inválidas.");
             const accessToken = CookieUtils.generateAccessToken(clientePorEmail.id, "cliente");
             CookieUtils.saveCookieAccessToken(res, accessToken);
-            ResponseVS(res, {message: "Logado com sucesso."});
+            ResponseVS(res, {
+                message: "Logado com sucesso.",
+                data: {
+                    id: clientePorEmail.id,
+                    nome: clientePorEmail.nome,
+                    tipo: "cliente"
+                }
+            });
         } catch (err) {
             const erro = err as ErrorCustomVS;
             next(erro);

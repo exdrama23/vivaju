@@ -1,7 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, type FC, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type FC, type ReactNode } from 'react';
 import type { Comercio, Evento, Estacionamento, Avaliacao } from '@/types';
 import { mockComercios, mockEventos, mockEstacionamentos } from '@/services/mockData';
+import { apiRequest } from '@/services/api';
 
 interface DataContextType {
   comercios: Comercio[];
@@ -11,6 +12,8 @@ interface DataContextType {
   addComercio: (comercio: Comercio) => void;
   updateComercio: (comercio: Comercio) => void;
   addAvaliacao: (avaliacao: Avaliacao) => void;
+  isLoadingEventos: boolean;
+  isLoadingEstacionamentos: boolean;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -26,19 +29,54 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const randomCategories = Array.from(new Set(comercios.map(c => c.categoria))).sort(() => Math.random() - 0.5).slice(0, 8);
 
-  const [eventos] = useState<Evento[]>(() => {
-    const stored = localStorage.getItem('vivaju_eventos_v4');
-    if (stored) return JSON.parse(stored);
-    localStorage.setItem('vivaju_eventos_v4', JSON.stringify(mockEventos));
-    return mockEventos;
-  });
+  const [eventos, setEventos] = useState<Evento[]>([]);
+  const [isLoadingEventos, setIsLoadingEventos] = useState(true);
 
-  const [estacionamentos] = useState<Estacionamento[]>(() => {
-    const stored = localStorage.getItem('vivaju_estacionamentos_v4');
-    if (stored) return JSON.parse(stored);
-    localStorage.setItem('vivaju_estacionamentos_v4', JSON.stringify(mockEstacionamentos));
-    return mockEstacionamentos;
-  });
+  const [estacionamentos, setEstacionamentos] = useState<Estacionamento[]>([]);
+  const [isLoadingEstacionamentos, setIsLoadingEstacionamentos] = useState(true);
+
+  useEffect(() => {
+    const fetchEventos = async () => {
+      try {
+        const response = await apiRequest('/evento');
+        setEventos(response.data || []);
+      } catch (error) {
+        console.error('Erro ao buscar eventos:', error);
+        // Fallback para mock em caso de erro no backend (opcional, mas bom para dev)
+        setEventos(mockEventos as any);
+      } finally {
+        setIsLoadingEventos(false);
+      }
+    };
+
+    const fetchEstacionamentos = async () => {
+      try {
+        const response = await apiRequest('/loja/estacionamento');
+        // O backend retorna Lojas que possuem estacionamento
+        const data = (response.data || []).map((item: any) => ({
+          id: item.id,
+          nome: item.nome,
+          // Como o backend atual não tem lat/lng no modelo loja, usamos mock ou 0 por enquanto
+          latitude: item.latitude || -10.91, 
+          longitude: item.longitude || -37.05,
+          numeroVagas: 20, 
+          vagasOcupadas: Math.floor(Math.random() * 20),
+          status: 'livre',
+          precoHora: item.lojaEstacionamento?.[0]?.preco ? parseFloat(item.lojaEstacionamento[0].preco) : 5.00
+        } as Estacionamento));
+        
+        setEstacionamentos(data);
+      } catch (error) {
+        console.error('Erro ao buscar estacionamentos:', error);
+        setEstacionamentos(mockEstacionamentos);
+      } finally {
+        setIsLoadingEstacionamentos(false);
+      }
+    };
+
+    fetchEventos();
+    fetchEstacionamentos();
+  }, []);
 
   const addComercio = (comercio: Comercio) => {
     setComercios(prev => {
@@ -69,7 +107,17 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   return (
-    <DataContext.Provider value={{ comercios, eventos, estacionamentos, randomCategories, addComercio, updateComercio, addAvaliacao }}>
+    <DataContext.Provider value={{ 
+      comercios, 
+      eventos, 
+      estacionamentos, 
+      randomCategories, 
+      addComercio, 
+      updateComercio, 
+      addAvaliacao,
+      isLoadingEventos,
+      isLoadingEstacionamentos
+    }}>
       {children}
     </DataContext.Provider>
   );

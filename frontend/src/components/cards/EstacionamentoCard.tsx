@@ -38,7 +38,7 @@ export function EstacionamentoCard({ estacionamento }: { estacionamento: Estacio
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-xs text-[#5f6368]">
             <DollarSign className="w-3.5 h-3.5 text-[#1e8e3e]" />
-            <span className="font-medium text-[#202124]">R$ {estacionamento.precoHora.toFixed(2)} / hora</span>
+            <span className="font-medium text-[#202124]">R$ {estacionamento.precoHora.toFixed(2)} / {estacionamento.tempoPreco}</span>
           </div>
           <div className="flex items-center gap-2 text-xs text-[#5f6368]">
             <Clock className="w-3.5 h-3.5" />

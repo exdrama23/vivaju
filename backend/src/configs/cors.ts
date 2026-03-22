@@ -1,7 +1,7 @@
 // * CORS
 import { CorsOptions } from 'cors';
 
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = ['http://localhost:5173', 'https://vivaju-front.onrender.com'];
 
 const corsConfig: CorsOptions = {
     origin: function(origin, callback) {

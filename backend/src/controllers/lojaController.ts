@@ -329,7 +329,8 @@ export default class LojaController {
                     nome: true,
                     descricao: true,
                     vendedorAmbulante: true,
-                    lojaFuncionamento: true
+                    lojaFuncionamento: true,
+                    lojaEstacionamento: true
                 },
                 where: {
                     estacionamento: true,

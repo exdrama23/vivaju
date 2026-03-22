@@ -1,10 +1,40 @@
+export interface EstacionamentoInfo {
+  preco: string;
+  tempoPreco: string;
+}
+
+export interface Categoria {
+  id: string;
+  nome: string;
+}
+
+export interface ProdutoLoja {
+  id: string;
+  nome: string;
+  preco: string;
+  marca?: string;
+}
+
 export interface Usuario {
   id: string;
   nome: string;
   email: string;
   senha?: string;
-  telefone?: string;
-  tipo: 'cliente' | 'comerciante';
+  telefone?: string; // Para clientes
+  tipo: 'cliente' | 'comerciante' | 'prefeitura';
+  
+  // Campos de comerciante (Loja no backend)
+  descricao?: string;
+  telefoneContato?: string;
+  vendedorAmbulante?: boolean;
+  cep?: string;
+  logradouro?: string;
+  numEndereco?: string;
+  complemento?: string;
+  estacionamento?: boolean;
+  estacionamentoInfo?: EstacionamentoInfo;
+  categorias?: Categoria[];
+  produtos?: ProdutoLoja[];
 }
 
 export interface Produto {
@@ -31,9 +61,16 @@ export interface Comercio {
   usuarioId: string; // The merchant owner
   nome: string;
   email: string;
-  telefone: string;
+  telefoneContato: string;
   categoria: string;
-  horarioFuncionamento: string;
+  descricao: string;
+  vendedorAmbulante: boolean;
+  cep?: string;
+  logradouro?: string;
+  numEndereco?: string;
+  complemento?: string;
+  estacionamento: boolean;
+  estacionamentoInfo?: EstacionamentoInfo;
   imagem: string;
   latitude: number;
   longitude: number;
@@ -48,11 +85,13 @@ export interface Evento {
   id: string;
   nome: string;
   descricao: string;
-  dataHora: string;
+  inicio: string;
+  fim: string;
+  localizacao: string;
   categoria: string;
-  latitude: number;
-  longitude: number;
   imagem?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface Estacionamento {
@@ -64,4 +103,5 @@ export interface Estacionamento {
   vagasOcupadas: number;
   status: 'livre' | 'médio' | 'lotado';
   precoHora: number;
+  tempoPreco: string;
 }

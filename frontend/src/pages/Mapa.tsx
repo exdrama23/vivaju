@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import { MapContainer } from '@/components/map/MapContainer';
 import { MapMarker } from '@/components/map/MapMarker';
 import { MapFilters } from '@/components/map/MapFilters';
@@ -8,6 +8,7 @@ import { useData } from '@/context/DataContext';
 import { LocateFixed, ShoppingBag, Search, Map, Menu } from 'lucide-react';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
+import { Modal } from '@/components/ui/Modal';
 import { Polyline, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import type { Comercio } from '@/types';
@@ -24,6 +25,14 @@ export function Mapa() {
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
   const [routeCoords, setRouteCoords] = useState<[number, number][]>([]);
+  
+  // Modal states
+  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
+  const [locationModalConfig, setLocationModalConfig] = useState({
+    title: '',
+    message: '',
+    showButton: false
+  });
 
   const defaultCenter = useMemo(() => [-10.910501, -37.050332] as [number, number], []);
 
@@ -53,37 +62,92 @@ export function Mapa() {
     }
   };
 
-  const handleGetLocation = () => {
+  const handleGetLocation = useCallback(() => {
+    if (!navigator.geolocation) {
+      setLocationModalConfig({
+        title: 'Geolocalização não suportada',
+        message: 'Seu navegador não suporta geolocalização.',
+        showButton: false
+      });
+      setIsLocationModalOpen(true);
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setUserLocation([position.coords.latitude, position.coords.longitude]);
+      },
+      (error) => {
+        let message = 'Não foi possível obter sua localização.';
+        if (error.code === error.PERMISSION_DENIED) {
+          message = 'Você negou a permissão de localização. Ative-a nas configurações do seu navegador para usar esta função.';
+        }
+        setLocationModalConfig({
+          title: 'Erro de Localização',
+          message,
+          showButton: false
+        });
+        setIsLocationModalOpen(true);
+      },
+      { enableHighAccuracy: true }
+    );
+  }, []);
+
+  // Monitorar localização em tempo real se o usuário já permitiu
+  useEffect(() => {
+    let watchId: number;
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
+      watchId = navigator.geolocation.watchPosition(
         (position) => {
           setUserLocation([position.coords.latitude, position.coords.longitude]);
         },
-        () => {
-          alert("Não foi possível obter sua localização.");
-        }
+        (error) => {
+          console.warn("Erro no watchPosition:", error.message);
+        },
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
       );
     }
-  };
+    return () => {
+      if (watchId) navigator.geolocation.clearWatch(watchId);
+    };
+  }, []);
 
-  const handleTraceRoute = async (destLat: number, destLng: number) => {
-    if (!userLocation) {
-      alert("Ative seu GPS para traçar a rota.");
-      handleGetLocation();
-      return;
-    }
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  const traceRoute = useCallback(async (start: [number, number], end: [number, number], signal?: AbortSignal) => {
     try {
-      const response = await fetch(
-        `https://router.project-osrm.org/route/v1/driving/${userLocation[1]},${userLocation[0]};${destLng},${destLat}?overview=full&geometries=geojson`
-      );
-      const data = await response.json() as { routes?: Array<{ geometry: { coordinates: [number, number][] } }> };
-      if (data.routes?.[0]) {
+      const url = `https://router.project-osrm.org/route/v1/driving/${start[1]},${start[0]};${end[1]},${end[0]}?overview=full&geometries=geojson`;
+      const res = await fetch(url, { signal });
+      const data = await res.json() as { routes?: Array<{ geometry: { coordinates: [number, number][] } }> };
+      if (data.routes?.[0] && isMountedRef.current) {
         setRouteCoords(data.routes[0].geometry.coordinates.map((c) => [c[1], c[0]]));
       }
     } catch (e) {
-      console.error(e);
+      if (e instanceof Error && e.name !== 'AbortError') {
+        console.error("Erro ao traçar rota:", e);
+      }
     }
-  };
+  }, []);
+
+  const handleTraceRoute = useCallback((destLat: number, destLng: number) => {
+    if (!userLocation) {
+      setLocationModalConfig({
+        title: 'Ative seu GPS',
+        message: 'Precisamos da sua localização para traçar a rota até o destino.',
+        showButton: true
+      });
+      setIsLocationModalOpen(true);
+      return;
+    }
+    const controller = new AbortController();
+    void traceRoute(userLocation, [destLat, destLng], controller.signal);
+  }, [userLocation, traceRoute]);
 
   const userIcon = L.divIcon({
     className: 'user-location-icon',
@@ -94,6 +158,25 @@ export function Mapa() {
 
   return (
     <div className="flex flex-col md:flex-row flex-1 w-full h-full relative overflow-hidden bg-white">
+      {/* Modais de Localização */}
+      <Modal 
+        isOpen={isLocationModalOpen} 
+        onClose={() => setIsLocationModalOpen(false)}
+        title={locationModalConfig.title}
+      >
+        <div className="space-y-4">
+          <p className="text-sm text-gray-600">{locationModalConfig.message}</p>
+          <div className="flex justify-end gap-2">
+            <Button variant="ghost" onClick={() => setIsLocationModalOpen(false)}>Fechar</Button>
+            {locationModalConfig.showButton && (
+              <Button onClick={() => { setIsLocationModalOpen(false); handleGetLocation(); }}>
+                Ativar GPS
+              </Button>
+            )}
+          </div>
+        </div>
+      </Modal>
+
       {/* Toggle Button - Mobile Only */}
       <div className={`md:hidden absolute top-4 z-20 flex gap-2 transition-all ${showMap ? 'left-1/2 -translate-x-1/2' : 'right-4'}`}>
         <button
@@ -113,7 +196,7 @@ export function Mapa() {
       </div>
 
       {/* Sidebar - Local Data Only */}
-      <div className={`w-full md:w-[360px] bg-white z-10 flex flex-col p-6 gap-6 md:h-full shrink-0 overflow-y-auto border-r border-[#dadce0] transition-all md:pb-0 pb-24 ${showMap ? 'hidden md:flex' : 'flex md:flex'}`}>
+      <div className={`w-full md:w-90 bg-white z-10 flex flex-col p-6 gap-6 md:h-full shrink-0 overflow-y-auto border-r border-[#dadce0] transition-all md:pb-0 pb-24 ${showMap ? 'hidden md:flex' : 'flex md:flex'}`}>
         <div className="space-y-1">
           <h1 className="text-xl font-medium flex items-center gap-2 text-[#202124]">
             <ShoppingBag className="text-[#1a73e8] w-5 h-5" /> VivaJu Centro
@@ -223,3 +306,4 @@ export function Mapa() {
     </div>
   );
 }
+

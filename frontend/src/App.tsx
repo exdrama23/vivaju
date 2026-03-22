@@ -6,6 +6,8 @@ import { Comercios } from '@/pages/Comercios';
 import { ComercioDetalhe } from '@/pages/ComercioDetalhe';
 import { Eventos } from '@/pages/Eventos';
 import { Estacionamentos } from '@/pages/Estacionamentos';
+import { Culinaria } from '@/pages/Culinaria';
+import { PrefeituraDashboard } from '@/pages/PrefeituraDashboard';
 import { Login } from '@/pages/Login';
 import { Cadastro } from '@/pages/Cadastro';
 import { Dashboard } from '@/pages/Dashboard';
@@ -20,6 +22,8 @@ function App() {
         <Route path="comercios/:id" element={<ComercioDetalhe />} />
         <Route path="eventos" element={<Eventos />} />
         <Route path="estacionamentos" element={<Estacionamentos />} />
+        <Route path="culinaria" element={<Culinaria />} />
+        <Route path="prefeitura" element={<PrefeituraDashboard />} />
         <Route path="login" element={<Login />} />
         <Route path="cadastro" element={<Cadastro />} />
         <Route path="dashboard" element={<Dashboard />} />

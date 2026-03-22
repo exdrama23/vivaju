@@ -1,7 +1,8 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Home, Map as MapIcon, Store, Calendar, Car, User } from 'lucide-react';
+import { Home, Map as MapIcon, Store, Calendar, Car, User, Utensils } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { cn } from '@/utils/utils';
+import logoCaju from '@/assets/logocaju.png';
 
 export function Layout() {
   const location = useLocation();
@@ -13,6 +14,7 @@ export function Layout() {
     { name: 'Comércios', path: '/comercios', icon: Store },
     { name: 'Eventos', path: '/eventos', icon: Calendar },
     { name: 'Vagas', path: '/estacionamentos', icon: Car },
+    { name: 'Culinária', path: '/culinaria', icon: Utensils },
   ];
 
   return (
@@ -20,8 +22,8 @@ export function Layout() {
       <header className="sticky top-0 z-50 w-full border-b border-[#dadce0] bg-white shrink-0">
         <div className="container mx-auto flex h-16 items-center justify-between px-6">
           <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-2 font-medium text-2xl text-[#1a73e8] tracking-tight">
-              VIVAJU
+            <Link to="/" className="flex items-center gap-2">
+              <img src={logoCaju} alt="VIVAJU" className="h-10 w-auto object-contain" />
             </Link>
             <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (

@@ -54,7 +54,7 @@ export function ComercioDetalhe() {
         
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-10">
-          <div className="relative h-80 md:h-[450px] w-full overflow-hidden rounded-[32px] border border-[#dadce0] shadow-sm">
+          <div className="relative h-80 md:h-112.5 w-full overflow-hidden rounded-4xl border border-[#dadce0] shadow-sm">
              <img src={comercio.imagem} alt={comercio.nome} className="w-full h-full object-cover" />
              <div className="absolute inset-0 bg-black/5" />
           </div>
@@ -172,7 +172,7 @@ export function ComercioDetalhe() {
 
         {/* Sidebar */}
         <div className="space-y-8">
-          <div className="bg-white border border-[#dadce0] rounded-[32px] p-8 space-y-8 shadow-sm sticky top-28">
+          <div className="bg-white border border-[#dadce0] rounded-4xl p-8 space-y-8 shadow-sm sticky top-28">
             <h3 className="font-medium text-xl text-[#202124]">Sobre o local</h3>
             
             <div className="space-y-6">

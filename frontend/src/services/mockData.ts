@@ -10,6 +10,8 @@ export interface ComercioExtendido extends Comercio {
   resumo_avaliacoes?: string;
   redes_sociais?: string;
   rating?: number;
+  telefone?: string;
+  horarioFuncionamento?: string;
 }
 
 export const mockComercios: (Comercio & { localizacao: string, resumo_avaliacoes: string, redes_sociais: string, rating: number })[] = [

@@ -85,7 +85,7 @@ export function Comercios() {
           <p className="text-[#5f6368] font-medium text-sm">Buscando estabelecimentos...</p>
         </div>
       ) : filteredComercios.length === 0 ? (
-        <div className="text-center py-20 bg-[#f8f9fa] rounded-[32px] border border-[#dadce0] border-dashed">
+        <div className="text-center py-20 bg-[#f8f9fa] rounded-4xl border border-[#dadce0] border-dashed">
           <Search className="w-12 h-12 text-[#bdc1c6] mx-auto mb-4" />
           <h3 className="text-xl font-medium text-[#202124]">Nenhum comércio encontrado</h3>
           <p className="text-[#5f6368] text-sm mt-1">Tente ajustar seus filtros ou termo de busca.</p>

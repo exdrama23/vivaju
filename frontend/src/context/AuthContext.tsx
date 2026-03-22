@@ -1,12 +1,15 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, type FC, type ReactNode } from 'react';
-import type { Usuario } from '@/types';
+import type { Usuario, ProdutoLoja, Categoria } from '@/types';
+import { apiRequest } from '@/services/api';
 
 interface AuthContextType {
   user: Usuario | null;
   login: (user: Usuario) => void;
-  logout: () => void;
+  logout: () => Promise<void>;
   register: (user: Usuario) => void;
+  adicionarProduto: (produto: Omit<ProdutoLoja, 'id'>) => void;
+  adicionarCategoria: (categoria: Omit<Categoria, 'id'>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -22,9 +25,15 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     localStorage.setItem('vivaju_user', JSON.stringify(userData));
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('vivaju_user');
+  const logout = async () => {
+    try {
+      await apiRequest('/logout', { method: 'POST' });
+    } catch (err) {
+      console.error('Erro ao fazer logout no servidor:', err);
+    } finally {
+      setUser(null);
+      localStorage.removeItem('vivaju_user');
+    }
   };
 
   const register = (userData: Usuario) => {
@@ -34,8 +43,28 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     login(userData);
   };
 
+  const adicionarProduto = (produtoDto: Omit<ProdutoLoja, 'id'>) => {
+    if (!user) return;
+    const novoProduto = { ...produtoDto, id: Date.now().toString() };
+    const updatedUser = {
+      ...user,
+      produtos: [...(user.produtos || []), novoProduto]
+    };
+    login(updatedUser);
+  };
+
+  const adicionarCategoria = (categoriaDto: Omit<Categoria, 'id'>) => {
+    if (!user) return;
+    const novaCategoria = { ...categoriaDto, id: Date.now().toString() };
+    const updatedUser = {
+      ...user,
+      categorias: [...(user.categorias || []), novaCategoria]
+    };
+    login(updatedUser);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, register }}>
+    <AuthContext.Provider value={{ user, login, logout, register, adicionarProduto, adicionarCategoria }}>
       {children}
     </AuthContext.Provider>
   );
