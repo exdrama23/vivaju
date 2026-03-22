@@ -7,39 +7,39 @@ datasource db {
   provider = "postgresql"
 }
 
-model Categoria {
+model categoria {
   id                String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  nome              String             @db.VarChar(150)
+  nome              String             @unique @db.VarChar(150)
   dataCriacao       DateTime           @default(now()) @map("data_criacao") @db.Timestamptz(6)
-  categoriaLojas    CategoriaLoja[]
-  categoriaProdutos CategoriaProduto[]
-
-  @@map("categoria")
+  categoriaLoja     categoriaLoja[]
+  categoriaProdutos categoriaProduto[]
 }
 
-model CategoriaLoja {
+model categoriaLoja {
   id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   lojaId      String    @map("loja_id") @db.Uuid
   categoriaId String    @map("categoria_id") @db.Uuid
   dataCriacao DateTime  @default(now()) @map("data_criacao") @db.Timestamptz(6)
-  categoria   Categoria @relation(fields: [categoriaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  loja        Loja      @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  categoria   categoria @relation(fields: [categoriaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  loja        loja      @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
+  @@unique([lojaId, categoriaId])
   @@map("categoria_loja")
 }
 
-model CategoriaProduto {
+model categoriaProduto {
   id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   categoriaId String    @map("categoria_id") @db.Uuid
   produtoId   String    @map("produto_id") @db.Uuid
   dataCriacao DateTime  @default(now()) @map("data_criacao") @db.Timestamptz(6)
-  categoria   Categoria @relation(fields: [categoriaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  produto     Produto   @relation(fields: [produtoId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  categoria   categoria @relation(fields: [categoriaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  produto     produto   @relation(fields: [produtoId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
+  @@unique([categoriaId, produtoId])
   @@map("categoria_produto")
 }
 
-model Cliente {
+model cliente {
   id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   email           String   @unique @db.VarChar(254)
   senha           String   @db.VarChar(255)
@@ -47,13 +47,12 @@ model Cliente {
   nome            String   @db.VarChar(150)
   dataCriacao     DateTime @default(now()) @map("data_criacao") @db.Timestamptz(6)
   dataAtualizacao DateTime @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
-
-  @@map("cliente")
 }
 
-model Evento {
+model evento {
   id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   nome            String   @db.VarChar(150)
+  nomeNormalizado String   @map("nome_normalizado") @db.VarChar(150)
   descricao       String   @db.VarChar(3000)
   inicio          DateTime @db.Timestamptz(6)
   fim             DateTime @db.Timestamptz(6)
@@ -61,46 +60,45 @@ model Evento {
   categoria       String   @db.VarChar(30)
   dataCriacao     DateTime @default(now()) @map("data_criacao") @db.Timestamptz(6)
   dataAtualizacao DateTime @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
-
-  @@map("evento")
 }
 
-model Loja {
+model loja {
   id                 String               @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   email              String               @unique @db.VarChar(254)
   senha              String               @db.VarChar(255)
   nome               String               @db.VarChar(150)
+  nomeNormalizado    String               @map("nome_normalizado") @db.VarChar(150)
+  descricao          String               @db.VarChar(3000)
   vendedorAmbulante  Boolean              @map("vendedor_ambulante")
   cep                String?              @db.VarChar(8)
+  telefoneContato    String?              @map("telefone_contato") @db.VarChar(13)
   logradouro         String?              @db.VarChar(100)
   numEndereco        String?              @map("num_endereco") @db.VarChar(20)
   complemento        String?              @db.VarChar(300)
   estacionamento     Boolean              @default(false)
   dataCriacao        DateTime             @default(now()) @map("data_criacao") @db.Timestamptz(6)
   dataAtualizacao    DateTime             @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
-  categoriaLojas     CategoriaLoja[]
-  lojaEstacionamento LojaEstacionamento[]
-  lojaFuncionamento  LojaFuncionamento[]
-  produtoLojas       ProdutoLoja[]
-
-  @@map("loja")
+  categoriaLoja      categoriaLoja[]
+  lojaEstacionamento lojaEstacionamento[]
+  lojaFuncionamento  lojaFuncionamento[]
+  produtoLoja        produtoLoja[]
 }
 
-model LojaEstacionamento {
+model lojaEstacionamento {
   id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  lojaId          String   @map("loja_id") @db.Uuid
+  lojaId          String   @unique @map("loja_id") @db.Uuid
   preco           Decimal  @db.Decimal(10, 2)
   tempoPreco      String   @map("tempo_preco") @db.VarChar(20)
   dataCriacao     DateTime @default(now()) @map("data_criacao") @db.Timestamptz(6)
   dataAtualizacao DateTime @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
-  loja            Loja     @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  loja            loja     @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@map("loja_estacionamento")
 }
 
-model LojaFuncionamento {
+model lojaFuncionamento {
   id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  lojaId          String    @map("loja_id") @db.Uuid
+  lojaId          String    @unique @map("loja_id") @db.Uuid
   segAbr          DateTime? @map("seg_abr") @db.Time(6)
   segFec          DateTime? @map("seg_fec") @db.Time(6)
   terAbr          DateTime? @map("ter_abr") @db.Time(6)
@@ -119,14 +117,15 @@ model LojaFuncionamento {
   feriadoFec      DateTime? @map("feriado_fec") @db.Time(6)
   dataCriacao     DateTime  @default(now()) @map("data_criacao") @db.Timestamptz(6)
   dataAtualizacao DateTime  @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
-  loja            Loja      @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  loja            loja      @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@map("loja_funcionamento")
 }
 
-model PontoTuristico {
+model pontoTuristico {
   id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   nome            String   @db.VarChar(200)
+  nomeNormalizado String   @map("nome_normalizado") @db.VarChar(200)
   descricao       String   @db.VarChar(5000)
   localizacao     String   @db.VarChar(300)
   dataCriacao     DateTime @default(now()) @map("data_criacao") @db.Timestamptz(6)
@@ -135,17 +134,15 @@ model PontoTuristico {
   @@map("ponto_turistico")
 }
 
-model Produto {
+model produto {
   id                String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  nome              String             @db.VarChar(150)
+  nome              String             @unique @db.VarChar(150)
   dataCriacao       DateTime           @default(now()) @map("data_criacao") @db.Timestamptz(6)
-  categoriaProdutos CategoriaProduto[]
-  produtoLojas      ProdutoLoja[]
-
-  @@map("produto")
+  categoriaProdutos categoriaProduto[]
+  produtoLoja       produtoLoja[]
 }
 
-model ProdutoLoja {
+model produtoLoja {
   id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   lojaId          String   @map("loja_id") @db.Uuid
   produtoId       String   @map("produto_id") @db.Uuid
@@ -153,8 +150,8 @@ model ProdutoLoja {
   marca           String?  @db.VarChar(200)
   dataCriacao     DateTime @default(now()) @map("data_criacao") @db.Timestamptz(6)
   dataAtualizacao DateTime @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
-  loja            Loja     @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  produto         Produto  @relation(fields: [produtoId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  loja            loja     @relation(fields: [lojaId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  produto         produto  @relation(fields: [produtoId], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@map("produto_loja")
 }
