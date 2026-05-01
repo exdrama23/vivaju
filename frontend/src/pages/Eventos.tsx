@@ -30,13 +30,21 @@ export function Eventos() {
       });
 
       const response = await apiRequest(`/evento?${params.toString()}`);
-      const data = response.data || [];
+      let data = response.data || [];
       
+      // Fallback para mock se a API retornar vazio
+      if (data.length === 0) {
+        const { mockEventos } = await import('@/services/mockData');
+        data = mockEventos;
+      }
+
       setListaEventos(data);
       // Se retornou 10 itens (o limite do backend), assumimos que pode haver mais
-      setHasMore(data.length === 10);
+      setHasMore(data.length >= 10);
     } catch (error) {
       console.error('Erro ao buscar eventos:', error);
+      const { mockEventos } = await import('@/services/mockData');
+      setListaEventos(mockEventos);
     } finally {
       setLoading(false);
     }

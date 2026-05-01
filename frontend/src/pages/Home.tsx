@@ -3,10 +3,10 @@ import { useData } from '@/context/DataContext';
 import { ComercioCard } from '@/components/cards/ComercioCard';
 import { EventoCard } from '@/components/cards/EventoCard';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/Button';
+// import { Button } from '@/components/ui/Button';
 import { StoreSlider } from '@/components/ui/StoreSlider';
 import { RecommendedFilters } from '@/components/ui/RecommendedFilters';
-import { Calendar, Tag, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export function Home() {
   const { comercios, eventos, randomCategories } = useData();
@@ -68,7 +68,7 @@ export function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 sm:gap-x-6 gap-y-8 sm:gap-y-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
             {lojasExibidas.map((c) => (
               <ComercioCard key={c.id} comercio={c} />
             ))}
@@ -76,7 +76,7 @@ export function Home() {
         </section>
 
         {/* Promoções - seção com verificação de segurança (Estilo Original Vibrante) */}
-        <section className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl sm:rounded-[32px] p-6 sm:p-8 md:p-12 text-white shadow-xl overflow-hidden relative border-none">
+        {/* <section className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl sm:rounded-[32px] p-6 sm:p-8 md:p-12 text-white shadow-xl overflow-hidden relative border-none">
           <div className="absolute top-0 right-0 opacity-10 -translate-y-1/4 translate-x-1/4 hidden sm:block">
             <Tag className="w-64 h-64" />
           </div>
@@ -119,14 +119,14 @@ export function Home() {
               })}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Próximos Eventos */}
         <section className="space-y-6 sm:space-y-8">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-full bg-[#f3e5f5]">
+            {/* <div className="p-2 rounded-full bg-[#f3e5f5]">
               <Calendar className="text-[#9c27b0] w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
+            </div> */}
             <h2 className="text-xl sm:text-2xl font-medium text-[#202124]">Agenda Cultural</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">

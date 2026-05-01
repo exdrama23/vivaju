@@ -2,11 +2,15 @@ import { useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useData } from '@/context/DataContext';
 import { Button } from '@/components/ui/Button';
-import { MapPin, Clock, Phone, Star, MessageCircle, AlertTriangle, Instagram, Navigation } from 'lucide-react';
+import { 
+  MapPin, Clock, Phone, Star, MessageCircle, AlertTriangle, 
+  Instagram, Navigation, Search, DollarSign, Bike, ChevronDown 
+} from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { MapContainer } from '@/components/map/MapContainer';
 import { MapMarker } from '@/components/map/MapMarker';
 import { Modal } from '@/components/ui/Modal';
+import { ProdutoCard } from '@/components/cards/ProdutoCard';
 import type { ComercioExtendido } from '@/services/mockData';
 
 export function ComercioDetalhe() {
@@ -16,6 +20,7 @@ export function ComercioDetalhe() {
   
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const [nota, setNota] = useState(5);
   const [comentario, setComentario] = useState('');
@@ -48,123 +53,165 @@ export function ComercioDetalhe() {
     window.open(`https://www.google.com/maps/dir/?api=1&destination=${comercio.latitude},${comercio.longitude}`, '_blank');
   };
 
+  const produtosFiltrados = comercio.produtos.filter(p => 
+    p.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    p.descricao.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12 max-w-6xl bg-white min-h-screen md:pb-0 pb-24">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
-        
-        {/* Main Content */}
-        <div className="lg:col-span-2 space-y-8 md:space-y-10">
-          <div className="relative h-56 sm:h-80 md:h-112.5 w-full overflow-hidden rounded-3xl sm:rounded-4xl border border-[#dadce0] shadow-sm">
-             <img src={comercio.imagem} alt={comercio.nome} className="w-full h-full object-cover" />
-             <div className="absolute inset-0 bg-black/5" />
-          </div>
+    <div className="container mx-auto px-4 sm:px-6 py-4 md:py-8 max-w-5xl bg-white min-h-screen md:pb-0 pb-24">
+      
+      {/* NOVO DESIGN DO CABEÇALHO */}
+      <div className="bg-white border border-gray-100 shadow-sm rounded-2xl overflow-hidden mb-8">
+        {/* 1. SEÇÃO DA CAPA (BANNER) */}
+        <div className="w-full h-48 sm:h-64 bg-gray-200">
+          <img 
+            src={comercio.imagem} 
+            alt={comercio.nome} 
+            className="w-full h-full object-cover" 
+          />
+        </div>
+
+        {/* 2. SEÇÃO DE INFORMAÇÕES */}
+        <div className="px-4 py-6">
           
-          <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-medium text-[#202124] tracking-tight">{comercio.nome}</h1>
-                  <div className={`px-2 py-0.5 rounded-md text-[10px] font-medium tracking-wide shadow-sm border whitespace-nowrap ${
-                    comercio.statusAberto 
-                      ? 'bg-emerald-50 text-emerald-700 border-emerald-100' 
-                      : 'bg-rose-50 text-rose-700 border-rose-100'
-                  }`}>
-                    {comercio.statusAberto ? 'ABERTO' : 'FECHADO'}
-                  </div>
-                </div>
-                <p className="text-[#5f6368] text-base sm:text-lg font-normal">{comercio.categoria}</p>
+          {/* LINHA SUPERIOR: Logo, Título e Infos da Direita */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            
+            {/* Bloco Esquerdo: Logo e Título */}
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden border border-gray-100 bg-white flex-shrink-0">
+                <img 
+                  src={comercio.imagem} 
+                  alt={comercio.nome} 
+                  className="w-full h-full object-cover" 
+                />
               </div>
               
-              <div className="flex items-center gap-2 bg-[#fef7e0] text-[#202124] px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl border border-[#feefc3] shadow-sm w-fit">
-                <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#fbbc04] fill-current" />
-                <span className="text-lg sm:text-xl font-medium">{mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}</span>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-3">
+                  <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">
+                    {comercio.nome}
+                  </h1>
+                  <div className="flex items-center text-[#e8a317] text-sm font-medium">
+                    <Star size={14} fill="currentColor" className="mr-1" strokeWidth={0} />
+                    {mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}
+                  </div>
+                </div>
+                <p className="text-gray-500 text-sm">{comercio.categoria}</p>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {comercio.tags.map(tag => (
-                <Badge key={tag} variant="outline" className="rounded-full px-3 sm:px-4 py-0.5 sm:py-1 text-[10px] sm:text-xs text-[#5f6368] border-[#dadce0] bg-white">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              {comercio.telefone !== 'N/A' && (
-                <a href={`https://wa.me/55${comercio.telefone?.replace(/\D/g, '')}`} target="_blank" rel="noreferrer" className="flex-1">
-                  <Button className="w-full rounded-full h-11 sm:h-12 bg-[#25d366] hover:bg-[#20bd5c] text-white border-none shadow-sm flex items-center justify-center gap-2 text-sm">
-                    <MessageCircle className="w-5 h-5" /> WhatsApp
-                  </Button>
-                </a>
-              )}
-              <div className="flex-1 flex gap-2">
-                <Button 
-                  onClick={handleOpenGoogleMaps}
-                  className="flex-1 rounded-full h-11 sm:h-12 flex items-center justify-center gap-2 shadow-sm text-sm"
-                >
-                  <Navigation className="w-5 h-5" /> Traçar Rota
-                </Button>
-                <Button variant="ghost" onClick={() => setIsReportModalOpen(true)} className="w-11 h-11 sm:w-12 sm:h-12 rounded-full p-0 text-[#5f6368] hover:text-[#d93025] hover:bg-[#fce8e6] shrink-0">
-                  <AlertTriangle className="w-5 h-5" />
-                </Button>
+            {/* Bloco Direito: Botões de Ação */}
+            <div className="flex items-center text-[13px] gap-4">
+              <button 
+                onClick={() => setIsReviewModalOpen(true)}
+                className="text-red-600 font-medium hover:underline transition-all"
+              >
+                Avaliar
+              </button>
+              
+              <div className="w-px h-4 bg-gray-300"></div>
+              
+              <div className="flex items-center text-gray-500">
+                <DollarSign size={14} className="mr-1" />
+                Destaque Local
               </div>
             </div>
           </div>
 
-          <div className="space-y-6 pt-6 border-t border-[#dadce0]">
-            <h2 className="text-xl sm:text-2xl font-medium text-[#202124]">Produtos em destaque</h2>
-            {comercio.produtos.length === 0 ? (
-              <div className="p-6 sm:p-8 bg-[#f8f9fa] rounded-2xl sm:rounded-3xl text-center border border-[#dadce0] border-dashed">
-                <p className="text-[#5f6368] text-sm italic">O catálogo de produtos ainda está sendo atualizado.</p>
+          {/* LINHA INFERIOR: Barra de Pesquisa e Filtros */}
+          <div className="flex flex-col md:flex-row gap-3">
+            
+            <div className="flex-1 flex items-center px-4 py-2.5 border border-gray-200 rounded-xl flex-shrink-0 focus-within:border-red-200 transition-colors">
+              <Search size={18} className="text-red-500 mr-3" />
+              <input 
+                type="text" 
+                placeholder="Buscar no catálogo" 
+                className="w-full bg-transparent outline-none text-gray-700 placeholder-gray-400 text-[14px]"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+
+            <button 
+              onClick={handleOpenGoogleMaps}
+              className="flex items-center justify-between px-4 py-2.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors min-w-[130px]"
+            >
+              <div className="flex items-center text-gray-700 text-[14px]">
+                <MapPin size={18} className="text-gray-400 mr-2" />
+                Ver no Mapa
+              </div>
+              <ChevronDown size={16} className="text-red-500" />
+            </button>
+
+            <div className="flex flex-col justify-center px-4 py-1.5 border border-gray-200 rounded-xl min-w-[150px]">
+              <span className="text-[13px] text-gray-800">{comercio.statusAberto ? 'Aberto Agora' : 'Fechado'}</span>
+              <div className="text-[12px] text-gray-500">
+                {comercio.horarioFuncionamento} <span className="mx-1">•</span> 
+                <span className={`font-medium ${comercio.statusAberto ? 'text-[#50a773]' : 'text-rose-500'}`}>
+                  {comercio.statusAberto ? 'Visite' : 'Volte depois'}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        {/* CONTEÚDO PRINCIPAL (CATÁLOGO) */}
+        <div className="lg:col-span-2 space-y-8">
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-gray-800">Catálogo de Produtos</h2>
+              <span className="text-xs text-gray-500">{produtosFiltrados.length} itens</span>
+            </div>
+
+            {produtosFiltrados.length === 0 ? (
+              <div className="p-8 bg-gray-50 rounded-2xl text-center border border-gray-100 border-dashed">
+                <p className="text-gray-500 text-sm">Nenhum produto encontrado na busca.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                {comercio.produtos.map(p => (
-                  <div key={p.id} className="bg-white border border-[#dadce0] p-4 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-md transition-shadow flex justify-between items-center gap-4">
-                    <div className="space-y-1 overflow-hidden">
-                      <h3 className="font-medium text-sm sm:text-base text-[#202124] truncate">{p.nome}</h3>
-                      <p className="text-[10px] sm:text-xs text-[#5f6368] line-clamp-2">{p.descricao}</p>
-                    </div>
-                    <div className="font-medium text-[#1a73e8] text-base sm:text-lg whitespace-nowrap">R$ {p.preco.toFixed(2)}</div>
-                  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {produtosFiltrados.map(p => (
+                  <ProdutoCard key={p.id} produto={p} />
                 ))}
               </div>
             )}
           </div>
 
-          <div className="space-y-8 pt-6 border-t border-[#dadce0]">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-medium text-[#202124]">O que as pessoas dizem</h2>
-              <Button variant="outline" className="rounded-full border-[#dadce0] text-[#1a73e8]" onClick={() => setIsReviewModalOpen(true)}>Avaliar</Button>
-            </div>
+          {/* AVALIAÇÕES */}
+          <div className="space-y-6 pt-6 border-t border-gray-100">
+            <h2 className="text-xl font-semibold text-gray-800">O que os clientes dizem</h2>
             
             {comercio.resumo_avaliacoes && (
-               <div className="bg-[#e8f0fe] p-6 rounded-2xl border border-[#d2e3fc]">
-                  <p className="text-[#1a73e8] text-sm font-medium flex items-center gap-2 mb-2">
-                     <Star className="w-4 h-4 fill-current" /> Resumo das opiniões
+               <div className="bg-[#fef7e0]/50 p-6 rounded-2xl border border-[#feefc3]">
+                  <p className="text-[#e8a317] text-xs font-semibold flex items-center gap-2 mb-2 uppercase tracking-wider">
+                     <Star size={14} fill="currentColor" strokeWidth={0} /> Resumo Inteligente
                   </p>
-                  <p className="text-[#202124] italic">"{comercio.resumo_avaliacoes}"</p>
+                  <p className="text-gray-700 italic text-sm leading-relaxed">"{comercio.resumo_avaliacoes}"</p>
                </div>
             )}
 
             <div className="space-y-4">
               {comercio.avaliacoes.length === 0 ? (
-                <p className="text-[#5f6368] text-sm italic py-4">Ainda não há avaliações de usuários.</p>
+                <p className="text-gray-500 text-sm italic py-4">Este local ainda não recebeu avaliações.</p>
               ) : (
                 comercio.avaliacoes.map(a => (
-                  <div key={a.id} className="bg-white border border-[#dadce0] p-6 rounded-2xl">
+                  <div key={a.id} className="bg-white border border-gray-100 p-5 rounded-xl">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-[#f1f3f4] flex items-center justify-center text-[#5f6368] text-xs font-medium">U</div>
-                        <span className="font-medium text-[#202124] text-sm">Visitante</span>
+                        <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-[10px] font-bold">U</div>
+                        <span className="font-medium text-gray-800 text-sm">Cliente</span>
                       </div>
-                      <div className="flex text-[#fbbc04]">
+                      <div className="flex text-[#e8a317]">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`w-3.5 h-3.5 ${i < a.nota ? 'fill-current' : 'text-[#dadce0]'}`} />
+                          <Star key={i} size={12} className={`${i < a.nota ? 'fill-current' : 'text-gray-200'}`} strokeWidth={0} />
                         ))}
                       </div>
                     </div>
-                    <p className="text-sm text-[#3c4043] leading-relaxed">{a.comentario}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">{a.comentario}</p>
                   </div>
                 ))
               )}
@@ -172,84 +219,87 @@ export function ComercioDetalhe() {
           </div>
         </div>
 
-        {/* Sidebar */}
-        <div className="space-y-8">
-          <div className="bg-white border border-[#dadce0] rounded-4xl p-8 space-y-8 shadow-sm sticky top-28">
-            <h3 className="font-medium text-xl text-[#202124]">Sobre o local</h3>
+        {/* SIDEBAR (SOBRE) */}
+        <div className="space-y-6">
+          <div className="bg-white border border-gray-100 rounded-2xl p-6 space-y-6 shadow-sm sticky top-28">
+            <h3 className="font-semibold text-lg text-gray-800">Informações</h3>
             
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="p-2.5 bg-[#fef7e0] rounded-full">
-                  <Clock className="w-5 h-5 text-[#fbbc04]" />
-                </div>
+            <div className="space-y-5">
+              <div className="flex items-start gap-3">
+                <Clock size={18} className="text-red-500 mt-0.5" />
                 <div>
-                  <p className="text-[11px] font-medium text-[#5f6368] uppercase tracking-wider mb-1">Horário</p>
-                  <p className="text-sm text-[#202124] font-medium">{comercio.horarioFuncionamento}</p>
+                  <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Funcionamento</p>
+                  <p className="text-sm text-gray-700 font-medium">{comercio.horarioFuncionamento}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="p-2.5 bg-[#e8f0fe] rounded-full">
-                  <MapPin className="w-5 h-5 text-[#1a73e8]" />
-                </div>
+              <div className="flex items-start gap-3">
+                <MapPin size={18} className="text-red-500 mt-0.5" />
                 <div>
-                  <p className="text-[11px] font-medium text-[#5f6368] uppercase tracking-wider mb-1">Localização</p>
-                  <p className="text-sm text-[#202124] font-normal leading-relaxed">{comercio.localizacao}</p>
+                  <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Localização</p>
+                  <p className="text-sm text-gray-700 leading-relaxed">{comercio.localizacao}</p>
                 </div>
               </div>
 
               {comercio.telefone !== 'N/A' && (
-                <div className="flex items-start gap-4">
-                  <div className="p-2.5 bg-[#e6f4ea] rounded-full">
-                    <Phone className="w-5 h-5 text-[#1e8e3e]" />
-                  </div>
+                <div className="flex items-start gap-3">
+                  <Phone size={18} className="text-red-500 mt-0.5" />
                   <div>
-                    <p className="text-[11px] font-medium text-[#5f6368] uppercase tracking-wider mb-1">Contato</p>
-                    <p className="text-sm text-[#202124] font-medium">{comercio.telefone}</p>
+                    <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Contato</p>
+                    <a href={`https://wa.me/55${comercio.telefone?.replace(/\D/g, '')}`} target="_blank" rel="noreferrer" className="text-sm text-blue-600 font-medium hover:underline">
+                      {comercio.telefone}
+                    </a>
                   </div>
                 </div>
               )}
 
               {comercio.redes_sociais && comercio.redes_sociais !== 'N/A' && (
-                <div className="flex items-start gap-4">
-                  <div className="p-2.5 bg-[#fce4ec] rounded-full">
-                    <Instagram className="w-5 h-5 text-[#e91e63]" />
-                  </div>
+                <div className="flex items-start gap-3">
+                  <Instagram size={18} className="text-red-500 mt-0.5" />
                   <div>
-                    <p className="text-[11px] font-medium text-[#5f6368] uppercase tracking-wider mb-1">Instagram</p>
-                    <p className="text-sm text-[#202124] font-medium">{comercio.redes_sociais}</p>
+                    <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Redes Sociais</p>
+                    <p className="text-sm text-gray-700 font-medium">{comercio.redes_sociais}</p>
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="h-60 rounded-2xl overflow-hidden mt-8 border border-[#dadce0]">
+            <div className="h-48 rounded-xl overflow-hidden mt-6 border border-gray-100 shadow-inner">
               <MapContainer center={[comercio.latitude, comercio.longitude]} zoom={17} className="w-full h-full">
                 <MapMarker position={[comercio.latitude, comercio.longitude]} type="comercio" />
               </MapContainer>
             </div>
+
+            <Button 
+              variant="ghost" 
+              onClick={() => setIsReportModalOpen(true)}
+              className="w-full text-gray-400 hover:text-red-500 text-xs gap-2 pt-4"
+            >
+              <AlertTriangle size={14} /> Denunciar erro neste local
+            </Button>
           </div>
         </div>
 
       </div>
 
+      {/* MODALS */}
       <Modal isOpen={isReportModalOpen} onClose={() => setIsReportModalOpen(false)} title="Denunciar local">
         <div className="space-y-6">
-          <p className="text-sm text-[#5f6368]">Por que você está denunciando este local?</p>
-          <select className="w-full p-3 bg-white border border-[#dadce0] rounded-xl text-sm text-[#202124] focus:ring-1 focus:ring-[#1a73e8] outline-none">
+          <p className="text-sm text-gray-500">Por que você está denunciando este local?</p>
+          <select className="w-full p-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none">
             <option>Informações incorretas</option>
             <option>Local fechado permanentemente</option>
             <option>Local inexistente</option>
             <option>Conteúdo impróprio</option>
           </select>
           <textarea 
-            className="w-full p-3 bg-white border border-[#dadce0] rounded-xl text-sm text-[#202124] focus:ring-1 focus:ring-[#1a73e8] outline-none" 
+            className="w-full p-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none" 
             rows={4} 
             placeholder="Conte-nos mais detalhes..."
           />
           <div className="flex gap-3">
-             <Button variant="ghost" className="flex-1 rounded-full" onClick={() => setIsReportModalOpen(false)}>Cancelar</Button>
-             <Button className="flex-1 rounded-full" onClick={() => setIsReportModalOpen(false)}>Enviar</Button>
+             <Button variant="ghost" className="flex-1 rounded-xl" onClick={() => setIsReportModalOpen(false)}>Cancelar</Button>
+             <Button className="flex-1 rounded-xl bg-red-600 hover:bg-red-700 text-white" onClick={() => setIsReportModalOpen(false)}>Enviar</Button>
           </div>
         </div>
       </Modal>
@@ -257,7 +307,7 @@ export function ComercioDetalhe() {
       <Modal isOpen={isReviewModalOpen} onClose={() => setIsReviewModalOpen(false)} title="Sua avaliação">
         <form onSubmit={handleReviewSubmit} className="space-y-6">
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-[#5f6368]">Qual sua nota para o local?</label>
+            <label className="block text-sm font-medium text-gray-500">Qual sua nota para o local?</label>
             <div className="flex justify-between gap-2">
               {[1, 2, 3, 4, 5].map(v => (
                 <button 
@@ -266,8 +316,8 @@ export function ComercioDetalhe() {
                   onClick={() => setNota(v)}
                   className={`flex-1 py-3 rounded-xl border font-medium transition-all ${
                     nota === v 
-                      ? 'bg-[#e8f0fe] border-[#1a73e8] text-[#1a73e8]' 
-                      : 'bg-white border-[#dadce0] text-[#5f6368] hover:bg-[#f8f9fa]'
+                      ? 'bg-red-50 border-red-200 text-red-600' 
+                      : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'
                   }`}
                 >
                   {v}
@@ -276,9 +326,9 @@ export function ComercioDetalhe() {
             </div>
           </div>
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-[#5f6368]">Escreva seu comentário</label>
+            <label className="block text-sm font-medium text-gray-500">Escreva seu comentário</label>
             <textarea 
-              className="w-full p-4 bg-white border border-[#dadce0] rounded-xl text-sm text-[#202124] focus:ring-1 focus:ring-[#1a73e8] outline-none" 
+              className="w-full p-4 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none" 
               rows={4} 
               value={comentario} 
               onChange={e => setComentario(e.target.value)} 
@@ -287,8 +337,8 @@ export function ComercioDetalhe() {
             />
           </div>
           <div className="flex gap-3">
-             <Button variant="ghost" className="flex-1 rounded-full" onClick={() => setIsReviewModalOpen(false)}>Cancelar</Button>
-             <Button type="submit" className="flex-1 rounded-full">Publicar</Button>
+             <Button variant="ghost" className="flex-1 rounded-xl" onClick={() => setIsReviewModalOpen(false)}>Cancelar</Button>
+             <Button type="submit" className="flex-1 rounded-xl bg-red-600 hover:bg-red-700 text-white">Publicar</Button>
           </div>
         </form>
       </Modal>

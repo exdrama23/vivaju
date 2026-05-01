@@ -1,37 +1,43 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { UtensilsCrossed, Waves, Coffee, Pizza, IceCream, Apple } from 'lucide-react';
+import { UtensilsCrossed, Waves, Coffee, Pizza, Beer, MapPin, Star } from 'lucide-react';
 
-const pratosCulinarios = [
-  { nome: 'Caranguejo', descricao: 'O rei de Aracaju, servido cozido com temperos tradicionais e pirão.', categoria: 'Frutos do Mar', icone: Waves },
-  { nome: 'Aratu na Palha', descricao: 'Crustáceo típico do mangue, cozido na palha de bananeira.', categoria: 'Frutos do Mar', icone: Waves },
-  { nome: 'Carne de Sol', descricao: 'Servida com pirão de leite, feijão fradinho e macaxeira.', categoria: 'Carnes', icone: UtensilsCrossed },
-  { nome: 'Moqueca de Camarão', descricao: 'Tradicional moqueca sergipana feita com camarões frescos e dendê.', categoria: 'Frutos do Mar', icone: Waves },
-  { nome: 'Beiju de Tapioca', descricao: 'Fina massa de mandioca com recheios variados (coco, queijo, etc).', categoria: 'Lanches', icone: Coffee },
-  { nome: 'Cuscuz Sergipano', descricao: 'Cuscuz de milho servido com leite de coco ou acompanhamentos.', categoria: 'Tradicional', icone: Coffee },
-  { nome: 'Pastel de Carne', descricao: 'Famoso nas feiras livres e mercados centrais de Aracaju.', categoria: 'Lanches', icone: Pizza },
-  { nome: 'Peixe na Brasa', descricao: 'Peixes frescos pescados na região, assados no carvão.', categoria: 'Frutos do Mar', icone: Waves },
-  { nome: 'Pudim de Leite', descricao: 'Sobremesa clássica presente em todos os restaurantes locais.', categoria: 'Sobremesa', icone: IceCream },
-  { nome: 'Sururu', descricao: 'Molusco servido ao molho de coco ou em caldinhos.', categoria: 'Frutos do Mar', icone: Waves },
-  { nome: 'Maniçoba', descricao: 'Prato feito com a folha da mandioca e carnes defumadas.', categoria: 'Tradicional', icone: UtensilsCrossed },
-  { nome: 'Sarapatel', descricao: 'Guisado feito com miúdos de porco ou carneiro.', categoria: 'Tradicional', icone: UtensilsCrossed },
-  { nome: 'Buchada', descricao: 'Tradicional buchada de bode, muito apreciada na região.', categoria: 'Tradicional', icone: UtensilsCrossed },
-  { nome: 'Galinhada', descricao: 'Arroz com frango caipira bem temperado.', categoria: 'Aves', icone: UtensilsCrossed },
-  { nome: 'Queijo Coalho', descricao: 'Assado na chapa com melaço ou orégano.', categoria: 'Petiscos', icone: Coffee },
-  { nome: 'Tapioca de Coco', descricao: 'Símbolo do café da manhã sergipano.', categoria: 'Lanches', icone: Coffee },
-  { nome: 'Pirão de Leite', descricao: 'Acompanhamento essencial para a carne de sol.', categoria: 'Tradicional', icone: Coffee },
-  { nome: 'Feijão de Corda', descricao: 'Cozido com maxixe, quiabo e abóbora.', categoria: 'Tradicional', icone: Apple },
-  { nome: 'Paçoca de Carne', descricao: 'Farofa crocante com carne de sol desfiada.', categoria: 'Acompanhamentos', icone: UtensilsCrossed },
-  { nome: 'Sorvete de Frutas', descricao: 'Sabores exóticos como mangaba, cajá e graviola.', categoria: 'Sobremesa', icone: IceCream },
-  { nome: 'Suco de Mangaba', descricao: 'A fruta símbolo de Sergipe em sua melhor forma.', categoria: 'Bebidas', icone: Apple },
-  { nome: 'Batida de Coco', descricao: 'Bebida refrescante feita com leite de coco fresco.', categoria: 'Bebidas', icone: Waves },
-  { nome: 'Dadinho de Tapioca', descricao: 'Petisco moderno feito com tapioca e queijo coalho.', categoria: 'Petiscos', icone: Pizza },
-  { nome: 'Camarão Alho e Óleo', descricao: 'Petisco clássico da Orla de Atalaia.', categoria: 'Petiscos', icone: Waves },
-  { nome: 'Caldo de Cana', descricao: 'Servido gelado, acompanhamento perfeito para o pastel.', categoria: 'Bebidas', icone: Coffee },
-  { nome: 'Bolo de Rolo', descricao: 'Fina camada de pão de ló com recheio de goiabada.', categoria: 'Sobremesa', icone: IceCream },
-  { nome: 'Cartola', descricao: 'Banana assada com queijo, açúcar e canela.', categoria: 'Sobremesa', icone: IceCream },
-  { nome: 'Arroz Doce', descricao: 'Cozido com leite e canela, cremoso e reconfortante.', categoria: 'Sobremesa', icone: IceCream },
-  { nome: 'Pamonha', descricao: 'Feita de milho verde, doce ou salgada.', categoria: 'Tradicional', icone: Apple },
-  { nome: 'Canjica de Milho', descricao: 'Doce tradicional feito com milho e leite de coco.', categoria: 'Tradicional', icone: Apple },
+const categoriasCulinarias = [
+  { 
+    nome: 'Mercado Municipal', 
+    descricao: 'O coração da gastronomia do centro. Aqui você encontra desde o famoso Pastel com Caldo de Cana até refeições completas com sarapatel, buchada e carne de sol.', 
+    categoria: 'Ponto Gastronômico', 
+    icone: UtensilsCrossed 
+  },
+  { 
+    nome: 'Bares da Orla Fluvial', 
+    descricao: 'Localizados próximos ao Rio Sergipe, são perfeitos para um happy hour com cerveja gelada, caranguejo e a vista privilegiada do pôr do sol no rio.', 
+    categoria: 'Bares e Petiscos', 
+    icone: Waves 
+  },
+  { 
+    nome: 'Cuscuzarias e Regionais', 
+    descricao: 'Restaurantes especializados no autêntico sabor sergipano: cuscuz de milho, macaxeira cozida, carne de sol e o indispensável pirão de leite.', 
+    categoria: 'Comida Regional', 
+    icone: Coffee 
+  },
+  { 
+    nome: 'Lanchonetes Tradicionais', 
+    descricao: 'As clássicas lanchonetes das ruas João Pessoa e Itabaianinha, famosas pelos salgados feitos na hora e sucos de frutas típicas como Mangaba e Cajá.', 
+    categoria: 'Lanches Históricos', 
+    icone: Pizza 
+  },
+  { 
+    nome: 'Botecos do Centro', 
+    descricao: 'Bares de esquina com décadas de história, ideais para um caldinho de sururu ou feijão, mantendo a tradição do bate-papo de balcão.', 
+    categoria: 'Bares Clássicos', 
+    icone: Beer 
+  },
+  { 
+    nome: 'Pátio de Comidas do Centro', 
+    descricao: 'Diversas opções de self-service e pratos feitos (PF) que atendem com rapidez e sabor o público que circula pelo comércio diariamente.', 
+    categoria: 'Restaurantes', 
+    icone: MapPin 
+  }
 ];
 
 export function Culinaria() {
@@ -42,37 +48,104 @@ export function Culinaria() {
             <div className="p-2 sm:p-3 bg-orange-100 rounded-xl sm:rounded-2xl text-orange-600">
                 <UtensilsCrossed className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
-            <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 tracking-tight">Sabores de Aracaju</h1>
+            <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 tracking-tight">Gastronomia no Centro</h1>
         </div>
         <p className="text-gray-500 text-base sm:text-lg max-w-2xl leading-relaxed">
-          Explore a riqueza gastronômica de Sergipe. Dos crustáceos dos nossos mangues às delícias do nosso sertão.
+          O centro de Aracaju é um mosaico de sabores. Explore os locais mais tradicionais para comer e beber, vivendo a cultura sergipana em cada prato.
         </p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-        {pratosCulinarios.map((prato, index) => {
-          const Icon = prato.icone;
+        {categoriasCulinarias.map((item, index) => {
+          const Icon = item.icone;
           return (
-            <Card key={index} className="group hover:border-orange-200 transition-all duration-300">
+            <Card key={index} className="group hover:border-orange-200 transition-all duration-300 shadow-sm hover:shadow-md">
               <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-4">
                 <div className="p-2.5 bg-gray-50 rounded-xl group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors">
                   <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl font-bold">{prato.nome}</CardTitle>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-orange-500">
-                    {prato.categoria}
+                  <CardTitle className="text-lg sm:text-xl font-bold">{item.nome}</CardTitle>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-orange-500">
+                    {item.categoria}
                   </span>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed text-sm">
-                  {prato.descricao}
+                  {item.descricao}
                 </p>
               </CardContent>
             </Card>
           );
         })}
+      </div>
+
+      {/* Seção de Restaurantes Reais Próximos ao Terminal */}
+      <div className="mt-16 mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Restaurantes e Bares Próximos ao Terminal</h2>
+        <p className="text-gray-500 text-sm">Estabelecimentos tradicionais localizados a poucos minutos do Terminal do Centro.</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          {
+            nome: 'Restaurante Caçarola',
+            local: 'Mercado Thales Ferraz (Piso Superior)',
+            especialidade: 'Regional e Frutos do Mar',
+            distancia: 'Aprox. 200m'
+          },
+          {
+            nome: 'Lanchonete Americana',
+            local: 'Rua João Pessoa, 185',
+            especialidade: 'Salgados e Sucos Tradicionais',
+            distancia: 'Aprox. 350m'
+          },
+          {
+            nome: 'Restaurante Ancoradouro',
+            local: 'Mercado Thales Ferraz',
+            especialidade: 'Peixadas e Moquecas',
+            distancia: 'Aprox. 200m'
+          },
+          {
+            nome: 'Sorveteria Castelo',
+            local: 'Rua João Pessoa, 114',
+            especialidade: 'Sorvetes de Frutas Típicas',
+            distancia: 'Aprox. 400m'
+          },
+          {
+            nome: 'Restaurante da Neide',
+            local: 'Mercado Albano Franco',
+            especialidade: 'Comida Caseira e Regional',
+            distancia: 'Aprox. 150m'
+          },
+          {
+            nome: 'Bar e Restaurante Tototó',
+            local: 'Orla Fluvial (Calçadão)',
+            especialidade: 'Petiscos e Peixes',
+            distancia: 'Aprox. 300m'
+          }
+        ].map((rest, index) => (
+          <div key={index} className="flex items-center justify-between p-5 bg-white rounded-xl border border-gray-100 shadow-sm hover:border-orange-200 transition-all group">
+            <div className="flex flex-col gap-1">
+              <h3 className="font-bold text-gray-900 text-base group-hover:text-orange-600 transition-colors">{rest.nome}</h3>
+              <p className="text-xs text-orange-600 font-medium">{rest.especialidade}</p>
+              <div className="flex items-center gap-1.5 text-gray-400 text-[11px] mt-1">
+                <MapPin size={12} className="text-gray-300" />
+                <span>{rest.local}</span>
+              </div>
+            </div>
+            <div className="flex flex-col items-end gap-1">
+              <span className="text-[10px] font-bold bg-gray-50 text-gray-500 px-2 py-1 rounded-md uppercase tracking-wider">
+                {rest.distancia}
+              </span>
+              <div className="flex items-center text-[#e8a317]">
+                <Star size={10} fill="currentColor" strokeWidth={0} />
+                <span className="text-[11px] font-bold ml-1">4.5+</span>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
