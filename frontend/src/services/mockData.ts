@@ -30,7 +30,32 @@ export const mockComercios: (Comercio & { localizacao: string, resumo_avaliacoes
         "statusAberto": true,
         "favoritada": false,
         "tags": ["Jeans", "Moda Masculina", "Moda Feminina"],
-        "produtos": [],
+        "produtos": [
+          {
+            "id": "p1",
+            "comercioId": "c1",
+            "nome": "Camisa Polo Basic",
+            "descricao": "Camisa polo 100% algodão, diversos tamanhos e cores, ideal para o dia a dia.",
+            "preco": 89.90,
+            "imagem": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=300"
+          },
+          {
+            "id": "p2",
+            "comercioId": "c1",
+            "nome": "Calça Jeans Slim",
+            "descricao": "Calça jeans com corte slim, lavagem moderna e elastano para maior conforto.",
+            "preco": 149.00,
+            "imagem": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=300"
+          },
+          {
+            "id": "p3",
+            "comercioId": "c1",
+            "nome": "Vestido Floral Verão",
+            "descricao": "Vestido leve e fresco com estampa floral, perfeito para os dias quentes de Aracaju.",
+            "preco": 110.00,
+            "imagem": "https://images.unsplash.com/photo-1572804013307-a9a111d71f27?w=300"
+          }
+        ],
         "avaliacoes": [],
         "rating": 4.9,
         "resumo_avaliacoes": "Excelente atendimento e preços acessíveis.",
@@ -51,7 +76,24 @@ export const mockComercios: (Comercio & { localizacao: string, resumo_avaliacoes
         "statusAberto": true,
         "favoritada": false,
         "tags": ["Masculina", "Feminina", "Infantil"],
-        "produtos": [],
+        "produtos": [
+          {
+            "id": "p4",
+            "comercioId": "c2",
+            "nome": "Conjunto Infantil Moletom",
+            "descricao": "Conjunto confortável de moletom para crianças de 2 a 8 anos.",
+            "preco": 75.00,
+            "imagem": "https://images.unsplash.com/photo-1519706332590-c6759e621146?w=300"
+          },
+          {
+            "id": "p5",
+            "comercioId": "c2",
+            "nome": "T-Shirt Estampada",
+            "descricao": "Camisetas com estampas exclusivas e tecido de alta qualidade.",
+            "preco": 45.00,
+            "imagem": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300"
+          }
+        ],
         "avaliacoes": [],
         "rating": 4.9,
         "resumo_avaliacoes": "Variedade e bom atendimento.",
@@ -1030,11 +1072,25 @@ export const mockEventos: Evento[] = [
     id: 'e1',
     nome: 'Festival de Cultura do Centro',
     descricao: 'Celebração da música, arte e gastronomia local',
-    dataHora: '2026-03-25T10:00:00Z',
+    inicio: '2026-03-25T10:00:00Z',
+    fim: '2026-03-25T22:00:00Z',
+    localizacao: 'Praça Fausto Cardoso',
     categoria: 'Cultura',
     latitude: -10.9110,
     longitude: -37.0528,
-    imagem: 'https://picsum.photos/400/400?random=evento1'
+    imagem: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800'
+  },
+  {
+    id: 'e2',
+    nome: 'Feira de Artesanato da Praça Fausto Cardoso',
+    descricao: 'Produtos locais, comidas típicas e música ao vivo.',
+    inicio: '2026-05-15T09:00:00Z',
+    fim: '2026-05-15T18:00:00Z',
+    localizacao: 'Praça Fausto Cardoso, Centro',
+    categoria: 'Cultura',
+    latitude: -10.9128,
+    longitude: -37.0501,
+    imagem: 'https://images.unsplash.com/photo-1459749411177-042180ce673c?w=800'
   }
 ];
 
@@ -1047,7 +1103,8 @@ export const mockEstacionamentos: Estacionamento[] = [
     numeroVagas: 50,
     vagasOcupadas: 35,
     status: 'lotado',
-    precoHora: 5.00
+    precoHora: 5.00,
+    tempoPreco: 'hora'
   },
   {
     id: 'e2',
@@ -1057,7 +1114,8 @@ export const mockEstacionamentos: Estacionamento[] = [
     numeroVagas: 30,
     vagasOcupadas: 28,
     status: 'lotado',
-    precoHora: 6.00
+    precoHora: 6.00,
+    tempoPreco: 'hora'
   },
   {
     id: 'e3',
@@ -1067,7 +1125,19 @@ export const mockEstacionamentos: Estacionamento[] = [
     numeroVagas: 100,
     vagasOcupadas: 45,
     status: 'livre',
-    precoHora: 4.50
+    precoHora: 4.50,
+    tempoPreco: 'hora'
+  },
+  {
+    id: 'e4',
+    nome: 'Estacionamento Praça General Valadão',
+    latitude: -10.9110,
+    longitude: -37.0505,
+    numeroVagas: 40,
+    vagasOcupadas: 10,
+    status: 'livre',
+    precoHora: 5.50,
+    tempoPreco: 'hora'
   }
 ];
 

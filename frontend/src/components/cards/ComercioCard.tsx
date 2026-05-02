@@ -11,64 +11,71 @@ export function ComercioCard({ comercio }: { comercio: ComercioExtendido }) {
     : 0);
 
   return (
-    <div className="group flex flex-col w-full cursor-pointer bg-transparent transition-all duration-300">
-      <Link to={`/comercios/${comercio.id}`} className="relative w-full aspect-video rounded-xl overflow-hidden mb-2">
-        <img 
-          src={comercio.imagem} 
-          alt={comercio.nome} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-        />
-        
-        <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        {/* Status Badge */}
-        <div className={`absolute top-2 left-2 px-2 py-0.5 rounded-md text-[10px] font-medium tracking-wide shadow-sm border ${
-          comercio.statusAberto 
-            ? 'bg-emerald-50 text-emerald-700 border-emerald-100' 
-            : 'bg-rose-50 text-rose-700 border-rose-100'
-        }`}>
-          {comercio.statusAberto ? 'ABERTO' : 'FECHADO'}
+    <Link 
+      to={`/comercios/${comercio.id}`}
+      className="flex items-center gap-4 p-3 bg-white hover:bg-gray-50 transition-colors rounded-lg cursor-pointer w-full font-sans group"
+    >
+      {/* LADO ESQUERDO: Imagem/Logo */}
+      <div className="flex-shrink-0 relative">
+        <div className="w-[72px] h-[72px] bg-gray-100 rounded-lg overflow-hidden border border-gray-100 flex items-center justify-center">
+          <img 
+            src={comercio.imagem} 
+            alt={`Logo do ${comercio.nome}`} 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+          />
         </div>
-
-        {/* Favorite Button */}
+        
+        {/* Favorite Button (Sobreposto à imagem no novo design) */}
         <button 
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             setIsFavorite(!isFavorite);
           }}
-          className={`absolute top-2 right-2 p-1.5 rounded-full transition-all duration-300 ${
+          className={`absolute -top-1 -right-1 p-1 rounded-full transition-all duration-300 shadow-sm ${
             isFavorite 
-              ? 'bg-white text-rose-500 shadow-md' 
-              : 'bg-white/90 text-[#5f6368] hover:text-rose-500 shadow-sm opacity-0 group-hover:opacity-100'
+              ? 'bg-white text-rose-500' 
+              : 'bg-white/90 text-gray-400 opacity-0 group-hover:opacity-100'
           }`}
         >
-          <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
+          <Heart className={`w-3 h-3 ${isFavorite ? 'fill-current' : ''}`} />
         </button>
-      </Link>
+      </div>
 
-      <div className="flex flex-col px-0.5 sm:px-1">
-        <h3 className="text-sm sm:text-[15px] font-medium text-[#202124] line-clamp-1 leading-snug group-hover:text-[#1a73e8] transition-colors">
+      {/* LADO DIREITO: Informações */}
+      <div className="flex flex-col justify-center overflow-hidden">
+        {/* Linha 1: Título */}
+        <h3 className="text-[15px] font-medium text-gray-800 truncate mb-0.5 group-hover:text-[#1a73e8] transition-colors">
           {comercio.nome}
         </h3>
-        
-        <div className="flex flex-col text-[10px] sm:text-xs text-[#5f6368] mt-0.5">
-          <p className="font-normal truncate">{comercio.categoria}</p>
-          
-          <div className="flex items-center gap-1 mt-0.5">
-            <div className="flex items-center gap-0.5 text-[#e37400] font-medium">
-              <span>{mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}</span>
-              <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-current" />
-            </div>
-            {comercio.resumo_avaliacoes && (
-              <>
-                <span className="text-[#bdc1c6] hidden sm:inline">•</span>
-                <span className="truncate max-w-[80px] sm:max-w-[120px] hidden sm:inline">{comercio.resumo_avaliacoes}</span>
-              </>
-            )}
+
+        {/* Linha 2: Avaliação, Categoria e Localização */}
+        <div className="flex items-center text-[13px] text-gray-500 mb-0.5 gap-1.5">
+          {/* Avaliação com Estrela */}
+          <div className="flex items-center gap-0.5 text-[#e8a317]">
+            <Star size={12} fill="currentColor" strokeWidth={0} />
+            <span className="font-medium">{mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}</span>
           </div>
+
+          <span className="text-gray-300">•</span>
+          <span className="truncate">{comercio.categoria}</span>
+
+          <span className="text-gray-300">•</span>
+          <span className="whitespace-nowrap">Centro</span>
+        </div>
+
+        {/* Linha 3: Horário e Status */}
+        <div className="flex items-center text-[13px] text-gray-500 gap-1.5">
+          <span className="truncate">{comercio.horarioFuncionamento || '08h - 18h'}</span>
+
+          <span className="text-gray-300">•</span>
+
+          <span className={`font-medium ${comercio.statusAberto ? 'text-[#50a773]' : 'text-rose-500'}`}>
+            {comercio.statusAberto ? 'Aberto' : 'Fechado'}
+          </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

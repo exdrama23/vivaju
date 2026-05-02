@@ -39,10 +39,11 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const fetchEventos = async () => {
       try {
         const response = await apiRequest('/evento');
-        setEventos(response.data || []);
+        let data = response.data || [];
+        if (data.length === 0) data = mockEventos;
+        setEventos(data);
       } catch (error) {
         console.error('Erro ao buscar eventos:', error);
-        // Fallback para mock em caso de erro no backend (opcional, mas bom para dev)
         setEventos(mockEventos as any);
       } finally {
         setIsLoadingEventos(false);
@@ -52,19 +53,19 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const fetchEstacionamentos = async () => {
       try {
         const response = await apiRequest('/loja/estacionamento');
-        // O backend retorna Lojas que possuem estacionamento
-        const data = (response.data || []).map((item: any) => ({
+        let data = (response.data || []).map((item: any) => ({
           id: item.id,
           nome: item.nome,
-          // Como o backend atual não tem lat/lng no modelo loja, usamos mock ou 0 por enquanto
           latitude: item.latitude || -10.91, 
           longitude: item.longitude || -37.05,
           numeroVagas: 20, 
           vagasOcupadas: Math.floor(Math.random() * 20),
           status: 'livre',
-          precoHora: item.lojaEstacionamento?.[0]?.preco ? parseFloat(item.lojaEstacionamento[0].preco) : 5.00
+          precoHora: item.lojaEstacionamento?.[0]?.preco ? parseFloat(item.lojaEstacionamento[0].preco) : 5.00,
+          tempoPreco: 'hora'
         } as Estacionamento));
         
+        if (data.length === 0) data = mockEstacionamentos;
         setEstacionamentos(data);
       } catch (error) {
         console.error('Erro ao buscar estacionamentos:', error);

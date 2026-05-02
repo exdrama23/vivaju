@@ -15,7 +15,7 @@ export function Estacionamentos() {
     setLoading(true);
     try {
       const response = await apiRequest(`/loja/estacionamento?page=${page}`);
-      const data = (response.data || []).map((item: Record<string, unknown> & { lojaEstacionamento?: Array<{ preco?: string; tempoPreco?: string }> }) => ({
+      let data = (response.data || []).map((item: Record<string, unknown> & { lojaEstacionamento?: Array<{ preco?: string; tempoPreco?: string }> }) => ({
         id: item.id,
         nome: item.nome,
         latitude: item.latitude || -10.91, 
@@ -27,10 +27,18 @@ export function Estacionamentos() {
         tempoPreco: item.lojaEstacionamento?.[0]?.tempoPreco || 'por hora'
       } as Estacionamento));
 
+      // Fallback para mock se a API retornar vazio
+      if (data.length === 0) {
+        const { mockEstacionamentos } = await import('@/services/mockData');
+        data = mockEstacionamentos;
+      }
+
       setListaEstacionamentos(data);
-      setHasMore(data.length === 10);
+      setHasMore(data.length >= 10);
     } catch (error) {
       console.error('Erro ao buscar estacionamentos:', error);
+      const { mockEstacionamentos } = await import('@/services/mockData');
+      setListaEstacionamentos(mockEstacionamentos);
     } finally {
       setLoading(false);
     }
