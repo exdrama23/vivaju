@@ -22,10 +22,8 @@ export function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Seção Hero - Clean Google Style */}
-      <section className="w-full bg-white py-4 md:py-12 px-2 sm:px-4">
-        <div className="container mx-auto">
-          <StoreSlider stores={comercios.slice(0, 6)} />
-        </div>
+      <section className="w-full bg-white h-[70vh] top-7 min-h-[420px] md:min-h-[520px] p-0">
+        <StoreSlider stores={comercios.slice(0, 6)} />
       </section>
 
       {/* Navegação rápida por categorias */}

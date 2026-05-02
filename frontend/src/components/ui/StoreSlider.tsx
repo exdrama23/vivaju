@@ -38,7 +38,7 @@ export function StoreSlider({ stores }: StoreSliderProps) {
   const currentStore = stores[currentIndex];
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[24px] md:rounded-[32px] bg-[#f8f9fa] border border-[#dadce0] mx-auto max-w-7xl h-[400px] md:h-[450px] shadow-sm hover:shadow-md transition-shadow">
+    <div className="relative w-full h-full overflow-hidden  bg-[#f8f9fa] border border-[#dadce0] shadow-sm hover:shadow-md transition-shadow">
       {/* Content Wrapper */}
       <div className="flex h-full flex-col md:flex-row items-stretch">
         {/* Info Section */}
