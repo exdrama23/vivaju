@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useData } from '@/context/DataContext';
 import { ComercioCard } from '@/components/cards/ComercioCard';
 import { Input } from '@/components/ui/Input';
@@ -8,12 +9,19 @@ import { cn } from '@/utils/utils';
 import type { Comercio } from '@/types';
 
 export function Comercios() {
+  const [searchParams] = useSearchParams();
   const { comercios, randomCategories } = useData();
   const [search, setSearch] = useState('');
   const [searchData, setSearchData] = useState({ active: false });
+  
+  // Verificar categoria na URL para inicializar o filtro
+  const categoriaDaUrl = searchParams.get('categoria') 
+    ? decodeURIComponent(searchParams.get('categoria')!)
+    : 'Tudo';
+  
   const [filtroAtual, setFiltroAtual] = useState<{ name: string; empresas: Comercio[] }>({ 
-    name: 'Tudo', 
-    empresas: comercios 
+    name: categoriaDaUrl, 
+    empresas: comercios.filter(c => categoriaDaUrl === 'Tudo' ? true : c.categoria === categoriaDaUrl)
   });
   const [buscandoPorCategoria, setBuscandoPorCategoria] = useState(false);
 
@@ -28,6 +36,14 @@ export function Comercios() {
     setFiltroAtual({ name: categoria, empresas: filtrados });
     setBuscandoPorCategoria(false);
   };
+
+  // Effect para atualizar quando a categoria na URL muda
+  useEffect(() => {
+    const categoriaDaUrl = searchParams.get('categoria');
+    if (categoriaDaUrl) {
+      buscarEmpresasCategoria(decodeURIComponent(categoriaDaUrl));
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     buscarEmpresasCategoria(filtroAtual.name);
@@ -75,6 +91,7 @@ export function Comercios() {
             filtroAtual={filtroAtual}
             setFiltroAtual={(name) => setFiltroAtual(prev => ({ ...prev, name }))}
             buscandoPorCategoria={buscandoPorCategoria}
+            showMoreOnMobile={true}
           />
         </div>
       </div>
@@ -86,7 +103,7 @@ export function Comercios() {
         </div>
       ) : filteredComercios.length === 0 ? (
         <div className="text-center py-12 sm:py-20 bg-[#f8f9fa] rounded-3xl sm:rounded-4xl border border-[#dadce0] border-dashed px-4">
-          <Search className="w-10 h-10 sm:w-12 h-12 text-[#bdc1c6] mx-auto mb-4" />
+          <Search className="w-10 h-10 sm:w-12 sm:h-12 text-[#bdc1c6] mx-auto mb-4" />
           <h3 className="text-lg sm:text-xl font-medium text-[#202124]">Nenhum comércio encontrado</h3>
           <p className="text-[#5f6368] text-xs sm:text-sm mt-1">Tente ajustar seus filtros ou termo de busca.</p>
         </div>

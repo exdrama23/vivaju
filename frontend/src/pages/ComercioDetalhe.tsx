@@ -1,27 +1,263 @@
-import { useState, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
-import { useData } from '@/context/DataContext';
-import { Button } from '@/components/ui/Button';
+import React, { useState, useMemo, useCallback } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { 
-  MapPin, Clock, Phone, Star, MessageCircle, AlertTriangle, 
-  Instagram, Navigation, Search, DollarSign, Bike, ChevronDown 
+  ChevronLeft, Heart, Search, Star, ChevronRight, Phone, MapPin, 
+  Navigation, AtSign, Info, X, ChevronDown, AlertTriangle 
 } from 'lucide-react';
-import { Badge } from '@/components/ui/Badge';
-import { MapContainer } from '@/components/map/MapContainer';
-import { MapMarker } from '@/components/map/MapMarker';
+import { useData } from '@/context/DataContext';
 import { Modal } from '@/components/ui/Modal';
-import { ProdutoCard } from '@/components/cards/ProdutoCard';
+import { Button } from '@/components/ui/Button';
 import type { ComercioExtendido } from '@/services/mockData';
+
+const ITEMS_PER_PAGE = 20;
+
+const InfoContent = ({ comercio }: { comercio: ComercioExtendido }) => (
+  <div className="space-y-8 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
+    <section aria-labelledby="info-heading">
+      <h2 id="info-heading" className="text-lg font-bold text-gray-900 mb-4">Informações</h2>
+      <div className="space-y-3">
+        <a
+          href="#"
+          className="flex items-center gap-3 p-2 -mx-2 rounded-lg hover:bg-gray-100 transition focus:outline-none focus:ring-2 focus:ring-gray-400"
+          aria-label="Instagram"
+        >
+          <AtSign className="w-5 h-5 text-gray-500" aria-hidden="true" />
+          <span className="text-sm text-gray-700">{comercio.redes_sociais || '@viva_ju'}</span>
+        </a>
+        <a
+          href={`tel:${comercio.telefoneContato}`}
+          className="flex items-center gap-3 p-2 -mx-2 rounded-lg hover:bg-gray-100 transition focus:outline-none focus:ring-2 focus:ring-gray-400"
+          aria-label={`Telefone ${comercio.telefoneContato}`}
+        >
+          <Phone className="w-5 h-5 text-gray-500" aria-hidden="true" />
+          <span className="text-sm text-gray-700">{comercio.telefoneContato}</span>
+        </a>
+        <button
+          type="button"
+          onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${comercio.latitude},${comercio.longitude}`, '_blank')}
+          className="flex items-center gap-3 p-2 -mx-2 rounded-lg hover:bg-gray-100 transition w-full text-left focus:outline-none focus:ring-2 focus:ring-gray-400"
+          aria-label={`Endereço ${comercio.localizacao}`}
+        >
+          <MapPin className="w-5 h-5 text-gray-500" aria-hidden="true" />
+          <div className="flex flex-col">
+            <span className="text-sm text-gray-700">{comercio.localizacao}</span>
+            <span className="text-xs text-green-600 flex items-center gap-1 mt-0.5">
+              <Navigation className="w-3 h-3" aria-hidden="true" />
+              Ver rotas no mapa
+            </span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <section aria-labelledby="categories-heading">
+      <h2 id="categories-heading" className="text-lg font-bold text-gray-900 mb-4">Categorias</h2>
+      <div className="flex flex-wrap gap-2">
+        {comercio.tags?.map((cat) => (
+          <button
+            key={cat}
+            type="button"
+            className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-yellow-100 hover:text-yellow-800 transition focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-sm"
+            aria-label={`Categoria ${cat}`}
+          >
+            {cat}
+          </button>
+        )) || (
+          <button
+            type="button"
+            className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700 shadow-sm"
+          >
+            {comercio.categoria}
+          </button>
+        )}
+      </div>
+    </section>
+
+    <section aria-labelledby="promotions-heading">
+      <h2 id="promotions-heading" className="text-lg font-bold text-gray-900 mb-4">Destaques</h2>
+      <div className="space-y-3">
+        {comercio.produtos.slice(0, 3).map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            className="w-full text-left flex gap-3 items-center group p-2 -mx-2 rounded-xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition focus:outline-none focus:ring-2 focus:ring-gray-400"
+            aria-label={`${item.nome}`}
+          >
+            <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+              <img src={item.imagem || comercio.imagem} alt={item.nome} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="text-sm font-medium text-gray-800 truncate">{item.nome}</h3>
+              <div className="flex items-center gap-1 mt-1">
+                <span className="text-xs bg-orange-500 text-white px-1 rounded-sm">Popular</span>
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+    </section>
+  </div>
+);
+
+const SidebarContent = ({ comercio }: { comercio: ComercioExtendido }) => (
+  <div className="space-y-6">
+    <section aria-labelledby="sidebar-info-heading">
+      <h2 id="sidebar-info-heading" className="text-lg font-bold text-gray-900 mb-4">Informações</h2>
+      <div className="space-y-3">
+        <a
+          href="#"
+          className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition focus:outline-none focus:ring-2 focus:ring-gray-400"
+          aria-label="Instagram"
+        >
+          <AtSign className="w-5 h-5 text-gray-500" aria-hidden="true" />
+          <span className="text-sm text-gray-700">{comercio.redes_sociais || '@viva_ju'}</span>
+        </a>
+        <a
+          href={`tel:${comercio.telefoneContato}`}
+          className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition focus:outline-none focus:ring-2 focus:ring-gray-400"
+          aria-label={`Telefone ${comercio.telefoneContato}`}
+        >
+          <Phone className="w-5 h-5 text-gray-500" aria-hidden="true" />
+          <span className="text-sm text-gray-700">{comercio.telefoneContato}</span>
+        </a>
+        <button
+          type="button"
+          onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${comercio.latitude},${comercio.longitude}`, '_blank')}
+          className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition w-full text-left focus:outline-none focus:ring-2 focus:ring-gray-400"
+          aria-label={`Endereço ${comercio.localizacao}`}
+        >
+          <MapPin className="w-5 h-5 text-gray-500" aria-hidden="true" />
+          <div className="flex flex-col">
+            <span className="text-sm text-gray-700">{comercio.localizacao}</span>
+            <span className="text-xs text-green-600 flex items-center gap-1 mt-0.5">
+              <Navigation className="w-3 h-3" aria-hidden="true" />
+              Ver rotas no mapa
+            </span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <section aria-labelledby="sidebar-categories-heading">
+      <h2 id="sidebar-categories-heading" className="text-lg font-bold text-gray-900 mb-4">Categorias</h2>
+      <div className="flex flex-wrap gap-2">
+        {comercio.tags?.map((cat) => (
+          <button
+            key={cat}
+            type="button"
+            className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-yellow-100 hover:text-yellow-800 transition shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            aria-label={`Categoria ${cat}`}
+          >
+            {cat}
+          </button>
+        )) || (
+          <button
+            type="button"
+            className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700 shadow-sm"
+          >
+            {comercio.categoria}
+          </button>
+        )}
+      </div>
+    </section>
+
+    <section aria-labelledby="sidebar-promotions-heading">
+      <h2 id="sidebar-promotions-heading" className="text-lg font-bold text-gray-900 mb-4">Destaques</h2>
+      <div className="space-y-3">
+        {comercio.produtos.slice(0, 3).map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            className="w-full text-left flex gap-3 items-center group p-2 rounded-xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition focus:outline-none focus:ring-2 focus:ring-gray-400"
+            aria-label={`${item.nome}`}
+          >
+            <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+              <img src={item.imagem || comercio.imagem} alt={item.nome} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="text-sm font-medium text-gray-800 truncate">{item.nome}</h3>
+            </div>
+          </button>
+        ))}
+      </div>
+    </section>
+  </div>
+);
+
+const Pagination = ({ currentPage, totalPages, onPageChange, isMobile = false }: { currentPage: number; totalPages: number; onPageChange: (page: number) => void; isMobile?: boolean }) => {
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  if (isMobile) {
+    return (
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-3 flex items-center justify-between z-40">
+        <button
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className={`p-2 rounded-lg ${currentPage === 1 ? 'text-gray-300' : 'text-gray-700 hover:bg-gray-100'} transition disabled:opacity-50`}
+          aria-label="Página anterior"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <span className="text-sm font-medium text-gray-700">
+          {currentPage} / {totalPages}
+        </span>
+        <button
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className={`p-2 rounded-lg ${currentPage === totalPages ? 'text-gray-300' : 'text-gray-700 hover:bg-gray-100'} transition disabled:opacity-50`}
+          aria-label="Próxima página"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+    );
+  }
+  return (
+    <nav className="flex items-center justify-center gap-2 mt-8" aria-label="Paginação dos produtos">
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="p-2 rounded-lg hover:bg-gray-200 transition disabled:opacity-40 disabled:cursor-not-allowed"
+        aria-label="Página anterior"
+      >
+        <ChevronLeft className="w-5 h-5 text-gray-600" />
+      </button>
+      {pages.map((page) => (
+        <button
+          key={page}
+          onClick={() => onPageChange(page)}
+          className={`w-9 h-9 rounded-lg text-sm font-medium transition ${
+            page === currentPage ? 'bg-yellow-400 text-white shadow' : 'text-gray-600 hover:bg-gray-200'
+          }`}
+          aria-label={`Ir para página ${page}`}
+          aria-current={page === currentPage ? 'page' : undefined}
+        >
+          {page}
+        </button>
+      ))}
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="p-2 rounded-lg hover:bg-gray-200 transition disabled:opacity-40 disabled:cursor-not-allowed"
+        aria-label="Próxima página"
+      >
+        <ChevronRight className="w-5 h-5 text-gray-600" />
+      </button>
+    </nav>
+  );
+};
 
 export function ComercioDetalhe() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const { comercios, addAvaliacao } = useData();
   const comercio = comercios.find(c => c.id === id) as ComercioExtendido | undefined;
-  
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isHoveringInfoBtn, setIsHoveringInfoBtn] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-
   const [nota, setNota] = useState(5);
   const [comentario, setComentario] = useState('');
 
@@ -41,6 +277,20 @@ export function ComercioDetalhe() {
     setComentario('');
   }, [addAvaliacao, comercio, nota, comentario]);
 
+  const filteredProducts = useMemo(() => {
+    if (!comercio) return [];
+    return comercio.produtos.filter(p => 
+      p.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      p.descricao.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [comercio, searchTerm]);
+
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+  const displayedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
+  }, [currentPage, filteredProducts]);
+
   if (!comercio) {
     return <div className="p-12 text-center text-[#5f6368]">Comércio não encontrado.</div>;
   }
@@ -49,237 +299,277 @@ export function ComercioDetalhe() {
     ? comercio.avaliacoes.reduce((acc, curr) => acc + curr.nota, 0) / comercio.avaliacoes.length
     : 0);
 
-  const handleOpenGoogleMaps = () => {
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${comercio.latitude},${comercio.longitude}`, '_blank');
-  };
-
-  const produtosFiltrados = comercio.produtos.filter(p => 
-    p.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    p.descricao.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-4 md:py-8 max-w-5xl bg-white min-h-screen md:pb-0 pb-24">
-      
-      {/* NOVO DESIGN DO CABEÇALHO */}
-      <div className="bg-white border border-gray-100 shadow-sm rounded-2xl overflow-hidden mb-8">
-        {/* 1. SEÇÃO DA CAPA (BANNER) */}
-        <div className="w-full h-48 sm:h-64 bg-gray-200">
-          <img 
-            src={comercio.imagem} 
-            alt={comercio.nome} 
-            className="w-full h-full object-cover" 
-          />
-        </div>
-
-        {/* 2. SEÇÃO DE INFORMAÇÕES */}
-        <div className="px-4 py-6">
-          
-          {/* LINHA SUPERIOR: Logo, Título e Infos da Direita */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-            
-            {/* Bloco Esquerdo: Logo e Título */}
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-full overflow-hidden border border-gray-100 bg-white flex-shrink-0">
-                <img 
-                  src={comercio.imagem} 
-                  alt={comercio.nome} 
-                  className="w-full h-full object-cover" 
+    <main className="min-h-screen bg-gray-50 font-sans text-gray-800">
+      <div className="flex flex-col lg:flex-row">
+        <div className="flex-1 min-w-0">
+          {/* BANNER */}
+          <div className="relative h-64 lg:h-[60vh] w-full bg-yellow-400">
+            <img
+              src={comercio.imagem}
+              alt={comercio.nome}
+              className="w-full h-full object-cover opacity-80"
+            />
+            <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10">
+              <button 
+                type="button" 
+                onClick={() => navigate(-1)}
+                aria-label="Voltar" 
+                className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white"
+              >
+                <ChevronLeft className="w-6 h-6" aria-hidden="true" />
+              </button>
+              <div className="flex gap-3">
+                <button type="button" aria-label="Favoritar" className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white">
+                  <Heart className={`w-5 h-5 ${comercio.favoritada ? 'fill-red-500 text-red-500' : ''}`} aria-hidden="true" />
+                </button>
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Buscar..."
+                    className="w-10 h-10 rounded-full bg-black/50 text-white backdrop-blur-sm focus:w-48 transition-all duration-300 outline-none pl-10 pr-4 text-sm"
+                  />
+                  <Search className="w-5 h-5 absolute left-2.5 top-2.5 text-white pointer-events-none" aria-hidden="true" />
+                </div>
+              </div>
+            </div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-20">
+              <div className="w-28 h-28 lg:w-36 lg:h-36 bg-white rounded-full p-1.5 shadow-xl border-4 border-white">
+                <img
+                  src={comercio.imagem}
+                  alt={comercio.nome}
+                  className="w-full h-full rounded-full object-cover"
                 />
               </div>
-              
-              <div className="flex flex-col">
-                <div className="flex items-center gap-3">
-                  <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">
-                    {comercio.nome}
-                  </h1>
-                  <div className="flex items-center text-[#e8a317] text-sm font-medium">
-                    <Star size={14} fill="currentColor" className="mr-1" strokeWidth={0} />
-                    {mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}
-                  </div>
-                </div>
-                <p className="text-gray-500 text-sm">{comercio.categoria}</p>
-              </div>
             </div>
+          </div>
 
-            {/* Bloco Direito: Botões de Ação */}
-            <div className="flex items-center text-[13px] gap-4">
-              <button 
+          {/* CARD DE INFORMACOES */}
+          <div className="relative bg-white -mt-14 mx-4 lg:mx-8 rounded-2xl shadow-md p-6 lg:p-8 z-10 border border-gray-100">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+              <div>
+                <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
+                  {comercio.nome}
+                </h1>
+                <p className="text-[13px] md:text-sm text-gray-500 mt-1">
+                  {comercio.categoria} • {comercio.vendedorAmbulante ? 'Ambulante' : 'Estabelecimento'} • Min R$ 0,00
+                </p>
+              </div>
+              <button
+                type="button"
                 onClick={() => setIsReviewModalOpen(true)}
-                className="text-red-600 font-medium hover:underline transition-all"
+                className="flex items-center gap-1 self-start lg:self-center shrink-0 px-3 py-1.5 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-50 transition"
+                aria-label="Avaliações do restaurante"
               >
-                Avaliar
+                <Star className="w-4 h-4 text-gray-800 fill-gray-800" aria-hidden="true" />
+                <span className="font-bold">{mediaAvaliacoes.toFixed(1)}</span>
+                <span className="text-gray-500">({comercio.avaliacoes.length})</span>
+                <ChevronRight className="w-4 h-4 text-gray-400" aria-hidden="true" />
               </button>
-              
-              <div className="w-px h-4 bg-gray-300"></div>
-              
-              <div className="flex items-center text-gray-500">
-                <DollarSign size={14} className="mr-1" />
-                Destaque Local
-              </div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-gray-600">
+              <p>
+                <span className={`font-semibold ${comercio.statusAberto ? 'text-green-600' : 'text-red-600'}`}>
+                  {comercio.statusAberto ? 'Aberto' : 'Fechado'}
+                </span> • {comercio.horarioFuncionamento}
+              </p>
+              <span className="hidden sm:block text-gray-300">|</span>
+              <p className="text-[13px] text-gray-500">{comercio.localizacao}</p>
             </div>
           </div>
 
-          {/* LINHA INFERIOR: Barra de Pesquisa e Filtros */}
-          <div className="flex flex-col md:flex-row gap-3">
-            
-            <div className="flex-1 flex items-center px-4 py-2.5 border border-gray-200 rounded-xl flex-shrink-0 focus-within:border-red-200 transition-colors">
-              <Search size={18} className="text-red-500 mr-3" />
-              <input 
-                type="text" 
-                placeholder="Buscar no catálogo" 
-                className="w-full bg-transparent outline-none text-gray-700 placeholder-gray-400 text-[14px]"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-
-            <button 
-              onClick={handleOpenGoogleMaps}
-              className="flex items-center justify-between px-4 py-2.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors min-w-[130px]"
-            >
-              <div className="flex items-center text-gray-700 text-[14px]">
-                <MapPin size={18} className="text-gray-400 mr-2" />
-                Ver no Mapa
-              </div>
-              <ChevronDown size={16} className="text-red-500" />
-            </button>
-
-            <div className="flex flex-col justify-center px-4 py-1.5 border border-gray-200 rounded-xl min-w-[150px]">
-              <span className="text-[13px] text-gray-800">{comercio.statusAberto ? 'Aberto Agora' : 'Fechado'}</span>
-              <div className="text-[12px] text-gray-500">
-                {comercio.horarioFuncionamento} <span className="mx-1">•</span> 
-                <span className={`font-medium ${comercio.statusAberto ? 'text-[#50a773]' : 'text-rose-500'}`}>
-                  {comercio.statusAberto ? 'Visite' : 'Volte depois'}
-                </span>
-              </div>
+          {/* DESTAQUES (SEM PREÇOS) */}
+          <div className="px-4 lg:px-8 mt-10">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Destaques</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+              {comercio.produtos.slice(0, 5).map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  className="flex flex-col text-left group focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-xl bg-white shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+                  aria-label={item.nome}
+                >
+                  <div className="relative aspect-square bg-gray-100">
+                    <img
+                      src={item.imagem || comercio.imagem}
+                      alt={item.nome}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-2">
+                    <h3 className="text-[14px] text-gray-800 font-medium leading-tight mt-1 line-clamp-2">
+                      {item.nome}
+                    </h3>
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* CONTEÚDO PRINCIPAL (CATÁLOGO) */}
-        <div className="lg:col-span-2 space-y-8">
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-gray-800">Catálogo de Produtos</h2>
-              <span className="text-xs text-gray-500">{produtosFiltrados.length} itens</span>
-            </div>
+          {/* INFORMACOES (APENAS QUANDO SIDEBAR FECHADA) */}
+          <div className="px-4 lg:px-8 mt-10 hidden lg:block">
+            {!sidebarOpen && <InfoContent comercio={comercio} />}
+          </div>
 
-            {produtosFiltrados.length === 0 ? (
-              <div className="p-8 bg-gray-50 rounded-2xl text-center border border-gray-100 border-dashed">
-                <p className="text-gray-500 text-sm">Nenhum produto encontrado na busca.</p>
+          {/* PRODUTOS COM VALORES */}
+          <div className="px-4 lg:px-8 mt-10 pb-20 lg:pb-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Produtos</h2>
+            {displayedProducts.length === 0 ? (
+              <div className="p-12 text-center text-gray-500 bg-white rounded-2xl border border-gray-100">
+                Nenhum produto encontrado.
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {produtosFiltrados.map(p => (
-                  <ProdutoCard key={p.id} produto={p} />
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                {displayedProducts.map((product) => (
+                  <div
+                    key={product.id}
+                    className="flex flex-col rounded-xl bg-white shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+                  >
+                    <div className="relative aspect-square bg-gray-100">
+                      <img
+                        src={product.imagem || comercio.imagem}
+                        alt={product.nome}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-2 flex flex-col flex-1">
+                      <div className="flex items-center gap-1 flex-wrap mt-1">
+                        <span className="text-[12px] text-orange-500 font-bold">
+                          {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.preco)}
+                        </span>
+                      </div>
+                      <h3 className="text-[14px] text-gray-800 font-medium leading-tight mt-1 line-clamp-2">
+                        {product.nome}
+                      </h3>
+                      <p className="text-[11px] text-gray-500 mt-1 line-clamp-2">{product.descricao}</p>
+                    </div>
+                  </div>
                 ))}
+              </div>
+            )}
+
+            {/* PAGINACAO DESKTOP */}
+            {totalPages > 1 && (
+              <div className="hidden lg:block">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
+              </div>
+            )}
+            {/* PAGINACAO MOBILE (fixa no rodapé) */}
+            {totalPages > 1 && (
+              <div className="lg:hidden">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                  isMobile
+                />
               </div>
             )}
           </div>
 
           {/* AVALIAÇÕES */}
-          <div className="space-y-6 pt-6 border-t border-gray-100">
-            <h2 className="text-xl font-semibold text-gray-800">O que os clientes dizem</h2>
-            
-            {comercio.resumo_avaliacoes && (
-               <div className="bg-[#fef7e0]/50 p-6 rounded-2xl border border-[#feefc3]">
-                  <p className="text-[#e8a317] text-xs font-semibold flex items-center gap-2 mb-2 uppercase tracking-wider">
-                     <Star size={14} fill="currentColor" strokeWidth={0} /> Resumo Inteligente
-                  </p>
-                  <p className="text-gray-700 italic text-sm leading-relaxed">"{comercio.resumo_avaliacoes}"</p>
-               </div>
-            )}
-
+          <div className="px-4 lg:px-8 mt-10 pb-10">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Avaliações</h2>
             <div className="space-y-4">
               {comercio.avaliacoes.length === 0 ? (
-                <p className="text-gray-500 text-sm italic py-4">Este local ainda não recebeu avaliações.</p>
+                <p className="text-gray-500 text-sm italic">Este local ainda não recebeu avaliações.</p>
               ) : (
                 comercio.avaliacoes.map(a => (
-                  <div key={a.id} className="bg-white border border-gray-100 p-5 rounded-xl">
+                  <div key={a.id} className="bg-white border border-gray-100 p-5 rounded-xl shadow-sm">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 text-[10px] font-bold">U</div>
-                        <span className="font-medium text-gray-800 text-sm">Cliente</span>
+                        <div className="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-700 text-[10px] font-bold">
+                          {a.usuarioId.substring(0, 2).toUpperCase()}
+                        </div>
+                        <span className="font-medium text-gray-800 text-sm">Usuário</span>
                       </div>
-                      <div className="flex text-[#e8a317]">
+                      <div className="flex text-yellow-400">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} size={12} className={`${i < a.nota ? 'fill-current' : 'text-gray-200'}`} strokeWidth={0} />
                         ))}
                       </div>
                     </div>
                     <p className="text-sm text-gray-600 leading-relaxed">{a.comentario}</p>
+                    <span className="text-[10px] text-gray-400 mt-2 block">
+                      {new Date(a.data).toLocaleDateString('pt-BR')}
+                    </span>
                   </div>
                 ))
               )}
             </div>
-          </div>
-        </div>
-
-        {/* SIDEBAR (SOBRE) */}
-        <div className="space-y-6">
-          <div className="bg-white border border-gray-100 rounded-2xl p-6 space-y-6 shadow-sm sticky top-28">
-            <h3 className="font-semibold text-lg text-gray-800">Informações</h3>
-            
-            <div className="space-y-5">
-              <div className="flex items-start gap-3">
-                <Clock size={18} className="text-red-500 mt-0.5" />
-                <div>
-                  <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Funcionamento</p>
-                  <p className="text-sm text-gray-700 font-medium">{comercio.horarioFuncionamento}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <MapPin size={18} className="text-red-500 mt-0.5" />
-                <div>
-                  <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Localização</p>
-                  <p className="text-sm text-gray-700 leading-relaxed">{comercio.localizacao}</p>
-                </div>
-              </div>
-
-              {comercio.telefone !== 'N/A' && (
-                <div className="flex items-start gap-3">
-                  <Phone size={18} className="text-red-500 mt-0.5" />
-                  <div>
-                    <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Contato</p>
-                    <a href={`https://wa.me/55${comercio.telefone?.replace(/\D/g, '')}`} target="_blank" rel="noreferrer" className="text-sm text-blue-600 font-medium hover:underline">
-                      {comercio.telefone}
-                    </a>
-                  </div>
-                </div>
-              )}
-
-              {comercio.redes_sociais && comercio.redes_sociais !== 'N/A' && (
-                <div className="flex items-start gap-3">
-                  <Instagram size={18} className="text-red-500 mt-0.5" />
-                  <div>
-                    <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Redes Sociais</p>
-                    <p className="text-sm text-gray-700 font-medium">{comercio.redes_sociais}</p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="h-48 rounded-xl overflow-hidden mt-6 border border-gray-100 shadow-inner">
-              <MapContainer center={[comercio.latitude, comercio.longitude]} zoom={17} className="w-full h-full">
-                <MapMarker position={[comercio.latitude, comercio.longitude]} type="comercio" />
-              </MapContainer>
-            </div>
-
             <Button 
-              variant="ghost" 
-              onClick={() => setIsReportModalOpen(true)}
-              className="w-full text-gray-400 hover:text-red-500 text-xs gap-2 pt-4"
+              onClick={() => setIsReviewModalOpen(true)}
+              className="mt-6 w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-xl"
             >
-              <AlertTriangle size={14} /> Denunciar erro neste local
+              Escrever Avaliação
             </Button>
           </div>
         </div>
 
+        {/* SIDEBAR (APENAS DESKTOP, VISIVEL QUANDO ABERTA) */}
+        {sidebarOpen && (
+          <aside className="hidden lg:block w-80 xl:w-96 bg-white border-l border-gray-200 lg:sticky lg:top-0 lg:h-screen overflow-y-auto p-6 z-30">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-lg font-bold text-gray-900">Informações</h2>
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="p-1 rounded-lg hover:bg-gray-100 transition"
+                aria-label="Fechar informações"
+              >
+                <X className="w-5 h-5 text-gray-500" />
+              </button>
+            </div>
+            <SidebarContent comercio={comercio} />
+            <Button 
+              variant="ghost" 
+              onClick={() => setIsReportModalOpen(true)}
+              className="w-full text-gray-400 hover:text-red-500 text-xs gap-2 pt-8"
+            >
+              <AlertTriangle size={14} /> Denunciar erro neste local
+            </Button>
+          </aside>
+        )}
+      </div>
+
+      {/* BOTÃO FLUTUANTE PARA ABRIR SIDEBAR (SOMENTE DESKTOP) */}
+      {!sidebarOpen && (
+        <div className="hidden lg:block fixed right-6 bottom-6 z-50">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            onMouseEnter={() => setIsHoveringInfoBtn(true)}
+            onMouseLeave={() => setIsHoveringInfoBtn(false)}
+            className="flex items-center gap-2 bg-yellow-400 text-gray-900 rounded-full shadow-lg hover:bg-yellow-500 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-200"
+            style={{ padding: isHoveringInfoBtn ? '10px 20px 10px 16px' : '10px' }}
+            aria-label="Abrir informações"
+          >
+            <Info className="w-6 h-6" aria-hidden="true" />
+            <span
+              className={`text-sm font-medium whitespace-nowrap overflow-hidden transition-all duration-300 ${
+                isHoveringInfoBtn ? 'max-w-40 opacity-100' : 'max-w-0 opacity-0'
+              }`}
+            >
+              Informações
+            </span>
+          </button>
+        </div>
+      )}
+
+      {/* MOBILE EXTRA INFO (abaixo dos destaques, sempre visivel) */}
+      <div className="lg:hidden px-4 mt-10 pb-20">
+        <InfoContent comercio={comercio} />
+        <Button 
+          variant="ghost" 
+          onClick={() => setIsReportModalOpen(true)}
+          className="w-full text-gray-400 hover:text-red-500 text-xs gap-2 py-8"
+        >
+          <AlertTriangle size={14} /> Denunciar erro neste local
+        </Button>
       </div>
 
       {/* MODALS */}
@@ -316,7 +606,7 @@ export function ComercioDetalhe() {
                   onClick={() => setNota(v)}
                   className={`flex-1 py-3 rounded-xl border font-medium transition-all ${
                     nota === v 
-                      ? 'bg-red-50 border-red-200 text-red-600' 
+                      ? 'bg-yellow-50 border-yellow-200 text-yellow-700' 
                       : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'
                   }`}
                 >
@@ -338,10 +628,10 @@ export function ComercioDetalhe() {
           </div>
           <div className="flex gap-3">
              <Button variant="ghost" className="flex-1 rounded-xl" onClick={() => setIsReviewModalOpen(false)}>Cancelar</Button>
-             <Button type="submit" className="flex-1 rounded-xl bg-red-600 hover:bg-red-700 text-white">Publicar</Button>
+             <Button type="submit" className="flex-1 rounded-xl bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold">Publicar</Button>
           </div>
         </form>
       </Modal>
-    </div>
+    </main>
   );
 }

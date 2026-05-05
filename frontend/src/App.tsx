@@ -7,10 +7,12 @@ import { ComercioDetalhe } from '@/pages/ComercioDetalhe';
 import { Eventos } from '@/pages/Eventos';
 import { Estacionamentos } from '@/pages/Estacionamentos';
 import { Culinaria } from '@/pages/Culinaria';
+import { Sugestoes } from '@/pages/Sugestoes';
 import { PrefeituraDashboard } from '@/pages/PrefeituraDashboard';
 import { Login } from '@/pages/Login';
 import { Cadastro } from '@/pages/Cadastro';
 import { Dashboard } from '@/pages/Dashboard';
+import  Teste  from '@/pages/teste';
 
 function App() {
   return (
@@ -23,10 +25,12 @@ function App() {
         <Route path="eventos" element={<Eventos />} />
         <Route path="estacionamentos" element={<Estacionamentos />} />
         <Route path="culinaria" element={<Culinaria />} />
+        <Route path="sugestoes" element={<Sugestoes />} />
         <Route path="prefeitura" element={<PrefeituraDashboard />} />
         <Route path="login" element={<Login />} />
         <Route path="cadastro" element={<Cadastro />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="teste" element={<Teste />} />
       </Route>
     </Routes>
   );

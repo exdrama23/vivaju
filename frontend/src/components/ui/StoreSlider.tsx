@@ -38,7 +38,9 @@ export function StoreSlider({ stores }: StoreSliderProps) {
   const currentStore = stores[currentIndex];
 
   return (
-    <div className="relative w-full h-full overflow-hidden  bg-[#f8f9fa] border border-[#dadce0] shadow-sm hover:shadow-md transition-shadow">
+    <div className="relative w-full h-full overflow-visible z-10  bg-[#f8f9fa] ">
+      <div className="absolute inset-0 z-0 bg-[#f8f9fa] translate-y-15  "></div>
+      
       {/* Content Wrapper */}
       <div className="flex h-full flex-col md:flex-row items-stretch">
         {/* Info Section */}
@@ -75,15 +77,17 @@ export function StoreSlider({ stores }: StoreSliderProps) {
 
         {/* Image Section */}
         <div className={`hidden md:flex relative flex-1 md:w-1/2 overflow-hidden bg-[#f1f3f4] transition-all duration-700 ${isTransitioning ? 'opacity-50 scale-105' : 'opacity-100 scale-100'}`}>
-          <img 
-            src={currentStore.imagem} 
-            alt={currentStore.nome} 
+          <img
+            src={currentStore.imagem}
+            alt={currentStore.nome}
             className="w-full h-full object-cover"
           />
           {/* Subtle gradient overlay to blend with info section on mobile */}
           <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent md:bg-gradient-to-r md:from-[#f8f9fa] md:to-transparent" />
         </div>
       </div>
+
+      
 
       {/* Navigation Controls */}
       <div className="absolute bottom-8 right-8 flex gap-2 z-20">
