@@ -22,55 +22,55 @@ export function ComercioCard({ comercio }: { comercio: ComercioExtendido }) {
   return (
     <Link 
       to={`/comercios/${comercio.id}`}
-      className="flex items-center gap-4 p-3 bg-white hover:bg-gray-50 transition-colors rounded-lg cursor-pointer w-full font-sans group"
+      className="flex items-center gap-6 p-4 bg-white hover:bg-gray-50 transition-all duration-300 rounded-xl cursor-pointer w-full font-sans group border border-transparent hover:border-gray-100 hover:shadow-md"
     >
-      {/* LADO ESQUERDO: Imagem/Logo */}
+      {/* LADO ESQUERDO: Imagem/Logo - Aumentada de 18 para 24 */}
       <div className="shrink-0 relative">
-        <div className="w-18 h-18 bg-gray-100 rounded-full overflow-hidden border border-gray-100 flex items-center justify-center">
+        <div className="w-24 h-24 bg-gray-100 rounded-full overflow-hidden border-2 border-white shadow-sm flex items-center justify-center">
           {comercio.imagem && !hasImageError ? (
             <img 
               src={comercio.imagem} 
               alt={`Logo do ${comercio.nome}`} 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover "
               onError={() => setHasImageError(true)}
             />
           ) : (
-            <div className="w-full h-full bg-linear-to-br from-[#1a73e8] to-[#34a853] flex items-center justify-center text-white font-bold text-lg tracking-tight">
+            <div className="w-full h-full bg-linear-to-br from-[#1a73e8] to-[#34a853] flex items-center justify-center text-white font-bold text-2xl tracking-tight">
               {logoFallback || 'CJ'}
             </div>
           )}
         </div>
         
-        {/* Favorite Button (Sobreposto à imagem no novo design) */}
+        {/* Favorite Button */}
         <button 
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             setIsFavorite(!isFavorite);
           }}
-          className={`absolute -top-1 -right-1 p-1 rounded-full transition-all duration-300 shadow-sm ${
+          className={`absolute top-0 right-0 p-1.5 rounded-full transition-all duration-300 shadow-md ${
             isFavorite 
               ? 'bg-white text-rose-500' 
-              : 'bg-white/90 text-gray-400 opacity-0 group-hover:opacity-100'
+              : 'bg-white/90 text-gray-400 opacity-0 group-hover:opacity-100 hover:text-rose-400'
           }`}
         >
-          <Heart className={`w-3 h-3 ${isFavorite ? 'fill-current' : ''}`} />
+          <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
         </button>
       </div>
 
-      {/* LADO DIREITO: Informações */}
-      <div className="flex flex-col justify-center overflow-hidden">
+      {/* LADO DIREITO: Informações - Textos aumentados */}
+      <div className="flex flex-col justify-center overflow-hidden flex-1">
         {/* Linha 1: Título */}
-        <h3 className="text-[15px] font-medium text-gray-800 truncate mb-0.5 group-hover:text-[#1a73e8] transition-colors">
+        <h3 className="text-lg md:text-xl font-semibold text-gray-900 truncate mb-1 group-hover:text-[#1a73e8] transition-colors">
           {comercio.nome}
         </h3>
 
         {/* Linha 2: Avaliação, Categoria e Localização */}
-        <div className="flex items-center text-[13px] text-gray-500 mb-0.5 gap-1.5">
+        <div className="flex items-center text-sm md:text-base text-gray-500 mb-1 gap-2">
           {/* Avaliação com Estrela */}
-          <div className="flex items-center gap-0.5 text-[#e8a317]">
-            <Star size={12} fill="currentColor" strokeWidth={0} />
-            <span className="font-medium">{mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}</span>
+          <div className="flex items-center gap-1 text-[#e8a317] font-semibold">
+            <Star size={14} fill="currentColor" strokeWidth={0} />
+            <span>{mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}</span>
           </div>
 
           <span className="text-gray-300">•</span>
@@ -81,13 +81,13 @@ export function ComercioCard({ comercio }: { comercio: ComercioExtendido }) {
         </div>
 
         {/* Linha 3: Horário e Status */}
-        <div className="flex items-center text-[13px] text-gray-500 gap-1.5">
+        <div className="flex items-center text-sm md:text-base text-gray-400 gap-2">
           <span className="truncate">{comercio.horarioFuncionamento || '08h - 18h'}</span>
 
           <span className="text-gray-300">•</span>
 
           <span className={`font-medium ${comercio.statusAberto ? 'text-[#50a773]' : 'text-rose-500'}`}>
-            {comercio.statusAberto ? 'Aberto' : 'Fechado'}
+            {comercio.statusAberto ? 'Aberto agora' : 'Fechado'}
           </span>
         </div>
       </div>

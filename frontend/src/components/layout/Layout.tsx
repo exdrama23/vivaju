@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Home, Map as MapIcon, Store, Calendar, Car, User, Utensils } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
@@ -7,6 +8,27 @@ import logoCaju from '@/assets/logocaju.png';
 export function Layout() {
   const location = useLocation();
   const { user } = useAuth();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (mainRef.current) {
+        setIsScrolled(mainRef.current.scrollTop > 50);
+      }
+    };
+
+    const mainElement = mainRef.current;
+    if (mainElement) {
+      mainElement.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      if (mainElement) {
+        mainElement.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, []);
 
   const navItems = [
     { name: 'Início', path: '/', icon: Home },
@@ -17,9 +39,18 @@ export function Layout() {
     { name: 'Culinária', path: '/culinaria', icon: Utensils },
   ];
 
+  const isHome = location.pathname === '/';
+
   return (
     <div className="flex flex-col h-screen bg-white overflow-hidden">
-      <header className="sticky top-0 z-50 w-full border-b border-[#dadce0] bg-white shrink-0">
+      <header className={cn(
+        "hidden md:block fixed top-0 z-50 w-full transition-all duration-300",
+        isScrolled 
+          ? "bg-white border-b border-[#dadce0] shadow-sm py-0" 
+          : isHome 
+            ? "bg-transparent border-transparent py-2" 
+            : "bg-white border-b border-[#dadce0] py-0"
+      )}>
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-4 sm:gap-8">
             <Link to="/" className="flex items-center gap-2 shrink-0">
@@ -34,7 +65,7 @@ export function Layout() {
                     'px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-[#f1f3f4]',
                     location.pathname === item.path 
                       ? 'text-[#1a73e8] bg-[#e8f0fe]' 
-                      : 'text-[#5f6368]'
+                      : isScrolled || !isHome ? 'text-[#5f6368]' : 'text-white hover:text-white/80'
                   )}
                 >
                   {item.name}
@@ -46,7 +77,10 @@ export function Layout() {
             {user ? (
               <Link 
                 to="/dashboard" 
-                className="p-2 rounded-full hover:bg-[#f1f3f4] text-[#5f6368] transition-colors flex items-center gap-2"
+                className={cn(
+                  "p-2 rounded-full transition-colors flex items-center gap-2",
+                  isScrolled || !isHome ? "hover:bg-[#f1f3f4] text-[#5f6368]" : "hover:bg-white/10 text-white"
+                )}
               >
                 <div className="w-8 h-8 rounded-full bg-[#e8f0fe] flex items-center justify-center text-[#1a73e8]">
                   <User className="w-5 h-5" />
@@ -56,7 +90,12 @@ export function Layout() {
             ) : (
               <Link 
                 to="/login" 
-                className="px-6 py-2 rounded-full text-sm font-medium text-white bg-[#1a73e8] hover:bg-[#1765cc] transition-colors shadow-sm"
+                className={cn(
+                  "px-6 py-2 rounded-full text-sm font-medium transition-colors shadow-sm",
+                  isScrolled || !isHome 
+                    ? "text-white bg-[#1a73e8] hover:bg-[#1765cc]" 
+                    : "text-[#1a73e8] bg-white hover:bg-gray-100"
+                )}
               >
                 Entrar
               </Link>
@@ -65,7 +104,13 @@ export function Layout() {
         </div>
       </header>
 
-      <main className="flex-1 flex flex-col overflow-auto bg-[#ffffff]">
+      <main 
+        ref={mainRef}
+        className={cn(
+          "flex-1 flex flex-col overflow-auto bg-[#ffffff]",
+          !isHome && "pt-16"
+        )}
+      >
         <Outlet />
       </main>
 

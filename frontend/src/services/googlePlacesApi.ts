@@ -78,7 +78,10 @@ export async function buscarLojasDoGoogleMaps(): Promise<Comercio[]> {
               usuarioId: 'google_places',
               nome: place.name,
               email: '',
-              telefone: '',
+              telefoneContato: '',
+              descricao: '',
+              vendedorAmbulante: false,
+              estacionamento: true,
               categoria: categorizarPorTempo(place.types || []),
               horarioFuncionamento: 'Consultar Google Maps',
               imagem:

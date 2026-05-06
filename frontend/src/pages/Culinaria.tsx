@@ -83,7 +83,7 @@ export function Culinaria() {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12 max-w-7xl md:pb-0 pb-24">
-      <div className="flex flex-col space-y-4 mb-8 md:mb-12">
+      {/* <div className="flex flex-col space-y-4 mb-8 md:mb-12">
         <div className="flex items-center gap-3">
           <div className="p-2 sm:p-3 bg-orange-100 rounded-xl sm:rounded-2xl text-orange-600">
             <UtensilsCrossed className="w-6 h-6 sm:w-8 sm:h-8" />
@@ -93,7 +93,7 @@ export function Culinaria() {
             <p className="text-gray-500 text-sm sm:text-base mt-1">Restaurantes, bares e sabores tradicionais no mesmo estilo da aba de comércio.</p>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex flex-col space-y-6 mb-8 md:mb-12">
         <div className="w-full max-w-2xl relative group">

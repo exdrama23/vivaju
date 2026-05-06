@@ -66,14 +66,14 @@ export function LocationDetailModal({
             </div>
           </div>
 
-          {loja.telefone && loja.telefone !== 'N/A' && (
+          {loja.telefoneContato && loja.telefoneContato !== 'N/A' && (
             <div className="flex items-start gap-4">
               <div className="p-2 bg-[#e6f4ea] rounded-full">
                 <Phone className="w-5 h-5 text-[#1e8e3e]" />
               </div>
               <div>
                 <p className="text-[11px] font-medium text-[#5f6368] uppercase tracking-wider mb-0.5">Telefone</p>
-                <p className="text-sm text-[#202124]">{loja.telefone}</p>
+                <p className="text-sm text-[#202124]">{loja.telefoneContato}</p>
               </div>
             </div>
           )}

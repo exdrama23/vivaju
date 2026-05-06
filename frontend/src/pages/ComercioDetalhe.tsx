@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Heart, Search, Star, ChevronRight, Phone, MapPin, 
-  Navigation, AtSign, Info, X, ChevronDown, AlertTriangle 
+  Navigation, AtSign, Info, X, AlertTriangle 
 } from 'lucide-react';
 import { useData } from '@/context/DataContext';
 import { Modal } from '@/components/ui/Modal';
@@ -32,9 +32,10 @@ const InfoContent = ({ comercio }: { comercio: ComercioExtendido }) => (
           <Phone className="w-5 h-5 text-gray-500" aria-hidden="true" />
           <span className="text-sm text-gray-700">{comercio.telefoneContato}</span>
         </a>
-        <button
-          type="button"
-          onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${comercio.latitude},${comercio.longitude}`, '_blank')}
+        <a
+          href={`https://www.google.com/maps/dir/?api=1&destination=${comercio.latitude},${comercio.longitude}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center gap-3 p-2 -mx-2 rounded-lg hover:bg-gray-100 transition w-full text-left focus:outline-none focus:ring-2 focus:ring-gray-400"
           aria-label={`Endereço ${comercio.localizacao}`}
         >
@@ -46,14 +47,14 @@ const InfoContent = ({ comercio }: { comercio: ComercioExtendido }) => (
               Ver rotas no mapa
             </span>
           </div>
-        </button>
+        </a>
       </div>
     </section>
 
     <section aria-labelledby="categories-heading">
       <h2 id="categories-heading" className="text-lg font-bold text-gray-900 mb-4">Categorias</h2>
       <div className="flex flex-wrap gap-2">
-        {comercio.tags?.map((cat) => (
+        {comercio.tags?.length ? comercio.tags.map((cat) => (
           <button
             key={cat}
             type="button"
@@ -62,7 +63,7 @@ const InfoContent = ({ comercio }: { comercio: ComercioExtendido }) => (
           >
             {cat}
           </button>
-        )) || (
+        )) : (
           <button
             type="button"
             className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700 shadow-sm"
@@ -76,7 +77,7 @@ const InfoContent = ({ comercio }: { comercio: ComercioExtendido }) => (
     <section aria-labelledby="promotions-heading">
       <h2 id="promotions-heading" className="text-lg font-bold text-gray-900 mb-4">Destaques</h2>
       <div className="space-y-3">
-        {comercio.produtos.slice(0, 3).map((item) => (
+        {(comercio.produtos || []).slice(0, 3).map((item) => (
           <button
             key={item.id}
             type="button"
@@ -120,9 +121,10 @@ const SidebarContent = ({ comercio }: { comercio: ComercioExtendido }) => (
           <Phone className="w-5 h-5 text-gray-500" aria-hidden="true" />
           <span className="text-sm text-gray-700">{comercio.telefoneContato}</span>
         </a>
-        <button
-          type="button"
-          onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${comercio.latitude},${comercio.longitude}`, '_blank')}
+        <a
+          href={`https://www.google.com/maps/dir/?api=1&destination=${comercio.latitude},${comercio.longitude}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition w-full text-left focus:outline-none focus:ring-2 focus:ring-gray-400"
           aria-label={`Endereço ${comercio.localizacao}`}
         >
@@ -134,14 +136,14 @@ const SidebarContent = ({ comercio }: { comercio: ComercioExtendido }) => (
               Ver rotas no mapa
             </span>
           </div>
-        </button>
+        </a>
       </div>
     </section>
 
     <section aria-labelledby="sidebar-categories-heading">
       <h2 id="sidebar-categories-heading" className="text-lg font-bold text-gray-900 mb-4">Categorias</h2>
       <div className="flex flex-wrap gap-2">
-        {comercio.tags?.map((cat) => (
+        {comercio.tags?.length ? comercio.tags.map((cat) => (
           <button
             key={cat}
             type="button"
@@ -150,7 +152,7 @@ const SidebarContent = ({ comercio }: { comercio: ComercioExtendido }) => (
           >
             {cat}
           </button>
-        )) || (
+        )) : (
           <button
             type="button"
             className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700 shadow-sm"
@@ -164,7 +166,7 @@ const SidebarContent = ({ comercio }: { comercio: ComercioExtendido }) => (
     <section aria-labelledby="sidebar-promotions-heading">
       <h2 id="sidebar-promotions-heading" className="text-lg font-bold text-gray-900 mb-4">Destaques</h2>
       <div className="space-y-3">
-        {comercio.produtos.slice(0, 3).map((item) => (
+        {(comercio.produtos || []).slice(0, 3).map((item) => (
           <button
             key={item.id}
             type="button"
@@ -186,11 +188,15 @@ const SidebarContent = ({ comercio }: { comercio: ComercioExtendido }) => (
 
 const Pagination = ({ currentPage, totalPages, onPageChange, isMobile = false }: { currentPage: number; totalPages: number; onPageChange: (page: number) => void; isMobile?: boolean }) => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const handlePageChange = (page: number) => {
+    onPageChange(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   if (isMobile) {
     return (
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-3 flex items-center justify-between z-40">
         <button
-          onClick={() => onPageChange(currentPage - 1)}
+          onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
           className={`p-2 rounded-lg ${currentPage === 1 ? 'text-gray-300' : 'text-gray-700 hover:bg-gray-100'} transition disabled:opacity-50`}
           aria-label="Página anterior"
@@ -201,7 +207,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, isMobile = false }:
           {currentPage} / {totalPages}
         </span>
         <button
-          onClick={() => onPageChange(currentPage + 1)}
+          onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
           className={`p-2 rounded-lg ${currentPage === totalPages ? 'text-gray-300' : 'text-gray-700 hover:bg-gray-100'} transition disabled:opacity-50`}
           aria-label="Próxima página"
@@ -214,7 +220,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, isMobile = false }:
   return (
     <nav className="flex items-center justify-center gap-2 mt-8" aria-label="Paginação dos produtos">
       <button
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
         className="p-2 rounded-lg hover:bg-gray-200 transition disabled:opacity-40 disabled:cursor-not-allowed"
         aria-label="Página anterior"
@@ -224,7 +230,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, isMobile = false }:
       {pages.map((page) => (
         <button
           key={page}
-          onClick={() => onPageChange(page)}
+          onClick={() => handlePageChange(page)}
           className={`w-9 h-9 rounded-lg text-sm font-medium transition ${
             page === currentPage ? 'bg-yellow-400 text-white shadow' : 'text-gray-600 hover:bg-gray-200'
           }`}
@@ -235,7 +241,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, isMobile = false }:
         </button>
       ))}
       <button
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
         className="p-2 rounded-lg hover:bg-gray-200 transition disabled:opacity-40 disabled:cursor-not-allowed"
         aria-label="Próxima página"
@@ -249,13 +255,14 @@ const Pagination = ({ currentPage, totalPages, onPageChange, isMobile = false }:
 export function ComercioDetalhe() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { comercios, addAvaliacao } = useData();
+  const { comercios, addAvaliacao, toggleFavorito } = useData();
   const comercio = comercios.find(c => c.id === id) as ComercioExtendido | undefined;
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isHoveringInfoBtn, setIsHoveringInfoBtn] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchExpanded, setSearchExpanded] = useState(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [nota, setNota] = useState(5);
@@ -278,7 +285,7 @@ export function ComercioDetalhe() {
   }, [addAvaliacao, comercio, nota, comentario]);
 
   const filteredProducts = useMemo(() => {
-    if (!comercio) return [];
+    if (!comercio || !comercio.produtos) return [];
     return comercio.produtos.filter(p => 
       p.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
       p.descricao.toLowerCase().includes(searchTerm.toLowerCase())
@@ -295,15 +302,15 @@ export function ComercioDetalhe() {
     return <div className="p-12 text-center text-[#5f6368]">Comércio não encontrado.</div>;
   }
 
-  const mediaAvaliacoes = comercio.rating || (comercio.avaliacoes.length
-    ? comercio.avaliacoes.reduce((acc, curr) => acc + curr.nota, 0) / comercio.avaliacoes.length
-    : 0);
+  const avaliacoes = comercio.avaliacoes || [];
+  const mediaAvaliacoes = avaliacoes.length
+    ? avaliacoes.reduce((acc, curr) => acc + curr.nota, 0) / avaliacoes.length
+    : 0;
 
   return (
     <main className="min-h-screen bg-gray-50 font-sans text-gray-800">
       <div className="flex flex-col lg:flex-row">
         <div className="flex-1 min-w-0">
-          {/* BANNER */}
           <div className="relative h-64 lg:h-[60vh] w-full bg-yellow-400">
             <img
               src={comercio.imagem}
@@ -319,23 +326,49 @@ export function ComercioDetalhe() {
               >
                 <ChevronLeft className="w-6 h-6" aria-hidden="true" />
               </button>
-              <div className="flex gap-3">
-                <button type="button" aria-label="Favoritar" className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white">
+              <div className="flex gap-3 items-center">
+                <button
+                  type="button"
+                  onClick={() => toggleFavorito(comercio.id)}
+                  aria-label={comercio.favoritada ? 'Remover favorito' : 'Favoritar'}
+                  className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white"
+                >
                   <Heart className={`w-5 h-5 ${comercio.favoritada ? 'fill-red-500 text-red-500' : ''}`} aria-hidden="true" />
                 </button>
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Buscar..."
-                    className="w-10 h-10 rounded-full bg-black/50 text-white backdrop-blur-sm focus:w-48 transition-all duration-300 outline-none pl-10 pr-4 text-sm"
-                  />
-                  <Search className="w-5 h-5 absolute left-2.5 top-2.5 text-white pointer-events-none" aria-hidden="true" />
+                <div className="relative flex items-center">
+                  {!searchExpanded ? (
+                    <button
+                      type="button"
+                      onClick={() => setSearchExpanded(true)}
+                      className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white"
+                      aria-label="Buscar"
+                    >
+                      <Search className="w-5 h-5" aria-hidden="true" />
+                    </button>
+                  ) : (
+                    <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-full pl-3 pr-2 h-10">
+                      <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Buscar..."
+                        className="bg-transparent text-white outline-none text-sm w-32 md:w-48 placeholder-white/70"
+                        autoFocus
+                      />
+                      <button
+                        type="button"
+                        onClick={() => { setSearchExpanded(false); setSearchTerm(''); }}
+                        className="p-1 rounded-full hover:bg-white/20 transition"
+                        aria-label="Fechar busca"
+                      >
+                        <X className="w-4 h-4 text-white" />
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-20">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 -translate-y-7 z-20">
               <div className="w-28 h-28 lg:w-36 lg:h-36 bg-white rounded-full p-1.5 shadow-xl border-4 border-white">
                 <img
                   src={comercio.imagem}
@@ -346,7 +379,6 @@ export function ComercioDetalhe() {
             </div>
           </div>
 
-          {/* CARD DE INFORMACOES */}
           <div className="relative bg-white -mt-14 mx-4 lg:mx-8 rounded-2xl shadow-md p-6 lg:p-8 z-10 border border-gray-100">
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
               <div>
@@ -354,7 +386,7 @@ export function ComercioDetalhe() {
                   {comercio.nome}
                 </h1>
                 <p className="text-[13px] md:text-sm text-gray-500 mt-1">
-                  {comercio.categoria} • {comercio.vendedorAmbulante ? 'Ambulante' : 'Estabelecimento'} • Min R$ 0,00
+                  {comercio.categoria} • {comercio.vendedorAmbulante ? 'Ambulante' : 'Estabelecimento'}
                 </p>
               </div>
               <button
@@ -365,7 +397,7 @@ export function ComercioDetalhe() {
               >
                 <Star className="w-4 h-4 text-gray-800 fill-gray-800" aria-hidden="true" />
                 <span className="font-bold">{mediaAvaliacoes.toFixed(1)}</span>
-                <span className="text-gray-500">({comercio.avaliacoes.length})</span>
+                <span className="text-gray-500">({avaliacoes.length})</span>
                 <ChevronRight className="w-4 h-4 text-gray-400" aria-hidden="true" />
               </button>
             </div>
@@ -380,11 +412,10 @@ export function ComercioDetalhe() {
             </div>
           </div>
 
-          {/* DESTAQUES (SEM PREÇOS) */}
           <div className="px-4 lg:px-8 mt-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Destaques</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-              {comercio.produtos.slice(0, 5).map((item) => (
+              {(comercio.produtos || []).slice(0, 5).map((item) => (
                 <button
                   key={item.id}
                   type="button"
@@ -408,12 +439,10 @@ export function ComercioDetalhe() {
             </div>
           </div>
 
-          {/* INFORMACOES (APENAS QUANDO SIDEBAR FECHADA) */}
           <div className="px-4 lg:px-8 mt-10 hidden lg:block">
             {!sidebarOpen && <InfoContent comercio={comercio} />}
           </div>
 
-          {/* PRODUTOS COM VALORES */}
           <div className="px-4 lg:px-8 mt-10 pb-20 lg:pb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Produtos</h2>
             {displayedProducts.length === 0 ? (
@@ -450,7 +479,6 @@ export function ComercioDetalhe() {
               </div>
             )}
 
-            {/* PAGINACAO DESKTOP */}
             {totalPages > 1 && (
               <div className="hidden lg:block">
                 <Pagination
@@ -460,7 +488,6 @@ export function ComercioDetalhe() {
                 />
               </div>
             )}
-            {/* PAGINACAO MOBILE (fixa no rodapé) */}
             {totalPages > 1 && (
               <div className="lg:hidden">
                 <Pagination
@@ -473,14 +500,13 @@ export function ComercioDetalhe() {
             )}
           </div>
 
-          {/* AVALIAÇÕES */}
           <div className="px-4 lg:px-8 mt-10 pb-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Avaliações</h2>
             <div className="space-y-4">
-              {comercio.avaliacoes.length === 0 ? (
+              {avaliacoes.length === 0 ? (
                 <p className="text-gray-500 text-sm italic">Este local ainda não recebeu avaliações.</p>
               ) : (
-                comercio.avaliacoes.map(a => (
+                avaliacoes.map(a => (
                   <div key={a.id} className="bg-white border border-gray-100 p-5 rounded-xl shadow-sm">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-3">
@@ -512,7 +538,6 @@ export function ComercioDetalhe() {
           </div>
         </div>
 
-        {/* SIDEBAR (APENAS DESKTOP, VISIVEL QUANDO ABERTA) */}
         {sidebarOpen && (
           <aside className="hidden lg:block w-80 xl:w-96 bg-white border-l border-gray-200 lg:sticky lg:top-0 lg:h-screen overflow-y-auto p-6 z-30">
             <div className="flex justify-between items-center mb-6">
@@ -537,7 +562,6 @@ export function ComercioDetalhe() {
         )}
       </div>
 
-      {/* BOTÃO FLUTUANTE PARA ABRIR SIDEBAR (SOMENTE DESKTOP) */}
       {!sidebarOpen && (
         <div className="hidden lg:block fixed right-6 bottom-6 z-50">
           <button
@@ -560,7 +584,6 @@ export function ComercioDetalhe() {
         </div>
       )}
 
-      {/* MOBILE EXTRA INFO (abaixo dos destaques, sempre visivel) */}
       <div className="lg:hidden px-4 mt-10 pb-20">
         <InfoContent comercio={comercio} />
         <Button 
@@ -572,21 +595,26 @@ export function ComercioDetalhe() {
         </Button>
       </div>
 
-      {/* MODALS */}
       <Modal isOpen={isReportModalOpen} onClose={() => setIsReportModalOpen(false)} title="Denunciar local">
         <div className="space-y-6">
-          <p className="text-sm text-gray-500">Por que você está denunciando este local?</p>
-          <select className="w-full p-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none">
-            <option>Informações incorretas</option>
-            <option>Local fechado permanentemente</option>
-            <option>Local inexistente</option>
-            <option>Conteúdo impróprio</option>
-          </select>
-          <textarea 
-            className="w-full p-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none" 
-            rows={4} 
-            placeholder="Conte-nos mais detalhes..."
-          />
+          <div className="space-y-2">
+            <label htmlFor="report-reason" className="block text-sm font-medium text-gray-500">Por que você está denunciando este local?</label>
+            <select id="report-reason" className="w-full p-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none">
+              <option>Informações incorretas</option>
+              <option>Local fechado permanentemente</option>
+              <option>Local inexistente</option>
+              <option>Conteúdo impróprio</option>
+            </select>
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="report-details" className="block text-sm font-medium text-gray-500">Conte-nos mais detalhes...</label>
+            <textarea 
+              id="report-details"
+              className="w-full p-3 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none" 
+              rows={4} 
+              placeholder="..."
+            />
+          </div>
           <div className="flex gap-3">
              <Button variant="ghost" className="flex-1 rounded-xl" onClick={() => setIsReportModalOpen(false)}>Cancelar</Button>
              <Button className="flex-1 rounded-xl bg-red-600 hover:bg-red-700 text-white" onClick={() => setIsReportModalOpen(false)}>Enviar</Button>
@@ -596,29 +624,36 @@ export function ComercioDetalhe() {
 
       <Modal isOpen={isReviewModalOpen} onClose={() => setIsReviewModalOpen(false)} title="Sua avaliação">
         <form onSubmit={handleReviewSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-500">Qual sua nota para o local?</label>
-            <div className="flex justify-between gap-2">
+          <fieldset>
+            <legend className="block text-sm font-medium text-gray-500 mb-3">Qual sua nota para o local?</legend>
+            <div className="flex justify-center gap-2">
               {[1, 2, 3, 4, 5].map(v => (
-                <button 
+                <button
                   key={v}
                   type="button"
                   onClick={() => setNota(v)}
-                  className={`flex-1 py-3 rounded-xl border font-medium transition-all ${
-                    nota === v 
-                      ? 'bg-yellow-50 border-yellow-200 text-yellow-700' 
-                      : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'
-                  }`}
+                  className={`p-2 rounded-full transition-colors ${
+                    nota >= v ? 'text-yellow-400' : 'text-gray-300'
+                  } hover:text-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-200`}
+                  aria-label={`Nota ${v}`}
                 >
-                  {v}
+                  <Star 
+                    size={32} 
+                    className={nota >= v ? 'fill-current' : ''} 
+                    strokeWidth={1.5}
+                  />
                 </button>
               ))}
             </div>
-          </div>
+            <p className="text-center text-xs text-gray-400 mt-2">
+              {nota === 1 ? 'Péssimo' : nota === 2 ? 'Ruim' : nota === 3 ? 'Regular' : nota === 4 ? 'Bom' : 'Excelente'}
+            </p>
+          </fieldset>
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-500">Escreva seu comentário</label>
+            <label htmlFor="review-comment" className="block text-sm font-medium text-gray-500">Escreva seu comentário</label>
             <textarea 
-              className="w-full p-4 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none" 
+              id="review-comment"
+              className="w-full p-4 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 outline-none focus:ring-2 focus:ring-yellow-200" 
               rows={4} 
               value={comentario} 
               onChange={e => setComentario(e.target.value)} 

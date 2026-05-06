@@ -12,7 +12,7 @@ import { PrefeituraDashboard } from '@/pages/PrefeituraDashboard';
 import { Login } from '@/pages/Login';
 import { Cadastro } from '@/pages/Cadastro';
 import { Dashboard } from '@/pages/Dashboard';
-import  Teste  from '@/pages/teste';
+// import  Teste  from '@/pages/teste';
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="cadastro" element={<Cadastro />} />
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="teste" element={<Teste />} />
+        {/* <Route path="teste" element={<Teste />} /> */}
       </Route>
     </Routes>
   );

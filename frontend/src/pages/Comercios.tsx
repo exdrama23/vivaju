@@ -108,7 +108,7 @@ export function Comercios() {
           <p className="text-[#5f6368] text-xs sm:text-sm mt-1">Tente ajustar seus filtros ou termo de busca.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
           {filteredComercios.map(c => (
             <ComercioCard key={c.id} comercio={c} />
           ))}

@@ -71,13 +71,13 @@ export function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* Seção Hero - Clean Google Style */}
-      <section className="w-full bg-white h-[70vh] top-7 min-h-105 md:min-h-130 p-0">
+      {/* Seção Hero - Agora ocupando 100vh no desktop para ficar atrás do conteúdo */}
+      <section className="w-full h-[60vh] md:h-screen sticky top-0 z-0 p-0">
         <StoreSlider stores={comercios.slice(0, 6)} />
       </section>
 
-      {/* Container com bordas arredondadas no topo */}
-      <div className="bg-white rounded-t-4xl -mt-3 relative z-10">
+      {/* Container com bordas arredondadas no topo - Sobrepondo o slider */}
+      <div className="bg-white rounded-t-4xl relative z-10 md:-mt-2">
         {/* Conteúdo Principal */}
         <main className="container mx-auto px-4 sm:px-6 py-8 md:py-12 space-y-12 md:space-y-20 md:pb-0 pb-24">
           {/* Barra de Pesquisa */}
@@ -190,9 +190,9 @@ export function Home() {
                 <h2 className="text-xl sm:text-2xl font-medium text-[#202124]">
                   {filtroAtual.name === 'Todos' ? 'Lojas' : filtroAtual.name}
                 </h2>
-                <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-md bg-[#f1f3f4] text-[#5f6368] border border-[#dadce0]">
+                {/* <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-md bg-[#f1f3f4] text-[#5f6368] border border-[#dadce0]">
                   {lojasExibidas.length} lojas
-                </span>
+                </span> */}
               </div>
               <p className="text-[#5f6368] text-xs sm:text-sm">
                 {filtroAtual.name === 'Todos' 
@@ -209,7 +209,7 @@ export function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
             {lojasExibidas.map((c) => (
               <ComercioCard key={c.id} comercio={c} />
             ))}

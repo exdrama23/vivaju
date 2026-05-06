@@ -12,6 +12,7 @@ interface DataContextType {
   addComercio: (comercio: Comercio) => void;
   updateComercio: (comercio: Comercio) => void;
   addAvaliacao: (avaliacao: Avaliacao) => void;
+  toggleFavorito: (comercioId: string) => void;
   isLoadingEventos: boolean;
   isLoadingEstacionamentos: boolean;
 }
@@ -20,10 +21,10 @@ const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [comercios, setComercios] = useState<Comercio[]>(() => {
-    // Incrementado para v4 para forçar recarregamento dos dados locais exatos
-    const stored = localStorage.getItem('vivaju_comercios_v4');
+    // Incrementado para v5 para forçar recarregamento dos dados locais exatos
+    const stored = localStorage.getItem('vivaju_comercios_v5');
     if (stored) return JSON.parse(stored);
-    localStorage.setItem('vivaju_comercios_v4', JSON.stringify(mockComercios));
+    localStorage.setItem('vivaju_comercios_v5', JSON.stringify(mockComercios));
     return mockComercios;
   });
 
@@ -82,7 +83,7 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const addComercio = (comercio: Comercio) => {
     setComercios(prev => {
       const updated = [...prev, comercio];
-      localStorage.setItem('vivaju_comercios_v4', JSON.stringify(updated));
+      localStorage.setItem('vivaju_comercios_v5', JSON.stringify(updated));
       return updated;
     });
   };
@@ -90,7 +91,7 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const updateComercio = (updatedComercio: Comercio) => {
     setComercios(prev => {
       const updated = prev.map((c) => (c.id === updatedComercio.id ? updatedComercio : c));
-      localStorage.setItem('vivaju_comercios_v4', JSON.stringify(updated));
+      localStorage.setItem('vivaju_comercios_v5', JSON.stringify(updated));
       return updated;
     });
   };
@@ -102,7 +103,15 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
           ? { ...c, avaliacoes: [...c.avaliacoes, avaliacao] }
           : c
       );
-      localStorage.setItem('vivaju_comercios_v4', JSON.stringify(updated));
+      localStorage.setItem('vivaju_comercios_v5', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const toggleFavorito = (comercioId: string) => {
+    setComercios(prev => {
+      const updated = prev.map(c => c.id === comercioId ? { ...c, favoritada: !c.favoritada } : c);
+      localStorage.setItem('vivaju_comercios_v5', JSON.stringify(updated));
       return updated;
     });
   };
@@ -116,6 +125,7 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
       addComercio, 
       updateComercio, 
       addAvaliacao,
+      toggleFavorito,
       isLoadingEventos,
       isLoadingEstacionamentos
     }}>
