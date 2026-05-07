@@ -1,4 +1,4 @@
-import type { Comercio, Evento, Estacionamento } from '@/types';
+import type { Comercio } from '@/types';
 
 export interface ComercioExtendido extends Comercio {
   localizacao: string;
@@ -30,14 +30,6 @@ const restauranteImages = [
   "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=500"
 ];
 
-const farmaciaImages = [
-  "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=500",
-  "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80&w=500",
-  "https://images.unsplash.com/photo-1583258292688-d506b7446d84?auto=format&fit=crop&q=80&w=500",
-  "https://images.unsplash.com/photo-1604719312563-8912e9223c6a?auto=format&fit=crop&q=80&w=500"
-];
-
-
 export const mockComercios: ComercioExtendido[] = [
   {
     id: "c1",
@@ -62,25 +54,25 @@ export const mockComercios: ComercioExtendido[] = [
     redes_sociais: "@hypestreetaju",
     produtos: [
       { id: "c1-p1", comercioId: "c1", nome: "Camiseta Oversized Essential Black", descricao: "100% algodão premium, modelagem boxy.", preco: 159.90, imagem: modaMasculinaImages[0] },
-      { id: "c1-p2", comercioId: "c1", nome: "Jordan 1 Retro High OG", descricao: "O clássico que nunca sai de moda.", preco: 1899.90, imagem: modaMasculinaImages[1]},
-      { id: "c1-p3", comercioId: "c1", nome: "Calça Cargo Techwear Grey", descricao: "Vários bolsos e ajuste no tornozelo.", preco: 289.00, imagem: modaMasculinaImages[2] },
-      { id: "c1-p4", comercioId: "c1", nome: "Moletom Canguru Off-White", descricao: "Tecido flanelado ultra macio.", preco: 349.90, imagem: modaMasculinaImages[3] },
-      { id: "c1-p5", comercioId: "c1", nome: "Boné Snapback New Era", descricao: "Ajustável, logo bordado em alta definição.", preco: 129.00, imagem: modaMasculinaImages[4] },
-      { id: "c1-p6", comercioId: "c1", nome: "Jaqueta Bomber Satin Black", descricao: "Acabamento acetinado e forro térmico.", preco: 459.00, imagem: modaMasculinaImages[5] },
-      { id: "c1-p7", comercioId: "c1", nome: "Meia Cano Alto Street Design", descricao: "Algodão com elastano, estampas urbanas.", preco: 35.00, imagem: modaMasculinaImages[6] },
-      { id: "c1-p8", comercioId: "c1", nome: "Shoulder Bag Minimalist", descricao: "Compacta e resistente à água.", preco: 189.00, imagem: modaMasculinaImages[7] },
-      { id: "c1-p9", comercioId: "c1", nome: "Corrente Cubana Prata 925", descricao: "Espessura 5mm, fecho lagosta.", preco: 540.00, imagem: modaMasculinaImages[8] },
-      { id: "c1-p10", comercioId: "c1", nome: "Tênis Dunk Low Panda", descricao: "O queridinho do momento, original.", preco: 1200.00, imagem: modaMasculinaImages[9] },
-      { id: "c1-p11", comercioId: "c1", nome: "Camisa de Botão Viscose Tropical", descricao: "Leve e fresca para o verão sergipano.", preco: 179.00, imagem: modaMasculinaImages[10] },
-      { id: "c1-p12", comercioId: "c1", nome: "Bermuda Jeans Destroyed", descricao: "Corte moderno com detalhes desfiados.", preco: 149.00, imagem: modaMasculinaImages[11] },
-      { id: "c1-p13", comercioId: "c1", nome: "Relógio Casio Vintage Gold", descricao: "Resistente à água, design retrô.", preco: 320.00, imagem: modaMasculinaImages[12] },
-      { id: "c1-p14", comercioId: "c1", nome: "Mochila Laptop Pro", descricao: "Espaço para 15 polegadas e compartimentos.", preco: 299.00, imagem: modaMasculinaImages[13] },
-      { id: "c1-p15", comercioId: "c1", nome: "Óculos de Sol Wayfarer Black", descricao: "Proteção UV400, armação acetato.", preco: 250.00, imagem: modaMasculinaImages[14] },
-      { id: "c1-p16", comercioId: "c1", nome: "Regata Canelada Fit", descricao: "Ideal para academia ou dias quentes.", preco: 69.00, imagem: modaMasculinaImages[15] },
-      { id: "c1-p17", comercioId: "c1", nome: "Cueca Boxer Seamless", descricao: "Sem costura, conforto total.", preco: 45.00, imagem: modaMasculinaImages[16] },
-      { id: "c1-p18", comercioId: "c1", nome: "Cinto Couro Legítimo Black", descricao: "Fivela metálica fosca.", preco: 89.00, imagem: modaMasculinaImages[17] },
-      { id: "c1-p19", comercioId: "c1", nome: "Perfume Bleu de Chanel (Decant)", descricao: "Amostra de 10ml do perfume premium.", preco: 120.00, imagem: modaMasculinaImages[18] },
-      { id: "c1-p20", comercioId: "c1", nome: "Sneaker Shield (Protetor)", descricao: "Evita vincos na parte frontal do tênis.", preco: 40.00, imagem: modaMasculinaImages[19] }
+      { id: "c1-p2", comercioId: "c1", nome: "Jordan 1 Retro High OG", descricao: "O clássico que nunca sai de moda.", preco: 1899.90, imagem: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&q=80&w=500" },
+      { id: "c1-p3", comercioId: "c1", nome: "Calça Cargo Techwear Grey", descricao: "Vários bolsos e ajuste no tornozelo.", preco: 289.00, imagem: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&q=80&w=500" },
+      { id: "c1-p4", comercioId: "c1", nome: "Moletom Canguru Off-White", descricao: "Tecido flanelado ultra macio.", preco: 349.90, imagem: modaMasculinaImages[2] },
+      { id: "c1-p5", comercioId: "c1", nome: "Boné Snapback New Era", descricao: "Ajustável, logo bordado em alta definição.", preco: 129.00, imagem: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&q=80&w=500" },
+      { id: "c1-p6", comercioId: "c1", nome: "Jaqueta Bomber Satin Black", descricao: "Acabamento acetinado e forro térmico.", preco: 459.00, imagem: modaMasculinaImages[1] },
+      { id: "c1-p7", comercioId: "c1", nome: "Meia Cano Alto Street Design", descricao: "Algodão com elastano, estampas urbanas.", preco: 35.00, imagem: modaMasculinaImages[3] },
+      { id: "c1-p8", comercioId: "c1", nome: "Shoulder Bag Minimalist", descricao: "Compacta e resistente à água.", preco: 189.00, imagem: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&q=80&w=500" },
+      { id: "c1-p9", comercioId: "c1", nome: "Corrente Cubana Prata 925", descricao: "Espessura 5mm, fecho lagosta.", preco: 540.00, imagem: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=500" },
+      { id: "c1-p10", comercioId: "c1", nome: "Tênis Dunk Low Panda", descricao: "O queridinho do momento, original.", preco: 1200.00, imagem: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=500" },
+      { id: "c1-p11", comercioId: "c1", nome: "Camisa de Botão Viscose Tropical", descricao: "Leve e fresca para o verão sergipano.", preco: 179.00, imagem: modaMasculinaImages[4] },
+      { id: "c1-p12", comercioId: "c1", nome: "Bermuda Jeans Destroyed", descricao: "Corte moderno com detalhes desfiados.", preco: 149.00, imagem: modaMasculinaImages[0] },
+      { id: "c1-p13", comercioId: "c1", nome: "Relógio Casio Vintage Gold", descricao: "Resistente à água, design retrô.", preco: 320.00, imagem: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&q=80&w=500" },
+      { id: "c1-p14", comercioId: "c1", nome: "Mochila Laptop Pro", descricao: "Espaço para 15 polegadas e compartimentos.", preco: 299.00, imagem: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=500" },
+      { id: "c1-p15", comercioId: "c1", nome: "Óculos de Sol Wayfarer Black", descricao: "Proteção UV400, armação acetato.", preco: 250.00, imagem: "https://images.unsplash.com/photo-1511499767390-903390e6fbc4?auto=format&fit=crop&q=80&w=500" },
+      { id: "c1-p16", comercioId: "c1", nome: "Regata Canelada Fit", descricao: "Ideal para academia ou dias quentes.", preco: 69.00, imagem: modaMasculinaImages[2] },
+      { id: "c1-p17", comercioId: "c1", nome: "Cueca Boxer Seamless", descricao: "Sem costura, conforto total.", preco: 45.00, imagem: modaMasculinaImages[3] },
+      { id: "c1-p18", comercioId: "c1", nome: "Cinto Couro Legítimo Black", descricao: "Fivela metálica fosca.", preco: 89.00, imagem: modaMasculinaImages[4] },
+      { id: "c1-p19", comercioId: "c1", nome: "Perfume Bleu de Chanel (Decant)", descricao: "Amostra de 10ml do perfume premium.", preco: 120.00, imagem: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&q=80&w=500" },
+      { id: "c1-p20", comercioId: "c1", nome: "Sneaker Shield (Protetor)", descricao: "Evita vincos na parte frontal do tênis.", preco: 40.00, imagem: "https://images.unsplash.com/photo-1556906781-9a412961c28c?auto=format&fit=crop&q=80&w=500" }
     ],
     avaliacoes: [
       { id: "c1-av1", usuarioId: "u10", comercioId: "c1", nota: 5, comentario: "Produtos de extrema qualidade!", data: "2024-04-10" },
@@ -113,22 +105,22 @@ export const mockComercios: ComercioExtendido[] = [
       { id: "c2-p2", comercioId: "c2", nome: "Feijão Carioca Kicaldo 1kg", descricao: "Feijão novo de rápida cozedura.", preco: 8.50, imagem: supermercadoImages[1] },
       { id: "c2-p3", comercioId: "c2", nome: "Óleo de Soja Soya 900ml", descricao: "Óleo vegetal refinado.", preco: 6.90, imagem: supermercadoImages[2] },
       { id: "c2-p4", comercioId: "c2", nome: "Açúcar Refinado União 1kg", descricao: "Açúcar de cana puro.", preco: 4.20, imagem: supermercadoImages[3] },
-      { id: "c2-p5", comercioId: "c2", nome: "Café Pilão Tradicional 500g", descricao: "O café forte do Brasil.", preco: 18.90, imagem: supermercadoImages[4] },
-      { id: "c2-p6", comercioId: "c2", nome: "Leite Integral Camponesa 1L", descricao: "Leite UHT de alta qualidade.", preco: 5.80, imagem: supermercadoImages[5] },
-      { id: "c2-p7", comercioId: "c2", nome: "Macarrão Espaguete Vitarella", descricao: "Sêmola de trigo duro.", preco: 3.50, imagem: supermercadoImages[6] },
-      { id: "c2-p8", comercioId: "c2", nome: "Biscoito Recheado Trakinas", descricao: "Sabor chocolate e baunilha.", preco: 2.80, imagem: supermercadoImages[7] },
-      { id: "c2-p9", comercioId: "c2", nome: "Detergente Ypê 500ml", descricao: "Neutro, rende muito mais.", preco: 2.50, imagem: supermercadoImages[8] },
-      { id: "c2-p10", comercioId: "c2", nome: "Sabão em Pó Omo 1.6kg", descricao: "Lavagem perfeita das roupas.", preco: 24.90, imagem: supermercadoImages[9] },
-      { id: "c2-p11", comercioId: "c2", nome: "Amaciante Downy 500ml", descricao: "Perfume duradouro nas roupas.", preco: 15.90, imagem: supermercadoImages[10] },
-      { id: "c2-p12", comercioId: "c2", nome: "Papel Higiênico Neve 12 rolos", descricao: "Folha dupla, máxima suavidade.", preco: 19.90, imagem: supermercadoImages[11] },
-      { id: "c2-p13", comercioId: "c2", nome: "Shampoo Clear Men 400ml", descricao: "Anticaspa refrescante.", preco: 22.00, imagem: supermercadoImages[12] },
-      { id: "c2-p14", comercioId: "c2", nome: "Creme Dental Colgate 90g", descricao: "Proteção anticáries.", preco: 4.50, imagem: supermercadoImages[13] },
-      { id: "c2-p15", comercioId: "c2", nome: "Sabonete Dove Original", descricao: "Com 1/4 de creme hidratante.", preco: 3.90, imagem: supermercadoImages[14] },
-      { id: "c2-p16", comercioId: "c2", nome: "Cerveja Skol Lata 350ml", descricao: "A cerveja que desce redondo.", preco: 3.50, imagem: supermercadoImages[15] },
-      { id: "c2-p17", comercioId: "c2", nome: "Refrigerante Coca-Cola 2L", descricao: "Sabor original, geladinha.", preco: 11.90, imagem: supermercadoImages[16] },
-      { id: "c2-p18", comercioId: "c2", nome: "Suco de Uva Integral Aurora 1L", descricao: "Sem adição de açúcar.", preco: 14.50, imagem: supermercadoImages[17] },
-      { id: "c2-p19", comercioId: "c2", nome: "Pão de Forma Pullman", descricao: "Tradicional fatiado.", preco: 7.90, imagem: supermercadoImages[18] },
-      { id: "c2-p20", comercioId: "c2", nome: "Manteiga com Sal Itambé 200g", descricao: "Sabor de fazenda.", preco: 12.90, imagem: supermercadoImages[19] }
+      { id: "c2-p5", comercioId: "c2", nome: "Café Pilão Tradicional 500g", descricao: "O café forte do Brasil.", preco: 18.90, imagem: supermercadoImages[0] },
+      { id: "c2-p6", comercioId: "c2", nome: "Leite Integral Camponesa 1L", descricao: "Leite UHT de alta qualidade.", preco: 5.80, imagem: supermercadoImages[1] },
+      { id: "c2-p7", comercioId: "c2", nome: "Macarrão Espaguete Vitarella", descricao: "Sêmola de trigo duro.", preco: 3.50, imagem: supermercadoImages[2] },
+      { id: "c2-p8", comercioId: "c2", nome: "Biscoito Recheado Trakinas", descricao: "Sabor chocolate e baunilha.", preco: 2.80, imagem: supermercadoImages[3] },
+      { id: "c2-p9", comercioId: "c2", nome: "Detergente Ypê 500ml", descricao: "Neutro, rende muito mais.", preco: 2.50, imagem: supermercadoImages[0] },
+      { id: "c2-p10", comercioId: "c2", nome: "Sabão em Pó Omo 1.6kg", descricao: "Lavagem perfeita das roupas.", preco: 24.90, imagem: supermercadoImages[1] },
+      { id: "c2-p11", comercioId: "c2", nome: "Amaciante Downy 500ml", descricao: "Perfume duradouro nas roupas.", preco: 15.90, imagem: supermercadoImages[2] },
+      { id: "c2-p12", comercioId: "c2", nome: "Papel Higiênico Neve 12 rolos", descricao: "Folha dupla, máxima suavidade.", preco: 19.90, imagem: supermercadoImages[3] },
+      { id: "c2-p13", comercioId: "c2", nome: "Shampoo Clear Men 400ml", descricao: "Anticaspa refrescante.", preco: 22.00, imagem: supermercadoImages[0] },
+      { id: "c2-p14", comercioId: "c2", nome: "Creme Dental Colgate 90g", descricao: "Proteção anticáries.", preco: 4.50, imagem: supermercadoImages[1] },
+      { id: "c2-p15", comercioId: "c2", nome: "Sabonete Dove Original", descricao: "Com 1/4 de creme hidratante.", preco: 3.90, imagem: supermercadoImages[2] },
+      { id: "c2-p16", comercioId: "c2", nome: "Cerveja Skol Lata 350ml", descricao: "A cerveja que desce redondo.", preco: 3.50, imagem: supermercadoImages[3] },
+      { id: "c2-p17", comercioId: "c2", nome: "Refrigerante Coca-Cola 2L", descricao: "Sabor original, geladinha.", preco: 11.90, imagem: supermercadoImages[0] },
+      { id: "c2-p18", comercioId: "c2", nome: "Suco de Uva Integral Aurora 1L", descricao: "Sem adição de açúcar.", preco: 14.50, imagem: supermercadoImages[1] },
+      { id: "c2-p19", comercioId: "c2", nome: "Pão de Forma Pullman", descricao: "Tradicional fatiado.", preco: 7.90, imagem: supermercadoImages[2] },
+      { id: "c2-p20", comercioId: "c2", nome: "Manteiga com Sal Itambé 200g", descricao: "Sabor de fazenda.", preco: 12.90, imagem: supermercadoImages[3] }
     ],
     avaliacoes: [
       { id: "c2-av1", usuarioId: "u12", comercioId: "c2", nota: 4, comentario: "Sempre encontro o que preciso.", data: "2024-04-15" }
@@ -203,7 +195,7 @@ export const mockComercios: ComercioExtendido[] = [
     resumo_avaliacoes: "Atendimento rápido e muita variedade.",
     redes_sociais: "@paguemenos",
     produtos: [
-      { id: "c4-p1", comercioId: "c4", nome: "Dipirona Monoidratada 500mg", descricao: "Analgésico e antitérmico com 10 comprimidos.", preco: 5.90, imagem: farmaciaImages[0] },
+      { id: "c4-p1", comercioId: "c4", nome: "Dipirona Monoidratada 500mg", descricao: "Analgésico e antitérmico com 10 comprimidos.", preco: 5.90, imagem: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=500" },
       { id: "c4-p2", comercioId: "c4", nome: "Dorflex 36 comprimidos", descricao: "Relaxante muscular e analgésico.", preco: 22.50, imagem: "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?auto=format&fit=crop&q=80&w=500" },
       { id: "c4-p3", comercioId: "c4", nome: "Protetor Solar La Roche FPS 70", descricao: "Anthelios XL, toque seco 50g.", preco: 89.90, imagem: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=500" },
       { id: "c4-p4", comercioId: "c4", nome: "Shampoo Clear Men 400ml", descricao: "Limpeza profunda e refrescância.", preco: 24.00, imagem: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&q=80&w=500" },
@@ -982,77 +974,3 @@ export const mockComercios: ComercioExtendido[] = [
   }
 ];
 
-
-export const mockEventos: Evento[] = [
-  {
-    id: 'e1',
-    nome: 'Festival de Cultura do Centro',
-    descricao: 'Celebracao da musica, arte e gastronomia local',
-    inicio: '2026-03-25T10:00:00Z',
-    fim: '2026-03-25T22:00:00Z',
-    localizacao: 'Praca Fausto Cardoso',
-    categoria: 'Cultura',
-    latitude: -10.9110,
-    longitude: -37.0528,
-    imagem: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=500&fit=crop&q=80'
-  },
-  {
-    id: 'e2',
-    nome: 'Feira de Artesanato da Praca Fausto Cardoso',
-    descricao: 'Produtos locais, comidas tipicas e musica ao vivo.',
-    inicio: '2026-05-15T09:00:00Z',
-    fim: '2026-05-15T18:00:00Z',
-    localizacao: 'Praca Fausto Cardoso, Centro',
-    categoria: 'Cultura',
-    latitude: -10.9128,
-    longitude: -37.0501,
-    imagem: 'https://images.unsplash.com/photo-1459749411177-042180ce673c?w=800&h=500&fit=crop&q=80'
-  }
-];
-
-export const mockEstacionamentos: Estacionamento[] = [
-  {
-    id: 'e1',
-    nome: 'Estacionamento Centro Aracaju',
-    latitude: -10.9115,
-    longitude: -37.0515,
-    numeroVagas: 50,
-    vagasOcupadas: 35,
-    status: 'lotado',
-    precoHora: 5.00,
-    tempoPreco: 'hora'
-  },
-  {
-    id: 'e2',
-    nome: 'Parking Rua Joao Pessoa',
-    latitude: -10.9125,
-    longitude: -37.0510,
-    numeroVagas: 30,
-    vagasOcupadas: 28,
-    status: 'lotado',
-    precoHora: 6.00,
-    tempoPreco: 'hora'
-  },
-  {
-    id: 'e3',
-    nome: 'Garagem Centro Shopping',
-    latitude: -10.9100,
-    longitude: -37.0520,
-    numeroVagas: 100,
-    vagasOcupadas: 45,
-    status: 'livre',
-    precoHora: 4.50,
-    tempoPreco: 'hora'
-  },
-  {
-    id: 'e4',
-    nome: 'Estacionamento Praca General Valadao',
-    latitude: -10.9110,
-    longitude: -37.0505,
-    numeroVagas: 40,
-    vagasOcupadas: 10,
-    status: 'livre',
-    precoHora: 5.50,
-    tempoPreco: 'hora'
-  }
-];

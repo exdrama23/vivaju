@@ -29,7 +29,7 @@ export function ProdutoCard({ produto }: ProdutoCardProps) {
 
       {/* LADO DIREITO: Imagem */}
       {produto.imagem && (
-        <div className="flex-shrink-0 w-[120px] h-[85px] ml-2 overflow-hidden rounded-md">
+        <div className="flex-shrink-0 w-[100px] h-[100px] ml-2 overflow-hidden rounded-md bg-gray-50">
           <img 
             src={produto.imagem} 
             alt={`Foto de ${produto.nome}`} 

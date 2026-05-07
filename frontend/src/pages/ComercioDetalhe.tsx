@@ -422,7 +422,7 @@ export function ComercioDetalhe() {
                   className="flex flex-col text-left group focus:outline-none focus:ring-2 focus:ring-gray-400 rounded-xl bg-white shadow-sm overflow-hidden hover:shadow-md transition-shadow"
                   aria-label={item.nome}
                 >
-                  <div className="relative aspect-square bg-gray-100">
+                  <div className="relative w-full aspect-square bg-gray-100 overflow-hidden">
                     <img
                       src={item.imagem || comercio.imagem}
                       alt={item.nome}
@@ -456,7 +456,7 @@ export function ComercioDetalhe() {
                     key={product.id}
                     className="flex flex-col rounded-xl bg-white shadow-sm overflow-hidden hover:shadow-md transition-shadow"
                   >
-                    <div className="relative aspect-square bg-gray-100">
+                    <div className="relative w-full aspect-square bg-gray-100 overflow-hidden">
                       <img
                         src={product.imagem || comercio.imagem}
                         alt={product.nome}
