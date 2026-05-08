@@ -12,11 +12,11 @@ import {
   Search,
   ChevronRight
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { MapContainer } from '@/components/map/MapContainer';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/Global/Card';
+import { MapContainer } from '@/components/Global/MapContainer';
 import { Circle, Polyline, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
+import { Button } from '@/components/Global/Button';
+import { Input } from '@/components/Global/Input';
 
 // Mock data for Prefeitura
 const mockDenuncias = [

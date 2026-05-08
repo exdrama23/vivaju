@@ -1,10 +1,10 @@
-import { EventoCard } from '@/components/cards/EventoCard';
-import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { Select } from '@/components/ui/Select';
+import { EventoCard } from '@/components/Global/EventoCard';
+import { Button } from '@/components/Global/Button';
+import { Input } from '@/components/Global/Input';
+import { Select } from '@/components/Global/Select';
 import { useState, useEffect, useCallback } from 'react';
 import { apiRequest } from '@/services/api';
-import type { Evento } from '@/types';
+import type { Evento } from '@/types/global';
 import { Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export function Eventos() {

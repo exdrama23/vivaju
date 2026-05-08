@@ -1,5 +1,5 @@
 import { Popup } from 'react-leaflet';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/Global/Button';
 import { Eye, Navigation, MapPin } from 'lucide-react';
 
 interface MapPopupProps {

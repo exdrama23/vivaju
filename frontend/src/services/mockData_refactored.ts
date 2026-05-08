@@ -10,15 +10,6 @@ export interface ComercioExtendido extends Comercio {
   taxaEntrega?: number;
 }
 
-export interface HybridSliderItem {
-  id: string;
-  nome: string;
-  categoria: string;
-  tipo: 'video' | 'imagem';
-  videoUrl?: string;
-  imagem?: string;
-}
-
 
 // ==================== IMAGE ARRAYS BY CATEGORY ====================
 
@@ -304,30 +295,30 @@ export const mockHybridSliderData = [
     nome: "Experiencia Gastronomica",
     categoria: "Restaurantes",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-chef-preparing-a-dish-in-a-professional-kitchen-41031-large.mp4",
-    tipo: "video" as const
+    tipo: "video"
   },
   {
     id: "h2",
     nome: "Liquidacao de Verao",
     categoria: "Promocao Especial",
     imagem: modaFemininaImages[11],
-    tipo: "imagem" as const
+    tipo: "imagem"
   },
   {
     id: "h3",
     nome: "Moda e Estilo",
     categoria: "Shopping",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-young-woman-walking-in-a-fashion-store-40156-large.mp4",
-    tipo: "video" as const
+    tipo: "video"
   },
   {
     id: "h4",
     nome: "Artesanato Regional",
     categoria: "Feira de Negocios",
     imagem: floriculturaImages[11],
-    tipo: "imagem" as const
+    tipo: "imagem"
   }
-] as const satisfies readonly HybridSliderItem[];
+];
 
 export const mockVideoSliderComerciais = [
   {
@@ -389,8 +380,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: hamburgueriaImages[9],
-    latitude: -10.91508576633602,
-    longitude: -37.05537269380025,
+    latitude: -10.911,
+    longitude: -37.051,
     localizacao: "Av. Beira Mar, 100",
     resumo_avaliacoes: "Excelente sabor e atendimento.",
     redes_sociais: "@burgerprimeaju",
@@ -426,8 +417,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: pizzariaImages[4],
-    latitude: -10.91408576633602,
-    longitude: -37.054372693800254,
+    latitude: -10.912,
+    longitude: -37.052,
     localizacao: "Rua das Flores, 45",
     resumo_avaliacoes: "A melhor massa da cidade.",
     redes_sociais: "@pizzarianapoli",
@@ -463,8 +454,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: sushiImages[12],
-    latitude: -10.91308576633602,
-    longitude: -37.053372693800256,
+    latitude: -10.913,
+    longitude: -37.053,
     localizacao: "Praça do Farol, 12",
     resumo_avaliacoes: "Peixe muito fresco.",
     redes_sociais: "@sakurasushiaju",
@@ -500,8 +491,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: true,
     estacionamento: true,
     imagem: steakhouseImages[13],
-    latitude: -10.91208576633602,
-    longitude: -37.05237269380025,
+    latitude: -10.914,
+    longitude: -37.054,
     localizacao: "Mercado Central, Box 08",
     resumo_avaliacoes: "Comida caseira maravilhosa.",
     redes_sociais: "@sabordonordeste",
@@ -537,8 +528,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: italianaImages[12],
-    latitude: -10.91108576633602,
-    longitude: -37.05137269380025,
+    latitude: -10.915,
+    longitude: -37.055,
     localizacao: "Alameda das Cores, 202",
     resumo_avaliacoes: "Ambiente fantastico e massas ótimas.",
     redes_sociais: "@latrattoriaaju",
@@ -574,8 +565,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: steakhouseImages[12],
-    latitude: -10.91008576633602,
-    longitude: -37.050372693800256,
+    latitude: -10.916,
+    longitude: -37.056,
     localizacao: "Av. Adelia Franco, 500",
     resumo_avaliacoes: "Cortes perfeitos.",
     redes_sociais: "@texassteakaju",
@@ -611,8 +602,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: frutosdoMarImages[13],
-    latitude: -10.90908576633602,
-    longitude: -37.04937269380025,
+    latitude: -10.917,
+    longitude: -37.057,
     localizacao: "Orla da Atalaia, s/n",
     resumo_avaliacoes: "Frutos do mar fresquinhos.",
     redes_sociais: "@marisqueiraaju",
@@ -648,8 +639,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: veganoImages[16],
-    latitude: -10.90808576633602,
-    longitude: -37.04837269380025,
+    latitude: -10.918,
+    longitude: -37.058,
     localizacao: "Rua do Estilo, 102",
     resumo_avaliacoes: "Comida vegana surpreendente.",
     redes_sociais: "@hortaurbanaaju",
@@ -685,8 +676,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: mexicanaImages[4],
-    latitude: -10.907085766336019,
-    longitude: -37.047372693800256,
+    latitude: -10.919,
+    longitude: -37.059,
     localizacao: "Calçadão Sul, 15",
     resumo_avaliacoes: "Guacamole delicioso.",
     redes_sociais: "@lafiestaaju",
@@ -722,8 +713,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: steakhouseImages[12],
-    latitude: -10.90608576633602,
-    longitude: -37.04687269380025,
+    latitude: -10.920,
+    longitude: -37.060,
     localizacao: "Rodovia Sul, km 01",
     resumo_avaliacoes: "Carnes no ponto certo.",
     redes_sociais: "@pampaju",
@@ -759,8 +750,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: modaMasculinaImages[11],
-    latitude: -10.91458576633602,
-    longitude: -37.04787269380025,
+    latitude: -10.921,
+    longitude: -37.061,
     localizacao: "Rua do Comércio, 12",
     resumo_avaliacoes: "Peças de otima qualidade.",
     redes_sociais: "@homemeleganteaju",
@@ -794,8 +785,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: modaFemininaImages[11],
-    latitude: -10.91358576633602,
-    longitude: -37.048872693800256,
+    latitude: -10.922,
+    longitude: -37.062,
     localizacao: "Calçadão da Praia, 80",
     resumo_avaliacoes: "Colecoes maravilhosas.",
     redes_sociais: "@donnabellaaju",
@@ -829,8 +820,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: supermercadoImages[12],
-    latitude: -10.91258576633602,
-    longitude: -37.04987269380025,
+    latitude: -10.923,
+    longitude: -37.063,
     localizacao: "Av. Coelho e Campos, 150",
     resumo_avaliacoes: "Tudo que preciso encontro aqui.",
     redes_sociais: "@supermercadoviva",
@@ -864,8 +855,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: farmciaImages[12],
-    latitude: -10.91158576633602,
-    longitude: -37.05087269380025,
+    latitude: -10.924,
+    longitude: -37.064,
     localizacao: "Praca Fausto Cardoso, 10",
     resumo_avaliacoes: "Atendimento rapido e precos bons.",
     redes_sociais: "@farmacentralaju",
@@ -899,8 +890,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: papelariaCriativaImages[8],
-    latitude: -10.91058576633602,
-    longitude: -37.051872693800256,
+    latitude: -10.925,
+    longitude: -37.065,
     localizacao: "Rua do Ouvidor, 44",
     resumo_avaliacoes: "Muitas opcoes de materiais.",
     redes_sociais: "@papelariacriativa",
@@ -934,8 +925,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: informticaImages[12],
-    latitude: -10.90958576633602,
-    longitude: -37.05287269380025,
+    latitude: -10.926,
+    longitude: -37.066,
     localizacao: "Shopping RioMar, Piso L1",
     resumo_avaliacoes: "Preços competitivos e otima assistencia.",
     redes_sociais: "@techworldaju",
@@ -969,8 +960,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: livrariaImages[12],
-    latitude: -10.908585766336019,
-    longitude: -37.05387269380025,
+    latitude: -10.927,
+    longitude: -37.067,
     localizacao: "Rua Santa Luzia, 15",
     resumo_avaliacoes: "Selecao de livros incrivel.",
     redes_sociais: "@livrariasaberaju",
@@ -1004,8 +995,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: pizzariaImages[4],
-    latitude: -10.90758576633602,
-    longitude: -37.054872693800256,
+    latitude: -10.930,
+    longitude: -37.070,
     localizacao: "Rua Augusta, 400",
     resumo_avaliacoes: "Excelente custo beneficio.",
     redes_sociais: "@bellaitaliaaju",
@@ -1041,8 +1032,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: sushiImages[11],
-    latitude: -10.90658576633602,
-    longitude: -37.055872693800254,
+    latitude: -10.931,
+    longitude: -37.071,
     localizacao: "Av. Jorge Amado, 50",
     resumo_avaliacoes: "Peixe de alta qualidade.",
     redes_sociais: "@sushizenaju",
@@ -1078,8 +1069,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: sushiImages[12],
-    latitude: -10.91433576633602,
-    longitude: -37.05512269380025,
+    latitude: -10.932,
+    longitude: -37.072,
     localizacao: "Rua Siriri, 120",
     resumo_avaliacoes: "Melhor Yakissoba da cidade.",
     redes_sociais: "@dragaodouradoaju",
@@ -1115,8 +1106,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: cafeteriaGourmetImages[0],
-    latitude: -10.91333576633602,
-    longitude: -37.05412269380025,
+    latitude: -10.933,
+    longitude: -37.073,
     localizacao: "Orla da Atalaia, Quiosque 4",
     resumo_avaliacoes: "Melhor expresso de Aracaju.",
     redes_sociais: "@graogourmetaju",
@@ -1152,8 +1143,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: sorveteriaPremiumImages[12],
-    latitude: -10.91233576633602,
-    longitude: -37.053122693800255,
+    latitude: -10.934,
+    longitude: -37.074,
     localizacao: "Av. Beira Mar, 2000",
     resumo_avaliacoes: "Sabores unicos e cremosos.",
     redes_sociais: "@gelatosupremoaju",
@@ -1189,8 +1180,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: lojadeBrinquedosImages[12],
-    latitude: -10.91133576633602,
-    longitude: -37.05212269380025,
+    latitude: -10.935,
+    longitude: -37.075,
     localizacao: "Shopping RioMar, Piso L2",
     resumo_avaliacoes: "Muitas novidades.",
     redes_sociais: "@kidsworldaju",
@@ -1224,8 +1215,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: true,
     estacionamento: false,
     imagem: floriculturaImages[10],
-    latitude: -10.91033576633602,
-    longitude: -37.05112269380025,
+    latitude: -10.936,
+    longitude: -37.076,
     localizacao: "Praca Fausto Cardoso, Box 2",
     resumo_avaliacoes: "Arranjos lindissimos.",
     redes_sociais: "@jardimencantadoaju",
@@ -1259,8 +1250,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: papelariaCriativaImages[8],
-    latitude: -10.909335766336019,
-    longitude: -37.050122693800255,
+    latitude: -10.937,
+    longitude: -37.077,
     localizacao: "Rua do Ouvidor, 15",
     resumo_avaliacoes: "Muitos itens exclusivos.",
     redes_sociais: "@artenopapelaju",
@@ -1294,8 +1285,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: lojadeMaquiagemImages[4],
-    latitude: -10.90833576633602,
-    longitude: -37.04912269380026,
+    latitude: -10.938,
+    longitude: -37.078,
     localizacao: "Rua Santa Luzia, 88",
     resumo_avaliacoes: "Melhores marcas importadas.",
     redes_sociais: "@glamourmakeaju",
@@ -1330,8 +1321,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: materiaisdeConstruoImages[4],
-    latitude: -10.90733576633602,
-    longitude: -37.04812269380025,
+    latitude: -10.939,
+    longitude: -37.079,
     localizacao: "Av. Coelho e Campos, 800",
     resumo_avaliacoes: "Entrega rapida e precos baixos.",
     redes_sociais: "@forteconstrucoesaju",
@@ -1365,8 +1356,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: veganoImages[0],
-    latitude: -10.906335766336019,
-    longitude: -37.047122693800254,
+    latitude: -10.940,
+    longitude: -37.080,
     localizacao: "Av. Hermes Fontes, 500",
     resumo_avaliacoes: "Selecao de vinhos impecavel.",
     redes_sociais: "@vinhosaboraju",
@@ -1400,8 +1391,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: true,
     imagem: lojadeInstrumentosMusicaisImages[8],
-    latitude: -10.91483576633602,
-    longitude: -37.05562269380025,
+    latitude: -10.941,
+    longitude: -37.081,
     localizacao: "Rua do Comércio, 150",
     resumo_avaliacoes: "Atendimento de musicos para musicos.",
     redes_sociais: "@acordesnotasaju",
@@ -1435,8 +1426,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: petShopImages[4],
-    latitude: -10.91383576633602,
-    longitude: -37.054622693800255,
+    latitude: -10.942,
+    longitude: -37.082,
     localizacao: "Av. Adelia Franco, 100",
     resumo_avaliacoes: "Cuidado e carinho com os pets.",
     redes_sociais: "@petcareaju",
@@ -1470,8 +1461,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: relojoariaImages[16],
-    latitude: -10.91283576633602,
-    longitude: -37.05362269380025,
+    latitude: -10.943,
+    longitude: -37.083,
     localizacao: "Shopping Jardins, Piso L1",
     resumo_avaliacoes: "Relogios de luxo e casuais.",
     redes_sociais: "@tempoestiloaju",
@@ -1505,8 +1496,8 @@ export const mockComercios: ComercioExtendido[] = [
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: bijuteriasImages[0],
-    latitude: -10.91183576633602,
-    longitude: -37.05262269380025,
+    latitude: -10.944,
+    longitude: -37.084,
     localizacao: "Calçadão Joao Pessoa, 200",
     resumo_avaliacoes: "Muitas opcoes de brincos.",
     redes_sociais: "@joiasbrilhoaju",
@@ -1582,53 +1573,3 @@ export const mockEstacionamentos: Estacionamento[] = [
     tempoPreco: 'hora'
   }
 ];
-
-// Restaurant categories
-const RESTAURANT_CATEGORIES = [
-  'Hamburgueria',
-  'Pizzaria',
-  'Sushi',
-  'Comida Nordestina',
-  'Italiana',
-  'Steakhouse',
-  'Frutos do Mar',
-  'Vegano',
-  'Mexicana',
-  'Churrascaria',
-  'Comida Chinesa',
-  'Cafeteria Gourmet',
-  'Sorveteria Premium',
-  'Adega de Vinhos'
-];
-
-// Calculate distance between two coordinates using Haversine formula
-function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const R = 6371; // Earth's radius in kilometers
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLon = (lon2 - lon1) * Math.PI / 180;
-  const a = 
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
-}
-
-// Get nearby restaurants sorted by distance
-export function getRestaurantesProximos(
-  userLat: number = -10.91058576633602,
-  userLon: number = -37.05137269380025,
-  limit: number = 12,
-  radiusKm: number = 5
-): ComercioExtendido[] {
-  return mockComercios
-    .filter(comercio => RESTAURANT_CATEGORIES.includes(comercio.categoria))
-    .map(comercio => ({
-      ...comercio,
-      distancia: calculateDistance(userLat, userLon, comercio.latitude, comercio.longitude)
-    }))
-    .filter(comercio => (comercio as any).distancia <= radiusKm)
-    .sort((a, b) => (a as any).distancia - (b as any).distancia)
-    .slice(0, limit)
-    .map(({ distancia, ...rest }) => rest);
-}

@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Home, Map as MapIcon, Store, Calendar, Car, User, Utensils } from 'lucide-react';
+import { Home, Map as MapIcon, Store, Calendar, User, Utensils } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { cn } from '@/utils/utils';
-import logoCaju from '@/assets/logocaju.png';
+const logoUrl = 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1778259234/Logo_jwzmd2.png';
 
 export function Layout() {
   const location = useLocation();
@@ -35,7 +35,7 @@ export function Layout() {
     { name: 'Mapa', path: '/mapa', icon: MapIcon },
     { name: 'Comércios', path: '/comercios', icon: Store },
     { name: 'Eventos', path: '/eventos', icon: Calendar },
-    { name: 'Vagas', path: '/estacionamentos', icon: Car },
+    // { name: 'Vagas', path: '/estacionamentos', icon: Car },
     { name: 'Culinária', path: '/culinaria', icon: Utensils },
   ];
 
@@ -54,7 +54,7 @@ export function Layout() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-4 sm:gap-8">
             <Link to="/" className="flex items-center gap-2 shrink-0">
-              <img src={logoCaju} alt="VIVAJU" className="h-8 sm:h-10 w-auto object-contain" />
+              <img src={logoUrl} alt="VIVAJU" className="h-8 sm:h-10 w-auto object-contain" />
             </Link>
             <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (

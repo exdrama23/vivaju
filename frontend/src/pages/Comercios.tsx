@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useData } from '@/context/DataContext';
-import { ComercioCard } from '@/components/cards/ComercioCard';
-import { Input } from '@/components/ui/Input';
-import { RecommendedFilters } from '@/components/ui/RecommendedFilters';
+import { ComercioCard } from '@/components/Global/ComercioCard';
+import { Input } from '@/components/Global/Input';
+import { RecommendedFilters } from '@/components/Global/RecommendedFilters';
 import { Search, Loader2 } from 'lucide-react';
 import { cn } from '@/utils/utils';
-import type { Comercio } from '@/types';
+import type { Comercio } from '@/types/global';
 
 export function Comercios() {
   const [searchParams] = useSearchParams();

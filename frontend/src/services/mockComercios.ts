@@ -1,4 +1,4 @@
-import type { Comercio } from '@/types';
+import type { Comercio } from '@/types/global';
 
 export interface ComercioExtendido extends Comercio {
   localizacao: string;

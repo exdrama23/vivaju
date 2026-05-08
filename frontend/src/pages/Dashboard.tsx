@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useData } from '@/context/DataContext';
 import { Navigate } from 'react-router-dom';
-import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { Button } from '@/components/Global/Button';
+import { Input } from '@/components/Global/Input';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/Global/Card';
 
 export function Dashboard() {
   const { user, logout, adicionarProduto, adicionarCategoria } = useAuth();

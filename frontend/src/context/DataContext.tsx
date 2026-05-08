@@ -1,11 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect, type FC, type ReactNode } from 'react';
-import type { Comercio, Evento, Estacionamento, Avaliacao } from '@/types';
+import type { Comercio, Evento, Estacionamento, Avaliacao } from '@/types/global';
+import type { ComercioExtendido } from '@/services/mockData';
 import { mockComercios, mockEventos, mockEstacionamentos } from '@/services/mockData';
 import { apiRequest } from '@/services/api';
 
 interface DataContextType {
-  comercios: Comercio[];
+  comercios: ComercioExtendido[];
   eventos: Evento[];
   estacionamentos: Estacionamento[];
   randomCategories: string[];
@@ -20,7 +21,7 @@ interface DataContextType {
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [comercios, setComercios] = useState<Comercio[]>(() => {
+  const [comercios, setComercios] = useState<ComercioExtendido[]>(() => {
     // Incrementado para v5 para forçar recarregamento dos dados locais exatos
     const stored = localStorage.getItem('vivaju_comercios_v5');
     if (stored) return JSON.parse(stored);

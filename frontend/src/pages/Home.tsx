@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useData } from '@/context/DataContext';
-import { ComercioCard } from '@/components/cards/ComercioCard';
+import { ComercioCard } from '@/components/Global/ComercioCard';
 import { Link } from 'react-router-dom';
-// import { Button } from '@/components/ui/Button';
-import { StoreSlider } from '@/components/ui/StoreSlider';
-import { RecommendedFilters } from '@/components/ui/RecommendedFilters';
-import { SuggestionsSlider } from '@/components/ui/SuggestionsSlider';
-import BannerSlider from '@/components/ui/BannerSlider';
+// import { Button } from '@/components/GlobalComponents/Button';
+import { UnifiedStoreSlider } from '@/components/Global/UnifiedStoreSlider';
+import { RecommendedFilters } from '@/components/Global/RecommendedFilters';
+import { SuggestionsSlider } from '@/components/Global/SuggestionsSlider';
+import BannerSlider from '@/components/Global/BannerSlider';
+import { mockHybridSliderData, getRestaurantesProximos } from '@/services/mockData';
 import { ArrowRight, Search } from 'lucide-react';
 
 export function Home() {
@@ -19,24 +20,25 @@ export function Home() {
       ? comercios
       : comercios.filter(c => c.categoria === filtroAtual.name);
 
+  // Restaurant categories
+  const restaurantCategories = [
+    'Hamburgueria', 'Pizzaria', 'Sushi', 'Comida Nordestina', 'Italiana',
+    'Steakhouse', 'Frutos do Mar', 'Vegano', 'Mexicana', 'Churrascaria',
+    'Comida Chinesa', 'Cafeteria Gourmet', 'Sorveteria Premium', 'Adega de Vinhos'
+  ];
+
+  // Get nearby restaurants
+  const restaurantesProximos = getRestaurantesProximos();
+
+  // Get non-restaurant stores (lojas) for balanced suggestions (8 lojas + 4 restaurantes = 12 total)
+  const lojasParaSugestoes = comercios
+    .filter(c => !restaurantCategories.includes(c.categoria))
+    .slice(0, 8);
+
+  // Combine stores and restaurants - more stores than restaurants
+  const sugestoesCombinadas = [...lojasParaSugestoes, ...restaurantesProximos.slice(0, 4)];
+
   const proximosEventos = eventos.slice(0, 2);
-  const restaurantesProximos = comercios.filter(c => c.categoria === 'restaurante').slice(0, 12);
-  const formatarDataHora = (dataISO: string) => {
-    const data = new Date(dataISO);
-    if (Number.isNaN(data.getTime())) return '';
-
-    const dataFormatada = data.toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: 'short',
-    });
-
-    const horaFormatada = data.toLocaleTimeString('pt-BR', {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-
-    return `${dataFormatada} • ${horaFormatada}`;
-  };
 
   const renderEventBanner = (evento: (typeof proximosEventos)[number], keySuffix: string) => (
     <div
@@ -60,7 +62,7 @@ export function Home() {
         <span className="mt-1 text-lg font-bold leading-tight line-clamp-1">{evento.nome}</span>
         <span className="mt-1 text-sm text-white/90 line-clamp-1">{evento.descricao}</span>
         <span className="mt-3 inline-flex w-fit rounded-full bg-white/15 px-3 py-1 text-xs font-medium backdrop-blur-sm">
-          {formatarDataHora(evento.inicio)}
+          {new Date(evento.inicio).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })} • {new Date(evento.inicio).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
           {evento.fim
             ? ` - ${new Date(evento.fim).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`
             : ''}
@@ -73,7 +75,7 @@ export function Home() {
     <div className="flex flex-col min-h-screen bg-white">
       {/* Seção Hero - Agora ocupando 100vh no desktop para ficar atrás do conteúdo */}
       <section className="w-full h-[60vh] md:h-screen sticky top-0 z-0 p-0">
-        <StoreSlider stores={comercios.slice(0, 6)} />
+        <UnifiedStoreSlider stores={mockHybridSliderData} />
       </section>
 
       {/* Container com bordas arredondadas no topo - Sobrepondo o slider */}
@@ -118,7 +120,7 @@ export function Home() {
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <SuggestionsSlider comercios={comercios.slice(0, 12)} />
+          <SuggestionsSlider comercios={sugestoesCombinadas} />
           {/* Mini banners para eventos: slider apenas no mobile, estático no desktop */}
           <div className="mt-4">
             {proximosEventos.length > 0 ? (

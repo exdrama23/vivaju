@@ -3,7 +3,7 @@
  * Busca lojas/comércios próximos ao centro padrão (Aracaju - Centro)
  */
 
-import type { Comercio } from '@/types';
+import type { Comercio } from '@/types/global';
 
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 const DEFAULT_CENTER = { lat: -10.910490, lng: -37.050337 };

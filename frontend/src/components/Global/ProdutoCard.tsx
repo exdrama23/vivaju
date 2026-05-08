@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Produto } from '@/types';
+import type { Produto } from '@/types/global';
 
 interface ProdutoCardProps {
   produto: Produto;

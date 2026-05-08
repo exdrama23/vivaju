@@ -1,7 +1,7 @@
-import type { Evento } from '@/types';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card';
+import type { Evento } from '@/types/global';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/Global/Card';
 import { Calendar, MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/Global/Button';
 import { Link } from 'react-router-dom';
 
 export function EventoCard({ evento }: { evento: Evento }) {

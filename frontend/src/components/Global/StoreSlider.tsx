@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Clock, MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/Global/Button';
 import { Link } from 'react-router-dom';
-import type { Comercio } from '@/types';
+import type { Comercio } from '@/types/global';
 
 interface StoreSliderProps {
-  stores: Comercio[];
+  stores: any[];
 }
 
 export function StoreSlider({ stores }: StoreSliderProps) {

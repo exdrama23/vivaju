@@ -1,9 +1,9 @@
-import type { Estacionamento } from '@/types';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/Card';
+import type { Estacionamento } from '@/types/global';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/Global/Card';
 import { Car, MapPin, DollarSign } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/Global/Button';
 import { Link } from 'react-router-dom';
-import { Badge } from '@/components/ui/Badge';
+import { Badge } from '@/components/Global/Badge';
 
 export function EstacionamentoCard({ estacionamento }: { estacionamento: Estacionamento }) {
   const vagasLivres = estacionamento.numeroVagas - estacionamento.vagasOcupadas;

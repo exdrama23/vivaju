@@ -5,8 +5,8 @@
 //   Navigation, AtSign, Info, X, AlertTriangle 
 // } from 'lucide-react';
 // import { useData } from '@/context/DataContext';
-// import { Modal } from '@/components/ui/Modal';
-// import { Button } from '@/components/ui/Button';
+// import { Modal } from '@/components/GlobalComponents/Modal';
+// import { Button } from '@/components/GlobalComponents/Button';
 // import type { ComercioExtendido } from '@/services/mockData';
 
 // const ITEMS_PER_PAGE = 20;

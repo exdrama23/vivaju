@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, type FC, type ReactNode } from 'react';
-import type { Usuario, ProdutoLoja, Categoria } from '@/types';
+import type { Usuario, ProdutoLoja, Categoria } from '@/types/global';
 import { apiRequest } from '@/services/api';
 
 interface AuthContextType {

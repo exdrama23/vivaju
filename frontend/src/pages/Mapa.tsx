@@ -1,17 +1,17 @@
 import { useState, useMemo, useEffect, useCallback, useRef } from 'react';
-import { MapContainer } from '@/components/map/MapContainer';
-import { MapMarker } from '@/components/map/MapMarker';
-import { MapFilters } from '@/components/map/MapFilters';
-import { MapPopup } from '@/components/map/MapPopup';
-import { LocationDetailModal } from '@/components/map/LocationDetailModal';
+import { MapContainer } from '@/components/Global/MapContainer';
+import { MapMarker } from '@/components/Global/MapMarker';
+import { MapFilters } from '@/components/Global/MapFilters';
+import { MapPopup } from '@/components/Global/MapPopup';
+import { LocationDetailModal } from '@/components/Global/LocationDetailModal';
 import { useData } from '@/context/DataContext';
 import { LocateFixed, ShoppingBag, Search, Map, Menu } from 'lucide-react';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
-import { Modal } from '@/components/ui/Modal';
+import { Input } from '@/components/Global/Input';
+import { Button } from '@/components/Global/Button';
+import { Modal } from '@/components/Global/Modal';
 import { Polyline, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import type { Comercio } from '@/types';
+import type { Comercio } from '@/types/global';
 
 export function Mapa() {
   const { comercios, estacionamentos } = useData();

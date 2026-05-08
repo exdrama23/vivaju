@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useData } from '@/context/DataContext';
-import { RecommendedFilters } from '@/components/ui/RecommendedFilters';
+import { RecommendedFilters } from '@/components/Global/RecommendedFilters';
 import { Search, Star, MapPin, Clock, UtensilsCrossed } from 'lucide-react';
-import type { Comercio } from '@/types';
+import type { Comercio } from '@/types/global';
 
 type RestauranteItem = {
   id: string;
@@ -30,9 +30,16 @@ const getSegmento = (item: Pick<RestauranteItem, 'categoria' | 'especialidade' |
 };
 
 const normalizeRestaurants = (comercios: Comercio[]) => {
+  const foodKeywords = [
+    'restaurante', 'comida', 'bar', 'café', 'cafe', 'lanch', 
+    'pizzaria', 'sushi', 'hamburgueria', 'steakhouse', 
+    'frutos do mar', 'vegano', 'churrascaria', 'sorveteria',
+    'doceria', 'chocolataria', 'culinária', 'gastronomia'
+  ];
+
   const restaurantes = comercios.filter((comercio) => {
     const searchSpace = `${comercio.categoria} ${comercio.nome} ${comercio.descricao} ${(comercio.tags ?? []).join(' ')}`.toLowerCase();
-    return searchSpace.includes('restaurante') || searchSpace.includes('comida') || searchSpace.includes('bar') || searchSpace.includes('café') || searchSpace.includes('cafe') || searchSpace.includes('lanch');
+    return foodKeywords.some(keyword => searchSpace.includes(keyword));
   });
 
   return restaurantes.map<RestauranteItem>((comercio, index) => ({

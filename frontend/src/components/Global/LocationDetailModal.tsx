@@ -1,5 +1,5 @@
-import { Modal } from '@/components/ui/Modal';
-import { Button } from '@/components/ui/Button';
+import { Modal } from '@/components/Global/Modal';
+import { Button } from '@/components/Global/Button';
 import type { ComercioExtendido } from '@/services/mockData';
 import { MapPin, Phone, Clock, Star, Navigation, ExternalLink, Globe, Instagram, MessageSquare } from 'lucide-react';
 

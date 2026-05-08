@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
-import type { Comercio } from '@/types';
+import type { Comercio } from '@/types/global';
 
 interface SuggestionsSliderProps {
   comercios: Comercio[];
@@ -17,8 +17,8 @@ export function SuggestionsSlider({ comercios }: SuggestionsSliderProps) {
     const scrollAmount = direction === 'left' ? -300 : 300;
     gsap.to(scrollRef.current, {
       scrollLeft: scrollRef.current.scrollLeft + scrollAmount,
-      duration: 0.5,
-      ease: 'power2.out',
+      duration: 0.3,
+      ease: 'sine.inOut',
     });
   };
 

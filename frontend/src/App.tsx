@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import { Layout } from '@/components/layout/Layout';
+import { Layout } from '@/components/Global/Layout';
 import { Home } from '@/pages/Home';
 import { Mapa } from '@/pages/Mapa';
 import { Comercios } from '@/pages/Comercios';
 import { ComercioDetalhe } from '@/pages/ComercioDetalhe';
 import { Eventos } from '@/pages/Eventos';
-import { Estacionamentos } from '@/pages/Estacionamentos';
+// import { Estacionamentos } from '@/pages/Estacionamentos';
 import { Culinaria } from '@/pages/Culinaria';
 import { Sugestoes } from '@/pages/Sugestoes';
 import { PrefeituraDashboard } from '@/pages/PrefeituraDashboard';
@@ -23,7 +23,7 @@ function App() {
         <Route path="comercios" element={<Comercios />} />
         <Route path="comercios/:id" element={<ComercioDetalhe />} />
         <Route path="eventos" element={<Eventos />} />
-        <Route path="estacionamentos" element={<Estacionamentos />} />
+        {/* <Route path="estacionamentos" element={<Estacionamentos />} /> */}
         <Route path="culinaria" element={<Culinaria />} />
         <Route path="sugestoes" element={<Sugestoes />} />
         <Route path="prefeitura" element={<PrefeituraDashboard />} />

@@ -76,8 +76,8 @@ export function RecommendedFilters({
     const scrollAmount = direction === 'left' ? -300 : 300;
     gsap.to(scrollRef.current, {
       scrollLeft: scrollRef.current.scrollLeft + scrollAmount,
-      duration: 0.5,
-      ease: 'power2.out',
+      duration: 0.3,
+      ease: 'sine.inOut',
     });
   };
 

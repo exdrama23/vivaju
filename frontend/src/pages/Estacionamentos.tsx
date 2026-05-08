@@ -1,9 +1,9 @@
-import { EstacionamentoCard } from '@/components/cards/EstacionamentoCard';
-import { Button } from '@/components/ui/Button';
+import { EstacionamentoCard } from '@/components/Global/EstacionamentoCard';
+import { Button } from '@/components/Global/Button';
 import { Car, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useCallback } from 'react';
 import { apiRequest } from '@/services/api';
-import type { Estacionamento } from '@/types';
+import type { Estacionamento } from '@/types/global';
 
 export function Estacionamentos() {
   const [listaEstacionamentos, setListaEstacionamentos] = useState<Estacionamento[]>([]);
