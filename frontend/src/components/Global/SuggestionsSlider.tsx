@@ -37,10 +37,10 @@ export function SuggestionsSlider({ comercios }: SuggestionsSliderProps) {
         {/* Botão Scroll Esquerdo */}
         <button
           onClick={() => scrollFiltros('left')}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -ml-12 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0] hidden md:block"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -ml-12 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[var(--primary-pale)] border border-[var(--gray-border)] hidden md:block"
           aria-label="Scroll left"
         >
-          <ChevronLeft className="w-5 h-5 text-[#5f6368]" />
+          <ChevronLeft className="w-5 h-5 text-[var(--gray-text)]" />
         </button>
 
         {/* Wrapper do Slider */}
@@ -56,7 +56,7 @@ export function SuggestionsSlider({ comercios }: SuggestionsSliderProps) {
               className="flex flex-col items-center gap-2 md:gap-3 flex-shrink-0 transition-all duration-200 group/item"
             >
               {/* Logo em círculo */}
-              <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-[#f8f9fa] border-2 border-[#dadce0] overflow-hidden flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover/item:border-[#1a73e8] group-hover/item:shadow-md active:border-[#1a73e8]">
+              <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-[var(--cream)] border-2 border-[var(--gray-border)] overflow-hidden flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover/item:border-[var(--primary)] group-hover/item:shadow-md active:border-[var(--primary)]">
                 {comercio.imagem ? (
                   <img
                     src={comercio.imagem}
@@ -64,13 +64,13 @@ export function SuggestionsSlider({ comercios }: SuggestionsSliderProps) {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-[#1a73e8] to-[#4285f4] flex items-center justify-center text-white font-bold text-sm md:text-xl">
+                  <div className="w-full h-full bg-gradient-to-br from-[var(--primary)] to-[var(--primary-dark)] flex items-center justify-center text-white font-bold text-sm md:text-xl">
                     {comercio.nome.charAt(0)}
                   </div>
                 )}
               </div>
               {/* Nome da empresa */}
-              <span className="text-[10px] md:text-xs font-medium text-center text-[#3c4043] line-clamp-2 w-14 md:w-24">
+              <span className="text-[10px] md:text-xs font-bold text-center text-[var(--black)] line-clamp-2 w-14 md:w-24">
                 {comercio.nome}
               </span>
             </button>
@@ -80,10 +80,10 @@ export function SuggestionsSlider({ comercios }: SuggestionsSliderProps) {
         {/* Botão Scroll Direito */}
         <button
           onClick={() => scrollFiltros('right')}
-          className="absolute right-0 top-1/2 -translate-y-1/2 -mr-12 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0] hidden md:block"
+          className="absolute right-0 top-1/2 -translate-y-1/2 -mr-12 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[var(--primary-pale)] border border-[var(--gray-border)] hidden md:block"
           aria-label="Scroll right"
         >
-          <ChevronRight className="w-5 h-5 text-[#5f6368]" />
+          <ChevronRight className="w-5 h-5 text-[var(--gray-text)]" />
         </button>
       </div>
 

@@ -26,7 +26,7 @@ export function ComercioCard({ comercio }: { comercio: ComercioExtendido }) {
     >
       {/* LADO ESQUERDO: Imagem/Logo - Aumentada de 18 para 24 */}
       <div className="shrink-0 relative">
-        <div className="w-24 h-24 bg-gray-100 rounded-full overflow-hidden border-2 border-white shadow-sm flex items-center justify-center">
+        <div className="w-24 h-24 bg-[var(--cream)] rounded-full overflow-hidden border-2 border-white shadow-sm flex items-center justify-center">
           {comercio.imagem && !hasImageError ? (
             <img 
               src={comercio.imagem} 
@@ -35,7 +35,7 @@ export function ComercioCard({ comercio }: { comercio: ComercioExtendido }) {
               onError={() => setHasImageError(true)}
             />
           ) : (
-            <div className="w-full h-full bg-linear-to-br from-[#1a73e8] to-[#34a853] flex items-center justify-center text-white font-bold text-2xl tracking-tight">
+            <div className="w-full h-full bg-gradient-to-br from-[var(--primary)] to-[var(--primary-dark)] flex items-center justify-center text-white font-bold text-2xl tracking-tight">
               {logoFallback || 'CJ'}
             </div>
           )}
@@ -61,32 +61,32 @@ export function ComercioCard({ comercio }: { comercio: ComercioExtendido }) {
       {/* LADO DIREITO: Informações - Textos aumentados */}
       <div className="flex flex-col justify-center overflow-hidden flex-1">
         {/* Linha 1: Título */}
-        <h3 className="text-lg md:text-xl font-semibold text-gray-900 truncate mb-1 group-hover:text-[#1a73e8] transition-colors">
+        <h3 className="text-lg md:text-xl font-extrabold text-[var(--black)] truncate mb-0.5 group-hover:text-[var(--primary)] transition-colors">
           {comercio.nome}
         </h3>
 
         {/* Linha 2: Avaliação, Categoria e Localização */}
-        <div className="flex items-center text-sm md:text-base text-gray-500 mb-1 gap-2">
+        <div className="flex items-center text-sm md:text-base text-[var(--gray-text)] mb-0.5 gap-2">
           {/* Avaliação com Estrela */}
-          <div className="flex items-center gap-1 text-[#e8a317] font-semibold">
+          <div className="flex items-center gap-1 text-[var(--primary)] font-bold">
             <Star size={14} fill="currentColor" strokeWidth={0} />
             <span>{mediaAvaliacoes > 0 ? mediaAvaliacoes.toFixed(1) : 'Novo'}</span>
           </div>
 
-          <span className="text-gray-300">•</span>
+          <span className="text-[var(--gray-border)]">•</span>
           <span className="truncate">{comercio.categoria}</span>
 
-          <span className="text-gray-300">•</span>
+          <span className="text-[var(--gray-border)]">•</span>
           <span className="whitespace-nowrap">Centro</span>
         </div>
 
         {/* Linha 3: Horário e Status */}
-        <div className="flex items-center text-sm md:text-base text-gray-400 gap-2">
+        <div className="flex items-center text-xs md:text-sm text-[var(--gray-text)] gap-2">
           <span className="truncate">{comercio.horarioFuncionamento || '08h - 18h'}</span>
 
-          <span className="text-gray-300">•</span>
+          <span className="text-[var(--gray-border)]">•</span>
 
-          <span className={`font-medium ${comercio.statusAberto ? 'text-[#50a773]' : 'text-rose-500'}`}>
+          <span className={`font-semibold ${comercio.statusAberto ? 'text-[var(--secondary-light)]' : 'text-rose-500'}`}>
             {comercio.statusAberto ? 'Aberto agora' : 'Fechado'}
           </span>
         </div>

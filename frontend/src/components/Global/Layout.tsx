@@ -62,10 +62,10 @@ export function Layout() {
                   key={item.path}
                   to={item.path}
                   className={cn(
-                    'px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-[#f1f3f4]',
+                    'px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-[var(--primary-pale)]',
                     location.pathname === item.path 
-                      ? 'text-[#1a73e8] bg-[#e8f0fe]' 
-                      : isScrolled || !isHome ? 'text-[#5f6368]' : 'text-white hover:text-white/80'
+                      ? 'text-[var(--primary)] bg-[var(--primary-pale)]' 
+                      : isScrolled || !isHome ? 'text-[var(--gray-text)]' : 'text-white hover:text-white/80'
                   )}
                 >
                   {item.name}
@@ -79,10 +79,10 @@ export function Layout() {
                 to="/dashboard" 
                 className={cn(
                   "p-2 rounded-full transition-colors flex items-center gap-2",
-                  isScrolled || !isHome ? "hover:bg-[#f1f3f4] text-[#5f6368]" : "hover:bg-white/10 text-white"
+                  isScrolled || !isHome ? "hover:bg-[var(--primary-pale)] text-[var(--gray-text)]" : "hover:bg-white/10 text-white"
                 )}
               >
-                <div className="w-8 h-8 rounded-full bg-[#e8f0fe] flex items-center justify-center text-[#1a73e8]">
+                <div className="w-8 h-8 rounded-full bg-[var(--primary-pale)] flex items-center justify-center text-[var(--primary)]">
                   <User className="w-5 h-5" />
                 </div>
                 <span className="hidden md:inline font-medium text-sm">{user.nome}</span>
@@ -93,8 +93,8 @@ export function Layout() {
                 className={cn(
                   "px-6 py-2 rounded-full text-sm font-medium transition-colors shadow-sm",
                   isScrolled || !isHome 
-                    ? "text-white bg-[#1a73e8] hover:bg-[#1765cc]" 
-                    : "text-[#1a73e8] bg-white hover:bg-gray-100"
+                    ? "text-white bg-[var(--primary)] hover:bg-[var(--primary-dark)]" 
+                    : "text-[var(--primary)] bg-white hover:bg-gray-100"
                 )}
               >
                 Entrar
@@ -107,16 +107,16 @@ export function Layout() {
       <main 
         ref={mainRef}
         className={cn(
-          "flex-1 flex flex-col overflow-auto bg-[#ffffff]",
-          !isHome && "pt-16"
+          "flex-1 flex flex-col overflow-auto bg-[var(--cream)] pb-0 md:pb-0",
+          !isHome && "md:pt-13"
         )}
       >
         <Outlet />
       </main>
 
       {/* Mobile Bottom Navigation - M3 Style */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-[#dadce0] bg-white pb-safe">
-        <div className="flex h-24 items-center justify-around px-2">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-60 border-t border-[var(--gray-border)] bg-white pb-safe">
+        <div className="flex h-16 items-center justify-around px-2">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.path;
@@ -127,14 +127,14 @@ export function Layout() {
                 className="flex flex-col items-center justify-center w-full h-full gap-1 group"
               >
                 <div className={cn(
-                  'flex items-center justify-center w-16 h-8 rounded-full transition-all duration-200',
-                  isActive ? 'bg-[#e8f0fe] text-[#1a73e8]' : 'text-[#5f6368] group-hover:bg-[#f1f3f4]'
+                  'flex items-center justify-center w-12 h-8 rounded-full transition-all duration-200',
+                  isActive ? 'bg-[var(--primary-pale)] text-[var(--primary)]' : 'text-[var(--gray-text)] group-hover:bg-[var(--primary-pale)]'
                 )}>
-                  <Icon className={cn('h-6 w-6', isActive ? 'fill-[#1a73e8]' : '')} />
+                  <Icon className={cn('h-5 w-5', isActive ? 'fill-[var(--primary)]' : '')} />
                 </div>
                 <span className={cn(
-                  'text-[11px] font-medium transition-colors',
-                  isActive ? 'text-[#1a73e8]' : 'text-[#5f6368]'
+                  'text-[10px] font-bold transition-colors',
+                  isActive ? 'text-[var(--primary)]' : 'text-[var(--gray-text)]'
                 )}>
                   {item.name}
                 </span>

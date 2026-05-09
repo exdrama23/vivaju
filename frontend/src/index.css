@@ -2,14 +2,26 @@
 @import "leaflet/dist/leaflet.css";
 
 :root {
-  --primary: #1a73e8; /* Google Blue */
-  --primary-hover: #1765cc;
-  --secondary: #34a853; /* Google Green */
-  --background: #ffffff;
-  --surface: #f8f9fa;
-  --text: #202124;
-  --text-secondary: #5f6368;
-  --border: #dadce0;
+  --primary: #E8611A; /* Logo Orange */
+  --primary-light: #F0793A;
+  --primary-dark: #C04E10;
+  --primary-pale: #FDF0E8;
+  --primary-mid: #FDDFC8;
+  
+  --secondary: #2D5016; /* Logo Green */
+  --secondary-mid: #3D6B1F;
+  --secondary-light: #4E8A28;
+  --secondary-pale: #EBF2E3;
+  
+  --cream: #F7F0E4;
+  --cream-dark: #EDE3D0;
+  
+  --black: #0A0A0A;
+  --dark-bg: #121008;
+  --gray-text: #7A6E60;
+  --gray-border: #E8E0D0;
+  --white: #FFFFFF;
+
   --radius: 8px;
   --radius-lg: 16px;
   --shadow-sm: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
@@ -17,9 +29,9 @@
 }
 
 body {
-  font-family: 'Roboto', 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--background);
-  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--cream);
+  color: var(--black);
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;

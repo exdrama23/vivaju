@@ -91,10 +91,10 @@ export function RecommendedFilters({
       {/* Botão Scroll Esquerdo */}
       <button
         onClick={() => scrollFiltros('left')}
-        className="absolute -left-12 z-10 p-2 bg-white rounded-full shadow-md opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0] hidden md:block"
+        className="absolute -left-12 z-10 p-2 bg-white rounded-full shadow-md opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-[var(--primary-pale)] border border-[var(--gray-border)] hidden md:block"
         aria-label="Scroll left"
       >
-        <ChevronLeft className="w-5 h-5 text-[#5f6368]" />
+        <ChevronLeft className="w-5 h-5 text-[var(--gray-text)]" />
       </button>
 
       {/* Wrapper de Filtros */}
@@ -123,8 +123,8 @@ export function RecommendedFilters({
                 className={cn(
                   "w-16 h-16 rounded-full flex items-center justify-center transition-all duration-200 border-2",
                   isActive
-                    ? "bg-[#e8f0fe] border-[#1a73e8] text-[#1a73e8]"
-                    : "bg-[#f8f9fa] border-[#dadce0] text-[#5f6368] hover:bg-[#e8f0fe] hover:border-[#1a73e8]"
+                    ? "bg-[var(--primary-pale)] border-[var(--primary)] text-[var(--primary)]"
+                    : "bg-white border-[var(--gray-border)] text-[var(--gray-text)] hover:bg-[var(--primary-pale)] hover:border-[var(--primary)]"
                 )}
               >
                 {icon}
@@ -132,8 +132,8 @@ export function RecommendedFilters({
               {/* Nome da categoria */}
               <span
                 className={cn(
-                  "text-xs font-medium text-center whitespace-normal line-clamp-3",
-                  isActive ? "text-[#1a73e8]" : "text-[#3c4043]"
+                  "text-xs font-bold text-center whitespace-normal line-clamp-3",
+                  isActive ? "text-[var(--primary)]" : "text-[var(--black)]"
                 )}
               >
                 {label}
@@ -168,8 +168,8 @@ export function RecommendedFilters({
                 className={cn(
                   "w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 border-2",
                   isActive
-                    ? "bg-[#e8f0fe] border-[#1a73e8] text-[#1a73e8]"
-                    : "bg-[#f8f9fa] border-[#dadce0] text-[#5f6368] active:bg-[#e8f0fe] active:border-[#1a73e8]"
+                    ? "bg-[var(--primary-pale)] border-[var(--primary)] text-[var(--primary)]"
+                    : "bg-white border-[var(--gray-border)] text-[var(--gray-text)] active:bg-[var(--primary-pale)] active:border-[var(--primary)]"
                 )}
               >
                 {icon}
@@ -177,8 +177,8 @@ export function RecommendedFilters({
               {/* Nome da categoria */}
               <span
                 className={cn(
-                  "text-[10px] font-medium text-center whitespace-normal line-clamp-2",
-                  isActive ? "text-[#1a73e8]" : "text-[#3c4043]"
+                  "text-[10px] font-bold text-center whitespace-normal line-clamp-2",
+                  isActive ? "text-[var(--primary)]" : "text-[var(--black)]"
                 )}
               >
                 {label}
@@ -194,11 +194,11 @@ export function RecommendedFilters({
             className="flex flex-col items-center gap-2 transition-all duration-200"
           >
             {/* Ícone dentro do círculo */}
-            <div className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 border-2 bg-[#f8f9fa] border-[#dadce0] text-[#5f6368] active:bg-[#e8f0fe] active:border-[#1a73e8]">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 border-2 bg-white border-[var(--gray-border)] text-[var(--gray-text)] active:bg-[var(--primary-pale)] active:border-[var(--primary)]">
               <MoreHorizontal className="w-5 h-5" />
             </div>
             {/* Nome */}
-            <span className="text-[10px] font-medium text-center whitespace-normal line-clamp-2 text-[#3c4043]">
+            <span className="text-[10px] font-bold text-center whitespace-normal line-clamp-2 text-[var(--black)]">
               Ver mais
             </span>
           </button>
@@ -212,17 +212,17 @@ export function RecommendedFilters({
           onClick={handleCloseModal}
         >
           <div 
-            className="bg-white rounded-t-3xl md:rounded-2xl w-full md:w-full md:max-w-2xl max-h-[80vh] md:max-h-[70vh] flex flex-col animate-slide-up"
+            className="bg-[var(--cream)] rounded-t-3xl md:rounded-2xl w-full md:w-full md:max-w-2xl max-h-[80vh] md:max-h-[70vh] flex flex-col animate-slide-up"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 md:p-6 border-b border-[#dadce0] sticky top-0 bg-white rounded-t-3xl md:rounded-t-2xl">
-              <h3 className="text-lg md:text-xl font-medium text-[#202124]">Todas as categorias</h3>
+            <div className="flex items-center justify-between p-4 md:p-6 border-b border-[var(--gray-border)] sticky top-0 bg-white rounded-t-3xl md:rounded-t-2xl">
+              <h3 className="text-lg md:text-xl font-extrabold text-[var(--black)]">Todas as categorias</h3>
               <button
                 onClick={handleCloseModal}
-                className="p-2 hover:bg-[#f8f9fa] rounded-full transition-colors"
+                className="p-2 hover:bg-[var(--primary-pale)] rounded-full transition-colors"
               >
-                <X className="w-5 h-5 text-[#5f6368]" />
+                <X className="w-5 h-5 text-[var(--gray-text)]" />
               </button>
             </div>
 
@@ -251,8 +251,8 @@ export function RecommendedFilters({
                       className={cn(
                         "w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-200 border-2",
                         isActive
-                          ? "bg-[#e8f0fe] border-[#1a73e8] text-[#1a73e8]"
-                          : "bg-[#f8f9fa] border-[#dadce0] text-[#5f6368] active:bg-[#e8f0fe] active:border-[#1a73e8]"
+                          ? "bg-[var(--primary-pale)] border-[var(--primary)] text-[var(--primary)]"
+                          : "bg-white border-[var(--gray-border)] text-[var(--gray-text)] active:bg-[var(--primary-pale)] active:border-[var(--primary)]"
                       )}
                     >
                       {icon}
@@ -260,8 +260,8 @@ export function RecommendedFilters({
                     {/* Nome da categoria */}
                     <span
                       className={cn(
-                        "text-[10px] md:text-xs font-medium text-center whitespace-normal line-clamp-2",
-                        isActive ? "text-[#1a73e8]" : "text-[#3c4043]"
+                        "text-[10px] md:text-xs font-bold text-center whitespace-normal line-clamp-2",
+                        isActive ? "text-[var(--primary)]" : "text-[var(--black)]"
                       )}
                     >
                       {label}
@@ -277,10 +277,10 @@ export function RecommendedFilters({
       {/* Botão Scroll Direito */}
       <button
         onClick={() => scrollFiltros('right')}
-        className="absolute -right-12 z-10 p-2 bg-white rounded-full shadow-md opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0] hidden md:block"
+        className="absolute -right-12 z-10 p-2 bg-white rounded-full shadow-md opacity-0 md:group-hover:opacity-100 transition-opacity hover:bg-[var(--primary-pale)] border border-[var(--gray-border)] hidden md:block"
         aria-label="Scroll right"
       >
-        <ChevronRight className="w-5 h-5 text-[#5f6368]" />
+        <ChevronRight className="w-5 h-5 text-[var(--gray-text)]" />
       </button>
 
       <style>{`
