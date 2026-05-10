@@ -34,17 +34,16 @@ export const bijuteriasImages = [
 
 // Cafeteria Gourmet
 export const cafeteriaGourmetImages = [
-  "https://cdn.pixabay.com/photo/2015/05/31/15/07/coffee-792113_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/12/16/22/25/espresso-571002_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/09/04/18/39/coffee-2714970_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/05/12/08/29/coffee-2306471_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/03/26/10/28/food-691010_1280.jpg",
-  "https://cdn.pixabay.com/photo/2021/01/29/14/41/cheese-bread-5961233_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/01/11/11/33/cake-1971552_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/08/21/08/07/food-2664421_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/06/15/15/40/milkshake-809961_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/08/23/15/52/juice-1614768_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/10/24/10/54/quiche-501140_1280.jpg",
+  "https://plus.unsplash.com/premium_photo-1669687924558-386bff1a0469?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZXhwcmVzc28lMjBjb2ZmZWV8ZW58MHx8MHx8fDA%3D",
+  "https://images.unsplash.com/photo-1710173472469-9d28e977914c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FwdWNjaW5vfGVufDB8fDB8fHww",
+  "https://plus.unsplash.com/premium_photo-1664970900086-adc85f1ef317?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZsYXQlMjB3aGl0ZSUyMGNvZmZlZXxlbnwwfHwwfHx8MA%3D%3D",
+  "https://images.unsplash.com/photo-1718897266472-5b7229ebdd3d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2hvY29sYXRlJTIwY3JvaXNzYW50fGVufDB8fDB8fHww",
+  "https://pixabay.com/pt/images/download/x-2577183_1920.jpg",
+  "https://pixabay.com/pt/images/download/x-3383170_1920.jpg",
+  "https://images.unsplash.com/photo-1631311915775-e8f4250a7d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dG9hc3QlMjBhdm9jYWRvfGVufDB8fDB8fHww",
+  "https://pixabay.com/pt/images/download/chernyshart-coffee-9817647_1920.jpg",
+  "https://pixabay.com/pt/images/download/x-7125271_1920.jpg",
+  "https://pixabay.com/pt/images/download/x-2409958_1920.jpg",
 ];
 
 // Churrascaria
