@@ -169,6 +169,47 @@ function CrabIcon() {
 
   return <div ref={containerRef} className="w-14 h-14 -m-1 pointer-events-none" />;
 }
+
+function JaponeseIcon() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let animation: any;
+
+    import('lottie-web')
+      .then(({ default: lottie }) => {
+        if (cancelled || !containerRef.current) return;
+
+        animation = lottie.loadAnimation({
+          container: containerRef.current,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: '/animations/steaming-bowl.json',
+        });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setFailed(true);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+      if (animation) {
+        animation.destroy();
+      }
+    };
+  }, []);
+
+  if (failed) {
+    return <span className="text-3xl">🍣</span>;
+  }
+
+  return <div ref={containerRef} className="w-14 h-14 -m-1 pointer-events-none" />;
+}
 //animações acima
 function CategoryGrid() {
   const cats = [
@@ -196,6 +237,8 @@ function CategoryGrid() {
               <PizzaIcon />
             ) : c.label === 'Frutos do Mar' ? (
               <CrabIcon />
+            ) : c.label === 'Japonesa' ? (
+              <JaponeseIcon />
             ) : (
               <span className="text-3xl">{c.icon}</span>
             )}

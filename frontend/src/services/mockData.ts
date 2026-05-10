@@ -1092,14 +1092,14 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c20-p1", comercioId: "c20", nome: "Yakissoba Especial", descricao: "Carne, frango e legumes.", preco: 48.0, imagem: sushiImages[0] },
+      { id: "c20-p1", comercioId: "c20", nome: "Yakissoba Especial", descricao: "Carne, frango e legumes.", preco: 48.0, imagem: comidaChinesaImages[0] },
       { id: "c20-p2", comercioId: "c20", nome: "Frango Xadrez", descricao: "Com amendoim e pimentao.", preco: 42.0, imagem: comidaChinesaImages[1] },
-      { id: "c20-p3", comercioId: "c20", nome: "Carne com Batata", descricao: "Tiras de carne e batatas fritas.", preco: 45.0, imagem: steakhouseImages[2] },
+      { id: "c20-p3", comercioId: "c20", nome: "Carne com Batata", descricao: "Tiras de carne e batatas fritas.", preco: 45.0, imagem: comidaChinesaImages[2] },
       { id: "c20-p4", comercioId: "c20", nome: "Arroz Colorido", descricao: "Presunto, ovo e cebolinha.", preco: 25.0, imagem: comidaChinesaImages[3] },
-      { id: "c20-p5", comercioId: "c20", nome: "Lombo Agridoce", descricao: "Com abacaxi e molho especial.", preco: 40.0, imagem: steakhouseImages[4] },
-      { id: "c20-p6", comercioId: "c20", nome: "Guioza Suino", descricao: "6 unidades no vapor.", preco: 22.0, imagem: sushiImages[5] },
-      { id: "c20-p7", comercioId: "c20", nome: "Rolinho Primavera", descricao: "Legumes crocantes.", preco: 8.0, imagem: sushiImages[6] },
-      { id: "c20-p8", comercioId: "c20", nome: "Banana Caramelizada", descricao: "Com gergelim.", preco: 15.0, imagem: steakhouseImages[7] },
+      { id: "c20-p5", comercioId: "c20", nome: "Lombo Agridoce", descricao: "Com abacaxi e molho especial.", preco: 40.0, imagem: comidaChinesaImages[4] },
+      { id: "c20-p6", comercioId: "c20", nome: "Guioza Suino", descricao: "6 unidades no vapor.", preco: 22.0, imagem: comidaChinesaImages[5] },
+      { id: "c20-p7", comercioId: "c20", nome: "Rolinho Primavera", descricao: "Legumes crocantes.", preco: 8.0, imagem: comidaChinesaImages[6] },
+      { id: "c20-p8", comercioId: "c20", nome: "Banana Caramelizada", descricao: "Com gergelim.", preco: 15.0, imagem: comidaChinesaImages[7] },
       { id: "c20-p9", comercioId: "c20", nome: "Cha de Jasmim", descricao: "Bebida tradicional quente.", preco: 10.0, imagem: comidaChinesaImages[8] },
       { id: "c20-p10", comercioId: "c20", nome: "Biscoito da Sorte", descricao: "Mensagem surpresa.", preco: 2.0, imagem: comidaChinesaImages[9] }
     ]
@@ -1129,16 +1129,16 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c21-p1", comercioId: "c21", nome: "Expresso Duplo", descricao: "Blend da casa intenso.", preco: 8.0, imagem: sorveteriaPremiumImages[0] },
+      { id: "c21-p1", comercioId: "c21", nome: "Expresso Duplo", descricao: "Blend da casa intenso.", preco: 8.0, imagem: cafeteriaGourmetImages[0] },
       { id: "c21-p2", comercioId: "c21", nome: "Cappuccino Italiano", descricao: "Com cacau em po e canela.", preco: 12.0, imagem: cafeteriaGourmetImages[1] },
       { id: "c21-p3", comercioId: "c21", nome: "Flat White", descricao: "Leite vaporizado e cafe.", preco: 14.0, imagem: cafeteriaGourmetImages[2] },
       { id: "c21-p4", comercioId: "c21", nome: "Croissant de Chocolate", descricao: "Massa folhada e recheio.", preco: 10.0, imagem: cafeteriaGourmetImages[3] },
-      { id: "c21-p5", comercioId: "c21", nome: "Pao de Queijo", descricao: "Porcao com 5 unidades.", preco: 15.0, imagem: comidaNordestinaImages[4] },
-      { id: "c21-p6", comercioId: "c21", nome: "Bolo de Cenoura", descricao: "Com cobertura de brigadeiro.", preco: 12.0, imagem: comidaChinesaImages[5] },
+      { id: "c21-p5", comercioId: "c21", nome: "Pao de Queijo", descricao: "Porcao com 5 unidades.", preco: 15.0, imagem: cafeteriaGourmetImages[4] },
+      { id: "c21-p6", comercioId: "c21", nome: "Bolo de Cenoura", descricao: "Com cobertura de brigadeiro.", preco: 12.0, imagem: cafeteriaGourmetImages[5] },
       { id: "c21-p7", comercioId: "c21", nome: "Toast de Avocado", descricao: "Pao integral e abacate.", preco: 22.0, imagem: cafeteriaGourmetImages[6] },
-      { id: "c21-p8", comercioId: "c21", nome: "Iced Latte", descricao: "Refrescante com gelo.", preco: 16.0, imagem: sorveteriaPremiumImages[7] },
-      { id: "c21-p9", comercioId: "c21", nome: "Cha Gelado", descricao: "Limao e hortela.", preco: 10.0, imagem: veganoImages[8] },
-      { id: "c21-p10", comercioId: "c21", nome: "Quiche Loraine", descricao: "Bacon e queijo.", preco: 18.0, imagem: veganoImages[9] }
+      { id: "c21-p8", comercioId: "c21", nome: "Iced Latte", descricao: "Refrescante com gelo.", preco: 16.0, imagem: cafeteriaGourmetImages[7] },
+      { id: "c21-p9", comercioId: "c21", nome: "Cha Gelado", descricao: "Limao e hortela.", preco: 10.0, imagem: cafeteriaGourmetImages[8] },
+      { id: "c21-p10", comercioId: "c21", nome: "Quiche Loraine", descricao: "Bacon e queijo.", preco: 18.0, imagem: cafeteriaGourmetImages[9] }
     ]
   },
   {
@@ -1169,10 +1169,10 @@ export const mockComercios: ComercioExtendido[] = [
       { id: "c22-p1", comercioId: "c22", nome: "Gelato de Pistache", descricao: "Pistache italiano puro.", preco: 18.0, imagem: sorveteriaPremiumImages[0] },
       { id: "c22-p2", comercioId: "c22", nome: "Gelato de Chocolate", descricao: "Belga 70% cacau.", preco: 16.0, imagem: sorveteriaPremiumImages[1] },
       { id: "c22-p3", comercioId: "c22", nome: "Sorbet de Morango", descricao: "Sem leite, pura fruta.", preco: 15.0, imagem: sorveteriaPremiumImages[2] },
-      { id: "c22-p4", comercioId: "c22", nome: "Gelato de Avela", descricao: "Com pedacos crocantes.", preco: 17.0, imagem: sushiImages[3] },
+      { id: "c22-p4", comercioId: "c22", nome: "Gelato de Avela", descricao: "Com pedacos crocantes.", preco: 17.0, imagem: sorveteriaPremiumImages[3] },
       { id: "c22-p5", comercioId: "c22", nome: "Casquinha Artesanal", descricao: "Feita na hora.", preco: 5.0, imagem: sorveteriaPremiumImages[4] },
       { id: "c22-p6", comercioId: "c22", nome: "Milkshake de Baunilha", descricao: "Com favas naturais.", preco: 22.0, imagem: sorveteriaPremiumImages[5] },
-      { id: "c22-p7", comercioId: "c22", nome: "Petit Gateau", descricao: "Com uma bola de gelato.", preco: 28.0, imagem: veganoImages[6] },
+      { id: "c22-p7", comercioId: "c22", nome: "Petit Gateau", descricao: "Com uma bola de gelato.", preco: 28.0, imagem: sorveteriaPremiumImages[6] },
       { id: "c22-p8", comercioId: "c22", nome: "Affogato", descricao: "Expresso com gelato.", preco: 18.0, imagem: sorveteriaPremiumImages[7] },
       { id: "c22-p9", comercioId: "c22", nome: "Copo Familiar 500ml", descricao: "Escolha ate 3 sabores.", preco: 45.0, imagem: sorveteriaPremiumImages[8] },
       { id: "c22-p10", comercioId: "c22", nome: "Picolé Gourmet", descricao: "Banho de chocolate.", preco: 12.0, imagem: sorveteriaPremiumImages[9] }
