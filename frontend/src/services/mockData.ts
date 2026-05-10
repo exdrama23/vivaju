@@ -34,17 +34,16 @@ export const bijuteriasImages = [
 
 // Cafeteria Gourmet
 export const cafeteriaGourmetImages = [
-  "https://cdn.pixabay.com/photo/2015/05/31/15/07/coffee-792113_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/12/16/22/25/espresso-571002_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/09/04/18/39/coffee-2714970_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/05/12/08/29/coffee-2306471_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/03/26/10/28/food-691010_1280.jpg",
-  "https://cdn.pixabay.com/photo/2021/01/29/14/41/cheese-bread-5961233_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/01/11/11/33/cake-1971552_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/08/21/08/07/food-2664421_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/06/15/15/40/milkshake-809961_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/08/23/15/52/juice-1614768_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/10/24/10/54/quiche-501140_1280.jpg",
+  "https://plus.unsplash.com/premium_photo-1669687924558-386bff1a0469?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZXhwcmVzc28lMjBjb2ZmZWV8ZW58MHx8MHx8fDA%3D",
+  "https://images.unsplash.com/photo-1710173472469-9d28e977914c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FwdWNjaW5vfGVufDB8fDB8fHww",
+  "https://plus.unsplash.com/premium_photo-1664970900086-adc85f1ef317?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZsYXQlMjB3aGl0ZSUyMGNvZmZlZXxlbnwwfHwwfHx8MA%3D%3D",
+  "https://images.unsplash.com/photo-1718897266472-5b7229ebdd3d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2hvY29sYXRlJTIwY3JvaXNzYW50fGVufDB8fDB8fHww",
+  "https://pixabay.com/pt/images/download/x-2577183_1920.jpg",
+  "https://pixabay.com/pt/images/download/x-3383170_1920.jpg",
+  "https://images.unsplash.com/photo-1631311915775-e8f4250a7d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dG9hc3QlMjBhdm9jYWRvfGVufDB8fDB8fHww",
+  "https://pixabay.com/pt/images/download/chernyshart-coffee-9817647_1920.jpg",
+  "https://pixabay.com/pt/images/download/x-7125271_1920.jpg",
+  "https://pixabay.com/pt/images/download/x-2409958_1920.jpg",
 ];
 
 // Churrascaria
@@ -403,16 +402,16 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c1-p1", comercioId: "c1", nome: "Classic Burger", descricao: "Pao brioche, carne 180g e queijo.", preco: 25.0, imagem: veganoImages[0] },
+      { id: "c1-p1", comercioId: "c1", nome: "Classic Burger", descricao: "Pao brioche, carne 180g e queijo.", preco: 25.0, imagem: hamburgueriaImages[0] },
       { id: "c1-p2", comercioId: "c1", nome: "Bacon Lovers", descricao: "Muito bacon crocante e cheddar.", preco: 32.0, imagem: hamburgueriaImages[1] },
       { id: "c1-p3", comercioId: "c1", nome: "Cheddar Melt", descricao: "Cheddar cremoso e cebola caramelizada.", preco: 30.0, imagem: hamburgueriaImages[2] },
       { id: "c1-p4", comercioId: "c1", nome: "Veggie Burger", descricao: "Hamburguer de grao de bico e alface.", preco: 28.0, imagem: hamburgueriaImages[3] },
       { id: "c1-p5", comercioId: "c1", nome: "Double Monster", descricao: "Duas carnes de 180g e dobro de queijo.", preco: 45.0, imagem: hamburgueriaImages[4] },
-      { id: "c1-p6", comercioId: "c1", nome: "Batata Rustica", descricao: "Porcao de batatas com alecrim.", preco: 15.0, imagem: steakhouseImages[5] },
-      { id: "c1-p7", comercioId: "c1", nome: "Onion Rings", descricao: "Aneis de cebola empanados.", preco: 12.0, imagem: pizzariaImages[6] },
-      { id: "c1-p8", comercioId: "c1", nome: "Milkshake Morango", descricao: "Cremoso com pedacos de fruta.", preco: 18.0, imagem: sorveteriaPremiumImages[7] },
+      { id: "c1-p6", comercioId: "c1", nome: "Batata Rustica", descricao: "Porcao de batatas com alecrim.", preco: 15.0, imagem: hamburgueriaImages[5] },
+      { id: "c1-p7", comercioId: "c1", nome: "Onion Rings", descricao: "Aneis de cebola empanados.", preco: 12.0, imagem: hamburgueriaImages[6] },
+      { id: "c1-p8", comercioId: "c1", nome: "Milkshake Morango", descricao: "Cremoso com pedacos de fruta.", preco: 18.0, imagem: hamburgueriaImages[7] },
       { id: "c1-p9", comercioId: "c1", nome: "Refrigerante Lata", descricao: "Gelado 350ml.", preco: 6.0, imagem: hamburgueriaImages[8] },
-      { id: "c1-p10", comercioId: "c1", nome: "Petit Gateau", descricao: "Bolo quente com sorvete.", preco: 22.0, imagem: veganoImages[9] }
+      { id: "c1-p10", comercioId: "c1", nome: "Petit Gateau", descricao: "Bolo quente com sorvete.", preco: 22.0, imagem: hamburgueriaImages[9] }
     ]
   },
   {
@@ -448,7 +447,7 @@ export const mockComercios: ComercioExtendido[] = [
       { id: "c2-p6", comercioId: "c2", nome: "Pizza Vegetariana", descricao: "Mix de legumes e queijo.", preco: 50.0, imagem: pizzariaImages[5] },
       { id: "c2-p7", comercioId: "c2", nome: "Calzone", descricao: "Pizza fechada recheada.", preco: 42.0, imagem: pizzariaImages[6] },
       { id: "c2-p8", comercioId: "c2", nome: "Bruschetta", descricao: "Pao italiano com tomate.", preco: 20.0, imagem: pizzariaImages[7] },
-      { id: "c2-p9", comercioId: "c2", nome: "Vinho Tinto", descricao: "Taca de vinho da casa.", preco: 18.0, imagem: veganoImages[8] },
+      { id: "c2-p9", comercioId: "c2", nome: "Vinho Tinto", descricao: "Taca de vinho da casa.", preco: 18.0, imagem: pizzariaImages[8] },
       { id: "c2-p10", comercioId: "c2", nome: "Tiramisu", descricao: "Sobremesa tipica italiana.", preco: 25.0, imagem: pizzariaImages[9] }
     ]
   },
@@ -514,16 +513,16 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c4-p1", comercioId: "c4", nome: "Carne de Sol", descricao: "Com pirao e arroz.", preco: 60.0, imagem: steakhouseImages[0] },
+      { id: "c4-p1", comercioId: "c4", nome: "Carne de Sol", descricao: "Com pirao e arroz.", preco: 60.0, imagem: comidaNordestinaImages[0] },
       { id: "c4-p2", comercioId: "c4", nome: "Baiao de Dois", descricao: "Arroz, feijao fradinho e queijo coalho.", preco: 40.0, imagem: comidaNordestinaImages[1] },
-      { id: "c4-p3", comercioId: "c4", nome: "Moqueca de Peixe", descricao: "Peixe cozido no leite de coco.", preco: 75.0, imagem: frutosdoMarImages[2] },
-      { id: "c4-p4", comercioId: "c4", nome: "Bobo de Camarao", descricao: "Creme de macaxeira com camarao.", preco: 80.0, imagem: frutosdoMarImages[3] },
-      { id: "c4-p5", comercioId: "c4", nome: "Sarapatel", descricao: "Prato regional bem temperado.", preco: 35.0, imagem: steakhouseImages[4] },
+      { id: "c4-p3", comercioId: "c4", nome: "Moqueca de Peixe", descricao: "Peixe cozido no leite de coco.", preco: 75.0, imagem: comidaNordestinaImages[2] },
+      { id: "c4-p4", comercioId: "c4", nome: "Bobo de Camarao", descricao: "Creme de macaxeira com camarao.", preco: 80.0, imagem: comidaNordestinaImages[3] },
+      { id: "c4-p5", comercioId: "c4", nome: "Sarapatel", descricao: "Prato regional bem temperado.", preco: 35.0, imagem: comidaNordestinaImages[4] },
       { id: "c4-p6", comercioId: "c4", nome: "Macaxeira Frita", descricao: "Porcao crocante.", preco: 15.0, imagem: comidaNordestinaImages[5] },
       { id: "c4-p7", comercioId: "c4", nome: "Queijo Coalho Grelhado", descricao: "Com mel de engenho.", preco: 12.0, imagem: comidaNordestinaImages[6] },
       { id: "c4-p8", comercioId: "c4", nome: "Tapioca de Coco", descricao: "Tapioca quentinha com coco ralado.", preco: 10.0, imagem: comidaNordestinaImages[7] },
       { id: "c4-p9", comercioId: "c4", nome: "Cuscuz com Ovo", descricao: "Cuscuz de milho tradicional.", preco: 8.0, imagem: comidaNordestinaImages[8] },
-      { id: "c4-p10", comercioId: "c4", nome: "Doce de Leite", descricao: "Doce caseiro em calda.", preco: 12.0, imagem: steakhouseImages[9] }
+      { id: "c4-p10", comercioId: "c4", nome: "Doce de Leite", descricao: "Doce caseiro em calda.", preco: 12.0, imagem: comidaNordestinaImages[9] }
     ]
   },
   {
@@ -551,15 +550,15 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c5-p1", comercioId: "c5", nome: "Lasanha Bolonhesa", descricao: "Massa fresca com carne e queijo.", preco: 50.0, imagem: veganoImages[0] },
+      { id: "c5-p1", comercioId: "c5", nome: "Lasanha Bolonhesa", descricao: "Massa fresca com carne e queijo.", preco: 50.0, imagem: italianaImages[0] },
       { id: "c5-p2", comercioId: "c5", nome: "Fettuccine Alfredo", descricao: "Molho branco e parmesao.", preco: 45.0, imagem: italianaImages[1] },
       { id: "c5-p3", comercioId: "c5", nome: "Gnocchi ao Pesto", descricao: "Nhoque artesanal com molho pesto.", preco: 42.0, imagem: italianaImages[2] },
       { id: "c5-p4", comercioId: "c5", nome: "Ravioli de Abobora", descricao: "Manteiga de salvia e nozes.", preco: 48.0, imagem: italianaImages[3] },
       { id: "c5-p5", comercioId: "c5", nome: "Risoto Cogumelos", descricao: "Mix de cogumelos frescos.", preco: 55.0, imagem: italianaImages[4] },
       { id: "c5-p6", comercioId: "c5", nome: "Carpaccio", descricao: "Laminas de carne e alcaparras.", preco: 38.0, imagem: italianaImages[5] },
       { id: "c5-p7", comercioId: "c5", nome: "Spaghetti Carbonara", descricao: "Pancetta, ovos e parmesao.", preco: 46.0, imagem: italianaImages[6] },
-      { id: "c5-p8", comercioId: "c5", nome: "Taca de Vinho", descricao: "Vinho tinto seco.", preco: 25.0, imagem: veganoImages[7] },
-      { id: "c5-p9", comercioId: "c5", nome: "Panna Cotta", descricao: "Sobremesa de nata e frutas.", preco: 20.0, imagem: pizzariaImages[8] },
+      { id: "c5-p8", comercioId: "c5", nome: "Taca de Vinho", descricao: "Vinho tinto seco.", preco: 25.0, imagem: italianaImages[7] },
+      { id: "c5-p9", comercioId: "c5", nome: "Panna Cotta", descricao: "Sobremesa de nata e frutas.", preco: 20.0, imagem: italianaImages[8] },
       { id: "c5-p10", comercioId: "c5", nome: "Agua Mineral", descricao: "500ml sem gas.", preco: 5.0, imagem: italianaImages[9] }
     ]
   },
@@ -595,9 +594,9 @@ export const mockComercios: ComercioExtendido[] = [
       { id: "c6-p5", comercioId: "c6", nome: "Linguica Artesanal", descricao: "Porcao de linguica temperada.", preco: 35.0, imagem: steakhouseImages[4] },
       { id: "c6-p6", comercioId: "c6", nome: "Pao de Alho", descricao: "Recheado com muito queijo.", preco: 18.0, imagem: steakhouseImages[5] },
       { id: "c6-p7", comercioId: "c6", nome: "Batata Recheada", descricao: "Com bacon e sour cream.", preco: 28.0, imagem: steakhouseImages[6] },
-      { id: "c6-p8", comercioId: "c6", nome: "Salada Caesar", descricao: "Mix de folhas e frango grelhado.", preco: 32.0, imagem: veganoImages[7] },
-      { id: "c6-p9", comercioId: "c6", nome: "Cerveja Artesanal", descricao: "Garrafa 500ml local.", preco: 22.0, imagem: sushiImages[8] },
-      { id: "c6-p10", comercioId: "c6", nome: "Brownie de Chocolate", descricao: "Com calda quente.", preco: 20.0, imagem: veganoImages[9] }
+      { id: "c6-p8", comercioId: "c6", nome: "Salada Caesar", descricao: "Mix de folhas e frango grelhado.", preco: 32.0, imagem: steakhouseImages[7] },
+      { id: "c6-p9", comercioId: "c6", nome: "Cerveja Artesanal", descricao: "Garrafa 500ml local.", preco: 22.0, imagem: steakhouseImages[8] },
+      { id: "c6-p10", comercioId: "c6", nome: "Brownie de Chocolate", descricao: "Com calda quente.", preco: 20.0, imagem: steakhouseImages[9] }
     ]
   },
   {
@@ -631,10 +630,10 @@ export const mockComercios: ComercioExtendido[] = [
       { id: "c7-p4", comercioId: "c7", nome: "Polvo Grelhado", descricao: "Com batatas ao murro.", preco: 95.0, imagem: frutosdoMarImages[3] },
       { id: "c7-p5", comercioId: "c7", nome: "Lula a Dore", descricao: "Aneis de lula empanados.", preco: 45.0, imagem: frutosdoMarImages[4] },
       { id: "c7-p6", comercioId: "c7", nome: "Caldeirada", descricao: "Mix de frutos do mar cozidos.", preco: 120.0, imagem: frutosdoMarImages[5] },
-      { id: "c7-p7", comercioId: "c7", nome: "Risoto de Camarao", descricao: "Cremoso com camaroes médios.", preco: 72.0, imagem: italianaImages[6] },
-      { id: "c7-p8", comercioId: "c7", nome: "Vinho Branco", descricao: "Ideal para acompanhar peixes.", preco: 80.0, imagem: italianaImages[7] },
+      { id: "c7-p7", comercioId: "c7", nome: "Risoto de Camarao", descricao: "Cremoso com camaroes médios.", preco: 72.0, imagem: frutosdoMarImages[6] },
+      { id: "c7-p8", comercioId: "c7", nome: "Vinho Branco", descricao: "Ideal para acompanhar peixes.", preco: 80.0, imagem: frutosdoMarImages[7] },
       { id: "c7-p9", comercioId: "c7", nome: "Sorvete de Fruta", descricao: "Refrescante sobremesa.", preco: 15.0, imagem: frutosdoMarImages[8] },
-      { id: "c7-p10", comercioId: "c7", nome: "Agua de Coco", descricao: "Natural da fruta.", preco: 8.0, imagem: veganoImages[9] }
+      { id: "c7-p10", comercioId: "c7", nome: "Agua de Coco", descricao: "Natural da fruta.", preco: 8.0, imagem: frutosdoMarImages[9] }
     ]
   },
   {
@@ -699,16 +698,16 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c9-p1", comercioId: "c9", nome: "Tacos Al Pastor", descricao: "Tortillas de milho com porco.", preco: 35.0, imagem: veganoImages[0] },
+      { id: "c9-p1", comercioId: "c9", nome: "Tacos Al Pastor", descricao: "Tortillas de milho com porco.", preco: 35.0, imagem: mexicanaImages[0] },
       { id: "c9-p2", comercioId: "c9", nome: "Burrito Supreme", descricao: "Carne, feijao, arroz e queijo.", preco: 40.0, imagem: mexicanaImages[1] },
       { id: "c9-p3", comercioId: "c9", nome: "Nachos com Chili", descricao: "Crocantes com molho picante.", preco: 38.0, imagem: mexicanaImages[2] },
       { id: "c9-p4", comercioId: "c9", nome: "Quesadilla", descricao: "Tortilla de trigo com queijo derretido.", preco: 32.0, imagem: mexicanaImages[3] },
       { id: "c9-p5", comercioId: "c9", nome: "Enchiladas", descricao: "Tortillas enroladas com molho verde.", preco: 42.0, imagem: mexicanaImages[4] },
-      { id: "c9-p6", comercioId: "c9", nome: "Guacamoles", descricao: "Porcao grande com totopos.", preco: 25.0, imagem: veganoImages[5] },
+      { id: "c9-p6", comercioId: "c9", nome: "Guacamoles", descricao: "Porcao grande com totopos.", preco: 25.0, imagem: mexicanaImages[5] },
       { id: "c9-p7", comercioId: "c9", nome: "Fajitas de Pollo", descricao: "Tiras de frango grelhadas.", preco: 55.0, imagem: mexicanaImages[6] },
       { id: "c9-p8", comercioId: "c9", nome: "Margarita", descricao: "Drink classico de tequila.", preco: 28.0, imagem: mexicanaImages[7] },
-      { id: "c9-p9", comercioId: "c9", nome: "Churros", descricao: "Com doce de leite ou chocolate.", preco: 15.0, imagem: sushiImages[8] },
-      { id: "c9-p10", comercioId: "c9", nome: "Cerveja Sol", descricao: "Long neck gelada com limao.", preco: 12.0, imagem: sushiImages[9] }
+      { id: "c9-p9", comercioId: "c9", nome: "Churros", descricao: "Com doce de leite ou chocolate.", preco: 15.0, imagem: mexicanaImages[8] },
+      { id: "c9-p10", comercioId: "c9", nome: "Cerveja Sol", descricao: "Long neck gelada com limao.", preco: 12.0, imagem: mexicanaImages[9] }
     ]
   },
   {
@@ -742,10 +741,10 @@ export const mockComercios: ComercioExtendido[] = [
       { id: "c10-p4", comercioId: "c10", nome: "Cupim Casqueirado", descricao: "Muito saboroso e suculento.", preco: 65.0, imagem: steakhouseImages[3] },
       { id: "c10-p5", comercioId: "c10", nome: "Maminha na Brasa", descricao: "Acompanha farofa e vinagrete.", preco: 55.0, imagem: steakhouseImages[4] },
       { id: "c10-p6", comercioId: "c10", nome: "Coracao de Frango", descricao: "Porcao petisco clássica.", preco: 25.0, imagem: steakhouseImages[5] },
-      { id: "c10-p7", comercioId: "c10", nome: "Abacaxi Grelhado", descricao: "Com canela e acucar.", preco: 12.0, imagem: comidaNordestinaImages[6] },
-      { id: "c10-p8", comercioId: "c10", nome: "Maionese Caseira", descricao: "Receita tradicional da casa.", preco: 15.0, imagem: comidaNordestinaImages[7] },
-      { id: "c10-p9", comercioId: "c10", nome: "Caipirinha", descricao: "Limao, acucar e cachaca.", preco: 20.0, imagem: mexicanaImages[8] },
-      { id: "c10-p10", comercioId: "c10", nome: "Pudim de Leite", descricao: "Sobremesa favorita do brasileiro.", preco: 12.0, imagem: veganoImages[9] }
+      { id: "c10-p7", comercioId: "c10", nome: "Abacaxi Grelhado", descricao: "Com canela e acucar.", preco: 12.0, imagem: steakhouseImages[6] },
+      { id: "c10-p8", comercioId: "c10", nome: "Maionese Caseira", descricao: "Receita tradicional da casa.", preco: 15.0, imagem: steakhouseImages[7] },
+      { id: "c10-p9", comercioId: "c10", nome: "Caipirinha", descricao: "Limao, acucar e cachaca.", preco: 20.0, imagem: steakhouseImages[8] },
+      { id: "c10-p10", comercioId: "c10", nome: "Pudim de Leite", descricao: "Sobremesa favorita do brasileiro.", preco: 12.0, imagem: steakhouseImages[9] }
     ]
   },
   {
@@ -1025,8 +1024,8 @@ export const mockComercios: ComercioExtendido[] = [
       { id: "c18-p5", comercioId: "c18", nome: "Pizza de Camarao", descricao: "Camaroes médios e alho poro.", preco: 75.0, imagem: pizzariaImages[4] },
       { id: "c18-p6", comercioId: "c18", nome: "Focaccia Alecrim", descricao: "Pao italiano com sal grosso.", preco: 25.0, imagem: pizzariaImages[5] },
       { id: "c18-p7", comercioId: "c18", nome: "Salada Caprese", descricao: "Tomate, mussarela e manjericao.", preco: 35.0, imagem: pizzariaImages[6] },
-      { id: "c18-p8", comercioId: "c18", nome: "Suco de Uva", descricao: "Integral 500ml.", preco: 15.0, imagem: veganoImages[7] },
-      { id: "c18-p9", comercioId: "c18", nome: "Cerveja Long Neck", descricao: "Gelada 355ml.", preco: 10.0, imagem: sushiImages[8] },
+      { id: "c18-p8", comercioId: "c18", nome: "Suco de Uva", descricao: "Integral 500ml.", preco: 15.0, imagem: pizzariaImages[7] },
+      { id: "c18-p9", comercioId: "c18", nome: "Cerveja Long Neck", descricao: "Gelada 355ml.", preco: 10.0, imagem: pizzariaImages[8] },
       { id: "c18-p10", comercioId: "c18", nome: "Cannoli", descricao: "Doce siciliano com ricota.", preco: 18.0, imagem: pizzariaImages[9] }
     ]
   },
