@@ -72,15 +72,16 @@ export const comidaChinesaImages = [
 
 // Comida Nordestina
 export const comidaNordestinaImages = [
-  "https://cdn.pixabay.com/photo/2014/10/19/20/59/food-494606_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/05/11/15/22/meat-762635_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/12/21/23/28/beans-575631_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/09/15/19/24/seafood-1672521_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/06/25/11/59/shrimp-1478752_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/06/01/07/15/food-2362678_1280.jpg",
-  "https://cdn.pixabay.com/photo/2021/01/29/14/41/cheese-bread-5961233_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/12/05/01/01/pancake-2998412_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/09/12/12/35/maize-2742231_1280.jpg",
+  "https://images.pexels.com/photos/34284708/pexels-photo-34284708.jpeg",
+  "https://images.pexels.com/photos/16976664/pexels-photo-16976664.jpeg",
+  "https://images.pexels.com/photos/36921557/pexels-photo-36921557.png",
+  "https://images.pexels.com/photos/17591565/pexels-photo-17591565.jpeg",
+  "https://images.pexels.com/photos/34035523/pexels-photo-34035523.jpeg",
+  "https://images.pexels.com/photos/8066270/pexels-photo-8066270.jpeg",
+  "https://images.pexels.com/photos/8751408/pexels-photo-8751408.jpeg",
+  "https://images.pexels.com/photos/25639532/pexels-photo-25639532.jpeg",
+  "https://images.pexels.com/photos/15584741/pexels-photo-15584741.jpeg",
+  "https://images.pexels.com/photos/34234278/pexels-photo-34234278.png"
 ];
 
 // Farmácia
@@ -96,13 +97,16 @@ export const floriculturaImages = [
 
 // Frutos do Mar
 export const frutosdoMarImages = [
-  "https://cdn.pixabay.com/photo/2016/09/15/19/24/seafood-1672521_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/06/25/11/59/shrimp-1478752_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/01/30/13/49/shrimp-2021115_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/10/15/11/41/risotto-2853298_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/03/26/09/39/cup-690234_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/09/02/12/32/acai-918451_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/08/23/15/52/juice-1614768_1280.jpg",
+  "https://images.pexels.com/photos/15112757/pexels-photo-15112757.jpeg",
+  "https://images.pexels.com/photos/8697543/pexels-photo-8697543.jpeg",
+  "https://images.pexels.com/photos/17598224/pexels-photo-17598224.jpeg",
+  "https://images.pexels.com/photos/17598224/pexels-photo-17598224.jpeg",
+  "https://images.pexels.com/photos/36563621/pexels-photo-36563621.jpeg",
+  "https://images.pexels.com/photos/36921559/pexels-photo-36921559.png",
+  "https://images.pexels.com/photos/37045068/pexels-photo-37045068.jpeg",
+  "https://images.pexels.com/photos/18649058/pexels-photo-18649058.jpeg",
+  "https://images.pexels.com/photos/22484685/pexels-photo-22484685.jpeg",
+  "https://images.pexels.com/photos/12580174/pexels-photo-12580174.jpeg",
 ];
 
 // Hamburgueria
@@ -126,17 +130,16 @@ export const informticaImages = [
 
 // Italiana
 export const italianaImages = [
-  "https://cdn.pixabay.com/photo/2017/01/26/02/06/pasta-2009590_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/02/15/15/17/meal-2069021_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/04/10/13/41/pasta-716256_1280.jpg",
-  "https://cdn.pixabay.com/photo/2018/10/24/18/13/gnocchi-3770857_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/08/25/15/34/ravioli-2680486_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/10/15/11/41/risotto-2853298_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/23/14/37/food-1853259_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/04/08/13/13/food-712665_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/11/03/09/03/wine-1019864_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/03/31/10/56/tiramisu-2191018_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/03/26/09/39/cup-690234_1280.jpg",
+  "https://images.pexels.com/photos/5949888/pexels-photo-5949888.jpeg",
+  "https://images.pexels.com/photos/11220208/pexels-photo-11220208.jpeg",
+  "https://images.pexels.com/photos/18273990/pexels-photo-18273990.jpeg",
+  "https://images.pexels.com/photos/34565195/pexels-photo-34565195.jpeg",
+  "https://images.pexels.com/photos/6406460/pexels-photo-6406460.jpeg",
+  "https://images.pexels.com/photos/33563119/pexels-photo-33563119.jpeg",
+  "https://images.pexels.com/photos/31779533/pexels-photo-31779533.jpeg",
+  "https://images.pexels.com/photos/36789950/pexels-photo-36789950.jpeg",
+  "https://images.pexels.com/photos/31064587/pexels-photo-31064587.jpeg",
+  "https://images.pexels.com/photos/113734/pexels-photo-113734.jpeg",
 ];
 
 // Livraria
@@ -206,25 +209,16 @@ export const petShopImages = [
 
 // Pizzaria
 export const pizzariaImages = [
-  "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/07/08/10/51/pizza-835783_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/01/03/11/33/pizza-1949183_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/03/05/21/42/pizza-1239054_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/02/15/10/57/pizza-2068283_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/08/06/12/04/pizza-2591905_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/29/13/08/focaccia-1869711_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/10/09/19/29/salad-2834549_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/08/23/15/52/juice-1614768_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/03/26/10/21/whiskey-690540_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/05/02/18/20/dessert-2278931_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/12/10/14/47/pizza-3010062_1280.jpg",
-  "https://cdn.pixabay.com/photo/2020/05/17/15/30/pizza-5182153_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/07/08/12/34/pizza-386717_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/04/09/09/22/pizza-1317699_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/09/30/15/13/pizza-2802332_1280.jpg",
-  "https://cdn.pixabay.com/photo/2020/10/01/22/39/bruschetta-5619836_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/11/03/09/03/wine-1019864_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/03/31/10/56/tiramisu-2191018_1280.jpg",
+  "https://images.pexels.com/photos/31450842/pexels-photo-31450842.jpeg",
+  "https://images.pexels.com/photos/31094810/pexels-photo-31094810.jpeg",
+  "https://images.pexels.com/photos/33592983/pexels-photo-33592983.jpeg",
+  "https://images.pexels.com/photos/31450847/pexels-photo-31450847.jpeg",
+  "https://images.pexels.com/photos/33457563/pexels-photo-33457563.jpeg",
+  "https://images.pexels.com/photos/33592995/pexels-photo-33592995.jpeg",
+  "https://images.pexels.com/photos/36642831/pexels-photo-36642831.jpeg",
+  "https://images.pexels.com/photos/5639423/pexels-photo-5639423.jpeg",
+  "https://images.pexels.com/photos/30609362/pexels-photo-30609362.jpeg",
+  "https://images.pexels.com/photos/27305271/pexels-photo-27305271.jpeg",
 ];
 
 // Relojoaria
@@ -244,16 +238,16 @@ export const sorveteriaPremiumImages = [
 
 // Steakhouse
 export const steakhouseImages = [
-  "https://cdn.pixabay.com/photo/2016/03/27/21/59/meat-1284440_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/01/22/02/13/meat-1155132_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/03/23/19/57/asparagus-2169305_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/05/11/15/22/meat-762635_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/12/29/17/28/sausages-3048123_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/10/19/20/59/food-494606_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/29/05/04/fries-1867443_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/05/15/14/51/salad-768601_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/03/26/10/21/whiskey-690540_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/11/28/08/03/brownie-548591_1280.jpg",
+  "https://images.pexels.com/photos/34574561/pexels-photo-34574561.jpeg",
+  "https://images.pexels.com/photos/20896462/pexels-photo-20896462.jpeg",
+  "https://images.pexels.com/photos/36669802/pexels-photo-36669802.jpeg",
+  "https://images.pexels.com/photos/36682993/pexels-photo-36682993.jpeg",
+  "https://images.pexels.com/photos/15135147/pexels-photo-15135147.jpeg",
+  "https://images.pexels.com/photos/6170675/pexels-photo-6170675.jpeg",
+  "https://images.pexels.com/photos/35876608/pexels-photo-35876608.jpeg",
+  "https://images.pexels.com/photos/36691315/pexels-photo-36691315.jpeg",
+  "https://images.pexels.com/photos/24770139/pexels-photo-24770139.jpeg",
+  "https://images.pexels.com/photos/33674422/pexels-photo-33674422.jpeg",
 ];
 
 // Supermercado
@@ -263,22 +257,16 @@ export const supermercadoImages = [
 
 // Sushi
 export const sushiImages = [
-  "https://cdn.pixabay.com/photo/2017/10/16/09/01/sushi-2856545_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/29/13/08/sushi-1869708_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/04/04/18/07/poke-bowl-2202534_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/22/18/52/sushi-1850029_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/11/05/15/57/shimeji-518032_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/08/12/18/59/spring-rolls-2634970_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/05/07/08/56/sushi-2291971_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/04/10/00/41/food-715542_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/03/24/09/37/tea-2170617_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/05/07/15/08/cookie-756601_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/18/15/03/sushi-1835193_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/09/20/14/09/sunomono-1682591_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/04/08/13/13/food-712661_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/12/26/01/17/dumplings-3039535_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/03/26/10/21/whiskey-690540_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/22/18/52/cake-1850011_1280.jpg",
+  "https://images.pexels.com/photos/31393443/pexels-photo-31393443.jpeg",
+  "https://images.pexels.com/photos/28992230/pexels-photo-28992230.jpeg",
+  "https://images.pexels.com/photos/28992214/pexels-photo-28992214.jpeg",
+  "https://images.pexels.com/photos/36292348/pexels-photo-36292348.jpeg",
+  "https://images.pexels.com/photos/12659887/pexels-photo-12659887.jpeg",
+  "https://images.pexels.com/photos/12077975/pexels-photo-12077975.jpeg",
+  "https://images.pexels.com/photos/15298785/pexels-photo-15298785.jpeg",
+  "https://images.pexels.com/photos/2098120/pexels-photo-2098120.jpeg",
+  "https://images.pexels.com/photos/30683023/pexels-photo-30683023.jpeg",
+  "https://images.pexels.com/photos/16049660/pexels-photo-16049660.jpeg"
 ];
 
 // Vegano
@@ -460,7 +448,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Culinária japonesa tradicional com peixes frescos selecionados.",
     vendedorAmbulante: false,
     estacionamento: false,
-    imagem: sushiImages[12],
+    imagem: sushiImages[2],
     latitude: -10.91308576633602,
     longitude: -37.053372693800256,
     localizacao: "Praça do Farol, 12",
@@ -497,7 +485,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "O melhor da culinária regional com temperos autênticos.",
     vendedorAmbulante: true,
     estacionamento: true,
-    imagem: steakhouseImages[13],
+    imagem: steakhouseImages[3],
     latitude: -10.91208576633602,
     longitude: -37.05237269380025,
     localizacao: "Mercado Central, Box 08",
@@ -512,16 +500,16 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c4-p1", comercioId: "c4", nome: "Carne de Sol", descricao: "Com pirao e arroz.", preco: 60.0, imagem: comidaNordestinaImages[0] },
-      { id: "c4-p2", comercioId: "c4", nome: "Baiao de Dois", descricao: "Arroz, feijao fradinho e queijo coalho.", preco: 40.0, imagem: comidaNordestinaImages[1] },
-      { id: "c4-p3", comercioId: "c4", nome: "Moqueca de Peixe", descricao: "Peixe cozido no leite de coco.", preco: 75.0, imagem: comidaNordestinaImages[2] },
+      { id: "c4-p1", comercioId: "c4", nome: "Prato nordestino", descricao: "Arroz, mistura de feijão e pedaços de frango frito.", preco: 60.0, imagem: comidaNordestinaImages[0] },
+      { id: "c4-p2", comercioId: "c4", nome: "Feijão Nordestino", descricao: "feijao fradinho temperado com tomates.", preco: 40.0, imagem: comidaNordestinaImages[1] },
+      { id: "c4-p3", comercioId: "c4", nome: "Prato simples", descricao: "Peixe cozido com batata, aroz, salada e feijão", preco: 75.0, imagem: comidaNordestinaImages[2] },
       { id: "c4-p4", comercioId: "c4", nome: "Bobo de Camarao", descricao: "Creme de macaxeira com camarao.", preco: 80.0, imagem: comidaNordestinaImages[3] },
       { id: "c4-p5", comercioId: "c4", nome: "Sarapatel", descricao: "Prato regional bem temperado.", preco: 35.0, imagem: comidaNordestinaImages[4] },
       { id: "c4-p6", comercioId: "c4", nome: "Macaxeira Frita", descricao: "Porcao crocante.", preco: 15.0, imagem: comidaNordestinaImages[5] },
       { id: "c4-p7", comercioId: "c4", nome: "Queijo Coalho Grelhado", descricao: "Com mel de engenho.", preco: 12.0, imagem: comidaNordestinaImages[6] },
-      { id: "c4-p8", comercioId: "c4", nome: "Tapioca de Coco", descricao: "Tapioca quentinha com coco ralado.", preco: 10.0, imagem: comidaNordestinaImages[7] },
+      { id: "c4-p8", comercioId: "c4", nome: "Tapioca de banana", descricao: "Tapioca quentinha com banana.", preco: 10.0, imagem: comidaNordestinaImages[7] },
       { id: "c4-p9", comercioId: "c4", nome: "Cuscuz com Ovo", descricao: "Cuscuz de milho tradicional.", preco: 8.0, imagem: comidaNordestinaImages[8] },
-      { id: "c4-p10", comercioId: "c4", nome: "Doce de Leite", descricao: "Doce caseiro em calda.", preco: 12.0, imagem: comidaNordestinaImages[9] }
+      { id: "c4-p10", comercioId: "c4", nome: "Pudim", descricao: "Doce caseiro em calda.", preco: 12.0, imagem: comidaNordestinaImages[9] }
     ]
   },
   {
@@ -534,7 +522,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Massas frescas e vinhos selecionados em um ambiente acolhedor.",
     vendedorAmbulante: false,
     estacionamento: true,
-    imagem: italianaImages[12],
+    imagem: italianaImages[2],
     latitude: -10.91108576633602,
     longitude: -37.05137269380025,
     localizacao: "Alameda das Cores, 202",
@@ -556,7 +544,7 @@ export const mockComercios: ComercioExtendido[] = [
       { id: "c5-p5", comercioId: "c5", nome: "Risoto Cogumelos", descricao: "Mix de cogumelos frescos.", preco: 55.0, imagem: italianaImages[4] },
       { id: "c5-p6", comercioId: "c5", nome: "Carpaccio", descricao: "Laminas de carne e alcaparras.", preco: 38.0, imagem: italianaImages[5] },
       { id: "c5-p7", comercioId: "c5", nome: "Spaghetti Carbonara", descricao: "Pancetta, ovos e parmesao.", preco: 46.0, imagem: italianaImages[6] },
-      { id: "c5-p8", comercioId: "c5", nome: "Taca de Vinho", descricao: "Vinho tinto seco.", preco: 25.0, imagem: italianaImages[7] },
+      { id: "c5-p8", comercioId: "c5", nome: "Vinho", descricao: "Vinho tinto seco.", preco: 25.0, imagem: italianaImages[7] },
       { id: "c5-p9", comercioId: "c5", nome: "Panna Cotta", descricao: "Sobremesa de nata e frutas.", preco: 20.0, imagem: italianaImages[8] },
       { id: "c5-p10", comercioId: "c5", nome: "Agua Mineral", descricao: "500ml sem gas.", preco: 5.0, imagem: italianaImages[9] }
     ]
@@ -571,7 +559,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Cortes nobres grelhados na brasa com o estilo americano.",
     vendedorAmbulante: false,
     estacionamento: true,
-    imagem: steakhouseImages[12],
+    imagem: steakhouseImages[2],
     latitude: -10.91008576633602,
     longitude: -37.050372693800256,
     localizacao: "Av. Adelia Franco, 500",
@@ -608,7 +596,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Peixes e mariscos capturados diariamente.",
     vendedorAmbulante: false,
     estacionamento: true,
-    imagem: frutosdoMarImages[13],
+    imagem: frutosdoMarImages[3],
     latitude: -10.90908576633602,
     longitude: -37.04937269380025,
     localizacao: "Orla da Atalaia, s/n",
@@ -749,11 +737,11 @@ export const mockComercios: ComercioExtendido[] = [
   {
     id: "c11",
     usuarioId: "u11",
-    nome: "Homem Elegante",
-    email: "moda@homem.com",
+    nome: "C&A",
+    email: "moda@gmail.com",
     telefoneContato: "79999991011",
-    categoria: "Moda Masculina",
-    descricao: "Roupas masculinas do casual ao social com alto padrão.",
+    categoria: "Moda",
+    descricao: "Roupa casual, social, vestidos com alto padrão.",
     vendedorAmbulante: false,
     estacionamento: false,
     imagem: modaMasculinaImages[11],
@@ -761,11 +749,11 @@ export const mockComercios: ComercioExtendido[] = [
     longitude: -37.04787269380025,
     localizacao: "Rua do Comércio, 12",
     resumo_avaliacoes: "Peças de otima qualidade.",
-    redes_sociais: "@homemeleganteaju",
+    redes_sociais: "@cea_brasil",
     rating: 4.6,
     horarioFuncionamento: "08:00 - 18:00",
     statusAberto: true,
-    tags: ["moda", "masculina"],
+    tags: ["moda", "masculina", "feminina", "roupas", "acessorios"],
     favoritada: false,
     avaliacoes: [],
     produtos: [
