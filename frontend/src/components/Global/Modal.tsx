@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { X, Calendar, Clock, MapPin } from 'lucide-react';
+import { X, ChevronRight } from 'lucide-react';
 
-// ─── Tipos ────────────────────────────────────────────────────────────────────
 
 interface ModalProps {
   isOpen: boolean;
@@ -28,7 +27,8 @@ interface ModalCTAProps {
   variant?: 'primary' | 'secondary';
 }
 
-// ─── Modal base ───────────────────────────────────────────────────────────────
+
+
 
 export function Modal({ isOpen, onClose, title, subtitle, children }: ModalProps) {
   React.useEffect(() => {
@@ -42,42 +42,49 @@ export function Modal({ isOpen, onClose, title, subtitle, children }: ModalProps
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/55 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 p-0 bg-black/30 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={(e) => e.target === e.currentTarget && onClose()}
+      aria-modal="true"
+      role="dialog"
     >
-      <div className="bg-[#F7F0E4] rounded-[28px] w-full max-w-md max-h-[90vh] flex flex-col overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.28),0_0_0_1px_rgba(232,97,26,0.08)] animate-in slide-in-from-bottom-4 zoom-in-95 duration-300">
+      <div className="w-screen h-screen bg-white p-4 md:p-8 rounded-none border-0 flex flex-col overflow-hidden shadow-2xl font-sans text-neutral-900">
 
-        {/* Header */}
-        <div className="flex items-center justify-between px-5 pt-5 pb-4 border-b border-[#E8E0D0] bg-white flex-shrink-0">
-          <div>
-            {subtitle && (
-              <div className="flex items-center gap-2 mb-1">
-                <span className="w-5 h-[1.5px] bg-[#E8611A] rounded-full inline-block" />
-                <span className="text-[9px] font-bold text-[#E8611A] uppercase tracking-[0.18em]">
-                  {subtitle}
-                </span>
+        {/* Header (inspirado no teste.tsx) */}
+        <header className="flex items-center justify-between pb-4 md:pb-6 border-b border-neutral-200">
+          <div className="flex items-center gap-4">
+            <button onClick={onClose} className="text-black hover:text-black transition-colors md:hidden">
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-[#F47521] rounded-xl flex items-center justify-center">
+                <div className="w-5 h-5 md:w-6 md:h-6 border-[3px] border-white rounded-full border-t-transparent transform rotate-45" />
               </div>
-            )}
-            {title && (
-              <h2
-                className="text-[17px] font-black text-[#0A0A0A] leading-tight"
-                style={{ fontFamily: "'Georgia', serif" }}
-              >
-                {title}
-              </h2>
-            )}
+              <div className="flex flex-col">
+                {title ? (
+                  <div className="flex items-center gap-1">
+                    <h2 className="text-[16px] md:text-[18px] font-medium leading-tight text-neutral-900">{title}</h2>
+                    {title.trim().toLowerCase() === 'sua avaliação' && (
+                      <ChevronRight className="w-4 h-4 text-neutral-500" aria-hidden="true" />
+                    )}
+                  </div>
+                ) : (
+                  <h2 className="text-[16px] md:text-[18px] font-medium leading-tight text-neutral-900">Detalhes</h2>
+                )}
+                {subtitle && <span className="text-sm text-neutral-500">{subtitle}</span>}
+              </div>
+            </div>
           </div>
 
-          <button
-            onClick={onClose}
-            className="w-[34px] h-[34px] rounded-full bg-[#F7F0E4] border-[1.5px] border-[#E8E0D0] flex items-center justify-center transition-all hover:bg-[#FDDFC8] hover:border-[#E8611A] active:scale-95"
-          >
-            <X className="w-[14px] h-[14px] text-[#7A6E60]" />
-          </button>
-        </div>
+          <div className="hidden md:flex items-center gap-3">
+            <button onClick={onClose} className="p-2 rounded-lg bg-transparent text-neutral-400 hover:text-neutral-200 transition-colors focus:outline-none">
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </header>
 
-        {/* Body */}
-        <div className="p-5 overflow-y-auto">
+        {/* Body (container que recebe os children) */}
+        <div className="flex-1 overflow-y-auto py-4 md:py-6">
           {children}
         </div>
 
@@ -95,7 +102,7 @@ export function ModalDivider() {
 export function ModalInfoRow({ icon, label, value }: ModalInfoRowProps) {
   return (
     <div className="flex items-center gap-3 py-2.5">
-      <div className="w-8 h-8 rounded-[10px] bg-[#FDF0E8] border border-[#FDDFC8] flex items-center justify-center flex-shrink-0 text-[#E8611A]">
+      <div className="w-8 h-8 rounded-[10px] bg-[#FDF0E8] border border-[#FDDFC8] flex items-center justify-center shrink-0 text-[#E8611A]">
         {icon}
       </div>
       <div>
@@ -113,7 +120,7 @@ export function ModalBadge({ children, variant = 'orange' }: ModalBadgeProps) {
     orange:  'bg-[#FDF0E8] text-[#E8611A] border-[#FDDFC8]',
     green:   'bg-[#ebf2e3] text-[#2D5016] border-[#c5dba8]',
     neutral: 'bg-[#EDE3D0] text-[#7A6E60] border-[#E8E0D0]',
-  };
+  } as const;
   return (
     <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold border ${styles[variant]}`}>
       {children}

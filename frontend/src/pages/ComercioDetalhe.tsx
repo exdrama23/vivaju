@@ -11,9 +11,28 @@ import type { ComercioExtendido } from '@/services/mockData';
 
 const ITEMS_PER_PAGE = 20;
 
+const T = {
+  orange: "var(--primary)",
+  orangeLight: "var(--primary-light)",
+  orangeDark: "var(--primary-dark)",
+  orangePale: "var(--primary-pale)",
+  orangeMid: "var(--primary-mid)",
+  green: "var(--secondary)",
+  greenMid: "var(--secondary-mid)",
+  greenLight: "var(--secondary-light)",
+  greenPale: "var(--secondary-pale)",
+  cream: "var(--cream)",
+  creamDark: "var(--cream-dark)",
+  black: "var(--black)",
+  darkBg: "var(--dark-bg)",
+  grayText: "var(--gray-text)",
+  grayBorder: "var(--gray-border)",
+  white: "var(--white)",
+};
+
 const InfoContent = ({ comercio }: { comercio: ComercioExtendido }) => (
   <div className="space-y-8 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
-    <section aria-labelledby="info-heading">
+    {/* <section aria-labelledby="info-heading">
       <h2 id="info-heading" className="text-lg font-bold text-gray-900 mb-4">Informações</h2>
       <div className="space-y-3">
         <a
@@ -72,9 +91,9 @@ const InfoContent = ({ comercio }: { comercio: ComercioExtendido }) => (
           </button>
         )}
       </div>
-    </section>
+    </section> */}
 
-    <section aria-labelledby="promotions-heading">
+    {/* <section aria-labelledby="promotions-heading">
       <h2 id="promotions-heading" className="text-lg font-bold text-gray-900 mb-4">Destaques</h2>
       <div className="space-y-3">
         {(comercio.produtos || []).slice(0, 3).map((item) => (
@@ -84,8 +103,11 @@ const InfoContent = ({ comercio }: { comercio: ComercioExtendido }) => (
             className="w-full text-left flex gap-3 items-center group p-2 -mx-2 rounded-xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition focus:outline-none focus:ring-2 focus:ring-gray-400"
             aria-label={`${item.nome}`}
           >
-            <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+            <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
               <img src={item.imagem || comercio.imagem} alt={item.nome} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              <div className="absolute left-0 bottom-0 px-2 py-0.5 bg-black/60 text-white text-[10px] rounded-tr-md">
+                {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.preco)}
+              </div>
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="text-sm font-medium text-gray-800 truncate">{item.nome}</h3>
@@ -96,14 +118,14 @@ const InfoContent = ({ comercio }: { comercio: ComercioExtendido }) => (
           </button>
         ))}
       </div>
-    </section>
+    </section> */}
   </div>
 );
 
 const SidebarContent = ({ comercio }: { comercio: ComercioExtendido }) => (
   <div className="space-y-6">
     <section aria-labelledby="sidebar-info-heading">
-      <h2 id="sidebar-info-heading" className="text-lg font-bold text-gray-900 mb-4">Informações</h2>
+      <h2 id="sidebar-info-heading" className="text-lg font-bold text-gray-900 mb-4">Contatos</h2>
       <div className="space-y-3">
         <a
           href="#"
@@ -173,8 +195,11 @@ const SidebarContent = ({ comercio }: { comercio: ComercioExtendido }) => (
             className="w-full text-left flex gap-3 items-center group p-2 rounded-xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition focus:outline-none focus:ring-2 focus:ring-gray-400"
             aria-label={`${item.nome}`}
           >
-            <div className="w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+            <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
               <img src={item.imagem || comercio.imagem} alt={item.nome} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              <div className="absolute left-0 bottom-0 px-2 py-0.5 bg-black/60 text-white text-[10px] rounded-tr-md">
+                {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.preco)}
+              </div>
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="text-sm font-medium text-gray-800 truncate">{item.nome}</h3>
@@ -308,7 +333,7 @@ export function ComercioDetalhe() {
     : 0;
 
   return (
-    <main className="min-h-screen bg-gray-50 font-sans text-gray-800">
+    <main className="min-h-screen bg-orangeLight font-sans text-gray-800">
       <div className="flex flex-col lg:flex-row">
         <div className="flex-1 min-w-0">
           <div className="relative h-64 lg:h-[60vh] w-full bg-yellow-400">
@@ -335,6 +360,7 @@ export function ComercioDetalhe() {
                 >
                   <Heart className={`w-5 h-5 ${comercio.favoritada ? 'fill-red-500 text-red-500' : ''}`} aria-hidden="true" />
                 </button>
+                
                 <div className="relative flex items-center">
                   {!searchExpanded ? (
                     <button
@@ -385,10 +411,41 @@ export function ComercioDetalhe() {
                 <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
                   {comercio.nome}
                 </h1>
-                <p className="text-[13px] md:text-sm text-gray-500 mt-1">
-                  {comercio.categoria} • {comercio.vendedorAmbulante ? 'Ambulante' : 'Estabelecimento'}
-                </p>
+                <div className="text-[13px] md:text-sm text-gray-500 mt-1 flex flex-wrap items-center gap-2">
+                  <span>{comercio.categoria} • {comercio.vendedorAmbulante ? 'Ambulante' : 'Estabelecimento'}</span>
+                  <span>•</span>
+                  <a
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${comercio.latitude},${comercio.longitude}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-blue-800 hover:text-blue-800 hover:underline font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1 cursor-pointer"
+                    aria-label={`Endereço ${comercio.localizacao}`}
+                  >
+                    <MapPin className="w-4 h-4" aria-hidden="true" />
+                    <span >{comercio.localizacao}</span>
+                  </a>
+                </div>
               </div>
+              <div className="flex flex-wrap gap-2">
+        {comercio.tags?.length ? comercio.tags.map((cat) => (
+          <button
+            key={cat}
+            type="button"
+            className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700 hover:bg-yellow-100 hover:text-yellow-800 transition focus:outline-none focus:ring-2 focus:ring-yellow-500 shadow-sm"
+            aria-label={`Categoria ${cat}`}
+          >
+            {cat}
+          </button>
+        )) : (
+          <button
+            type="button"
+            className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm font-medium text-gray-700 shadow-sm"
+          >
+            {comercio.categoria}
+          </button>
+        )}
+      </div>
+      
               <button
                 type="button"
                 onClick={() => setIsReviewModalOpen(true)}
@@ -400,7 +457,9 @@ export function ComercioDetalhe() {
                 <span className="text-gray-500">({avaliacoes.length})</span>
                 <ChevronRight className="w-4 h-4 text-gray-400" aria-hidden="true" />
               </button>
+              
             </div>
+            
             <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-gray-600">
               <p>
                 <span className={`font-semibold ${comercio.statusAberto ? 'text-green-600' : 'text-red-600'}`}>
@@ -408,8 +467,11 @@ export function ComercioDetalhe() {
                 </span> • {comercio.horarioFuncionamento}
               </p>
               <span className="hidden sm:block text-gray-300">|</span>
-              <p className="text-[13px] text-gray-500">{comercio.localizacao}</p>
+              <p className="text-[13px] text-gray-500">{comercio.redes_sociais}</p>
+              <span className="hidden sm:block text-gray-300">|</span>
+              <p className="text-[13px] text-gray-500">{comercio.telefoneContato}</p>
             </div>
+            
           </div>
 
           <div className="px-4 lg:px-8 mt-10">
@@ -428,11 +490,10 @@ export function ComercioDetalhe() {
                       alt={item.nome}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                  </div>
-                  <div className="p-2">
-                    <h3 className="text-[14px] text-gray-800 font-medium leading-tight mt-1 line-clamp-2">
-                      {item.nome}
-                    </h3>
+                    <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/70 to-transparent text-white text-sm flex justify-between items-end opacity-100 transition-opacity">
+                      <span className="font-medium line-clamp-1">{item.nome}</span>
+                      <span className="text-[12px] font-bold">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.preco)}</span>
+                    </div>
                   </div>
                 </button>
               ))}
@@ -454,25 +515,31 @@ export function ComercioDetalhe() {
                 {displayedProducts.map((product) => (
                   <div
                     key={product.id}
-                    className="flex flex-col rounded-xl bg-white shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+                    className="flex flex-col rounded-xl overflow-hidden hover:shadow-md transition-shadow"
                   >
                     <div className="relative w-full aspect-square bg-gray-100 overflow-hidden">
                       <img
-                        src={product.imagem || comercio.imagem}
-                        alt={product.nome}
-                        className="w-full h-full object-cover"
-                      />
+                          src={product.imagem || comercio.imagem}
+                          alt={product.nome}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute left-0 bottom-0 right-0 p-2 bg-gradient-to-t from-black/70 to-transparent text-white text-sm flex justify-between items-end">
+                          {/* <span className="font-medium line-clamp-1">{product.nome}</span> */}
+                          {/* <span className="text-[12px] font-bold">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.preco)}</span> */}
+                        </div>
                     </div>
                     <div className="p-2 flex flex-col flex-1">
-                      <div className="flex items-center gap-1 flex-wrap mt-1">
+                      {/* <div className="flex items-center gap-1 flex-wrap mt-1">
                         <span className="text-[12px] text-orange-500 font-bold">
                           {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.preco)}
                         </span>
-                      </div>
+                      </div> */}
                       <h3 className="text-[14px] text-gray-800 font-medium leading-tight mt-1 line-clamp-2">
-                        {product.nome}
+                        {product.nome}  • <span className="text-[12px] text-orange-500 font-bold">
+                          {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.preco)}
+                        </span>
                       </h3>
-                      <p className="text-[11px] text-gray-500 mt-1 line-clamp-2">{product.descricao}</p>
+                      <p className="text-[15px] text-gray-500 mt-1 line-clamp-2">{product.descricao}</p>
                     </div>
                   </div>
                 ))}
