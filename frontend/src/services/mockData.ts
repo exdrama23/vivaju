@@ -107,17 +107,16 @@ export const frutosdoMarImages = [
 
 // Hamburgueria
 export const hamburgueriaImages = [
-  "https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/03/06/13/11/burger-661706_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/03/05/19/37/appetite-1238459_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/03/05/19/08/burger-1238305_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/01/13/03/02/burger-1976198_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/29/05/04/fries-1867443_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/03/05/21/42/pizza-1239054_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/06/15/15/40/milkshake-809961_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/09/26/19/51/drink-462776_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/11/28/08/03/brownie-548591_1280.jpg",
+  "https://images.pexels.com/photos/15953047/pexels-photo-15953047.jpeg", // 0: Classic Burger
+  "https://images.pexels.com/photos/10771362/pexels-photo-10771362.jpeg", // 1: Bacon Lovers
+  "https://images.pexels.com/photos/15735255/pexels-photo-15735255.jpeg", // 2: Cheddar Melt
+  "https://images.pexels.com/photos/12336023/pexels-photo-12336023.jpeg", // 3: Veggie Burger
+  "https://images.pexels.com/photos/34407501/pexels-photo-34407501.jpeg", // 4: Double Monster
+  "https://images.pexels.com/photos/8299597/pexels-photo-8299597.jpeg", // 5: Batata Rustica
+  "https://images.pexels.com/photos/29392059/pexels-photo-29392059.jpeg", // 6: Onion Rings
+  "https://images.pexels.com/photos/19424569/pexels-photo-19424569.jpeg", // 7: Milkshake Morango
+  "https://images.pexels.com/photos/5860659/pexels-photo-5860659.jpeg", // 8: Refrigerante Lata
+  "https://images.pexels.com/photos/33674405/pexels-photo-33674405.jpeg"  // 9: Petit Gateau
 ];
 
 // Informática
