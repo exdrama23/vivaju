@@ -487,24 +487,7 @@ export function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-[var(--cream)] pb-8 md:pb-8">
       {/* Custom Header for Home */}
-      <div className="sticky top-0 z-50 bg-white border-b border-[var(--gray-border)] px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-1.5">
-          <MapPin className="text-[var(--primary)] w-5 h-5" />
-          <div>
-            <p className="text-[10px] text-[var(--gray-text)] leading-none mb-0.5">Entregar em</p>
-            <p className="text-sm font-extrabold text-[var(--black)]">Centro, Aracaju</p>
-          </div>
-          <ArrowRight className="w-3.5 h-3.5 text-[var(--primary)] rotate-90 ml-0.5" />
-        </div>
-        <div className="flex gap-2.5">
-          <button className="bg-[var(--primary-pale)] border-none rounded-xl w-9 h-9 flex items-center justify-center text-[var(--primary)]">
-            <Bell className="w-[18px] h-[18px]" />
-          </button>
-          <button className="bg-[var(--cream)] border-none rounded-xl w-9 h-9 flex items-center justify-center text-[var(--black)]">
-            <User className="w-[18px] h-[18px]" />
-          </button>
-        </div>
-      </div>
+      
 
       {/* Hero Section */}
       <section className="w-full">
@@ -548,9 +531,7 @@ export function Home() {
           linkText="Ver mais" 
           to="/sugestoes"
         />
-        <div className="px-4 overflow-x-auto pb-4 scrollbar-hide">
-          <SuggestionsSlider comercios={comercios.slice(0, 10)} />
-        </div>
+        <SuggestionsSlider comercios={comercios.slice(0, 10)} />
       </section>
 
       <div className="h-10" />
@@ -570,9 +551,7 @@ export function Home() {
           linkText="Ver tudo" 
           to="/culinaria"
         />
-        <div className="px-4 overflow-x-auto pb-4 scrollbar-hide">
-          <SuggestionsSlider comercios={restaurantesProximos} />
-        </div>
+        <SuggestionsSlider comercios={restaurantesProximos} />
       </section>
 
       <div className="h-12" />
@@ -586,7 +565,7 @@ export function Home() {
       <div className="h-12" />
 
       {/* Filtros Horizontais */}
-      <div className="px-4 py-6">
+      <div className="py-6">
         <RecommendedFilters 
           filtrosRecomendados={randomCategories}
           filtroAtual={filtroAtual}

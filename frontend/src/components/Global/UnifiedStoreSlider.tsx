@@ -55,7 +55,7 @@ export function UnifiedStoreSlider({ stores }: UnifiedStoreSliderProps) {
   if (!stores.length) return null;
 
   return (
-    <div className="relative w-full h-[50rem] overflow-hidden bg-gray-900">
+    <div className="relative w-full h-[35rem] overflow-hidden bg-gray-900">
       {stores.map((store, idx) => (
         <div
           key={store.id}

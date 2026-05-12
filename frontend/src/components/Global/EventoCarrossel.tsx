@@ -58,15 +58,16 @@ export function EventoCarrossel({ eventos, className = '', autoplayMs = 30000 }:
           key={ev.id}
           src={ev.imagem}
           alt={ev.nome}
-          className="absolute inset-0 w-full h-full object-cover blur-[1.5px]"
+          className="absolute inset-0 w-full h-full object-cover"
         />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+      <div className="absolute inset-0 bg-black/20 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10" />
 
       <div
         key={`content-${ev.id}`}
-        className={`relative z-10 p-7 sm:p-10 flex flex-col gap-3 transition-all duration-400
+        className={`relative z-20 p-7 sm:p-10 flex flex-col gap-3 transition-all duration-400
           ${state === 'out' ? 'opacity-0 translate-y-3' : 'opacity-100 translate-y-0'}`}
         style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }}
       >
@@ -80,10 +81,10 @@ export function EventoCarrossel({ eventos, className = '', autoplayMs = 30000 }:
         </div>
 
         <div>
-          <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-2" style={{ fontFamily: "'Georgia', serif" }}>
+          <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-2 drop-shadow-md" style={{ fontFamily: "'Georgia', serif" }}>
             {ev.nome}
           </h3>
-          <p className="text-xs sm:text-sm text-white/65 line-clamp-2 leading-relaxed max-w-lg">
+          <p className="text-xs sm:text-sm text-white/90 line-clamp-2 leading-relaxed max-w-lg drop-shadow-sm">
             {ev.descricao}
           </p>
         </div>

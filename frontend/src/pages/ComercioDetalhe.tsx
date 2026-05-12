@@ -351,48 +351,14 @@ export function ComercioDetalhe() {
               >
                 <ChevronLeft className="w-6 h-6" aria-hidden="true" />
               </button>
-              <div className="flex gap-3 items-center">
-                <button
-                  type="button"
-                  onClick={() => toggleFavorito(comercio.id)}
-                  aria-label={comercio.favoritada ? 'Remover favorito' : 'Favoritar'}
-                  className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white"
-                >
-                  <Heart className={`w-5 h-5 ${comercio.favoritada ? 'fill-red-500 text-red-500' : ''}`} aria-hidden="true" />
-                </button>
-                
-                <div className="relative flex items-center">
-                  {!searchExpanded ? (
-                    <button
-                      type="button"
-                      onClick={() => setSearchExpanded(true)}
-                      className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white"
-                      aria-label="Buscar"
-                    >
-                      <Search className="w-5 h-5" aria-hidden="true" />
-                    </button>
-                  ) : (
-                    <div className="flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-full pl-3 pr-2 h-10">
-                      <input
-                        type="text"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="Buscar..."
-                        className="bg-transparent text-white outline-none text-sm w-32 md:w-48 placeholder-white/70"
-                        autoFocus
-                      />
-                      <button
-                        type="button"
-                        onClick={() => { setSearchExpanded(false); setSearchTerm(''); }}
-                        className="p-1 rounded-full hover:bg-white/20 transition"
-                        aria-label="Fechar busca"
-                      >
-                        <X className="w-4 h-4 text-white" />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
+              <button
+                type="button"
+                onClick={() => toggleFavorito(comercio.id)}
+                aria-label={comercio.favoritada ? 'Remover favorito' : 'Favoritar'}
+                className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white"
+              >
+                <Heart className={`w-5 h-5 ${comercio.favoritada ? 'fill-red-500 text-red-500' : ''}`} aria-hidden="true" />
+              </button>
             </div>
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 -translate-y-7 z-20">
               <div className="w-28 h-28 lg:w-36 lg:h-36 bg-white rounded-full p-1.5 shadow-xl border-4 border-white">
@@ -449,7 +415,7 @@ export function ComercioDetalhe() {
               <button
                 type="button"
                 onClick={() => setIsReviewModalOpen(true)}
-                className="flex items-center gap-1 self-start lg:self-center shrink-0 px-3 py-1.5 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-50 transition"
+                className="flex items-center gap-1 self-start lg:self-center shrink-0 px-3 py-1.5 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-50 cursor-pointer transition"
                 aria-label="Avaliações do restaurante"
               >
                 <Star className="w-4 h-4 text-gray-800 fill-gray-800" aria-hidden="true" />
@@ -505,7 +471,40 @@ export function ComercioDetalhe() {
           </div>
 
           <div className="px-4 lg:px-8 mt-10 pb-20 lg:pb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Produtos</h2>
+            <div className="flex items-center justify-between gap-4 mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Produtos</h2>
+              <div className="relative flex items-center">
+                {!searchExpanded ? (
+                  <button
+                    type="button"
+                    onClick={() => setSearchExpanded(true)}
+                    className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-800 hover:bg-gray-300 transition duration-300 ease-out transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-gray-400 cursor-pointer"
+                    aria-label="Buscar"
+                  >
+                    <Search className="w-5 h-5" aria-hidden="true" />
+                  </button>
+                ) : (
+                  <div className="flex items-center gap-2 bg-gray-200 rounded-full pl-3 pr-2 h-10 animate-in scale-in-75 origin-right duration-300 ease-out">
+                    <input
+                      type="text"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      placeholder="Buscar..."
+                      className="bg-transparent text-gray-800 outline-none text-sm w-32 md:w-48 placeholder-gray-600"
+                      autoFocus
+                    />
+                    <button
+                      type="button"
+                      onClick={() => { setSearchExpanded(false); setSearchTerm(''); }}
+                      className="p-1 rounded-full hover:bg-gray-300 transition duration-300 ease-out transform hover:scale-110 active:scale-95"
+                      aria-label="Fechar busca"
+                    >
+                      <X className="w-4 h-4 text-gray-800" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
             {displayedProducts.length === 0 ? (
               <div className="p-12 text-center text-gray-500 bg-white rounded-2xl border border-gray-100">
                 Nenhum produto encontrado.
@@ -683,7 +682,7 @@ export function ComercioDetalhe() {
             />
           </div>
           <div className="flex gap-3">
-             <Button variant="ghost" className="flex-1 rounded-xl" onClick={() => setIsReportModalOpen(false)}>Cancelar</Button>
+             <Button variant="ghost" className="flex-1 rounded-xl bg-[#000000] text-white hover:text-white hover:bg-gray-800 cursor-pointer" onClick={() => setIsReportModalOpen(false)}>Cancelar</Button>
              <Button className="flex-1 rounded-xl bg-red-600 hover:bg-red-700 text-white" onClick={() => setIsReportModalOpen(false)}>Enviar</Button>
           </div>
         </div>
@@ -729,8 +728,8 @@ export function ComercioDetalhe() {
             />
           </div>
           <div className="flex gap-3">
-             <Button variant="ghost" className="flex-1 rounded-xl" onClick={() => setIsReviewModalOpen(false)}>Cancelar</Button>
-             <Button type="submit" className="flex-1 rounded-xl bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold">Publicar</Button>
+             <Button variant="ghost" className="flex-1 rounded-xl bg-[#000000] text-white hover:text-white hover:bg-gray-800 cursor-pointer" onClick={() => setIsReviewModalOpen(false)}>Cancelar</Button>
+             <Button type="submit" className="flex-1 rounded-xl bg-[#E8611A] hover:bg-yellow-500 text-white hover:text-gray-900 font-bold cursor-pointer">Publicar</Button>
           </div>
         </form>
       </Modal>

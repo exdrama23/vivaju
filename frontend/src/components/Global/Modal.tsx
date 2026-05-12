@@ -47,9 +47,9 @@ export function Modal({ isOpen, onClose, title, subtitle, children }: ModalProps
       aria-modal="true"
       role="dialog"
     >
-      <div className="w-screen h-screen bg-white p-4 md:p-8 rounded-none border-0 flex flex-col overflow-hidden shadow-2xl font-sans text-neutral-900">
+      <div className="w-full h-full bg-white p-4 md:p-8 rounded-none border-0 flex flex-col overflow-hidden shadow-2xl font-sans text-neutral-900">
 
-        {/* Header (inspirado no teste.tsx) */}
+        {/* Header */}
         <header className="flex items-center justify-between pb-4 md:pb-6 border-b border-neutral-200">
           <div className="flex items-center gap-4">
             <button onClick={onClose} className="text-black hover:text-black transition-colors md:hidden">
@@ -57,9 +57,6 @@ export function Modal({ isOpen, onClose, title, subtitle, children }: ModalProps
             </button>
 
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-[#F47521] rounded-xl flex items-center justify-center">
-                <div className="w-5 h-5 md:w-6 md:h-6 border-[3px] border-white rounded-full border-t-transparent transform rotate-45" />
-              </div>
               <div className="flex flex-col">
                 {title ? (
                   <div className="flex items-center gap-1">

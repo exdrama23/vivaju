@@ -37,7 +37,7 @@ export function SuggestionsSlider({ comercios }: SuggestionsSliderProps) {
         {/* Botão Scroll Esquerdo */}
         <button
           onClick={() => scrollFiltros('left')}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -ml-12 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[var(--primary-pale)] border border-[var(--gray-border)] hidden md:block"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[var(--primary-pale)] border border-[var(--gray-border)] hidden md:block"
           aria-label="Scroll left"
         >
           <ChevronLeft className="w-5 h-5 text-[var(--gray-text)]" />
@@ -80,7 +80,7 @@ export function SuggestionsSlider({ comercios }: SuggestionsSliderProps) {
         {/* Botão Scroll Direito */}
         <button
           onClick={() => scrollFiltros('right')}
-          className="absolute right-0 top-1/2 -translate-y-1/2 -mr-12 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[var(--primary-pale)] border border-[var(--gray-border)] hidden md:block"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[var(--primary-pale)] border border-[var(--gray-border)] hidden md:block"
           aria-label="Scroll right"
         >
           <ChevronRight className="w-5 h-5 text-[var(--gray-text)]" />

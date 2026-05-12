@@ -107,7 +107,7 @@ export function Layout() {
       <main 
         ref={mainRef}
         className={cn(
-          "flex-1 flex flex-col overflow-auto bg-[var(--cream)] pb-0 md:pb-0",
+          "flex-1 flex flex-col overflow-y-auto overflow-x-hidden bg-[var(--cream)] pb-0 md:pb-0",
           !isHome && "md:pt-13"
         )}
       >
