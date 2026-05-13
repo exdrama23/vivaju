@@ -1,16 +1,42 @@
 import { useState, type FormEvent } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/Global/Button';
-import { Input } from '@/components/Global/Input';
 import { apiRequest } from '@/services/api';
 import type { Usuario } from '@/types/global';
+import { 
+  User, 
+  Store, 
+  Mail, 
+  Lock, 
+  Phone, 
+  MapPin, 
+  Info, 
+  Briefcase, 
+  Car, 
+  Clock, 
+  ArrowLeft, 
+  Eye, 
+  EyeOff, 
+  Loader2,
+  ChevronRight,
+  MapPinned
+} from 'lucide-react';
 
 export function Cadastro() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { register } = useAuth();
+
+  const [tipo, setTipo] = useState<'cliente' | 'comerciante'>(location.state?.tipo || 'cliente');
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+
+  // Common fields
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [tipo, setTipo] = useState<'cliente' | 'comerciante'>('cliente');
   
   // Merchant specific fields
   const [descricao, setDescricao] = useState('');
@@ -26,13 +52,9 @@ export function Cadastro() {
     tempoPreco: ''
   });
 
-  const [error, setError] = useState('');
-
-  const { register } = useAuth();
-  const navigate = useNavigate();
-
   const handleCadastro = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     setError('');
 
     try {
@@ -69,8 +91,6 @@ export function Cadastro() {
         });
       }
 
-      // Em um fluxo real, poderíamos chamar o login da API logo após,
-      // mas para manter a compatibilidade com a UX atual (onde loga direto):
       const userData: Usuario = {
         id: Date.now().toString(),
         nome,
@@ -92,7 +112,6 @@ export function Cadastro() {
 
       register(userData);
       
-      // Auto-login no backend também
       const endpoint = tipo === 'comerciante' ? '/login/loja' : '/login/cliente';
       await apiRequest(endpoint, {
         method: 'POST',
@@ -103,159 +122,391 @@ export function Cadastro() {
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'Erro ao realizar o cadastro. Verifique os dados e tente novamente.';
       setError(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex-1 flex items-center justify-center p-4 sm:p-6 bg-gray-50 min-h-[calc(100vh-64px)] pb-32 md:pb-8">
-      <div className="w-full max-w-2xl bg-white p-6 sm:p-8 rounded-2xl shadow-sm border">
-        <h1 className="text-xl sm:text-2xl font-bold text-center mb-2">Criar Conta</h1>
-        <p className="text-gray-500 text-xs sm:text-base text-center mb-6">Junte-se ao VIVAJU e explore o melhor da região</p>
-        
-        {error && (
-          <div className="mb-4 p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100">
-            {error}
+    <div className="flex flex-col lg:flex-row w-full bg-[var(--cream)] font-sans selection:bg-white selection:text-[var(--primary)] min-h-screen">
+      
+      {/* ================= LADO ESQUERDO (BRANDING) ================= */}
+      <div 
+        className="hidden lg:flex w-[35%] min-h-screen p-12 flex-col justify-between relative overflow-hidden bg-[var(--secondary)] sticky top-0"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(45, 80, 22, 0.85), rgba(45, 80, 22, 0.95)), url(https://images.unsplash.com/photo-1578319114300-47863b469837?q=80&w=2070&auto=format&fit=crop)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="relative z-10">
+          <Link to="/" className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors font-bold mb-12 group">
+            <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
+            Voltar ao Início
+          </Link>
+          
+          <div className="space-y-6">
+            <h1 className="text-5xl font-black text-white leading-tight" style={{ fontFamily: "'Georgia', serif" }}>
+              Junte-se à <br />
+              nossa <span className="text-[var(--primary)]">comunidade</span>.
+            </h1>
+            <p className="text-white/70 text-lg leading-relaxed max-w-sm">
+              Seja como visitante ou comerciante, o VIVAJU é o seu portal para o que Aracaju tem de melhor.
+            </p>
           </div>
-        )}
+        </div>
 
-        <form onSubmit={handleCadastro} className="space-y-4 sm:space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-1.5 text-gray-700">Tipo de conta</label>
-              <div className="flex gap-2 p-1 bg-gray-100 rounded-xl">
-                <button
-                  type="button"
-                  onClick={() => setTipo('cliente')}
-                  className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
-                    tipo === 'cliente' ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  Visitante
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setTipo('comerciante')}
-                  className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
-                    tipo === 'comerciante' ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  Comerciante
-                </button>
-              </div>
+        <div className="relative z-10 p-6 bg-white/5 backdrop-blur-md rounded-[24px] border border-white/10">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-[var(--primary)] flex items-center justify-center text-white">
+              <MapPinned className="w-6 h-6" />
             </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-1.5 text-gray-700">Nome {tipo === 'comerciante' ? 'da Loja' : 'Completo'}</label>
-              <Input value={nome} onChange={e => setNome(e.target.value)} placeholder={tipo === 'comerciante' ? "Ex: Pastelaria do Ju" : "Como você quer ser chamado?"} required className="h-11" />
+            <div>
+              <p className="text-white font-bold text-sm">Centro Histórico</p>
+              <p className="text-white/60 text-xs">Aracaju, Sergipe</p>
             </div>
-
-            <div className="md:col-span-1">
-              <label className="block text-sm font-medium mb-1.5 text-gray-700">E-mail</label>
-              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="seu@email.com" required className="h-11" />
-            </div>
-
-            <div className="md:col-span-1">
-              <label className="block text-sm font-medium mb-1.5 text-gray-700">Senha</label>
-              <Input type="password" value={senha} onChange={e => setSenha(e.target.value)} placeholder="Mínimo 8 caracteres" required className="h-11" />
-            </div>
-
-            {tipo === 'comerciante' && (
-              <>
-                <div className="md:col-span-2 pt-4 border-t mt-2">
-                  <h3 className="text-base sm:text-lg font-semibold mb-4">Informações do Comércio</h3>
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-1.5 text-gray-700">Descrição</label>
-                  <textarea 
-                    value={descricao} 
-                    onChange={e => setDescricao(e.target.value)} 
-                    placeholder="Conte um pouco sobre sua loja e o que você oferece..." 
-                    className="w-full p-3 text-sm border-[#dadce0] border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none min-h-24 sm:min-h-32 transition-shadow"
-                    required 
-                  />
-                </div>
-
-                <div className="md:col-span-1">
-                  <label className="block text-sm font-medium mb-1.5 text-gray-700">Telefone de contato</label>
-                  <Input value={telefoneContato} onChange={e => setTelefoneContato(e.target.value)} placeholder="(XX) XXXXX-XXXX" required className="h-11" />
-                </div>
-
-                <div className="md:col-span-1 flex items-center gap-2 mt-2 sm:mt-8">
-                  <input 
-                    type="checkbox" 
-                    id="vendedorAmbulante" 
-                    checked={vendedorAmbulante} 
-                    onChange={e => setVendedorAmbulante(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label htmlFor="vendedorAmbulante" className="text-sm font-medium text-gray-700 cursor-pointer">Sou vendedor ambulante</label>
-                </div>
-
-                <div className="md:col-span-1 flex items-center gap-2">
-                  <input 
-                    type="checkbox" 
-                    id="estacionamento" 
-                    checked={estacionamento} 
-                    onChange={e => setEstacionamento(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label htmlFor="estacionamento" className="text-sm font-medium text-gray-700 cursor-pointer">Sou estacionamento</label>
-                </div>
-
-                {estacionamento && (
-                  <div className="md:col-span-2 grid grid-cols-2 gap-4 p-4 bg-blue-50 rounded-xl">
-                    <div>
-                      <label className="block text-xs font-bold uppercase text-blue-600 mb-1">Preço (R$)</label>
-                      <Input value={estacionamentoInfo.preco} onChange={e => setEstacionamentoInfo({...estacionamentoInfo, preco: e.target.value})} placeholder="0.00" className="h-10 bg-white" />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold uppercase text-blue-600 mb-1">Tempo (ex: por hora)</label>
-                      <Input value={estacionamentoInfo.tempoPreco} onChange={e => setEstacionamentoInfo({...estacionamentoInfo, tempoPreco: e.target.value})} placeholder="por hora" className="h-10 bg-white" />
-                    </div>
-                  </div>
-                )}
-
-                {!vendedorAmbulante && (
-                  <>
-                    <div className="md:col-span-2 pt-4 border-t mt-2">
-                      <h3 className="text-base sm:text-lg font-semibold mb-4">Localização da Loja</h3>
-                    </div>
-
-                    <div className="md:col-span-1">
-                      <label className="block text-sm font-medium mb-1.5 text-gray-700">CEP</label>
-                      <Input value={cep} onChange={e => setCep(e.target.value)} placeholder="00000-000" required={!vendedorAmbulante} className="h-11" />
-                    </div>
-
-                    <div className="md:col-span-1">
-                      <label className="block text-sm font-medium mb-1.5 text-gray-700">Logradouro</label>
-                      <Input value={logradouro} onChange={e => setLogradouro(e.target.value)} placeholder="Rua, Avenida..." required={!vendedorAmbulante} className="h-11" />
-                    </div>
-
-                    <div className="md:col-span-1">
-                      <label className="block text-sm font-medium mb-1.5 text-gray-700">Número</label>
-                      <Input value={numEndereco} onChange={e => setNumEndereco(e.target.value)} placeholder="123" required={!vendedorAmbulante} className="h-11" />
-                    </div>
-
-                    <div className="md:col-span-1">
-                      <label className="block text-sm font-medium mb-1.5 text-gray-700">Complemento</label>
-                      <Input value={complemento} onChange={e => setComplemento(e.target.value)} placeholder="Sala, Apto, etc." className="h-11" />
-                    </div>
-                  </>
-                )}
-              </>
-            )}
           </div>
-
-          <Button type="submit" className="w-full h-12 text-base font-bold mt-4">
-            {tipo === 'comerciante' ? 'Cadastrar Minha Loja' : 'Criar Minha Conta'}
-          </Button>
-        </form>
-        
-        <div className="mt-8 text-center text-sm text-gray-600 border-t pt-6">
-          Já tem conta? <Link to="/login" className="text-blue-600 font-bold hover:underline">Entrar no VIVAJU</Link>
         </div>
       </div>
+
+      {/* ================= LADO DIREITO (FORMULÁRIO) ================= */}
+      <div className="flex-1 flex flex-col justify-center px-6 sm:px-12 md:px-20 lg:px-24 bg-white relative py-20 lg:py-12">
+        
+        <div className={`w-full ${tipo === 'comerciante' ? 'max-w-2xl' : 'max-w-md'} mx-auto animate-in fade-in slide-in-from-bottom-4 duration-700`}>
+          
+          <div className="mb-8 text-center lg:text-left">
+            <h2 className="text-3xl font-black tracking-tight text-[var(--black)] mb-2" style={{ fontFamily: "'Georgia', serif" }}>Criar Conta</h2>
+            <p className="text-[var(--gray-text)] text-sm font-medium">Preencha os dados abaixo para começar sua jornada.</p>
+          </div>
+
+          <div className="bg-white rounded-[32px]">
+            {error && (
+              <div className="mb-6 p-4 bg-rose-50 text-rose-600 text-xs font-bold rounded-2xl border border-rose-100 flex items-center gap-3 animate-shake">
+                <div className="w-2 h-2 rounded-full bg-rose-600 animate-pulse shrink-0" />
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={handleCadastro} className="space-y-6">
+              
+              {/* Seletor de Tipo */}
+              <div className="space-y-2 group">
+                <label className="block text-[11px] font-black uppercase tracking-widest text-[var(--gray-text)] ml-1 group-focus-within:text-[var(--primary)] transition-colors">
+                  Tipo de Conta
+                </label>
+                <div className="flex gap-2 p-1.5 bg-[var(--cream)] rounded-2xl border border-[var(--gray-border)]">
+                  <button
+                    type="button"
+                    onClick={() => setTipo('cliente')}
+                    className={`flex-1 flex items-center justify-center gap-2 py-3.5 text-xs font-black rounded-xl transition-all ${
+                      tipo === 'cliente' ? 'bg-white shadow-lg text-[var(--primary)]' : 'text-[var(--gray-text)] hover:bg-white/50'
+                    }`}
+                  >
+                    <User className="w-4 h-4" />
+                    Visitante
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setTipo('comerciante')}
+                    className={`flex-1 flex items-center justify-center gap-2 py-3.5 text-xs font-black rounded-xl transition-all ${
+                      tipo === 'comerciante' ? 'bg-white shadow-lg text-[var(--primary)]' : 'text-[var(--gray-text)] hover:bg-white/50'
+                    }`}
+                  >
+                    <Store className="w-4 h-4" />
+                    Comerciante
+                  </button>
+                </div>
+              </div>
+
+              <div className={`grid grid-cols-1 ${tipo === 'comerciante' ? 'md:grid-cols-2' : ''} gap-6`}>
+                {/* Nome */}
+                <div className={`space-y-2 group ${tipo === 'comerciante' ? 'md:col-span-2' : ''}`}>
+                  <label className="block text-[11px] font-black uppercase tracking-widest text-[var(--gray-text)] ml-1 group-focus-within:text-[var(--primary)] transition-colors">
+                    {tipo === 'comerciante' ? 'Nome da Loja' : 'Nome Completo'}
+                  </label>
+                  <div className="relative">
+                    {tipo === 'comerciante' ? (
+                      <Store className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--gray-text)] transition-colors group-focus-within:text-[var(--primary)]" />
+                    ) : (
+                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--gray-text)] transition-colors group-focus-within:text-[var(--primary)]" />
+                    )}
+                    <input
+                      type="text"
+                      required
+                      value={nome}
+                      onChange={(e) => setNome(e.target.value)}
+                      placeholder={tipo === 'comerciante' ? "Ex: Pastelaria do Ju" : "Seu nome completo"}
+                      className="w-full pl-12 pr-4 py-3 h-14 bg-white border border-[var(--gray-border)] rounded-2xl text-base text-[var(--black)] placeholder:text-[var(--gray-text)]/50 transition-all duration-200 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary)]/10 hover:border-[var(--gray-text)]/30 disabled:opacity-50 font-medium"
+                      disabled={loading}
+                    />
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="space-y-2 group">
+                  <label className="block text-[11px] font-black uppercase tracking-widest text-[var(--gray-text)] ml-1 group-focus-within:text-[var(--primary)] transition-colors">
+                    E-mail
+                  </label>
+                  <div className="relative">
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--gray-text)] transition-colors group-focus-within:text-[var(--primary)]" />
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="seu@email.com"
+                      className="w-full pl-12 pr-4 py-3 h-14 bg-white border border-[var(--gray-border)] rounded-2xl text-base text-[var(--black)] placeholder:text-[var(--gray-text)]/50 transition-all duration-200 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary)]/10 hover:border-[var(--gray-text)]/30 disabled:opacity-50 font-medium"
+                      disabled={loading}
+                    />
+                  </div>
+                </div>
+
+                {/* Senha */}
+                <div className="space-y-2 group">
+                  <label className="block text-[11px] font-black uppercase tracking-widest text-[var(--gray-text)] ml-1 group-focus-within:text-[var(--primary)] transition-colors">
+                    Senha
+                  </label>
+                  <div className="relative">
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--gray-text)] transition-colors group-focus-within:text-[var(--primary)]" />
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      required
+                      value={senha}
+                      onChange={(e) => setSenha(e.target.value)}
+                      placeholder="Mínimo 8 caracteres"
+                      className="w-full pl-12 pr-12 py-3 h-14 bg-white border border-[var(--gray-border)] rounded-2xl text-base text-[var(--black)] placeholder:text-[var(--gray-text)]/50 transition-all duration-200 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary)]/10 hover:border-[var(--gray-text)]/30 disabled:opacity-50 font-medium"
+                      disabled={loading}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--gray-text)] hover:text-[var(--black)] transition-colors outline-none rounded-sm cursor-pointer"
+                    >
+                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    </button>
+                  </div>
+                </div>
+
+                {tipo === 'comerciante' && (
+                  <>
+                    <div className="md:col-span-2 pt-8 border-t border-[var(--gray-border)] mt-4">
+                      <div className="flex items-center gap-2 mb-6">
+                        <Briefcase className="w-5 h-5 text-[var(--primary)]" />
+                        <h3 className="text-xl font-bold text-[var(--black)]" style={{ fontFamily: "'Georgia', serif" }}>Informações do Comércio</h3>
+                      </div>
+                    </div>
+
+                    {/* Descrição */}
+                    <div className="md:col-span-2 space-y-2 group">
+                      <label className="block text-[11px] font-black uppercase tracking-widest text-[var(--gray-text)] ml-1 group-focus-within:text-[var(--primary)] transition-colors">
+                        Descrição do Negócio
+                      </label>
+                      <div className="relative">
+                        <Info className="absolute left-4 top-4 w-5 h-5 text-[var(--gray-text)] transition-colors group-focus-within:text-[var(--primary)]" />
+                        <textarea
+                          required
+                          value={descricao}
+                          onChange={(e) => setDescricao(e.target.value)}
+                          placeholder="Conte um pouco sobre sua loja e o que você oferece..."
+                          className="w-full pl-12 pr-4 py-4 min-h-[120px] bg-white border border-[var(--gray-border)] rounded-2xl text-base text-[var(--black)] placeholder:text-[var(--gray-text)]/50 transition-all duration-200 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary)]/10 hover:border-[var(--gray-text)]/30 disabled:opacity-50 font-medium resize-none"
+                          disabled={loading}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Telefone */}
+                    <div className="space-y-2 group">
+                      <label className="block text-[11px] font-black uppercase tracking-widest text-[var(--gray-text)] ml-1 group-focus-within:text-[var(--primary)] transition-colors">
+                        Telefone de Contato
+                      </label>
+                      <div className="relative">
+                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--gray-text)] transition-colors group-focus-within:text-[var(--primary)]" />
+                        <input
+                          type="tel"
+                          required
+                          value={telefoneContato}
+                          onChange={(e) => setTelefoneContato(e.target.value)}
+                          placeholder="(79) 99999-9999"
+                          className="w-full pl-12 pr-4 py-3 h-14 bg-white border border-[var(--gray-border)] rounded-2xl text-base text-[var(--black)] placeholder:text-[var(--gray-text)]/50 transition-all duration-200 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary)]/10 hover:border-[var(--gray-text)]/30 disabled:opacity-50 font-medium"
+                          disabled={loading}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Checkboxes */}
+                    <div className="flex flex-col gap-4 justify-center">
+                      <label className="flex items-center gap-3 cursor-pointer group/check">
+                        <div className="relative">
+                          <input
+                            type="checkbox"
+                            checked={vendedorAmbulante}
+                            onChange={(e) => setVendedorAmbulante(e.target.checked)}
+                            className="peer sr-only"
+                          />
+                          <div className="w-6 h-6 border-2 border-[var(--gray-border)] rounded-lg transition-all peer-checked:bg-[var(--primary)] peer-checked:border-[var(--primary)] group-hover/check:border-[var(--primary)]" />
+                          <ChevronRight className="absolute inset-0 m-auto w-4 h-4 text-white scale-0 transition-transform peer-checked:scale-100" />
+                        </div>
+                        <span className="text-sm font-bold text-[var(--gray-text)] group-hover/check:text-[var(--black)] transition-colors">Sou vendedor ambulante</span>
+                      </label>
+
+                      <label className="flex items-center gap-3 cursor-pointer group/check">
+                        <div className="relative">
+                          <input
+                            type="checkbox"
+                            checked={estacionamento}
+                            onChange={(e) => setEstacionamento(e.target.checked)}
+                            className="peer sr-only"
+                          />
+                          <div className="w-6 h-6 border-2 border-[var(--gray-border)] rounded-lg transition-all peer-checked:bg-[var(--secondary)] peer-checked:border-[var(--secondary)] group-hover/check:border-[var(--secondary)]" />
+                          <ChevronRight className="absolute inset-0 m-auto w-4 h-4 text-white scale-0 transition-transform peer-checked:scale-100" />
+                        </div>
+                        <span className="text-sm font-bold text-[var(--gray-text)] group-hover/check:text-[var(--black)] transition-colors">Possuo estacionamento</span>
+                      </label>
+                    </div>
+
+                    {/* Estacionamento Info */}
+                    {estacionamento && (
+                      <div className="md:col-span-2 grid grid-cols-2 gap-4 p-6 bg-[var(--secondary-pale)] rounded-3xl border border-[var(--secondary-light)]/10 animate-in zoom-in-95 duration-300">
+                        <div className="space-y-2 group">
+                          <label className="block text-[10px] font-black uppercase tracking-widest text-[var(--secondary)] ml-1">Preço (R$)</label>
+                          <div className="relative">
+                            <input
+                              type="text"
+                              value={estacionamentoInfo.preco}
+                              onChange={(e) => setEstacionamentoInfo({...estacionamentoInfo, preco: e.target.value})}
+                              placeholder="0,00"
+                              className="w-full px-4 py-3 h-12 bg-white border border-[var(--secondary-light)]/20 rounded-xl text-sm font-bold text-[var(--secondary)] outline-none focus:ring-2 focus:ring-[var(--secondary)]/20"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2 group">
+                          <label className="block text-[10px] font-black uppercase tracking-widest text-[var(--secondary)] ml-1">Período</label>
+                          <div className="relative">
+                            <Clock className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--secondary)]/40" />
+                            <input
+                              type="text"
+                              value={estacionamentoInfo.tempoPreco}
+                              onChange={(e) => setEstacionamentoInfo({...estacionamentoInfo, tempoPreco: e.target.value})}
+                              placeholder="ex: por hora"
+                              className="w-full px-4 pr-10 py-3 h-12 bg-white border border-[var(--secondary-light)]/20 rounded-xl text-sm font-bold text-[var(--secondary)] outline-none focus:ring-2 focus:ring-[var(--secondary)]/20"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {!vendedorAmbulante && (
+                      <>
+                        <div className="md:col-span-2 pt-8 border-t border-[var(--gray-border)] mt-4">
+                          <div className="flex items-center gap-2 mb-6">
+                            <MapPin className="w-5 h-5 text-[var(--primary)]" />
+                            <h3 className="text-xl font-bold text-[var(--black)]" style={{ fontFamily: "'Georgia', serif" }}>Localização</h3>
+                          </div>
+                        </div>
+
+                        {/* CEP */}
+                        <div className="space-y-2 group">
+                          <label className="block text-[11px] font-black uppercase tracking-widest text-[var(--gray-text)] ml-1 group-focus-within:text-[var(--primary)] transition-colors">
+                            CEP
+                          </label>
+                          <input
+                            type="text"
+                            required={!vendedorAmbulante}
+                            value={cep}
+                            onChange={(e) => setCep(e.target.value)}
+                            placeholder="00000-000"
+                            className="w-full px-4 py-3 h-14 bg-white border border-[var(--gray-border)] rounded-2xl text-base text-[var(--black)] placeholder:text-[var(--gray-text)]/50 transition-all duration-200 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary)]/10 hover:border-[var(--gray-text)]/30 disabled:opacity-50 font-medium"
+                          />
+                        </div>
+
+                        {/* Logradouro */}
+                        <div className="space-y-2 group">
+                          <label className="block text-[11px] font-black uppercase tracking-widest text-[var(--gray-text)] ml-1 group-focus-within:text-[var(--primary)] transition-colors">
+                            Logradouro
+                          </label>
+                          <input
+                            type="text"
+                            required={!vendedorAmbulante}
+                            value={logradouro}
+                            onChange={(e) => setLogradouro(e.target.value)}
+                            placeholder="Rua, Avenida..."
+                            className="w-full px-4 py-3 h-14 bg-white border border-[var(--gray-border)] rounded-2xl text-base text-[var(--black)] placeholder:text-[var(--gray-text)]/50 transition-all duration-200 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary)]/10 hover:border-[var(--gray-text)]/30 disabled:opacity-50 font-medium"
+                          />
+                        </div>
+
+                        {/* Número */}
+                        <div className="space-y-2 group">
+                          <label className="block text-[11px] font-black uppercase tracking-widest text-[var(--gray-text)] ml-1 group-focus-within:text-[var(--primary)] transition-colors">
+                            Número
+                          </label>
+                          <input
+                            type="text"
+                            required={!vendedorAmbulante}
+                            value={numEndereco}
+                            onChange={(e) => setNumEndereco(e.target.value)}
+                            placeholder="123"
+                            className="w-full px-4 py-3 h-14 bg-white border border-[var(--gray-border)] rounded-2xl text-base text-[var(--black)] placeholder:text-[var(--gray-text)]/50 transition-all duration-200 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary)]/10 hover:border-[var(--gray-text)]/30 disabled:opacity-50 font-medium"
+                          />
+                        </div>
+
+                        {/* Complemento */}
+                        <div className="space-y-2 group">
+                          <label className="block text-[11px] font-black uppercase tracking-widest text-[var(--gray-text)] ml-1 group-focus-within:text-[var(--primary)] transition-colors">
+                            Complemento
+                          </label>
+                          <input
+                            type="text"
+                            value={complemento}
+                            onChange={(e) => setComplemento(e.target.value)}
+                            placeholder="Sala, Apto, etc."
+                            className="w-full px-4 py-3 h-14 bg-white border border-[var(--gray-border)] rounded-2xl text-base text-[var(--black)] placeholder:text-[var(--gray-text)]/50 transition-all duration-200 outline-none focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary)]/10 hover:border-[var(--gray-text)]/30 disabled:opacity-50 font-medium"
+                          />
+                        </div>
+                      </>
+                    )}
+                  </>
+                )}
+              </div>
+
+              {/* Main CTA */}
+              <div className="pt-6">
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full h-14 bg-[var(--primary)] hover:bg-[var(--primary-dark)] text-white rounded-2xl text-sm font-black uppercase tracking-widest shadow-lg shadow-[var(--primary)]/20 transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Processando...</span>
+                    </>
+                  ) : (
+                    tipo === 'comerciante' ? 'Cadastrar Minha Loja' : 'Criar Minha Conta'
+                  )}
+                </Button>
+              </div>
+            </form>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-[var(--gray-border)] text-center pb-12">
+            <p className="text-sm text-[var(--gray-text)] font-medium">
+              Já tem conta no VIVAJU? {' '}
+              <Link to="/login" className="text-[var(--primary)] font-black uppercase tracking-widest text-xs hover:underline ml-1">
+                Fazer Login
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-4px); }
+          75% { transform: translateX(4px); }
+        }
+        .animate-shake { animation: shake 0.4s ease-in-out; }
+      `}</style>
     </div>
   );
 }

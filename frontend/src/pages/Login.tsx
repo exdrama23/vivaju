@@ -198,10 +198,10 @@ export function Login() {
           <div className="-mt-4 pt-4 border-t border-[var(--gray-border)] text-center space-y-6 pb-12">
             <p className="text-xs text-[var(--gray-text)] font-medium">Ainda não faz parte do VIVAJU?</p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link to="/cadastro" className="flex-1 flex items-center justify-center py-3.5 px-4 rounded-xl border-2 border-[var(--primary)] text-[var(--primary)] font-black text-[10px] uppercase tracking-widest hover:bg-[var(--primary-pale)] transition-colors">
+              <Link to="/cadastro" state={{ tipo: 'cliente' }} className="flex-1 flex items-center justify-center py-3.5 px-4 rounded-xl border-2 border-[var(--primary)] text-[var(--primary)] font-black text-[10px] uppercase tracking-widest hover:bg-[var(--primary-pale)] transition-colors">
                 Criar conta Visitante
               </Link>
-              <Link to="/cadastro" className="flex-1 flex items-center justify-center py-3.5 px-4 rounded-xl bg-[var(--secondary-pale)] text-[var(--secondary)] font-black text-[10px] uppercase tracking-widest hover:bg-[var(--secondary)] hover:text-white transition-all">
+              <Link to="/cadastro" state={{ tipo: 'comerciante' }} className="flex-1 flex items-center justify-center py-3.5 px-4 rounded-xl bg-[var(--secondary-pale)] text-[var(--secondary)] font-black text-[10px] uppercase tracking-widest hover:bg-[var(--secondary)] hover:text-white transition-all">
                 Sou Comerciante
               </Link>
             </div>

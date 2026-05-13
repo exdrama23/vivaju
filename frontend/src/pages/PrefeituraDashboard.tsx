@@ -1,44 +1,40 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useData } from '@/context/DataContext';
 import { 
   BarChart3, 
   Users, 
   Store, 
   AlertTriangle, 
-  Map as MapIcon, 
   TrendingUp, 
   TrendingDown, 
   Car,
   Search,
-  ChevronRight
+  ChevronRight,
+  ShieldCheck,
+  LayoutDashboard,
+  FileText,
+  Bell,
+  LogOut,
+  MapPinned,
+  Info,
+  Clock,
+  Menu,
+  X,
+  ChevronLeft
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/Global/Card';
 import { MapContainer } from '@/components/Global/MapContainer';
-import { Circle, Polyline, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Circle, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Button } from '@/components/Global/Button';
-import { Input } from '@/components/Global/Input';
+import { Link } from 'react-router-dom';
 
-// Mock data for Prefeitura
 const mockDenuncias = [
-  { id: 1, loja: 'Pastelaria Central', motivo: 'Obstrução de calçada', data: '2026-03-22', status: 'pendente' },
-  { id: 2, loja: 'Loja do João', motivo: 'Som alto após as 22h', data: '2026-03-21', status: 'resolvido' },
-  { id: 3, loja: 'Ambulante Sem Registro', motivo: 'Venda em local proibido', data: '2026-03-20', status: 'em análise' },
-  { id: 4, loja: 'Bar da Orla', motivo: 'Falta de licença sanitária', data: '2026-03-19', status: 'pendente' },
+  { id: 1, loja: 'Pastelaria Central', motivo: 'Obstrução de calçada', data: '22 Mar, 2026', status: 'pendente' },
+  { id: 2, loja: 'Loja do João', motivo: 'Som alto após as 22h', data: '21 Mar, 2026', status: 'resolvido' },
+  { id: 3, loja: 'Ambulante Sem Registro', motivo: 'Venda em local proibido', data: '20 Mar, 2026', status: 'em análise' },
+  { id: 4, loja: 'Bar da Orla', motivo: 'Falta de licença sanitária', data: '19 Mar, 2026', status: 'pendente' },
 ];
 
-const topVendas = [
-  { nome: 'Supermercado G.Barbosa', vendas: 'R$ 450k', crescimento: '+12%' },
-  { nome: 'Farmácia Pague Menos', vendas: 'R$ 280k', crescimento: '+5%' },
-  { nome: 'Riachuelo Centro', vendas: 'R$ 210k', crescimento: '-2%' },
-];
-
-const zonasFaltaEstacionamento = [
-  { zona: 'Calçadão da João Pessoa', nivel: 'Crítico', cor: 'bg-red-500' },
-  { zona: 'Praça Fausto Cardoso', nivel: 'Alto', cor: 'bg-orange-500' },
-  { zona: 'Mercado Municipal', nivel: 'Médio', cor: 'bg-yellow-500' },
-];
-
-// Mock heatmap data (points with intensity)
 const heatmapPoints = [
   { pos: [-10.9125, -37.0520] as [number, number], intensity: 500, label: 'Fluxo Crítico' },
   { pos: [-10.9105, -37.0503] as [number, number], intensity: 300, label: 'Fluxo Alto' },
@@ -46,425 +42,508 @@ const heatmapPoints = [
 ];
 
 export function PrefeituraDashboard() {
-  const { comercios, estacionamentos } = useData();
+  const { comercios } = useData();
   const [activeTab, setActiveTab] = useState<'geral' | 'mapa' | 'denuncias'>('geral');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   const totalLojas = comercios.length;
-  const lojasAbertas = comercios.filter(c => c.statusAberto).length;
+
+  const NavButtons = ({ isMobile = false }) => (
+    <>
+      <button 
+        onClick={() => { setActiveTab('geral'); if(isMobile) setMobileMenuOpen(false); }}
+        className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all font-bold text-sm ${
+          activeTab === 'geral' 
+          ? 'bg-white shadow-xl text-[var(--secondary)]' 
+          : 'text-white/60 hover:text-white hover:bg-white/5'
+        } ${sidebarCollapsed && !isMobile ? 'justify-center px-0' : ''}`}
+        title="Dashboard"
+      >
+        <LayoutDashboard className="w-5 h-5 shrink-0" />
+        {(!sidebarCollapsed || isMobile) && <span className="truncate">Dashboard</span>}
+      </button>
+      <button 
+        onClick={() => { setActiveTab('mapa'); if(isMobile) setMobileMenuOpen(false); }}
+        className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all font-bold text-sm ${
+          activeTab === 'mapa' 
+          ? 'bg-white shadow-xl text-[var(--secondary)]' 
+          : 'text-white/60 hover:text-white hover:bg-white/5'
+        } ${sidebarCollapsed && !isMobile ? 'justify-center px-0' : ''}`}
+        title="Mapa de Calor"
+      >
+        <MapPinned className="w-5 h-5 shrink-0" />
+        {(!sidebarCollapsed || isMobile) && <span className="truncate">Mapa de Calor</span>}
+      </button>
+      <button 
+        onClick={() => { setActiveTab('denuncias'); if(isMobile) setMobileMenuOpen(false); }}
+        className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all font-bold text-sm ${
+          activeTab === 'denuncias' 
+          ? 'bg-white shadow-xl text-[var(--secondary)]' 
+          : 'text-white/60 hover:text-white hover:bg-white/5'
+        } ${sidebarCollapsed && !isMobile ? 'justify-center px-0' : ''}`}
+        title="Denúncias"
+      >
+        <AlertTriangle className="w-5 h-5 shrink-0" />
+        {(!sidebarCollapsed || isMobile) && <span className="truncate">Denúncias</span>}
+      </button>
+    </>
+  );
 
   return (
-    <div className="flex-1 bg-gray-50 min-h-screen pb-32 md:pb-8">
-      {/* Header Gestão */}
-      <div className="bg-white border-b sticky top-0 z-30">
-        <div className="container mx-auto px-4 sm:px-6 py-3 md:py-4 md:h-20 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-2 rounded-xl text-white shadow-lg shadow-blue-200 shrink-0">
-              <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6" />
+    <div className="flex w-full h-screen bg-[var(--cream)] font-sans selection:bg-white selection:text-[var(--primary)] overflow-hidden">
+      
+      {/* ================= BARRA LATERAL (SIDEBAR - DESKTOP) ================= */}
+      <aside 
+        className={`hidden lg:flex flex-col bg-[var(--secondary)] py-8 sticky top-0 h-screen justify-between shrink-0 border-r border-white/5 shadow-2xl transition-all duration-500 ease-in-out relative z-[110] ${
+          sidebarCollapsed ? 'w-20 px-3' : 'w-72 px-6'
+        }`}
+      >
+        {/* Toggle Button */}
+        <button 
+          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+          className="absolute -right-4 top-10 w-8 h-8 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-[120]"
+        >
+          <ChevronLeft className={`w-5 h-5 transition-transform duration-500 ${sidebarCollapsed ? 'rotate-180' : ''}`} />
+        </button>
+
+        <div className="space-y-12">
+          {/* Logo / Título */}
+          <div className={`space-y-2 ${sidebarCollapsed ? 'flex flex-col items-center' : ''}`}>
+            <div className={`flex items-center gap-4 ${sidebarCollapsed ? 'justify-center' : ''}`}>
+              <div className="p-3 bg-[var(--primary)] rounded-[20px] text-white shadow-lg shadow-[var(--primary)]/30 shrink-0">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              {!sidebarCollapsed && (
+                <h1 className="text-xl font-black text-white leading-tight animate-in fade-in duration-500" style={{ fontFamily: "'Georgia', serif" }}>
+                  Gestão <br /> <span className="text-[var(--primary)]">Urbana</span>
+                </h1>
+              )}
             </div>
-            <h1 className="text-base sm:text-xl font-black text-gray-900 tracking-tight line-clamp-1">Portal de Gestão Urbana</h1>
+            {!sidebarCollapsed && <p className="text-white/40 text-[9px] font-black uppercase tracking-widest ml-1 animate-in fade-in">Portal do Gestor</p>}
           </div>
-          <div className="flex bg-gray-100 p-1 rounded-xl overflow-x-auto no-scrollbar whitespace-nowrap scrollbar-hide">
-            <button 
-              onClick={() => setActiveTab('geral')}
-              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-sm font-bold transition-all ${activeTab === 'geral' ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
-            >
-              Dashboard
-            </button>
-            <button 
-              onClick={() => setActiveTab('mapa')}
-              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-sm font-bold transition-all ${activeTab === 'mapa' ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
-            >
-              Mapa de Calor
-            </button>
-            <button 
-              onClick={() => setActiveTab('denuncias')}
-              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-sm font-bold transition-all ${activeTab === 'denuncias' ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
-            >
-              Denúncias
-            </button>
-          </div>
+
+          {/* Menu */}
+          <nav className="space-y-2">
+            <NavButtons />
+            <div className={`pt-8 border-t border-white/10 mt-6 ${sidebarCollapsed ? 'flex justify-center' : ''}`}>
+              {!sidebarCollapsed && <p className="text-[9px] font-black uppercase tracking-widest text-white/30 px-6 mb-4">Relatórios</p>}
+              <button 
+                className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-white/60 hover:text-white hover:bg-white/5 transition-all font-bold text-sm ${sidebarCollapsed ? 'justify-center px-0' : ''}`}
+                title="Exportar Dados"
+              >
+                <FileText className="w-5 h-5 shrink-0" />
+                {!sidebarCollapsed && <span className="truncate">Exportar Dados</span>}
+              </button>
+            </div>
+          </nav>
         </div>
+
+        {/* Footer Sidebar */}
+        <div className="space-y-4">
+          <Link 
+            to="/" 
+            className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl bg-white/5 text-white/60 hover:text-white transition-all font-bold text-sm ${sidebarCollapsed ? 'justify-center px-0' : ''}`}
+            title="Sair do Portal"
+          >
+            <LogOut className="w-5 h-5 shrink-0" />
+            {!sidebarCollapsed && <span className="truncate">Sair do Portal</span>}
+          </Link>
+        </div>
+      </aside>
+
+      {/* ================= MOBILE HEADER ================= */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-20 bg-[var(--secondary)] z-[100] flex items-center justify-between px-6 border-b border-white/5">
+        <div className="flex items-center gap-3">
+          <ShieldCheck className="w-6 h-6 text-[var(--primary)]" />
+          <h1 className="text-lg font-black text-white" style={{ fontFamily: "'Georgia', serif" }}>Gestão Urbana</h1>
+        </div>
+        
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => setShowProfileMenu(!showProfileMenu)}
+            className="w-10 h-10 rounded-xl bg-[var(--primary)] flex items-center justify-center text-white shadow-lg outline-none active:scale-95 transition-transform"
+          >
+            <div className="font-black text-[10px]">GP</div>
+          </button>
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2.5 bg-white/5 rounded-xl text-white"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {showProfileMenu && (
+          <>
+            <div className="fixed inset-0 z-[110]" onClick={() => setShowProfileMenu(false)} />
+            <div className="absolute right-6 top-20 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-[var(--gray-border)] p-2 z-[120] animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="p-4 border-b border-[var(--gray-border)] mb-2">
+                <p className="text-xs font-black text-[var(--black)]">Gestão Prefeitura</p>
+                <p className="text-[10px] font-bold text-[var(--gray-text)] uppercase tracking-widest">Administrador</p>
+              </div>
+              <Link 
+                to="/dashboard"
+                className="flex items-center gap-3 px-4 py-4 rounded-xl hover:bg-[var(--cream)] text-[var(--gray-text)] hover:text-[var(--primary)] transition-all font-bold text-sm"
+              >
+                <LayoutDashboard className="w-5 h-5" />
+                Voltar ao Dashboard?
+              </Link>
+              <Link 
+                to="/"
+                className="flex items-center gap-3 px-4 py-4 rounded-xl hover:bg-rose-50 text-rose-500 transition-all font-bold text-sm"
+              >
+                <LogOut className="w-5 h-5" />
+                Sair do Portal
+              </Link>
+            </div>
+          </>
+        )}
       </div>
 
-      <main className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
-        {activeTab === 'geral' && (
-          <div className="space-y-6 sm:space-y-8">
-            {/* KPI Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-              <Card className="bg-white border-none shadow-sm">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs sm:text-sm text-gray-500 font-bold uppercase tracking-wider">Total de Comércios</p>
-                      <h3 className="text-2xl sm:text-3xl font-black mt-1">{totalLojas}</h3>
-                    </div>
-                    <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl">
-                      <Store className="w-6 h-6" />
-                    </div>
-                  </div>
-                  <p className="text-[10px] sm:text-xs text-green-600 mt-4 flex items-center font-bold bg-green-50 w-fit px-2 py-1 rounded-lg">
-                    <TrendingUp className="w-3 h-3 mr-1" /> +4 novos este mês
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white border-none shadow-sm">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs sm:text-sm text-gray-500 font-bold uppercase tracking-wider">Fluxo de Pessoas</p>
-                      <h3 className="text-2xl sm:text-3xl font-black mt-1">12.4k</h3>
-                    </div>
-                    <div className="p-3 bg-purple-50 text-purple-600 rounded-2xl">
-                      <Users className="w-6 h-6" />
-                    </div>
-                  </div>
-                  <p className="text-[10px] sm:text-xs text-red-600 mt-4 flex items-center font-bold bg-red-50 w-fit px-2 py-1 rounded-lg">
-                    <TrendingDown className="w-3 h-3 mr-1" /> -2% vs ontem
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white border-none shadow-sm">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs sm:text-sm text-gray-500 font-bold uppercase tracking-wider">Denúncias Ativas</p>
-                      <h3 className="text-2xl sm:text-3xl font-black mt-1">{mockDenuncias.length}</h3>
-                    </div>
-                    <div className="p-3 bg-orange-50 text-orange-600 rounded-2xl">
-                      <AlertTriangle className="w-6 h-6" />
-                    </div>
-                  </div>
-                  <p className="text-[10px] sm:text-xs text-orange-600 mt-4 font-bold bg-orange-50 w-fit px-2 py-1 rounded-lg">
-                    2 urgentes pendentes
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white border-none shadow-sm">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs sm:text-sm text-gray-500 font-bold uppercase tracking-wider">Vagas Monitoradas</p>
-                      <h3 className="text-2xl sm:text-3xl font-black mt-1">842</h3>
-                    </div>
-                    <div className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
-                      <Car className="w-6 h-6" />
-                    </div>
-                  </div>
-                  <p className="text-[10px] sm:text-xs text-emerald-600 mt-4 font-bold bg-emerald-50 w-fit px-2 py-1 rounded-lg">
-                    Ocupação: 78%
-                  </p>
-                </CardContent>
-              </Card>
+      {/* ================= MOBILE MENU OVERLAY ================= */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 bg-[var(--secondary)] z-[90] pt-24 p-6 animate-in fade-in duration-300">
+          <nav className="space-y-4">
+            <NavButtons isMobile />
+            <div className="pt-10 border-t border-white/10 mt-6">
+              <Link 
+                to="/dashboard"
+                className="w-full flex items-center gap-4 px-6 py-5 rounded-2xl bg-white/5 text-white/60 font-bold text-base mb-2"
+              >
+                <LayoutDashboard className="w-6 h-6" />
+                Voltar ao Dashboard
+              </Link>
+              <Link to="/" className="w-full flex items-center gap-4 px-6 py-5 rounded-2xl bg-white/5 text-white/60 font-bold text-base">
+                <LogOut className="w-6 h-6" />
+                Sair do Portal
+              </Link>
             </div>
+          </nav>
+        </div>
+      )}
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
-              {/* Gráfico de Vendas */}
-              <Card className="lg:col-span-2 border-none shadow-sm overflow-hidden">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base sm:text-lg font-black tracking-tight">Volume de Vendas por Região</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-48 sm:h-64 flex items-end justify-between gap-2 sm:gap-4 pt-8 border-b border-l pb-2 pl-2 relative">
-                    {/* Grid lines */}
-                    {[25, 50, 75, 100].map(line => (
-                      <div key={line} className="absolute left-0 right-0 border-t border-gray-100 w-full" style={{ bottom: `${line}%` }} />
-                    ))}
-                    
+      {/* ================= CONTEÚDO PRINCIPAL ================= */}
+      <div className="flex-1 h-full overflow-y-auto no-scrollbar scroll-smooth">
+        <main className="p-6 lg:p-12 gap-8 lg:gap-12 max-w-full lg:max-w-7xl mx-auto w-full pt-28 lg:pt-12 flex flex-col">
+          
+          {/* Header Content */}
+          <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+              <h2 className="text-3xl lg:text-5xl font-black text-[var(--black)] mb-2" style={{ fontFamily: "'Georgia', serif" }}>
+                {activeTab === 'geral' ? 'Visão Geral' : activeTab === 'mapa' ? 'Análise Geo-Espacial' : 'Controle de Denúncias'}
+              </h2>
+              <p className="text-[var(--gray-text)] font-medium text-sm lg:text-base">Bem-vindo ao centro de controle urbano de Aracaju.</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <button className="relative w-12 h-12 flex items-center justify-center bg-white rounded-2xl border border-[var(--gray-border)] text-[var(--gray-text)] hover:text-[var(--primary)] transition-colors shadow-sm">
+                <Bell className="w-5 h-5" />
+                <span className="absolute top-3 right-3 w-2 h-2 bg-[var(--primary)] rounded-full border-2 border-white" />
+              </button>
+              
+              {/* Profile Menu */}
+              <div className="relative">
+                <button 
+                  onClick={() => setShowProfileMenu(!showProfileMenu)}
+                  className="flex items-center gap-3 bg-white p-2 pr-4 rounded-2xl border border-[var(--gray-border)] shadow-sm hover:border-[var(--primary)] transition-all outline-none"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[var(--secondary-pale)] flex items-center justify-center text-[var(--secondary)] font-black text-xs shrink-0">
+                    GP
+                  </div>
+                  <div className="hidden sm:block text-left">
+                    <p className="text-[11px] font-black text-[var(--black)] leading-tight">Gestão Prefeitura</p>
+                    <p className="text-[9px] font-bold text-[var(--gray-text)] uppercase tracking-widest">Admin</p>
+                  </div>
+                </button>
+
+                {showProfileMenu && (
+                  <>
+                    <div className="fixed inset-0 z-10" onClick={() => setShowProfileMenu(false)} />
+                    <div className="absolute right-0 mt-3 w-56 bg-white rounded-2xl shadow-2xl border border-[var(--gray-border)] p-2 z-20 animate-in fade-in zoom-in-95 duration-200">
+                      <Link 
+                        to="/dashboard"
+                        className="flex items-center gap-3 px-4 py-3.5 rounded-xl hover:bg-[var(--cream)] text-[var(--gray-text)] hover:text-[var(--primary)] transition-all font-bold text-xs"
+                      >
+                        <LayoutDashboard className="w-4 h-4" />
+                        Voltar ao Dashboard?
+                      </Link>
+                      <div className="h-px bg-[var(--gray-border)] my-1" />
+                      <Link 
+                        to="/"
+                        className="flex items-center gap-3 px-4 py-3.5 rounded-xl hover:bg-rose-50 text-rose-500 transition-all font-bold text-xs"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Sair do Portal
+                      </Link>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </header>
+
+          {activeTab === 'geral' && (
+            <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <Card className="bg-white border-none shadow-xl shadow-black/5 rounded-[32px] overflow-hidden group">
+                  <CardContent className="p-8">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="p-4 bg-[var(--primary-pale)] text-[var(--primary)] rounded-[20px] group-hover:scale-110 transition-transform">
+                        <Store className="w-6 h-6" />
+                      </div>
+                      <span className="text-[10px] font-black text-green-600 bg-green-50 px-2.5 py-1 rounded-full">+12%</span>
+                    </div>
+                    <h3 className="text-4xl font-black text-[var(--black)] mb-1">{totalLojas}</h3>
+                    <p className="text-[11px] font-black text-[var(--gray-text)] uppercase tracking-widest">Comércios Ativos</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-none shadow-xl shadow-black/5 rounded-[32px] overflow-hidden group">
+                  <CardContent className="p-8">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="p-4 bg-[var(--secondary-pale)] text-[var(--secondary)] rounded-[20px] group-hover:scale-110 transition-transform">
+                        <Users className="w-6 h-6" />
+                      </div>
+                      <span className="text-[10px] font-black text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full">-2.4%</span>
+                    </div>
+                    <h3 className="text-4xl font-black text-[var(--black)] mb-1">12.4k</h3>
+                    <p className="text-[11px] font-black text-[var(--gray-text)] uppercase tracking-widest">Fluxo / Dia</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-none shadow-xl shadow-black/5 rounded-[32px] overflow-hidden group">
+                  <CardContent className="p-8">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="p-4 bg-orange-50 text-orange-600 rounded-[20px] group-hover:scale-110 transition-transform">
+                        <AlertTriangle className="w-6 h-6" />
+                      </div>
+                      <span className="text-[10px] font-black text-orange-600 bg-orange-50 px-2.5 py-1 rounded-full">2 Urgentes</span>
+                    </div>
+                    <h3 className="text-4xl font-black text-[var(--black)] mb-1">{mockDenuncias.filter(d => d.status === 'pendente').length}</h3>
+                    <p className="text-[11px] font-black text-[var(--gray-text)] uppercase tracking-widest">Pendências</p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-none shadow-xl shadow-black/5 rounded-[32px] overflow-hidden group">
+                  <CardContent className="p-8">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="p-4 bg-blue-50 text-blue-600 rounded-[20px] group-hover:scale-110 transition-transform">
+                        <Car className="w-6 h-6" />
+                      </div>
+                      <span className="text-[10px] font-black text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">78% Ocup.</span>
+                    </div>
+                    <h3 className="text-4xl font-black text-[var(--black)] mb-1">842</h3>
+                    <p className="text-[11px] font-black text-[var(--gray-text)] uppercase tracking-widest">Vagas Livres</p>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <Card className="lg:col-span-2 bg-white border-none shadow-xl shadow-black/5 rounded-[40px] p-8">
+                  <CardHeader className="px-0 pt-0 pb-8 flex flex-row items-center justify-between">
+                    <div>
+                      <CardTitle className="text-2xl font-black text-[var(--black)]" style={{ fontFamily: "'Georgia', serif" }}>Volume por Região</CardTitle>
+                      <p className="text-[11px] text-[var(--gray-text)] font-bold uppercase tracking-widest mt-1">Dados consolidados do último mês</p>
+                    </div>
+                    <div className="flex gap-2">
+                      {['S', 'M', 'T'].map(p => (
+                        <button key={p} className={`w-8 h-8 rounded-lg text-[10px] font-black transition-all ${p === 'M' ? 'bg-[var(--primary)] text-white shadow-lg shadow-[var(--primary)]/20' : 'bg-[var(--cream)] text-[var(--gray-text)] hover:bg-[var(--gray-border)]'}`}>
+                          {p}
+                        </button>
+                      ))}
+                    </div>
+                  </CardHeader>
+                  <CardContent className="px-0 pb-0">
+                    <div className="h-72 flex items-end justify-between gap-6 pt-12 relative border-b border-[var(--gray-border)] pb-4 overflow-x-auto no-scrollbar">
+                      {[
+                        { label: 'Centro', val: 80, color: 'var(--primary)' },
+                        { label: 'Orla', val: 65, color: 'var(--secondary)' },
+                        { label: 'Jardins', val: 95, color: 'var(--primary-dark)' },
+                        { label: 'Mercado', val: 45, color: 'var(--secondary-mid)' },
+                        { label: 'Sul', val: 30, color: 'var(--gray-text)' },
+                      ].map((bar, i) => (
+                        <div key={i} className="flex-1 min-w-[60px] flex flex-col items-center gap-4 group relative">
+                          <div 
+                            className="w-full max-w-[50px] rounded-2xl transition-all duration-700 hover:brightness-110 cursor-help relative"
+                            style={{ height: `${bar.val}%`, backgroundColor: bar.color }}
+                          >
+                            <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[var(--black)] text-white text-[10px] px-3 py-1.5 rounded-xl opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap font-black shadow-xl">
+                                R$ {bar.val * 5}k
+                            </div>
+                          </div>
+                          <span className="text-[10px] font-black text-[var(--gray-text)] uppercase tracking-tighter text-center">{bar.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-none shadow-xl shadow-black/5 rounded-[40px] p-8">
+                  <CardHeader className="px-0 pt-0 pb-8">
+                    <CardTitle className="text-2xl font-black text-[var(--black)]" style={{ fontFamily: "'Georgia', serif" }}>Categorias</CardTitle>
+                  </CardHeader>
+                  <CardContent className="px-0 pb-0 space-y-6">
                     {[
-                      { label: 'Centro', val: 80, color: '#3b82f6' },
-                      { label: 'Orla', val: 65, color: '#60a5fa' },
-                      { label: 'Jardins', val: 95, color: '#2563eb' },
-                      { label: 'Mercado', val: 45, color: '#93c5fd' },
-                      { label: 'Sul', val: 30, color: '#bfdbfe' },
-                    ].map((bar, i) => (
-                      <div key={i} className="flex-1 flex flex-col items-center gap-2 group relative z-10">
-                        <div 
-                          className="w-full max-w-[40px] rounded-t-lg transition-all hover:brightness-90 cursor-help relative"
-                          style={{ height: `${bar.val}%`, backgroundColor: bar.color }}
-                        >
-                           <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-bold">
-                              R$ {bar.val * 5}k
-                           </div>
+                      { label: 'Alimentação', count: 45, color: 'var(--primary)' },
+                      { label: 'Vestuário', count: 32, color: 'var(--secondary)' },
+                      { label: 'Serviços', count: 18, color: 'var(--primary-light)' },
+                      { label: 'Artesanato', count: 12, color: 'var(--secondary-mid)' },
+                    ].map((cat, i) => (
+                      <div key={i} className="space-y-2">
+                        <div className="flex justify-between text-[11px] font-black uppercase tracking-widest">
+                          <span className="text-[var(--gray-text)]">{cat.label}</span>
+                          <span className="text-[var(--black)]">{cat.count}%</span>
                         </div>
-                        <span className="text-[8px] sm:text-[10px] font-bold text-gray-400 uppercase tracking-tighter text-center">{bar.label}</span>
+                        <div className="w-full h-2.5 bg-[var(--cream)] rounded-full overflow-hidden">
+                          <div 
+                            className="h-full rounded-full transition-all duration-1000" 
+                            style={{ width: `${cat.count}%`, backgroundColor: cat.color }} 
+                          />
+                        </div>
                       </div>
                     ))}
-                  </div>
-                </CardContent>
-              </Card>
+                    <div className="pt-8">
+                      <Button className="w-full h-14 bg-[var(--secondary)] hover:bg-[var(--secondary-mid)] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-[var(--secondary)]/10">
+                        Ver Relatório Completo
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          )}
 
-              {/* Distribuição por Categoria */}
-              <Card className="border-none shadow-sm">
-                <CardHeader>
-                  <CardTitle className="text-base sm:text-lg font-black tracking-tight">Categorias Dominantes</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4 sm:space-y-5">
+          {activeTab === 'mapa' && (
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                <div className="flex items-center gap-6 overflow-x-auto no-scrollbar pb-2">
                   {[
-                    { label: 'Alimentação', count: 45, color: 'bg-orange-500' },
-                    { label: 'Vestuário', count: 32, color: 'bg-blue-500' },
-                    { label: 'Serviços', count: 18, color: 'bg-green-500' },
-                    { label: 'Artesanato', count: 12, color: 'bg-purple-500' },
-                    { label: 'Outros', count: 8, color: 'bg-gray-400' },
-                  ].map((cat, i) => (
-                    <div key={i} className="space-y-1.5">
-                      <div className="flex justify-between text-[11px] sm:text-xs font-bold">
-                        <span className="text-gray-700">{cat.label}</span>
-                        <span className="text-gray-500 bg-gray-50 px-1.5 rounded-md">{cat.count}%</span>
-                      </div>
-                      <div className="w-full h-2 sm:h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div 
-                          className={`${cat.color} h-full rounded-full transition-all duration-1000`} 
-                          style={{ width: `${cat.count}%` }} 
-                        />
-                      </div>
+                    { label: 'Crítico', color: 'bg-rose-500' },
+                    { label: 'Alto', color: 'bg-orange-500' },
+                    { label: 'Normal', color: 'bg-green-500' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[var(--gray-text)] whitespace-nowrap">
+                      <div className={`w-2 h-2 ${item.color} rounded-full`} /> {item.label}
                     </div>
                   ))}
-                </CardContent>
-              </Card>
-            </div>
+                </div>
+              </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-              {/* Horários de Pico */}
-              <Card className="border-none shadow-sm">
-                <CardHeader>
-                  <CardTitle className="text-base sm:text-lg font-black tracking-tight">Fluxo de Pedestres por Horário</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-40 sm:h-48 flex items-end gap-1 pt-4 border-b border-l pb-1 pl-1">
-                    {[15, 20, 35, 55, 85, 100, 90, 75, 65, 80, 95, 50, 30, 20].map((val, i) => (
-                      <div key={i} className="flex-1 group relative">
-                        <div 
-                          className="w-full bg-purple-500/20 group-hover:bg-purple-500/40 transition-all rounded-t-sm border-t-2 border-purple-600" 
-                          style={{ height: `${val}%` }} 
-                        />
-                        {i % 3 === 0 && (
-                          <span className="absolute -bottom-6 left-0 text-[8px] sm:text-[9px] font-bold text-gray-400 whitespace-nowrap">
-                            {8 + i}h
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  <p className="mt-8 text-[9px] sm:text-[10px] text-gray-400 font-bold italic text-center uppercase tracking-widest">Sensores de Presença Ativos (IOT/WIFI)</p>
-                </CardContent>
-              </Card>
-
-              {/* Estacionamentos e Vagas */}
-              <Card className="border-none shadow-sm">
-                <CardHeader>
-                  <CardTitle className="text-base sm:text-lg font-black tracking-tight">Ocupação em Tempo Real</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                    <div className="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-3xl border border-gray-100/50">
-                       <div className="relative w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
-                          <svg className="w-full h-full -rotate-90">
-                            <circle cx="50%" cy="50%" r="40%" stroke="currentColor" strokeWidth="10" fill="transparent" className="text-gray-200" />
-                            <circle 
-                              cx="50%" cy="50%" r="40%" stroke="currentColor" strokeWidth="10" fill="transparent" 
-                              strokeDasharray={251.2} 
-                              strokeDashoffset={251.2 * (1 - 0.78)} 
-                              className="text-blue-600 transition-all duration-1000" 
-                            />
-                          </svg>
-                          <span className="absolute text-lg sm:text-xl font-black">78%</span>
-                       </div>
-                       <span className="text-[9px] sm:text-[10px] font-black text-gray-500 mt-3 uppercase tracking-widest">Centro</span>
-                    </div>
-                    <div className="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-3xl border border-gray-100/50">
-                       <div className="relative w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
-                          <svg className="w-full h-full -rotate-90">
-                            <circle cx="50%" cy="50%" r="40%" stroke="currentColor" strokeWidth="10" fill="transparent" className="text-gray-200" />
-                            <circle 
-                              cx="50%" cy="50%" r="40%" stroke="currentColor" strokeWidth="10" fill="transparent" 
-                              strokeDasharray={251.2} 
-                              strokeDashoffset={251.2 * (1 - 0.42)} 
-                              className="text-emerald-500 transition-all duration-1000" 
-                            />
-                          </svg>
-                          <span className="absolute text-lg sm:text-xl font-black">42%</span>
-                       </div>
-                       <span className="text-[9px] sm:text-[10px] font-black text-gray-500 mt-3 uppercase tracking-widest">Sul/Orla</span>
-                    </div>
-                  </div>
-                  <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4">
-                    <div className="p-3 bg-white border rounded-2xl">
-                      <p className="text-[9px] text-gray-400 font-black uppercase">Giro Médio</p>
-                      <p className="text-xs sm:text-sm font-black text-gray-900">2.4h/vaga</p>
-                    </div>
-                    <div className="p-3 bg-white border rounded-2xl">
-                      <p className="text-[9px] text-gray-400 font-black uppercase">Monitorado</p>
-                      <p className="text-xs sm:text-sm font-black text-gray-900">1,240 vgs</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-              {/* Estacionamentos Críticos */}
-              <Card className="border-none shadow-sm">
-                <CardHeader>
-                  <CardTitle className="text-base sm:text-lg font-black flex items-center gap-2">
-                    <Car className="w-5 h-5 text-red-500" /> Déficit de Estacionamento
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {zonasFaltaEstacionamento.map((item, i) => (
-                    <div key={i} className="flex items-center gap-4 p-2 hover:bg-gray-50 rounded-xl transition-colors">
-                      <div className={`w-3 h-3 rounded-full ${item.cor} shadow-sm`} />
-                      <span className="text-xs sm:text-sm font-bold text-gray-700 flex-1">{item.zona}</span>
-                      <span className="text-[10px] font-black text-gray-400 uppercase bg-white px-2 py-0.5 rounded-md border">{item.nivel}</span>
-                    </div>
-                  ))}
-                  <Button variant="outline" className="w-full mt-4 text-[10px] font-black uppercase tracking-widest h-10">Solicitar Estudo de Viabilidade</Button>
-                </CardContent>
-              </Card>
-
-              {/* Mini Logs de Denúncia */}
-              <Card className="border-none shadow-sm">
-                <CardHeader className="flex flex-row items-center justify-between">
-                  <CardTitle className="text-base sm:text-lg font-black">Últimas Denúncias</CardTitle>
-                  <Button variant="ghost" size="sm" onClick={() => setActiveTab('denuncias')} className="text-blue-600 text-xs font-bold">Ver todas</Button>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <div className="divide-y divide-gray-50 px-2">
-                    {mockDenuncias.slice(0, 3).map((d) => (
-                      <div key={d.id} className="p-4 flex items-start justify-between hover:bg-gray-50 transition-colors rounded-xl">
-                        <div className="space-y-1">
-                          <p className="text-sm font-black text-gray-900">{d.loja}</p>
-                          <p className="text-xs text-gray-500 font-medium line-clamp-1">{d.motivo}</p>
+              <div className="h-[500px] lg:h-[700px] w-full bg-white rounded-[40px] overflow-hidden border border-[var(--gray-border)] shadow-2xl relative">
+                <MapContainer center={[-10.9105, -37.0503]} zoom={15} className="w-full h-full z-0">
+                  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                  
+                  {heatmapPoints.map((point, i) => (
+                    <Circle 
+                      key={i}
+                      center={point.pos}
+                      radius={point.intensity / 1.5}
+                      pathOptions={{ 
+                        color: point.intensity > 400 ? 'var(--primary)' : 'var(--secondary)', 
+                        fillColor: point.intensity > 400 ? 'var(--primary)' : 'var(--secondary)', 
+                        fillOpacity: 0.4 
+                      }}
+                    >
+                      <Popup>
+                        <div className="p-3">
+                          <p className="font-black text-sm mb-1">{point.label}</p>
+                          <p className="text-[10px] text-[var(--gray-text)] font-bold uppercase tracking-widest">Fluxo: {point.intensity} p/min</p>
                         </div>
-                        <span className={`text-[9px] px-2 py-1 rounded-lg font-black uppercase tracking-tighter ${
-                          d.status === 'pendente' ? 'bg-orange-50 text-orange-600' : 'bg-green-50 text-green-600'
-                        }`}>
-                          {d.status}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
+                      </Popup>
+                    </Circle>
+                  ))}
+
+                  {comercios.map(c => (
+                    <Marker key={c.id} position={[c.latitude, c.longitude]}>
+                      <Popup>
+                        <div className="p-3">
+                          <p className="font-black text-sm mb-1">{c.nome}</p>
+                          <p className="text-[10px] font-black text-[var(--primary)] uppercase tracking-widest">Alvará: Ativo</p>
+                        </div>
+                      </Popup>
+                    </Marker>
+                  ))}
+                </MapContainer>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'denuncias' && (
+            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                <div className="relative w-full sm:w-96">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--gray-text)] w-5 h-5" />
+                  <input 
+                    placeholder="Filtrar por estabelecimento..." 
+                    className="w-full pl-12 pr-4 py-4 h-14 bg-white rounded-2xl border border-[var(--gray-border)] shadow-sm text-sm font-medium outline-none focus:ring-4 focus:ring-[var(--primary)]/10 focus:border-[var(--primary)] transition-all"
+                  />
+                </div>
+              </div>
+
+              <Card className="border-none shadow-xl shadow-black/5 overflow-hidden rounded-[40px] bg-white">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left min-w-[600px]">
+                    <thead className="bg-[var(--cream)] text-[10px] font-black text-[var(--gray-text)] uppercase tracking-[0.2em] border-b border-[var(--gray-border)]">
+                      <tr>
+                        <th className="px-8 py-6">Estabelecimento</th>
+                        <th className="px-8 py-6 hidden md:table-cell">Motivo da Ocorrência</th>
+                        <th className="px-8 py-6">Status</th>
+                        <th className="px-8 py-6 text-right">Ação</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[var(--gray-border)]">
+                      {mockDenuncias.map((d) => (
+                        <tr key={d.id} className="hover:bg-[var(--cream)]/30 transition-colors group">
+                          <td className="px-8 py-6">
+                            <p className="text-base font-black text-[var(--black)]">{d.loja}</p>
+                            <p className="text-[11px] text-[var(--gray-text)] font-bold md:hidden mt-1">{d.motivo}</p>
+                          </td>
+                          <td className="px-8 py-6 hidden md:table-cell">
+                            <div className="flex items-start gap-3">
+                              <Info className="w-4 h-4 text-[var(--gray-text)]/40 mt-0.5" />
+                              <div>
+                                <p className="text-sm text-[var(--gray-text)] font-bold">{d.motivo}</p>
+                                <div className="flex items-center gap-2 mt-1.5 text-[10px] text-[var(--gray-text)]/60 font-black uppercase tracking-widest">
+                                  <Clock className="w-3 h-3" />
+                                  {d.data}
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-8 py-6">
+                            <span className={`text-[10px] px-3 py-1.5 rounded-xl font-black uppercase tracking-widest ${
+                              d.status === 'pendente' ? 'bg-orange-50 text-orange-600 border border-orange-100' : 
+                              d.status === 'resolvido' ? 'bg-green-50 text-green-600 border border-green-100' : 'bg-blue-50 text-blue-600 border border-blue-100'
+                            }`}>
+                              {d.status}
+                            </span>
+                          </td>
+                          <td className="px-8 py-6 text-right">
+                            <button className="w-10 h-10 flex items-center justify-center bg-[var(--cream)] text-[var(--gray-text)] hover:bg-[var(--primary)] hover:text-white rounded-xl transition-all shadow-sm">
+                              <ChevronRight className="w-5 h-5" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </Card>
             </div>
-          </div>
-        )}
+          )}
+        </main>
+      </div>
 
-        {activeTab === 'mapa' && (
-          <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <h2 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">Mapa de Calor e Movimentação</h2>
-                <p className="text-gray-500 text-xs sm:text-sm font-medium">Fluxo de pedestres e veículos em tempo real.</p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  { label: 'Crítico', color: 'bg-red-500', pulse: true },
-                  { label: 'Alto', color: 'bg-orange-500', pulse: false },
-                  { label: 'Normal', color: 'bg-green-500', pulse: false },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-100 shadow-sm text-[10px] font-black uppercase">
-                    <div className={`w-2 h-2 ${item.color} rounded-full ${item.pulse ? 'animate-pulse' : ''}`} /> {item.label}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="h-[400px] sm:h-[600px] w-full bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-lg relative">
-              <MapContainer center={[-10.9105, -37.0503]} zoom={15} className="w-full h-full z-0">
-                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                
-                {heatmapPoints.map((point, i) => (
-                  <Circle 
-                    key={i}
-                    center={point.pos}
-                    radius={point.intensity / 1.5}
-                    pathOptions={{ 
-                      color: point.intensity > 400 ? '#ef4444' : '#f97316', 
-                      fillColor: point.intensity > 400 ? '#ef4444' : '#f97316', 
-                      fillOpacity: 0.4 
-                    }}
-                  >
-                    <Popup>
-                      <div className="p-2 font-bold">
-                        <p className="text-sm">{point.label}</p>
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Fluxo: {point.intensity} p/min</p>
-                      </div>
-                    </Popup>
-                  </Circle>
-                ))}
-
-                {comercios.map(c => (
-                  <Marker key={c.id} position={[c.latitude, c.longitude]}>
-                    <Popup>
-                      <div className="p-1">
-                        <p className="font-bold text-sm">{c.nome}</p>
-                        <p className="text-[10px] font-bold text-blue-600 uppercase tracking-widest mt-1">Alvará: Ativo</p>
-                      </div>
-                    </Popup>
-                  </Marker>
-                ))}
-              </MapContainer>
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'denuncias' && (
-          <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <h2 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">Gerenciamento de Denúncias</h2>
-              <div className="relative w-full sm:w-64">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <Input placeholder="Buscar por estabelecimento..." className="pl-10 h-10 sm:h-11 rounded-xl bg-white border-none shadow-sm text-sm" />
-              </div>
-            </div>
-
-            <Card className="border-none shadow-sm overflow-hidden rounded-3xl">
-              <div className="overflow-x-auto">
-                <table className="w-full text-left">
-                  <thead className="bg-gray-50 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] border-b">
-                    <tr>
-                      <th className="px-6 py-4">Estabelecimento</th>
-                      <th className="px-6 py-4 hidden sm:table-cell">Motivo</th>
-                      <th className="px-6 py-4">Status</th>
-                      <th className="px-6 py-4 text-right">Ação</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-50">
-                    {mockDenuncias.map((d) => (
-                      <tr key={d.id} className="hover:bg-gray-50/50 transition-colors">
-                        <td className="px-6 py-4">
-                          <p className="text-sm font-black text-gray-900">{d.loja}</p>
-                          <p className="text-[10px] text-gray-400 sm:hidden mt-1">{d.motivo}</p>
-                        </td>
-                        <td className="px-6 py-4 hidden sm:table-cell">
-                          <p className="text-sm text-gray-600 font-medium">{d.motivo}</p>
-                          <p className="text-[10px] text-gray-400 mt-1 uppercase font-bold">{d.data}</p>
-                        </td>
-                        <td className="px-6 py-4">
-                          <span className={`text-[9px] px-2.5 py-1 rounded-lg font-black uppercase tracking-tighter ${
-                            d.status === 'pendente' ? 'bg-orange-50 text-orange-600' : 
-                            d.status === 'resolvido' ? 'bg-green-50 text-green-600' : 'bg-blue-50 text-blue-600'
-                          }`}>
-                            {d.status}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 text-right">
-                          <Button variant="ghost" size="sm" className="text-gray-300 hover:text-blue-600 hover:bg-blue-50 rounded-xl">
-                            <ChevronRight className="w-5 h-5" />
-                          </Button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </Card>
-          </div>
-        )}
-      </main>
+      <style>{`
+        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slide-in-from-bottom-4 { from { transform: translateY(1rem); } to { transform: translateY(0); } }
+        .animate-in { animation-duration: 0.5s; animation-fill-mode: both; }
+        .fade-in { animation-name: fade-in; }
+        .slide-in-from-bottom-4 { animation-name: slide-in-from-bottom-4; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </div>
   );
 }

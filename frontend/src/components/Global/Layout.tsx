@@ -44,7 +44,7 @@ export function Layout() {
   return (
     <div className="flex flex-col h-screen bg-white overflow-hidden">
       <header className={cn(
-        "hidden md:block fixed top-0 z-50 w-full transition-all duration-300",
+        "fixed top-0 z-50 w-full transition-all duration-300",
         isScrolled 
           ? "bg-white border-b border-[#dadce0] shadow-sm py-0" 
           : isHome 
@@ -108,7 +108,7 @@ export function Layout() {
         ref={mainRef}
         className={cn(
           "flex-1 flex flex-col overflow-y-auto overflow-x-hidden bg-[var(--cream)] pb-0 md:pb-0",
-          !isHome && "md:pt-13"
+          !isHome && "pt-16"
         )}
       >
         <Outlet />
