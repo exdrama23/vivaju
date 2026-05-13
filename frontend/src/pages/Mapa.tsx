@@ -157,7 +157,7 @@ export function Mapa() {
   });
 
   return (
-    <div className="flex flex-col md:flex-row flex-1 w-full h-full relative overflow-hidden bg-white">
+    <div className="flex flex-col md:flex-row flex-1 w-full h-[calc(100vh-64px)] md:h-full relative overflow-hidden bg-white">
       {/* Modais de Localização */}
       <Modal 
         isOpen={isLocationModalOpen} 
@@ -178,25 +178,23 @@ export function Mapa() {
       </Modal>
 
       {/* Toggle Button - Mobile Only */}
-      <div className={`md:hidden absolute top-4 z-20 flex gap-2 transition-all ${showMap ? 'left-1/2 -translate-x-1/2' : 'right-4'}`}>
+      <div className={`md:hidden absolute bottom-24 left-1/2 -translate-x-1/2 z-[1000] flex bg-white/90 backdrop-blur-sm p-1.5 rounded-2xl shadow-2xl border border-[#dadce0]`}>
         <button
           onClick={() => setShowMap(false)}
-          className={`p-2.5 rounded-xl transition-all ${!showMap ? 'bg-[#1a73e8] text-white shadow-lg' : 'bg-white text-[#5f6368] border border-[#dadce0] shadow-sm'}`}
-          title="Ver menu"
+          className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-xs font-medium ${!showMap ? 'bg-[#1a73e8] text-white shadow-md' : 'text-[#5f6368]'}`}
         >
-          <Menu className="w-5 h-5" />
+          <Menu className="w-4 h-4" /> Lista
         </button>
         <button
           onClick={() => setShowMap(true)}
-          className={`p-2.5 rounded-xl transition-all ${showMap ? 'bg-[#1a73e8] text-white shadow-lg' : 'bg-white text-[#5f6368] border border-[#dadce0] shadow-sm'}`}
-          title="Ver mapa"
+          className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-xs font-medium ${showMap ? 'bg-[#1a73e8] text-white shadow-md' : 'text-[#5f6368]'}`}
         >
-          <Map className="w-5 h-5" />
+          <Map className="w-4 h-4" /> Mapa
         </button>
       </div>
 
       {/* Sidebar - Local Data Only */}
-      <div className={`w-full md:w-80 lg:w-90 bg-white z-10 flex flex-col p-4 sm:p-6 gap-4 sm:gap-6 md:h-full shrink-0 overflow-y-auto border-r border-[#dadce0] transition-all md:pb-0 pb-24 ${showMap ? 'hidden md:flex' : 'flex md:flex'}`}>
+      <div className={`w-full md:w-80 lg:w-90 bg-white z-10 flex flex-col p-4 sm:p-6 gap-4 sm:gap-6 md:h-full shrink-0 overflow-y-auto border-r border-[#dadce0] transition-all md:relative absolute inset-0 ${showMap ? 'translate-x-[-100%] md:translate-x-0 hidden md:flex' : 'translate-x-0 flex'}`}>
         <div className="space-y-1">
           <h1 className="text-lg sm:text-xl font-medium flex items-center gap-2 text-[#202124]">
             <ShoppingBag className="text-[#1a73e8] w-5 h-5" /> VivaJu Centro
@@ -218,7 +216,7 @@ export function Mapa() {
           <LocateFixed className="w-4 h-4 mr-2" /> Onde Estou
         </Button>
 
-        <div className="flex-1 overflow-y-auto space-y-3 sm:space-y-4">
+        <div className="flex-1 overflow-y-auto space-y-3 sm:space-y-4 pb-20 md:pb-0">
           <p className="text-[10px] font-medium text-[#5f6368] uppercase tracking-wider pl-1">Lista de Estabelecimentos</p>
           {filteredComercios.length === 0 && (
             <p className="text-sm text-[#5f6368] text-center py-10 italic">Nenhuma loja encontrada.</p>
@@ -238,7 +236,7 @@ export function Mapa() {
         </div>
       </div>
 
-      <div className={`flex-1 relative bg-[#f1f3f4] transition-all ${showMap ? 'flex md:flex' : 'hidden md:flex'}`}>
+      <div className={`flex-1 relative bg-[#f1f3f4] h-full transition-all ${showMap ? 'flex' : 'hidden md:flex'}`}>
         <MapFilters activeFilters={filters} onFilterChange={handleFilterChange} />
         <MapContainer center={defaultCenter} zoom={18} className="w-full h-full">
           {routeCoords.length > 0 && (

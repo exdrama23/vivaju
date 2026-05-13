@@ -11,9 +11,24 @@ interface MapContainerProps {
 
 function ChangeView({ center, zoom }: { center: [number, number]; zoom: number }) {
   const map = useMap();
+  
   useEffect(() => {
     map.setView(center, zoom);
   }, [center, zoom, map]);
+
+  useEffect(() => {
+    // Invalida o tamanho do mapa quando o container for redimensionado
+    // Útil para transições de mobile/desktop
+    const observer = new ResizeObserver(() => {
+      map.invalidateSize();
+    });
+    
+    const container = map.getContainer();
+    observer.observe(container);
+    
+    return () => observer.disconnect();
+  }, [map]);
+
   return null;
 }
 
