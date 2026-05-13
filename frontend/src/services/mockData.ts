@@ -86,7 +86,16 @@ export const comidaNordestinaImages = [
 
 // Farmácia
 export const farmciaImages = [
-  "https://cdn.pixabay.com/photo/2015/09/21/14/24/pharmacy-949915_1280.jpg",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778626607/3ccd8219-b697-4426-8f4c-772f6501ab21.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778626711/fc864362-c147-4e87-9bf8-b27335b561d1.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778626773/63cf0d69-fee6-4eb3-bb02-70f5adee14b7.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778626834/5ea9bdd4-0bb0-423a-8341-6ebb3a02f665.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778626897/5236a068-3c35-402f-b0aa-4d7387e5ffd7.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778627010/a20201e3-085c-4925-8b2f-ea343de0f310.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778627061/17433c7e-dfcd-4f0d-9ead-438da4d93a8b.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778627154/191faa70-2cb7-4fa4-beb9-5f2b3cdf8baa.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778627250/6b12f694-6abe-4b66-a400-6b1e2b28568b.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778627304/b0744dbc-f298-48c4-995d-b94ffb378c93.png",
 ];
 
 // Floricultura
@@ -170,16 +179,16 @@ export const materiaisdeConstruoImages = [
 
 // Mexicana
 export const mexicanaImages = [
-  "https://cdn.pixabay.com/photo/2014/11/05/16/00/tacos-518041_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/11/02/20/27/taco-1018962_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/06/29/20/09/mexican-2456038_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/11/05/15/58/nachos-518037_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/12/21/23/28/quesadilla-575630_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/12/21/23/28/enchiladas-575630_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/29/11/15/appetizer-1869132_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/02/09/23/45/cocktail-2053919_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/22/18/52/cake-1850011_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/03/26/10/21/whiskey-690540_1280.jpg",
+  "https://images.pexels.com/photos/18574183/pexels-photo-18574183.jpeg",
+  "https://images.pexels.com/photos/18007687/pexels-photo-18007687.jpeg",
+  "https://images.pexels.com/photos/13305000/pexels-photo-13305000.jpeg",
+  "https://images.pexels.com/photos/13243944/pexels-photo-13243944.jpeg",
+  "https://images.pexels.com/photos/9213934/pexels-photo-9213934.jpeg",
+  "https://images.pexels.com/photos/4411802/pexels-photo-4411802.jpeg",
+  "https://images.pexels.com/photos/32375365/pexels-photo-32375365.jpeg",
+  "https://images.pexels.com/photos/36580799/pexels-photo-36580799.jpeg",
+  "https://images.pexels.com/photos/1730630/pexels-photo-1730630.jpeg",
+  "https://images.pexels.com/photos/13324889/pexels-photo-13324889.jpeg",
 ];
 
 // Moda Feminina
@@ -189,7 +198,15 @@ export const modaFemininaImages = [
 
 // Moda Masculina
 export const modaMasculinaImages = [
-  "https://cdn.pixabay.com/photo/2016/11/19/15/40/clothes-1839935_1280.jpg",
+  "https://images.pexels.com/photos/12246169/pexels-photo-12246169.jpeg",
+  "https://images.pexels.com/photos/17720471/pexels-photo-17720471.jpeg",
+  "https://images.pexels.com/photos/11030839/pexels-photo-11030839.png",
+  "https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg",
+  "https://images.pexels.com/photos/15557047/pexels-photo-15557047.jpeg",
+  "https://images.pexels.com/photos/18962297/pexels-photo-18962297.jpeg",
+  "https://images.pexels.com/photos/31822922/pexels-photo-31822922.jpeg",
+  "https://images.pexels.com/photos/33524465/pexels-photo-33524465.jpeg",
+  "https://images.pexels.com/photos/15195233/pexels-photo-15195233.jpeg",
 ];
 
 // Papelaria
@@ -199,7 +216,16 @@ export const papelariaImages = [
 
 // Papelaria Criativa
 export const papelariaCriativaImages = [
-  "https://cdn.pixabay.com/photo/2015/01/20/12/51/office-605503_1280.jpg",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778627514/b2413de4-e531-4989-8af6-746772eb665a.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778627606/0a752edb-ecd7-4ac4-a649-53de7a25486b.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778627606/0a752edb-ecd7-4ac4-a649-53de7a25486b.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778627862/7a9b3a65-f663-4784-b233-2f5c25ce3c66.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778628024/2afa6239-4dd4-428d-bc2a-736277bd01ca.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778629977/72ae5a00-adff-440e-b252-8ed9c011e1e4.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778630043/459d671b-fb21-48f8-87f9-85d017cef3ee.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778630115/a351d540-f720-4872-b4ef-7207a221b88b.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778630208/15fe3d5d-9d04-4979-8b6c-0de9bcb8d22c.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778673302/81bcbb8a-00e8-49a1-9bd9-4c5b3fe61508.png",
 ];
 
 // Pet Shop
@@ -252,7 +278,16 @@ export const steakhouseImages = [
 
 // Supermercado
 export const supermercadoImages = [
-  "https://cdn.pixabay.com/photo/2016/11/22/19/08/shop-1850100_1280.jpg",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778625014/75e89ff0-9702-4a55-96f7-ec7dab27379d.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778625103/872ba260-3f4d-4b8b-81d5-25a34faa8271.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778625168/d0efa9a0-b4af-428a-8224-1611394b1f15.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778625221/b48122c6-d390-4f38-b783-80dace670562.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778625373/b5c2fbc1-cd85-4d38-aea2-6f7c9a9945f7.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778625417/94f2372d-1192-4bb8-8c82-3b711d842934.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778626133/3e276812-a41d-4e84-aafe-ca1fa898f759.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778626314/d0048cb2-fad7-4973-8f50-1a161cda2149.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778626360/43d6d7cc-73c8-491d-a4ff-08deb8b87130.png",
+  "https://res.cloudinary.com/dtskn1ns3/image/upload/v1778626495/73954a0b-059d-4281-b9bf-b112831a2057.png",
 ];
 
 // Sushi
@@ -271,16 +306,15 @@ export const sushiImages = [
 
 // Vegano
 export const veganoImages = [
-  "https://cdn.pixabay.com/photo/2017/06/29/19/57/vegetables-2456012_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/02/15/15/17/meal-2069021_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/11/02/20/27/taco-1018962_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/29/11/15/appetizer-1869132_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/08/23/15/52/juice-1614768_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/11/03/09/03/wine-1019864_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/11/28/08/03/brownie-548591_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/05/15/14/51/salad-768601_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/10/24/10/54/quiche-501140_1280.jpg",
+  "https://images.pexels.com/photos/8286759/pexels-photo-8286759.jpeg",
+  "https://images.pexels.com/photos/15010291/pexels-photo-15010291.jpeg",
+  "https://images.pexels.com/photos/27583251/pexels-photo-27583251.jpeg",
+  "https://images.pexels.com/photos/28895966/pexels-photo-28895966.jpeg",
+  "https://images.pexels.com/photos/30312743/pexels-photo-30312743.jpeg",
+  "https://images.pexels.com/photos/30635721/pexels-photo-30635721.jpeg",
+  "https://images.pexels.com/photos/37211777/pexels-photo-37211777.jpeg",
+  "https://images.pexels.com/photos/396132/pexels-photo-396132.jpeg",
+  "https://images.pexels.com/photos/34318143/pexels-photo-34318143.jpeg",
 ];
 
 
@@ -686,7 +720,7 @@ export const mockComercios: ComercioExtendido[] = [
     avaliacoes: [],
     produtos: [
       { id: "c9-p1", comercioId: "c9", nome: "Tacos Al Pastor", descricao: "Tortillas de milho com porco.", preco: 35.0, imagem: mexicanaImages[0] },
-      { id: "c9-p2", comercioId: "c9", nome: "Burrito Supreme", descricao: "Carne, feijao, arroz e queijo.", preco: 40.0, imagem: mexicanaImages[1] },
+      { id: "c9-p2", comercioId: "c9", nome: "Burrito Supreme", descricao: "Carne, feijão, arroz e queijo", preco: 40.0, imagem: mexicanaImages[1] },
       { id: "c9-p3", comercioId: "c9", nome: "Nachos com Chili", descricao: "Crocantes com molho picante.", preco: 38.0, imagem: mexicanaImages[2] },
       { id: "c9-p4", comercioId: "c9", nome: "Quesadilla", descricao: "Tortilla de trigo com queijo derretido.", preco: 32.0, imagem: mexicanaImages[3] },
       { id: "c9-p5", comercioId: "c9", nome: "Enchiladas", descricao: "Tortillas enroladas com molho verde.", preco: 42.0, imagem: mexicanaImages[4] },
@@ -763,7 +797,7 @@ export const mockComercios: ComercioExtendido[] = [
       { id: "c11-p4", comercioId: "c11", nome: "Camiseta Basica", descricao: "Algodao premium super macio.", preco: 50.0, imagem: modaMasculinaImages[3] },
       { id: "c11-p5", comercioId: "c11", nome: "Blazer Social", descricao: "Corte italiano slim fit.", preco: 450.0, imagem: modaMasculinaImages[4] },
       { id: "c11-p6", comercioId: "c11", nome: "Sapato Social", descricao: "Couro legitimo feito a mao.", preco: 320.0, imagem: modaMasculinaImages[5] },
-      { id: "c11-p7", comercioId: "c11", nome: "Cinto de Couro", descricao: "Acessorios essenciais.", preco: 85.0, imagem: modaMasculinaImages[6] },
+      { id: "c11-p7", comercioId: "c11", nome: "Casaco", descricao: "Acessorios essenciais.", preco: 85.0, imagem: modaMasculinaImages[6] },
       { id: "c11-p8", comercioId: "c11", nome: "Jaqueta de Couro", descricao: "Estilo e durabilidade.", preco: 600.0, imagem: modaMasculinaImages[7] },
       { id: "c11-p9", comercioId: "c11", nome: "Relogio Analogico", descricao: "Pulseira de aco inox.", preco: 250.0, imagem: modaMasculinaImages[8] },
       { id: "c11-p10", comercioId: "c11", nome: "Meias Estampadas", descricao: "Kit com 3 unidades.", preco: 40.0, imagem: modaMasculinaImages[9] }
@@ -898,7 +932,7 @@ export const mockComercios: ComercioExtendido[] = [
     avaliacoes: [],
     produtos: [
       { id: "c15-p1", comercioId: "c15", nome: "Caderno Universitario", descricao: "10 materias capa dura.", preco: 25.0, imagem: papelariaCriativaImages[0] },
-      { id: "c15-p2", comercioId: "c15", nome: "Caneta Azul", descricao: "Escrita suave pacote com 3.", preco: 5.0, imagem: papelariaCriativaImages[1] },
+      { id: "c15-p2", comercioId: "c15", nome: "Canetas", descricao: "Escrita suave pacote com 3.", preco: 5.0, imagem: papelariaCriativaImages[1] },
       { id: "c15-p3", comercioId: "c15", nome: "Lapis de Cor 24 cores", descricao: "Qualidade artistica.", preco: 40.0, imagem: papelariaCriativaImages[2] },
       { id: "c15-p4", comercioId: "c15", nome: "Agenda 2026", descricao: "Organize seu dia.", preco: 35.0, imagem: papelariaCriativaImages[3] },
       { id: "c15-p5", comercioId: "c15", nome: "Mochila Escolar", descricao: "Resistente e espacosa.", preco: 120.0, imagem: papelariaCriativaImages[4] },
