@@ -29,21 +29,30 @@ export const adegadeVinhosImages = [
 
 // Bijuterias
 export const bijuteriasImages = [
-  "https://cdn.pixabay.com/photo/2016/11/22/19/05/woman-1850078_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/LUUPlQFdlvKaXLDT.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/UGRYQzgenqudDPrh.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/fQodccGdxTaBBnHY.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/RGyDVELjLbxUIPgt.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/pEziblBNzaXeepTf.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/jNFMwjVnyfzSGqpm.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/QogpHYpAvNjuCvpJ.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/HYVnIfADqKRiDmWQ.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ZLWOlZcOrMBkUFTJ.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ZLWOlZcOrMBkUFTJ.webp"
 ];
 
 // Cafeteria Gourmet
 export const cafeteriaGourmetImages = [
-  "https://plus.unsplash.com/premium_photo-1669687924558-386bff1a0469?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZXhwcmVzc28lMjBjb2ZmZWV8ZW58MHx8MHx8fDA%3D",
-  "https://images.unsplash.com/photo-1710173472469-9d28e977914c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FwdWNjaW5vfGVufDB8fDB8fHww",
-  "https://plus.unsplash.com/premium_photo-1664970900086-adc85f1ef317?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZsYXQlMjB3aGl0ZSUyMGNvZmZlZXxlbnwwfHwwfHx8MA%3D%3D",
-  "https://images.unsplash.com/photo-1718897266472-5b7229ebdd3d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2hvY29sYXRlJTIwY3JvaXNzYW50fGVufDB8fDB8fHww",
-  "https://pixabay.com/pt/images/download/x-2577183_1920.jpg",
-  "https://pixabay.com/pt/images/download/x-3383170_1920.jpg",
-  "https://images.unsplash.com/photo-1631311915775-e8f4250a7d4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dG9hc3QlMjBhdm9jYWRvfGVufDB8fDB8fHww",
-  "https://pixabay.com/pt/images/download/chernyshart-coffee-9817647_1920.jpg",
-  "https://pixabay.com/pt/images/download/x-7125271_1920.jpg",
-  "https://pixabay.com/pt/images/download/x-2409958_1920.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/dhGqFYtvHyPNAQoD.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/jvfxdjZzIvTxwsBt.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/DiMvMwOeQLZgOAZO.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/QeJbTVpbnKWBxCLX.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/vqEFxZMHlQGRyUZB.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ObCtoVbIOIXqjFVG.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/tVvpAhofeYHjrevP.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/lamATkXTGnUpWBPB.jpeg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ITtvDHIcUIOSOfsS.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ukJVGVrZLiqEnpyg.jpg"
 ];
 
 // Churrascaria
@@ -58,16 +67,16 @@ export const churrascariaImages = [
 
 // Comida Chinesa
 export const comidaChinesaImages = [
-  "https://cdn.pixabay.com/photo/2015/04/08/13/13/food-712661_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/11/12/13/14/chicken-2942444_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/03/23/19/57/asparagus-2169305_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/04/04/17/22/meal-1307604_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/05/11/15/22/meat-762635_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/12/26/01/17/dumplings-3039535_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/08/12/18/59/spring-rolls-2634970_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/10/19/20/59/food-494606_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/07/02/20/37/cup-829527_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/01/11/11/33/cake-1971552_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/FcOYUnzlQtwoxjqJ.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/YLvcztkSTKRDBkIX.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/njkfsBPmwxcMYkwa.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/rWRkZvHziKQpULgY.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/qUiOXbhzJbjfzOuQ.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/XjighzAlauDyCDhF.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/cKsWHunnbZriJjET.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/kAUAstOUVBaRsEXK.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/YsRRhxFUFujtDcRA.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/jwrKhdoyVlcjpbmu.jpg"
 ];
 
 // Comida Nordestina
@@ -100,8 +109,16 @@ export const farmciaImages = [
 
 // Floricultura
 export const floriculturaImages = [
-  "https://cdn.pixabay.com/photo/2017/08/07/19/43/handmade-2607109_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/29/09/00/basket-1868591_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/aXsjDwpyOvnsrYLm.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/wDpeirISQYOfLkhn.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/sVTsbOJxYttAwPit.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/baIQyPUIxtuuKFVv.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/YrVKfpxsvBmXGfUO.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ajQUClBCnDaMmMCI.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/oOsdaVogrsEoBfpv.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/jUhljVTClqxYWJke.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/qMbGHfjbfFCXXZzB.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/JZwKjhqGQtvEFPBo.jpg"
 ];
 
 // Frutos do Mar
@@ -134,7 +151,16 @@ export const hamburgueriaImages = [
 
 // Informática
 export const informticaImages = [
-  "https://cdn.pixabay.com/photo/2015/01/08/18/25/desk-593327_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/tFdOhBohziHmARqz.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/SpwHMOGEBSaKbgKS.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/OpNVdSXADEGHuSXd.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/EWjQBouAxNKjVhwt.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/kSOPozMGhagHATeh.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/KSVpfDEMdimwghZS.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/KJeXwejwYdFCNARj.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/YvhMwgWVMkkqlBxY.png",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/SnYQXCtisIwFhxwJ.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/mMSOkzgBdUjNBTbD.jpg",
 ];
 
 // Italiana
@@ -153,28 +179,72 @@ export const italianaImages = [
 
 // Livraria
 export const livrariaImages = [
-  "https://cdn.pixabay.com/photo/2016/02/16/21/07/books-1204029_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/flSeDMtLGwMANsNP.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/vwCUcNylWnQIToKd.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/AteqhKdtPzxUDQdd.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/QghsNTaTaPhiQNlW.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/YBtTNlrKkLcLzvlC.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ksgCgBbDnvrfZlEr.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/xACiEIGZWwQrypQm.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/AjsZoQYmuVOPxrxg.webp",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/HCbIbNbcjjQKlNQu.webp",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/VvBkRYLPVqYpKsuZ.jpg"
 ];
 
 // Loja de Brinquedos
 export const lojadeBrinquedosImages = [
-  "https://cdn.pixabay.com/photo/2014/11/05/15/57/teddy-bear-518034_1280.jpg",
-  "https://cdn.pixabay.com/photo/2017/05/10/19/29/robot-2301646_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/VRWmUlkZETujpLVQ.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/hWLtpxYUQGUSQfyu.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ArryXZIfKSdAoxGZ.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ccsECnPtZNCPvlNp.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/NcMlQYzuxHMGFqCA.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/jRdFlqOjcPHSgRCO.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/HcDuJMockiXpvDPB.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/MBRYewsfFRPtaXYv.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/BQqNYheeYzJfRZAC.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/tuMHajOTZSlBHyvw.png"
 ];
 
 // Loja de Instrumentos Musicais
 export const lojadeInstrumentosMusicaisImages = [
-  "https://cdn.pixabay.com/photo/2015/05/07/11/02/guitar-756326_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/weWtEDXgdmSwdpor.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/zFrvCWjlyZkkDrzi.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/dwtJvBdrnQyXeBXK.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/UqmcjbVuIOsYpCIB.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/vLiZROFGlTTWOjuI.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/dkcgHfYqQgdEuTiH.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/QRatJvCGNgAfqGSV.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/wsxshhCoWmajxoJW.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/zWImMCKUoTEZBYJB.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/KdcRUaivQkKJSUFX.webp"
 ];
 
 // Loja de Maquiagem
 export const lojadeMaquiagemImages = [
-  "https://cdn.pixabay.com/photo/2017/08/05/21/36/perfume-2585727_1280.jpg",
+ "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/WvCsAnyoSSZkPqUD.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/KVXghgSSuegGrdGs.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/rwgKeySYxLEInVXh.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/gnZLmTRtQMYzrKYO.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/dGAvAvjydrDSsFyx.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/MYzzybEwugdiikKJ.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/RvIaxljdUcWRuZgf.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/BvAXgKfJimUInlrC.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/rcnygvJpYSfwJYcH.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ZxKxEQysJNlYobPt.jpg"
 ];
 
 // Materiais de Construção
 export const materiaisdeConstruoImages = [
-  "https://cdn.pixabay.com/photo/2017/08/01/23/51/tools-2568858_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/WCEdDsqtUZLhkSYi.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/FysKWFCXMAQvMzLS.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/vbYBbHVRWjRrEabY.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/beAYYpHymfzxTWbQ.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/yRXTiiBqUmBoeLzH.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/aVaQjnIxqNGItiRJ.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/AFdoWJcztRaPfJno.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/txnHLrCDMhaFAhtO.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/gzqKdGVdDGwGiFKh.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/WYSyOaJpNcNezizG.jpg"
 ];
 
 // Mexicana
@@ -193,7 +263,16 @@ export const mexicanaImages = [
 
 // Moda Feminina
 export const modaFemininaImages = [
-  "https://cdn.pixabay.com/photo/2017/08/01/11/48/woman-2564660_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/tiEKbSmvdONrDPPG.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/AcGiksWXstiAZfJk.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/HcrvYtFRroqozCAK.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/NvttnWnQWIHeEueE.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/jehUUGurKXAhNFYh.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/OhVCkIrkMQEJXBPd.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/siYlRKPxTYZuqwwj.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/SZFDhOLxPbxyRifP.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/wKKqwnGAFcypkThL.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/bUeCqNfykkBnggTM.jpg"
 ];
 
 // Moda Masculina
@@ -211,7 +290,17 @@ export const modaMasculinaImages = [
 
 // Papelaria
 export const papelariaImages = [
-  "https://cdn.pixabay.com/photo/2015/01/20/12/51/office-605503_1280.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/QDEpTNiyPgNLDelK.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/CjKBnHWHsDmQKUbq.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/dqeGVHppdpYJbIWX.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/IcjamYeagiTIQhZP.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/eDgSGwItSKnBedgT.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/dZMrJOkOMgbYsREH.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/pVhNlVpllTtkWjwo.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/FjQqDaWjoFiMzKpU.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/MyIuYbLLoPyHKnlX.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/fFJmNpyfUfpvgCow.jpg"
+
 ];
 
 // Papelaria Criativa
@@ -230,7 +319,16 @@ export const papelariaCriativaImages = [
 
 // Pet Shop
 export const petShopImages = [
-  "https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/YlRmlWkxiRpeXVBv.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/jWEvVPzaGzQbSjhK.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/yFjBLZHcWDaIqvqb.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/EnowkUWYGmFJFpuB.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/vVHqlAtjWzsmwFKB.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/lZLdViXwmUVuyOsn.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/lGjagbcnFFsGkDcp.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/NcmeAcfNQjbVfAbJ.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/JrPExhgaevhHdAUX.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/KdcRUaivQkKJSUFX.webp"
 ];
 
 // Pizzaria
@@ -247,19 +345,46 @@ export const pizzariaImages = [
   "https://images.pexels.com/photos/27305271/pexels-photo-27305271.jpeg",
 ];
 
+export const pizzariaBellaImages = [
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/zlVaucBSqqsnNWMB.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/gxfTadBVBYiCIyko.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/WnLkNmjmEVJeLusR.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/mNFNVYhmjxrrbzgq.jpeg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/UPSZGXqdWVuTuayQ.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/poOjGeVpvPUfwGhR.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/YThUHtETZfTGZXVZ.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/vTBEMzKygLUEyQeA.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/puDvzCVUQqmpkNDK.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/jCLwmNUicrdExTTZ.jpg"
+];
+
+
 // Relojoaria
 export const relojoariaImages = [
-  "https://cdn.pixabay.com/photo/2014/07/31/23/10/watch-407096_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/AcQoWzfEtmCJntDC.jpeg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/yCxCzcQIatHAzJuo.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/DpCGGPZTlySSBATs.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/XHeKUWWFdspVejUb.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/iQsrNGmRzPvTPCeT.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/idzmSAmVMidlqOlz.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/BUAllFpPjXCLDZzt.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/MmtxCEXNSIkpQarU.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/LSzcqboTzGVshSbF.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/AcQoWzfEtmCJntDC.jpeg"
 ];
 
 // Sorveteria Premium
 export const sorveteriaPremiumImages = [
-  "https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/03/26/23/09/chocolate-693633_1280.jpg",
-  "https://cdn.pixabay.com/photo/2015/06/15/15/40/milkshake-809961_1280.jpg",
-  "https://cdn.pixabay.com/photo/2016/11/22/18/52/cake-1850011_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/11/28/08/03/brownie-548591_1280.jpg",
-  "https://cdn.pixabay.com/photo/2014/12/16/22/25/espresso-571002_1280.jpg",
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/JykqsOEFyDOeNYDR.jpeg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/RrxjrvUkRMnSFjFL.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/BTpNSaJZbjsPAZKV.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/eUvkWQEyHMIIDqGi.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/QamyuDTBKTnhFBvi.jpeg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/uAnkRSUBuDCKsyyI.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ICrOPEPKjIfevCpf.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/hWWGPBNYhyajzyzC.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/BzOxqQYiAldeOctb.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/QfeXuMvPXxKWMUpy.jpg"
 ];
 
 // Steakhouse
@@ -303,6 +428,18 @@ export const sushiImages = [
   "https://images.pexels.com/photos/30683023/pexels-photo-30683023.jpeg",
   "https://images.pexels.com/photos/16049660/pexels-photo-16049660.jpeg"
 ];
+export const sushi2Images = [
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/arYMquHutpAoctxj.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/btalIKpzHOeycOfe.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/TtLhFPQSMoqAWxfE.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/DnVbAFOGFLuqJONW.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/WlLgGzlWoqHESCwO.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/HXreVvayFDScgNau.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/jmfONLBUYZWEdcUV.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/sLosGDeOawXzYpJM.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/junhOZUJucKvcLZM.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/QExphPaBWAaPSoSf.jpg"
+];
 
 // Vegano
 export const veganoImages = [
@@ -315,6 +452,19 @@ export const veganoImages = [
   "https://images.pexels.com/photos/37211777/pexels-photo-37211777.jpeg",
   "https://images.pexels.com/photos/396132/pexels-photo-396132.jpeg",
   "https://images.pexels.com/photos/34318143/pexels-photo-34318143.jpeg",
+];
+
+export const vegano2Images = [
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/letHcvPWzGZRfvil.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/ogMHQvPDzneiNWZU.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/PySpuQYWLbJaaIhj.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/hwwQoUEqmFRBSTIb.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/uuThUSbBZYzOSJdE.jpg",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/hcbnlaRNmvKEEfRg.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/KFPUYmlcoBbGcyJY.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/LGhXAiDuXQqTTfNz.png",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/mxboLxyLQzbjHJaK.webp",
+"https://files.manuscdn.com/user_upload_by_module/session_file/310519663120180153/qCFIZyqvTRvVDDSl.jpg"
 ];
 
 
@@ -330,7 +480,7 @@ export const mockHybridSliderData = [
     id: "h2",
     nome: "Liquidacao de Verao",
     categoria: "Promocao Especial",
-    imagem: modaFemininaImages[11],
+    imagem: modaFemininaImages[1],
     tipo: "imagem" as const
   },
   {
@@ -344,7 +494,7 @@ export const mockHybridSliderData = [
     id: "h4",
     nome: "Artesanato Regional",
     categoria: "Feira de Negocios",
-    imagem: floriculturaImages[11],
+    imagem: floriculturaImages[1],
     tipo: "imagem" as const
   }
 ] as const satisfies readonly HybridSliderItem[];
@@ -376,7 +526,7 @@ export const mockStoreSliderComerciais = [
     nome: "Ofertas do Centro",
     categoria: "Promocao Especial",
     horarioFuncionamento: "08:00 - 18:00",
-    imagem: modaMasculinaImages[11],
+    imagem: modaMasculinaImages[1],
     descricao: "As melhores ofertas da regiao central."
   },
   {
@@ -384,7 +534,7 @@ export const mockStoreSliderComerciais = [
     nome: "Cultura Local",
     categoria: "Feira de Negocios",
     horarioFuncionamento: "09:00 - 20:00",
-    imagem: floriculturaImages[10],
+    imagem: floriculturaImages[1],
     descricao: "Valorize o produtor local e nossa cultura."
   },
   {
@@ -667,7 +817,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Gastronomia plant-based with organic and flavorful ingredients.",
     vendedorAmbulante: false,
     estacionamento: false,
-    imagem: veganoImages[16],
+    imagem: veganoImages[6],
     latitude: -10.90808576633602,
     longitude: -37.04837269380025,
     localizacao: "Rua do Estilo, 102",
@@ -741,7 +891,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Tradicao gaucha com os melhores cortes de carne bovina.",
     vendedorAmbulante: false,
     estacionamento: true,
-    imagem: steakhouseImages[12],
+    imagem: steakhouseImages[2],
     latitude: -10.90608576633602,
     longitude: -37.04687269380025,
     localizacao: "Rodovia Sul, km 01",
@@ -778,7 +928,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Roupa casual, social, vestidos com alto padrão.",
     vendedorAmbulante: false,
     estacionamento: false,
-    imagem: modaMasculinaImages[11],
+    imagem: modaMasculinaImages[1],
     latitude: -10.91458576633602,
     longitude: -37.04787269380025,
     localizacao: "Rua do Comércio, 12",
@@ -813,7 +963,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Moda feminina para todas as ocasiões com estilo e elegância.",
     vendedorAmbulante: false,
     estacionamento: false,
-    imagem: modaFemininaImages[11],
+    imagem: modaFemininaImages[1],
     latitude: -10.91358576633602,
     longitude: -37.048872693800256,
     localizacao: "Calçadão da Praia, 80",
@@ -848,7 +998,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Variedade, frescor e preços baixos para sua família.",
     vendedorAmbulante: false,
     estacionamento: true,
-    imagem: supermercadoImages[12],
+    imagem: supermercadoImages[2],
     latitude: -10.91258576633602,
     longitude: -37.04987269380025,
     localizacao: "Av. Coelho e Campos, 150",
@@ -883,7 +1033,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Sua saúde em boas mãos com assistência farmacêutica de qualidade.",
     vendedorAmbulante: false,
     estacionamento: false,
-    imagem: farmciaImages[12],
+    imagem: farmciaImages[2],
     latitude: -10.91158576633602,
     longitude: -37.05087269380025,
     localizacao: "Praca Fausto Cardoso, 10",
@@ -953,7 +1103,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "As melhores marcas de hardware, notebooks e acessórios.",
     vendedorAmbulante: false,
     estacionamento: true,
-    imagem: informticaImages[12],
+    imagem: informticaImages[2],
     latitude: -10.90958576633602,
     longitude: -37.05287269380025,
     localizacao: "Shopping RioMar, Piso L1",
@@ -988,7 +1138,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Um refúgio para os amantes da leitura com títulos nacionais e importados.",
     vendedorAmbulante: false,
     estacionamento: false,
-    imagem: livrariaImages[12],
+    imagem: livrariaImages[2],
     latitude: -10.908585766336019,
     longitude: -37.05387269380025,
     localizacao: "Rua Santa Luzia, 15",
@@ -1023,7 +1173,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Sabores autenticos da Italia em massas artesanais.",
     vendedorAmbulante: false,
     estacionamento: true,
-    imagem: pizzariaImages[4],
+    imagem: pizzariaBellaImages[4],
     latitude: -10.90758576633602,
     longitude: -37.054872693800256,
     localizacao: "Rua Augusta, 400",
@@ -1038,16 +1188,16 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c18-p1", comercioId: "c18", nome: "Pizza de Pesto", descricao: "Molho pesto e queijo brie.", preco: 65.0, imagem: pizzariaImages[0] },
-      { id: "c18-p2", comercioId: "c18", nome: "Pizza de Rucula", descricao: "Tomate seco e mussarela de bufala.", preco: 60.0, imagem: pizzariaImages[1] },
-      { id: "c18-p3", comercioId: "c18", nome: "Calzone de Frango", descricao: "Recheio cremoso com catupiry.", preco: 45.0, imagem: pizzariaImages[2] },
-      { id: "c18-p4", comercioId: "c18", nome: "Pizza Doce", descricao: "Chocolate com morangos frescos.", preco: 50.0, imagem: pizzariaImages[3] },
-      { id: "c18-p5", comercioId: "c18", nome: "Pizza de Camarao", descricao: "Camaroes médios e alho poro.", preco: 75.0, imagem: pizzariaImages[4] },
-      { id: "c18-p6", comercioId: "c18", nome: "Focaccia Alecrim", descricao: "Pao italiano com sal grosso.", preco: 25.0, imagem: pizzariaImages[5] },
-      { id: "c18-p7", comercioId: "c18", nome: "Salada Caprese", descricao: "Tomate, mussarela e manjericao.", preco: 35.0, imagem: pizzariaImages[6] },
-      { id: "c18-p8", comercioId: "c18", nome: "Suco de Uva", descricao: "Integral 500ml.", preco: 15.0, imagem: pizzariaImages[7] },
-      { id: "c18-p9", comercioId: "c18", nome: "Cerveja Long Neck", descricao: "Gelada 355ml.", preco: 10.0, imagem: pizzariaImages[8] },
-      { id: "c18-p10", comercioId: "c18", nome: "Cannoli", descricao: "Doce siciliano com ricota.", preco: 18.0, imagem: pizzariaImages[9] }
+      { id: "c18-p1", comercioId: "c18", nome: "Pizza de Pesto", descricao: "Molho pesto e queijo brie.", preco: 65.0, imagem: pizzariaBellaImages[0] },
+      { id: "c18-p2", comercioId: "c18", nome: "Pizza de Rucula", descricao: "Tomate seco e mussarela de bufala.", preco: 60.0, imagem: pizzariaBellaImages[1] },
+      { id: "c18-p3", comercioId: "c18", nome: "Calzone de Frango", descricao: "Recheio cremoso com catupiry.", preco: 45.0, imagem: pizzariaBellaImages[2] },
+      { id: "c18-p4", comercioId: "c18", nome: "Pizza Doce", descricao: "Chocolate com morangos frescos.", preco: 50.0, imagem: pizzariaBellaImages[3] },
+      { id: "c18-p5", comercioId: "c18", nome: "Pizza de Camarao", descricao: "Camaroes médios e alho poro.", preco: 75.0, imagem: pizzariaBellaImages[4] },
+      { id: "c18-p6", comercioId: "c18", nome: "Focaccia Alecrim", descricao: "Pao italiano com sal grosso.", preco: 25.0, imagem: pizzariaBellaImages[5] },
+      { id: "c18-p7", comercioId: "c18", nome: "Salada Caprese", descricao: "Tomate, mussarela e manjericao.", preco: 35.0, imagem: pizzariaBellaImages[6] },
+      { id: "c18-p8", comercioId: "c18", nome: "Suco de Uva", descricao: "Integral 500ml.", preco: 15.0, imagem: pizzariaBellaImages[7] },
+      { id: "c18-p9", comercioId: "c18", nome: "Cerveja Long Neck", descricao: "Gelada 355ml.", preco: 10.0, imagem: pizzariaBellaImages[8] },
+      { id: "c18-p10", comercioId: "c18", nome: "Cannoli", descricao: "Doce siciliano com ricota.", preco: 18.0, imagem: pizzariaBellaImages[9] }
     ]
   },
   {
@@ -1060,7 +1210,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Equilibrio e frescor em cada peca de sushi.",
     vendedorAmbulante: false,
     estacionamento: false,
-    imagem: sushiImages[11],
+    imagem: sushi2Images[1],
     latitude: -10.90658576633602,
     longitude: -37.055872693800254,
     localizacao: "Av. Jorge Amado, 50",
@@ -1075,16 +1225,16 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c19-p1", comercioId: "c19", nome: "Combo Zen 30", descricao: "Selecao do chef com 30 pecas.", preco: 120.0, imagem: sushiImages[0] },
-      { id: "c19-p2", comercioId: "c19", nome: "Nigiri de Atum", descricao: "6 unidades de atum fresco.", preco: 40.0, imagem: sushiImages[1] },
-      { id: "c19-p3", comercioId: "c19", nome: "Poke Salmao", descricao: "Tigela com arroz e acompanhamentos.", preco: 55.0, imagem: sushiImages[2] },
-      { id: "c19-p4", comercioId: "c19", nome: "Uramaki Ebi", descricao: "Camarao empanado e cream cheese.", preco: 35.0, imagem: sushiImages[3] },
-      { id: "c19-p5", comercioId: "c19", nome: "Shimeji na Manteiga", descricao: "Porcao de cogumelos quentes.", preco: 30.0, imagem: sushiImages[4] },
-      { id: "c19-p6", comercioId: "c19", nome: "Harumaki de Carne", descricao: "Rolinho primavera crocante.", preco: 15.0, imagem: sushiImages[5] },
-      { id: "c19-p7", comercioId: "c19", nome: "Temaki Philadelphia", descricao: "Salmao, cream cheese e cebolinha.", preco: 32.0, imagem: sushiImages[6] },
-      { id: "c19-p8", comercioId: "c19", nome: "Sashimi de Polvo", descricao: "8 fatias finas de polvo.", preco: 50.0, imagem: sushiImages[7] },
-      { id: "c19-p9", comercioId: "c19", nome: "Saque Junmai", descricao: "Garrafa pequena 300ml.", preco: 60.0, imagem: sushiImages[8] },
-      { id: "c19-p10", comercioId: "c19", nome: "Tempura de Sorvete", descricao: "Sobremesa frita e gelada.", preco: 25.0, imagem: sushiImages[9] }
+      { id: "c19-p1", comercioId: "c19", nome: "Combo Zen 30", descricao: "Selecao do chef com 30 pecas.", preco: 120.0, imagem: sushi2Images[0] },
+      { id: "c19-p2", comercioId: "c19", nome: "Nigiri de Atum", descricao: "6 unidades de atum fresco.", preco: 40.0, imagem: sushi2Images[1] },
+      { id: "c19-p3", comercioId: "c19", nome: "Poke Salmao", descricao: "Tigela com arroz e acompanhamentos.", preco: 55.0, imagem: sushi2Images[2] },
+      { id: "c19-p4", comercioId: "c19", nome: "Uramaki Ebi", descricao: "Camarao empanado e cream cheese.", preco: 35.0, imagem: sushi2Images[3] },
+      { id: "c19-p5", comercioId: "c19", nome: "Shimeji na Manteiga", descricao: "Porcao de cogumelos quentes.", preco: 30.0, imagem: sushi2Images[4] },
+      { id: "c19-p6", comercioId: "c19", nome: "Harumaki de Carne", descricao: "Rolinho primavera crocante.", preco: 15.0, imagem: sushi2Images[5] },
+      { id: "c19-p7", comercioId: "c19", nome: "Temaki Philadelphia", descricao: "Salmao, cream cheese e cebolinha.", preco: 32.0, imagem: sushi2Images[6] },
+      { id: "c19-p8", comercioId: "c19", nome: "Sashimi de Polvo", descricao: "8 fatias finas de polvo.", preco: 50.0, imagem: sushi2Images[7] },
+      { id: "c19-p9", comercioId: "c19", nome: "Saque Junmai", descricao: "Garrafa pequena 300ml.", preco: 60.0, imagem: sushi2Images[8] },
+      { id: "c19-p10", comercioId: "c19", nome: "Tempura de Sorvete", descricao: "Sobremesa frita e gelada.", preco: 25.0, imagem: sushi2Images[9] }
     ]
   },
   {
@@ -1097,7 +1247,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Tradicao milenar em pratos fartos e saborosos.",
     vendedorAmbulante: false,
     estacionamento: true,
-    imagem: sushiImages[12],
+    imagem: comidaChinesaImages[2],
     latitude: -10.91433576633602,
     longitude: -37.05512269380025,
     localizacao: "Rua Siriri, 120",
@@ -1171,7 +1321,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Gelatos artesanais feitos diariamente com frutas frescas.",
     vendedorAmbulante: false,
     estacionamento: false,
-    imagem: sorveteriaPremiumImages[12],
+    imagem: sorveteriaPremiumImages[2],
     latitude: -10.91233576633602,
     longitude: -37.053122693800255,
     localizacao: "Av. Beira Mar, 2000",
@@ -1208,7 +1358,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Onde a imaginacao ganha vida para criancas de todas as idades.",
     vendedorAmbulante: false,
     estacionamento: true,
-    imagem: lojadeBrinquedosImages[12],
+    imagem: lojadeBrinquedosImages[2],
     latitude: -10.91133576633602,
     longitude: -37.05212269380025,
     localizacao: "Shopping RioMar, Piso L2",
@@ -1243,7 +1393,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Flores e arranjos exclusivos para momentos inesqueciveis.",
     vendedorAmbulante: true,
     estacionamento: false,
-    imagem: floriculturaImages[10],
+    imagem: floriculturaImages[9],
     latitude: -10.91033576633602,
     longitude: -37.05112269380025,
     localizacao: "Praca Fausto Cardoso, Box 2",
@@ -1291,16 +1441,16 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c25-p1", comercioId: "c25", nome: "Canetas Brush Pen", descricao: "Kit com 12 cores dual tip.", preco: 65.0, imagem: papelariaCriativaImages[0] },
-      { id: "c25-p2", comercioId: "c25", nome: "Caderno Pontilhado", descricao: "Ideal para Bullet Journal.", preco: 55.0, imagem: papelariaCriativaImages[1] },
-      { id: "c25-p3", comercioId: "c25", nome: "Washi Tapes", descricao: "Conjunto com 5 rolos decorados.", preco: 25.0, imagem: papelariaCriativaImages[2] },
-      { id: "c25-p4", comercioId: "c25", nome: "Estojo Holografico", descricao: "Espacoso e moderno.", preco: 35.0, imagem: papelariaCriativaImages[3] },
-      { id: "c25-p5", comercioId: "c25", nome: "Aquarela Profissional", descricao: "Pastilha com 24 cores.", preco: 120.0, imagem: papelariaCriativaImages[4] },
-      { id: "c25-p6", comercioId: "c25", nome: "Pinceis de Agua", descricao: "Set com 3 tamanhos.", preco: 40.0, imagem: papelariaCriativaImages[5] },
-      { id: "c25-p7", comercioId: "c25", nome: "Bloco de Desenho", descricao: "Papel 200g para artes.", preco: 30.0, imagem: papelariaCriativaImages[6] },
-      { id: "c25-p8", comercioId: "c25", nome: "Carimbos Decorativos", descricao: "Kit com temas de plantas.", preco: 45.0, imagem: papelariaCriativaImages[7] },
-      { id: "c25-p9", comercioId: "c25", nome: "Grampeador Rose Gold", descricao: "Elegancia na sua mesa.", preco: 28.0, imagem: papelariaCriativaImages[8] },
-      { id: "c25-p10", comercioId: "c25", nome: "Planners 2026", descricao: "Organizacao completa anual.", preco: 80.0, imagem: papelariaCriativaImages[9] }
+      { id: "c25-p1", comercioId: "c25", nome: "Canetas Brush Pen", descricao: "Kit com 12 cores dual tip.", preco: 65.0, imagem: papelariaImages[0] },
+      { id: "c25-p2", comercioId: "c25", nome: "Caderno Pontilhado", descricao: "Ideal para Bullet Journal.", preco: 55.0, imagem: papelariaImages[1] },
+      { id: "c25-p3", comercioId: "c25", nome: "Washi Tapes", descricao: "Conjunto com 5 rolos decorados.", preco: 25.0, imagem: papelariaImages[2] },
+      { id: "c25-p4", comercioId: "c25", nome: "Estojo Holografico", descricao: "Espacoso e moderno.", preco: 35.0, imagem: papelariaImages[3] },
+      { id: "c25-p5", comercioId: "c25", nome: "Aquarela Profissional", descricao: "Pastilha com 24 cores.", preco: 120.0, imagem: papelariaImages[4] },
+      { id: "c25-p6", comercioId: "c25", nome: "Pinceis de Agua", descricao: "Set com 3 tamanhos.", preco: 40.0, imagem: papelariaImages[5] },
+      { id: "c25-p7", comercioId: "c25", nome: "Bloco de Desenho", descricao: "Papel 200g para artes.", preco: 30.0, imagem: papelariaImages[6] },
+      { id: "c25-p8", comercioId: "c25", nome: "Carimbos Decorativos", descricao: "Kit com temas de plantas.", preco: 45.0, imagem: papelariaImages[7] },
+      { id: "c25-p9", comercioId: "c25", nome: "Grampeador Rose Gold", descricao: "Elegancia na sua mesa.", preco: 28.0, imagem: papelariaImages[8] },
+      { id: "c25-p10", comercioId: "c25", nome: "Planners 2026", descricao: "Organizacao completa anual.", preco: 80.0, imagem: papelariaImages[9] }
     ]
   },
   {
@@ -1397,16 +1547,16 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c28-p1", comercioId: "c28", nome: "Malbec Argentino", descricao: "Reserva 2022 encorpado.", preco: 95.0, imagem: veganoImages[0] },
-      { id: "c28-p2", comercioId: "c28", nome: "Chardonnay Chileno", descricao: "Notas de frutas tropicais.", preco: 75.0, imagem: veganoImages[1] },
-      { id: "c28-p3", comercioId: "c28", nome: "Espumante Brut", descricao: "Metodo tradicional 750ml.", preco: 120.0, imagem: veganoImages[2] },
-      { id: "c28-p4", comercioId: "c28", nome: "Vinho Rose", descricao: "Leve e refrescante para o verao.", preco: 65.0, imagem: veganoImages[3] },
-      { id: "c28-p5", comercioId: "c28", nome: "Vinho do Porto", descricao: "Doce e fortificado.", preco: 180.0, imagem: veganoImages[4] },
-      { id: "c28-p6", comercioId: "c28", nome: "Taca de Cristal", descricao: "Set com 2 unidades.", preco: 110.0, imagem: veganoImages[5] },
-      { id: "c28-p7", comercioId: "c28", nome: "Saca-rolhas Alavanca", descricao: "Facilidade e precisao.", preco: 55.0, imagem: veganoImages[6] },
-      { id: "c28-p8", comercioId: "c28", nome: "Decanter de Vidro", descricao: "Para aeracao do vinho.", preco: 140.0, imagem: veganoImages[7] },
-      { id: "c28-p9", comercioId: "c28", nome: "Queijo Parmesao", descricao: "Peca de 300g maturada.", preco: 45.0, imagem: veganoImages[8] },
-      { id: "c28-p10", comercioId: "c28", nome: "Antepasto de Berinjela", descricao: "Pote de 200g artesanal.", preco: 25.0, imagem: veganoImages[9] }
+      { id: "c28-p1", comercioId: "c28", nome: "Malbec Argentino", descricao: "Reserva 2022 encorpado.", preco: 95.0, imagem: vegano2Images[0] },
+      { id: "c28-p2", comercioId: "c28", nome: "Chardonnay Chileno", descricao: "Notas de frutas tropicais.", preco: 75.0, imagem: vegano2Images[1] },
+      { id: "c28-p3", comercioId: "c28", nome: "Espumante Brut", descricao: "Metodo tradicional 750ml.", preco: 120.0, imagem: vegano2Images[2] },
+      { id: "c28-p4", comercioId: "c28", nome: "Vinho Rose", descricao: "Leve e refrescante para o verao.", preco: 65.0, imagem: vegano2Images[3] },
+      { id: "c28-p5", comercioId: "c28", nome: "Vinho do Porto", descricao: "Doce e fortificado.", preco: 180.0, imagem: vegano2Images[4] },
+      { id: "c28-p6", comercioId: "c28", nome: "Taca de Cristal", descricao: "Set com 2 unidades.", preco: 110.0, imagem: vegano2Images[5] },
+      { id: "c28-p7", comercioId: "c28", nome: "Saca-rolhas Alavanca", descricao: "Facilidade e precisao.", preco: 55.0, imagem: vegano2Images[6] },
+      { id: "c28-p8", comercioId: "c28", nome: "Decanter de Vidro", descricao: "Para aeracao do vinho.", preco: 140.0, imagem: vegano2Images[7] },
+      { id: "c28-p9", comercioId: "c28", nome: "Queijo Parmesao", descricao: "Peca de 300g maturada.", preco: 45.0, imagem: vegano2Images[8] },
+      { id: "c28-p10", comercioId: "c28", nome: "Antepasto de Berinjela", descricao: "Pote de 200g artesanal.", preco: 25.0, imagem: vegano2Images[9] }
     ]
   },
   {
@@ -1489,7 +1639,7 @@ export const mockComercios: ComercioExtendido[] = [
     descricao: "Ponteiros que marcam sua elegancia e pontualidade.",
     vendedorAmbulante: false,
     estacionamento: false,
-    imagem: relojoariaImages[16],
+    imagem: relojoariaImages[6],
     latitude: -10.91283576633602,
     longitude: -37.05362269380025,
     localizacao: "Shopping Jardins, Piso L1",

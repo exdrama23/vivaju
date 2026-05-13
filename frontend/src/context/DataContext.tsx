@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState, useEffect, type FC, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useMemo, type FC, type ReactNode } from 'react';
 import type { Comercio, Evento, Estacionamento, Avaliacao } from '@/types/global';
 import type { ComercioExtendido } from '@/services/mockData';
 import { mockComercios, mockEventos, mockEstacionamentos } from '@/services/mockData';
@@ -22,14 +22,23 @@ const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [comercios, setComercios] = useState<ComercioExtendido[]>(() => {
-    // Incrementado para v5 para forçar recarregamento dos dados locais exatos
+    // Limpa versões antigas do cache para reduzir peso no localStorage
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith('vivaju_comercios_') && key !== 'vivaju_comercios_v5') {
+        localStorage.removeItem(key);
+      }
+    });
+
     const stored = localStorage.getItem('vivaju_comercios_v5');
     if (stored) return JSON.parse(stored);
     localStorage.setItem('vivaju_comercios_v5', JSON.stringify(mockComercios));
     return mockComercios;
   });
 
-  const randomCategories = Array.from(new Set(comercios.map(c => c.categoria))).sort(() => Math.random() - 0.5).slice(0, 8);
+  const randomCategories = useMemo(() => 
+    Array.from(new Set(comercios.map(c => c.categoria))).sort(() => Math.random() - 0.5).slice(0, 8),
+    [comercios]
+  );
 
   const [eventos, setEventos] = useState<Evento[]>([]);
   const [isLoadingEventos, setIsLoadingEventos] = useState(true);
@@ -38,6 +47,19 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isLoadingEstacionamentos, setIsLoadingEstacionamentos] = useState(true);
 
   useEffect(() => {
+    const fetchComercios = async () => {
+      try {
+        const response = await apiRequest('/loja');
+        let data = response.data || [];
+        if (data.length === 0) data = mockComercios;
+        setComercios(data);
+        localStorage.setItem('vivaju_comercios_v5', JSON.stringify(data));
+      } catch (error) {
+        console.error('Erro ao buscar comércios:', error);
+        // Em caso de erro, mantém o que está no estado (que veio do localStorage no init)
+      }
+    };
+
     const fetchEventos = async () => {
       try {
         const response = await apiRequest('/evento');
@@ -77,8 +99,17 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
       }
     };
 
+    fetchComercios();
     fetchEventos();
     fetchEstacionamentos();
+
+    const interval = setInterval(() => {
+      fetchComercios();
+      fetchEventos();
+      fetchEstacionamentos();
+    }, 30000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const addComercio = (comercio: Comercio) => {
