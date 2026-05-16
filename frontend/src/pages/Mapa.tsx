@@ -212,7 +212,7 @@ export function Mapa() {
           />
         </div>
 
-        <Button onClick={handleGetLocation} variant="outline" className="w-full rounded-full text-[10px] sm:text-xs h-9 sm:h-10 border-[#dadce0]">
+        <Button onClick={handleGetLocation} variant="outline" className="w-full rounded-full text-[10px] sm:text-xs h-9 sm:h-10 border-[#dadce0] cursor-pointer">
           <LocateFixed className="w-4 h-4 mr-2" /> Onde Estou
         </Button>
 

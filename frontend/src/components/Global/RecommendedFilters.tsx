@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Sparkles, ShoppingBag, Coffee, Utensils, Music, MapPin, Package, Palette, MoreHorizontal, X, Beer, Pizza } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
@@ -13,9 +13,94 @@ interface RecommendedFiltersProps {
   navigateOnSelect?: boolean;
   center?: boolean;
   showMoreOnMobile?: boolean;
+  useAnimatedIcons?: boolean;
 }
 
-const categoryIcons: { [key: string]: React.ReactNode } = {
+// Lottie Animation Icon Component
+const RestaurantIcon = ({ className = "w-14 h-14" }) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let animation: any;
+
+    import('lottie-web')
+      .then(({ default: lottie }) => {
+        if (cancelled || !containerRef.current) return;
+
+        animation = lottie.loadAnimation({
+          container: containerRef.current,
+          renderer: 'svg',
+          loop: false,
+          autoplay: true,
+          path: '/animations/restaurant-open.json',
+        });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setFailed(true);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+      if (animation) {
+        animation.destroy();
+      }
+    };
+  }, []);
+
+  if (failed) {
+    return <span className="text-lg">🍽️</span>;
+  }
+
+  return <div ref={containerRef} className={cn("pointer-events-none", className)} />;
+};
+
+// Lottie Animation Icon Component for "Tudo"
+const SearchHotelIcon = ({ className = "w-14 h-14" }) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let animation: any;
+
+    import('lottie-web')
+      .then(({ default: lottie }) => {
+        if (cancelled || !containerRef.current) return;
+
+        animation = lottie.loadAnimation({
+          container: containerRef.current,
+          renderer: 'svg',
+          loop: false,
+          autoplay: true,
+          path: '/animations/location.json',
+        });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setFailed(true);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+      if (animation) {
+        animation.destroy();
+      }
+    };
+  }, []);
+
+  if (failed) {
+    return <span className="text-lg">🔍</span>;
+  }
+
+  return <div ref={containerRef} className={cn("pointer-events-none", className)} style={{ filter: 'brightness(0) invert(1)' }} />;
+};
+
+const defaultCategoryIcons: { [key: string]: React.ReactNode } = {
   'tudo': <Sparkles className="w-6 h-6" />,
   'perfumaria': <Palette className="w-6 h-6" />,
   'moda': <ShoppingBag className="w-6 h-6" />,
@@ -33,9 +118,17 @@ const categoryIcons: { [key: string]: React.ReactNode } = {
   'produtos': <Package className="w-6 h-6" />,
 };
 
-const getCategoryIcon = (category: string) => {
+const getCategoryIcon = (category: string, useAnimated: boolean = false) => {
   const lowerCategory = category.toLowerCase();
-  return categoryIcons[lowerCategory] || <ShoppingBag className="w-6 h-6" />;
+  
+  if (useAnimated) {
+    if (lowerCategory === 'tudo') {
+      return <SearchHotelIcon key={`icon-${category}`} className="w-10 h-10" />;
+    }
+    return <RestaurantIcon key={`icon-${category}`} className="w-14 h-14" />;
+  }
+  
+  return defaultCategoryIcons[lowerCategory] || <ShoppingBag className="w-6 h-6" />;
 };
 
 export function RecommendedFilters({
@@ -47,6 +140,7 @@ export function RecommendedFilters({
   navigateOnSelect = false,
   center = false,
   showMoreOnMobile = false,
+  useAnimatedIcons = false,
 }: RecommendedFiltersProps) {
   const [showMoreModal, setShowMoreModal] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -106,7 +200,7 @@ export function RecommendedFilters({
         {displayChipsDesktop.map((chip) => {
           const isActive = filtroAtual.name === chip;
           const label = chip === 'Tudo' ? chip : formatarCategoria(chip);
-          const icon = getCategoryIcon(chip);
+          const icon = getCategoryIcon(chip, useAnimatedIcons);
 
           return (
             <button
@@ -123,8 +217,8 @@ export function RecommendedFilters({
                 className={cn(
                   "w-16 h-16 rounded-full flex items-center justify-center transition-all duration-200 border-2",
                   isActive
-                    ? "bg-[var(--primary-pale)] border-[var(--primary)] text-[var(--primary)]"
-                    : "bg-white border-[var(--gray-border)] text-[var(--gray-text)] hover:bg-[var(--primary-pale)] hover:border-[var(--primary)]"
+                    ? "bg-[#2d255e] border-[#2d255e] text-white"
+                    : "bg-[#2d255e] border-[#2d255e] text-white hover:bg-[#3d3570]"
                 )}
               >
                 {icon}
@@ -151,7 +245,7 @@ export function RecommendedFilters({
         {displayChipsMobile.map((chip) => {
           const isActive = filtroAtual.name === chip;
           const label = chip === 'Tudo' ? chip : formatarCategoria(chip);
-          const icon = getCategoryIcon(chip);
+          const icon = getCategoryIcon(chip, useAnimatedIcons);
 
           return (
             <button
@@ -168,8 +262,8 @@ export function RecommendedFilters({
                 className={cn(
                   "w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 border-2",
                   isActive
-                    ? "bg-[var(--primary-pale)] border-[var(--primary)] text-[var(--primary)]"
-                    : "bg-white border-[var(--gray-border)] text-[var(--gray-text)] active:bg-[var(--primary-pale)] active:border-[var(--primary)]"
+                    ? "bg-[#2d255e] border-[#2d255e] text-white"
+                    : "bg-[#2d255e] border-[#2d255e] text-white active:bg-[#3d3570]"
                 )}
               >
                 {icon}
@@ -194,7 +288,7 @@ export function RecommendedFilters({
             className="flex flex-col items-center gap-2 transition-all duration-200"
           >
             {/* Ícone dentro do círculo */}
-            <div className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 border-2 bg-white border-[var(--gray-border)] text-[var(--gray-text)] active:bg-[var(--primary-pale)] active:border-[var(--primary)]">
+            <div className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 border-2 bg-[#2d255e] border-[#2d255e] text-white active:bg-[#3d3570]">
               <MoreHorizontal className="w-5 h-5" />
             </div>
             {/* Nome */}
@@ -216,13 +310,13 @@ export function RecommendedFilters({
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 md:p-6 border-b border-[var(--gray-border)] sticky top-0 bg-white rounded-t-3xl md:rounded-t-2xl">
+            <div className="flex items-center justify-between  p-4 md:p-6 sticky top-0 bg-[var(--cream)] rounded-t-3xl md:rounded-t-2xl">
               <h3 className="text-lg md:text-xl font-extrabold text-[var(--black)]">Todas as categorias</h3>
               <button
                 onClick={handleCloseModal}
                 className="p-2 hover:bg-[var(--primary-pale)] rounded-full transition-colors"
               >
-                <X className="w-5 h-5 text-[var(--gray-text)]" />
+                <X className="w-5 h-5 text-[var(--gray-text)] cursor-pointer" />
               </button>
             </div>
 
@@ -231,7 +325,7 @@ export function RecommendedFilters({
               {allChips.map((chip) => {
                 const isActive = filtroAtual.name === chip;
                 const label = chip === 'Tudo' ? chip : formatarCategoria(chip);
-                const icon = getCategoryIcon(chip);
+                const icon = getCategoryIcon(chip, useAnimatedIcons);
 
                 return (
                   <button
@@ -249,10 +343,10 @@ export function RecommendedFilters({
                     {/* Ícone dentro do círculo */}
                     <div
                       className={cn(
-                        "w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-200 border-2",
+                        "w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-200 border-2 cursor-pointer",
                         isActive
-                          ? "bg-[var(--primary-pale)] border-[var(--primary)] text-[var(--primary)]"
-                          : "bg-white border-[var(--gray-border)] text-[var(--gray-text)] active:bg-[var(--primary-pale)] active:border-[var(--primary)]"
+                          ? "bg-[#2d255e] border-[#2d255e] text-white"
+                          : "bg-[#2d255e] border-[#2d255e] text-white active:bg-[#3d3570]"
                       )}
                     >
                       {icon}

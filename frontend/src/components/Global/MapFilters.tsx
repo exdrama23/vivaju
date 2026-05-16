@@ -16,7 +16,7 @@ export function MapFilters({ activeFilters, onFilterChange }: MapFiltersProps) {
       <button
         onClick={() => onFilterChange('comercios')}
         className={cn(
-          "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm border whitespace-nowrap",
+          "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm border whitespace-nowrap cursor-pointer",
           activeFilters.comercios 
             ? "bg-[#e8f0fe] border-transparent text-[#1a73e8]" 
             : "bg-white border-[#dadce0] text-[#3c4043] hover:bg-[#f8f9fa]"
@@ -27,7 +27,7 @@ export function MapFilters({ activeFilters, onFilterChange }: MapFiltersProps) {
       <button
         onClick={() => onFilterChange('eventos')}
         className={cn(
-          "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm border whitespace-nowrap",
+          "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm border whitespace-nowrap cursor-pointer",
           activeFilters.eventos 
             ? "bg-[#f3e5f5] border-transparent text-[#9c27b0]" 
             : "bg-white border-[#dadce0] text-[#3c4043] hover:bg-[#f8f9fa]"
@@ -38,7 +38,7 @@ export function MapFilters({ activeFilters, onFilterChange }: MapFiltersProps) {
       <button
         onClick={() => onFilterChange('estacionamentos')}
         className={cn(
-          "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm border whitespace-nowrap",
+          "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm border whitespace-nowrap cursor-pointer",
           activeFilters.estacionamentos 
             ? "bg-[#e6f4ea] border-transparent text-[#1e8e3e]" 
             : "bg-white border-[#dadce0] text-[#3c4043] hover:bg-[#f8f9fa]"

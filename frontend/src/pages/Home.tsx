@@ -211,7 +211,7 @@ function JaponeseIcon() {
   return <div ref={containerRef} className="w-14 h-14 -m-1 pointer-events-none" />;
 }
 
-function VeganoIcon() {
+function ConstrucaoIcon() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [failed, setFailed] = useState(false);
 
@@ -228,7 +228,7 @@ function VeganoIcon() {
           renderer: 'svg',
           loop: true,
           autoplay: true,
-          path: '/animations/food-served.json',
+          path: '/animations/shovel.json',
         });
       })
       .catch(() => {
@@ -252,46 +252,128 @@ function VeganoIcon() {
   return <div ref={containerRef} className="w-14 h-14 -m-1 pointer-events-none" />;
 }
 
-// function RoupaIcon() {
-//   const containerRef = useRef<HTMLDivElement | null>(null);
-//   const [failed, setFailed] = useState(false);
+function TecnologiaIcon() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [failed, setFailed] = useState(false);
 
-//   useEffect(() => {
-//     let cancelled = false;
-//     let animation: any;
+  useEffect(() => {
+    let cancelled = false;
+    let animation: any;
 
-//     import('lottie-web')
-//       .then(({ default: lottie }) => {
-//         if (cancelled || !containerRef.current) return;
+    import('lottie-web')
+      .then(({ default: lottie }) => {
+        if (cancelled || !containerRef.current) return;
 
-//         animation = lottie.loadAnimation({
-//           container: containerRef.current,
-//           renderer: 'svg',
-//           loop: true,
-//           autoplay: true,
-//           path: '/animations/food-served.json',
-//         });
-//       })
-//       .catch(() => {
-//         if (!cancelled) {
-//           setFailed(true);
-//         }
-//       });
+        animation = lottie.loadAnimation({
+          container: containerRef.current,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: '/animations/robot-arm.json',
+        });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setFailed(true);
+        }
+      });
 
-//     return () => {
-//       cancelled = true;
-//       if (animation) {
-//         animation.destroy();
-//       }
-//     };
-//   }, []);
+    return () => {
+      cancelled = true;
+      if (animation) {
+        animation.destroy();
+      }
+    };
+  }, []);
 
-//   if (failed) {
-//     return <span className="text-3xl">🌿</span>;
-//   }
+  if (failed) {
+    return <span className="text-3xl">🌿</span>;
+  }
 
-//   return <div ref={containerRef} className="w-14 h-14 -m-1 pointer-events-none" />;
-// }
+  return <div ref={containerRef} className="w-14 h-14 -m-1 pointer-events-none" />;
+}
+
+function InstrumentoIcon() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let animation: any;
+
+    import('lottie-web')
+      .then(({ default: lottie }) => {
+        if (cancelled || !containerRef.current) return;
+
+        animation = lottie.loadAnimation({
+          container: containerRef.current,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: '/animations/violin.json',
+        });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setFailed(true);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+      if (animation) {
+        animation.destroy();
+      }
+    };
+  }, []);
+
+  if (failed) {
+    return <span className="text-3xl">🌿</span>;
+  }
+
+  return <div ref={containerRef} className="w-14 h-14 -m-1 pointer-events-none" />;
+}
+
+function FarmaciaIcon() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let animation: any;
+
+    import('lottie-web')
+      .then(({ default: lottie }) => {
+        if (cancelled || !containerRef.current) return;
+
+        animation = lottie.loadAnimation({
+          container: containerRef.current,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          path: '/animations/first-aid-kit.json',
+        });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setFailed(true);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+      if (animation) {
+        animation.destroy();
+      }
+    };
+  }, []);
+
+  if (failed) {
+    return <span className="text-3xl">🌿</span>;
+  }
+
+  return <div ref={containerRef} className="w-14 h-14 -m-1 pointer-events-none" />;
+}
 //animações acima
 function CategoryGrid() {
   const cats = [
@@ -299,9 +381,9 @@ function CategoryGrid() {
     { icon: "🍕", label: "Pizzas", path: "/culinaria" },
     { icon: "🦀", label: "Frutos do Mar", path: "/culinaria" },
     { icon: "🍣", label: "Japonesa", path: "/culinaria" },
-    { icon: "🌿", label: "Vegano", path: "/culinaria" },
-    { icon: "☕", label: "Café", path: "/comercios" },
-    { icon: "🛒", label: "Mercado", path: "/comercios" },
+    { icon: "🔨", label: "Construção", path: "/culinaria" },
+    { icon: "🦾", label: "Tecnologia", path: "/comercios" },
+    { icon: "🎻", label: "Instrumentos", path: "/comercios" },
     { icon: "💊", label: "Farmácia", path: "/comercios" },
   ];
   return (
@@ -321,9 +403,15 @@ function CategoryGrid() {
               <CrabIcon />
             ) : c.label === 'Japonesa' ? (
               <JaponeseIcon />
-            ) : c.label === 'Vegano' ? (
-              <VeganoIcon />
-            ) : (
+            ) : c.label === 'Construção' ? (
+              <ConstrucaoIcon />
+            ) : c.label === 'Tecnologia' ? (
+              <TecnologiaIcon />
+            ) : c.label === 'Instrumentos' ? (
+              <InstrumentoIcon />
+            ) : c.label === 'Farmácia' ? (
+              <FarmaciaIcon />
+            ):(
               <span className="text-3xl">{c.icon}</span>
             )}
           </span>
@@ -356,16 +444,16 @@ function PromoStrip({ children, className }: { children?: React.ReactNode, class
 
 function RandomProductShowcase() {
   const { comercios } = useData();
-  const [selectedProducts, setSelectedProducts] = useState<{comercioNome: string, produto: Produto}[]>([]);
+  const [selectedProducts, setSelectedProducts] = useState<{comercioId: string, comercioNome: string, produto: Produto}[]>([]);
   const [key, setKey] = useState(0);
 
   useEffect(() => {
     const pickProducts = () => {
-      const allProducts: {comercioNome: string, produto: Produto}[] = [];
+      const allProducts: {comercioId: string, comercioNome: string, produto: Produto}[] = [];
       comercios.forEach(c => {
         if (c.produtos && c.produtos.length > 0) {
           c.produtos.forEach(p => {
-            allProducts.push({ comercioNome: c.nome, produto: p });
+            allProducts.push({ comercioId: c.id, comercioNome: c.nome, produto: p });
           });
         }
       });
@@ -415,9 +503,12 @@ function RandomProductShowcase() {
                 R$ {item.produto.preco?.toFixed(2) || '0,00'}
               </p>
             </div>
-            <button className="absolute -bottom-1 -right-1 w-8 h-8 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 hover:scale-105 transition-transform font-bold">
+            <Link 
+              to={`/comercios/${item.comercioId}`}
+              className="absolute -bottom-1 -right-1 w-8 h-8 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 hover:scale-105 transition-transform font-bold cursor-pointer"
+            >
               +
-            </button>
+            </Link>
           </div>
         ))}
       </div>
@@ -445,6 +536,17 @@ export function Home() {
   const shuffledComercios = useMemo(() => {
     return [...comercios].sort(() => Math.random() - 0.5);
   }, [comercios]);
+
+  // Filtra comércios por termo de busca
+  const comerciosFiltrados = useMemo(() => {
+    if (!searchTerm.trim()) return [];
+    
+    const termo = searchTerm.toLowerCase();
+    return comercios.filter(c => 
+      c.nome.toLowerCase().includes(termo) || 
+      (c.categoria && c.categoria.toLowerCase().includes(termo))
+    );
+  }, [searchTerm, comercios]);
 
   const lojasExibidas =
     filtroAtual.name === 'Todos' || filtroAtual.name === 'Tudo'
@@ -507,7 +609,7 @@ export function Home() {
           />
           {searchTerm && (
             <button onClick={() => setSearchTerm('')} className="text-[var(--gray-text)]">
-              <span className="text-xl leading-none">×</span>
+              <span className="text-xl leading-none cursor-pointer">×</span>
             </button>
           )}
         </div>
@@ -515,116 +617,160 @@ export function Home() {
 
       <div className="h-8" />
 
-      {/* Categorias Rápidas */}
-      <div className="flex flex-col gap-3.5 py-6 sm:py-8">
-        <SectionHeader title="O que você quer?" />
-        <CategoryGrid />
-      </div>
-
-      <div className="h-10" />
-
-      {/* Sugestões para você */}
-      <section className="flex flex-col gap-4 py-6 sm:py-8">
-        <SectionHeader 
-          title="Sugestões para você" 
-          subtitle="Com base na sua localização" 
-          linkText="Ver mais" 
-          to="/sugestoes"
-        />
-        <SuggestionsSlider comercios={comercios.slice(0, 10)} />
-      </section>
-
-      <div className="h-10" />
-
-      {/* Promo Strip #1 - Random Product Showcase */}
-      <PromoStrip>
-        <RandomProductShowcase />
-      </PromoStrip>
-
-      <div className="h-24" />
-
-      {/* Restaurantes Próximos */}
-      <section className="flex flex-col gap-4 py-6 sm:py-8">
-        <SectionHeader 
-          title="Próximos a você" 
-          subtitle="Restaurantes a menos de 3 km" 
-          linkText="Ver tudo" 
-          to="/culinaria"
-        />
-        <SuggestionsSlider comercios={restaurantesProximos} />
-      </section>
-
-      <div className="h-12" />
-
-      
-
-      <div className="h-12" />
-
-      <EventoCarrossel eventos={mappedEventos} />
-
-      <div className="h-12" />
-
-      {/* Filtros Horizontais */}
-      <div className="py-6">
-        <RecommendedFilters 
-          filtrosRecomendados={randomCategories}
-          filtroAtual={filtroAtual}
-          setFiltroAtual={(name) => setFiltroAtual({ name: name === 'Tudo' ? 'Todos' : name })}
-          navigateOnSelect={false}
-          center={false}
-          showMoreOnMobile={true}
-        />
-      </div>
-
-      <div className="h-10" />
-
-      {/* Lojas & Serviços */}
-      <section className="flex flex-col gap-4 py-6 sm:py-8">
-        <SectionHeader 
-          title="Lojas & Serviços" 
-          subtitle="Delivery de tudo" 
-          linkText="Ver tudo" 
-          to="/comercios"
-        />
-        <div className="px-4 flex flex-col gap-3">
-          {exibidosLojasServicos.map((c) => (
-            <Link 
-              key={c.id} 
-              to={`/comercios/${c.id}`}
-              className="flex items-center gap-3 p-3.5 bg-white rounded-2xl border border-[var(--gray-border)] transition-all hover:translate-x-1 active:scale-[0.98]"
-            >
-              <div className="w-12 h-12 rounded-xl bg-[var(--cream)] flex items-center justify-center overflow-hidden flex-shrink-0">
-                {c.imagem ? (
-                  <img src={c.imagem} alt={c.nome} className="w-full h-full object-cover" />
-                ) : (
-                  <Store className="w-5 h-5 text-[var(--gray-text)]" />
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-extrabold text-[var(--black)] mb-0.5 truncate">{c.nome}</p>
-                <p className="text-[11px] text-[var(--gray-text)] mb-1">{c.categoria} • 10-15 min</p>
-                <div className="flex gap-2 items-center">
-                  <div className="flex items-center gap-1">
-                    <Star className="w-3 h-3 fill-[var(--primary)] text-[var(--primary)]" />
-                    <span className="text-[11px] font-bold text-[var(--black)]">4.9</span>
+      {searchTerm.trim() ? (
+        // Resultados de Busca
+        <section className="flex flex-col gap-4 py-6 sm:py-8">
+          <SectionHeader title={`Resultados para "${searchTerm}"`} subtitle={`${comerciosFiltrados.length} lojas encontradas`} />
+          <div className="px-4 flex flex-col gap-3">
+            {comerciosFiltrados.length > 0 ? (
+              comerciosFiltrados.map((c) => (
+                <Link 
+                  key={c.id} 
+                  to={`/comercios/${c.id}`}
+                  className="flex items-center gap-3 p-3.5 bg-white rounded-2xl border border-[var(--gray-border)] transition-all hover:translate-x-1 active:scale-[0.98]"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[var(--cream)] flex items-center justify-center overflow-hidden flex-shrink-0">
+                    {c.imagem ? (
+                      <img src={c.imagem} alt={c.nome} className="w-full h-full object-cover" />
+                    ) : (
+                      <Store className="w-5 h-5 text-[var(--gray-text)]" />
+                    )}
                   </div>
-                  <span className="w-0.5 h-0.5 rounded-full bg-[var(--gray-border)]" />
-                </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-extrabold text-[var(--black)] mb-0.5 truncate">{c.nome}</p>
+                    <p className="text-[11px] text-[var(--gray-text)] mb-1">{c.categoria} • 10-15 min</p>
+                    <div className="flex gap-2 items-center">
+                      <div className="flex items-center gap-1">
+                        <Star className="w-3 h-3 fill-[var(--primary)] text-[var(--primary)]" />
+                        <span className="text-[11px] font-bold text-[var(--black)]">4.9</span>
+                      </div>
+                      <span className="w-0.5 h-0.5 rounded-full bg-[var(--gray-border)]" />
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-[var(--gray-border)]" />
+                </Link>
+              ))
+            ) : (
+              <div className="px-4 py-12 text-center">
+                <p className="text-sm text-[var(--gray-text)]">Nenhuma loja encontrada para "{searchTerm}"</p>
               </div>
-              <ArrowRight className="w-4 h-4 text-[var(--gray-border)]" />
-            </Link>
-          ))}
-        </div>
-      </section>
+            )}
+          </div>
+        </section>
+      ) : (
+        <>
+          {/* Categorias Rápidas */}
+          <div className="flex flex-col gap-3.5 py-6 sm:py-8">
+            <SectionHeader title="O que você quer?" />
+            <CategoryGrid />
+          </div>
 
-      <div className="h-12" />
+          <div className="h-10" />
 
-      {/* Footer Branding */}
-      <div className="mx-4 p-8 bg-[var(--secondary)] rounded-[20px] text-center">
-        {/* <p className="text-3xl mb-1">🦀</p>
-        <p className="text-lg font-extrabold text-white mb-1" style={{ fontFamily: "'Georgia', serif" }}>Mercado Central</p>
-        <p className="text-[11px] text-white/60">O melhor de Aracaju na sua tela</p> */}
-      </div>
+          {/* Sugestões para você */}
+          <section className="flex flex-col gap-4 py-6 sm:py-8">
+            <SectionHeader 
+              title="Sugestões para você" 
+              subtitle="Com base na sua localização" 
+              linkText="Ver mais" 
+              to="/sugestoes"
+            />
+            <SuggestionsSlider comercios={comercios.slice(0, 10)} />
+          </section>
+
+          <div className="h-10" />
+
+          {/* Promo Strip #1 - Random Product Showcase */}
+          <PromoStrip>
+            <RandomProductShowcase />
+          </PromoStrip>
+
+          <div className="h-24" />
+
+          {/* Restaurantes Próximos */}
+          <section className="flex flex-col gap-4 py-6 sm:py-8">
+            <SectionHeader 
+              title="Próximos a você" 
+              subtitle="Restaurantes a menos de 3 km" 
+              linkText="Ver tudo" 
+              to="/culinaria"
+            />
+            <SuggestionsSlider comercios={restaurantesProximos} />
+          </section>
+
+          <div className="h-12" />
+
+          
+
+          <div className="h-12" />
+
+          <EventoCarrossel eventos={mappedEventos} />
+
+          <div className="h-12" />
+
+          {/* Filtros Horizontais */}
+          <div className="py-6">
+            <RecommendedFilters 
+              filtrosRecomendados={randomCategories}
+              filtroAtual={filtroAtual}
+              setFiltroAtual={(name) => setFiltroAtual({ name: name === 'Tudo' ? 'Todos' : name })}
+              navigateOnSelect={false}
+              center={false}
+              showMoreOnMobile={true}
+            />
+          </div>
+
+          <div className="h-10" />
+
+          {/* Lojas & Serviços */}
+          <section className="flex flex-col gap-4 py-6 sm:py-8">
+            <SectionHeader 
+              title="Lojas & Serviços" 
+              subtitle="Delivery de tudo" 
+              linkText="Ver tudo" 
+              to="/comercios"
+            />
+            <div className="px-4 flex flex-col gap-3">
+              {exibidosLojasServicos.map((c) => (
+                <Link 
+                  key={c.id} 
+                  to={`/comercios/${c.id}`}
+                  className="flex items-center gap-3 p-3.5 bg-white rounded-2xl border border-[var(--gray-border)] transition-all hover:translate-x-1 active:scale-[0.98]"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[var(--cream)] flex items-center justify-center overflow-hidden flex-shrink-0">
+                    {c.imagem ? (
+                      <img src={c.imagem} alt={c.nome} className="w-full h-full object-cover" />
+                    ) : (
+                      <Store className="w-5 h-5 text-[var(--gray-text)]" />
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-extrabold text-[var(--black)] mb-0.5 truncate">{c.nome}</p>
+                    <p className="text-[11px] text-[var(--gray-text)] mb-1">{c.categoria} • 10-15 min</p>
+                    <div className="flex gap-2 items-center">
+                      <div className="flex items-center gap-1">
+                        <Star className="w-3 h-3 fill-[var(--primary)] text-[var(--primary)]" />
+                        <span className="text-[11px] font-bold text-[var(--black)]">4.9</span>
+                      </div>
+                      <span className="w-0.5 h-0.5 rounded-full bg-[var(--gray-border)]" />
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-[var(--gray-border)]" />
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          <div className="h-12" />
+
+          {/* Footer Branding */}
+          <div className="mx-4 p-8 bg-[var(--secondary)] rounded-[20px] text-center">
+            {/* <p className="text-3xl mb-1">🦀</p>
+            <p className="text-lg font-extrabold text-white mb-1" style={{ fontFamily: "'Georgia', serif" }}>Mercado Central</p>
+            <p className="text-[11px] text-white/60">O melhor de Aracaju na sua tela</p> */}
+          </div>
+        </>
+      )}
 
     </div>
   );

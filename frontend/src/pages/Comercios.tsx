@@ -92,6 +92,7 @@ export function Comercios() {
             setFiltroAtual={(name) => setFiltroAtual(prev => ({ ...prev, name }))}
             buscandoPorCategoria={buscandoPorCategoria}
             showMoreOnMobile={true}
+            useAnimatedIcons={true}
           />
         </div>
       </div>
