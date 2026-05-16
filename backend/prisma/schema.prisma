@@ -76,6 +76,9 @@ model loja {
   numEndereco        String?              @map("num_endereco") @db.VarChar(20)
   complemento        String?              @db.VarChar(300)
   estacionamento     Boolean              @default(false)
+  latitude           Float
+  longitude          Float
+  imagem             String?
   dataCriacao        DateTime             @default(now()) @map("data_criacao") @db.Timestamptz(6)
   dataAtualizacao    DateTime             @updatedAt @map("data_atualizacao") @db.Timestamptz(6)
   categoriaLoja      categoriaLoja[]
@@ -136,7 +139,9 @@ model pontoTuristico {
 
 model produto {
   id                String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  nome              String             @unique @db.VarChar(150)
+  nome              String             @db.VarChar(150)
+  descricao         String?            @db.VarChar(1000)
+  imagem            String?
   dataCriacao       DateTime           @default(now()) @map("data_criacao") @db.Timestamptz(6)
   categoriaProdutos categoriaProduto[]
   produtoLoja       produtoLoja[]
