@@ -26,19 +26,22 @@ export default class ProdutoController {
 
             const nomeNormalizado = FormatUtils.normalizeString(dto.nome);
 
+            // Buscar produto existente ou criar novo
+            let produto = await prisma.produto.findFirst({
+                where: { nome: nomeNormalizado }
+            });
+            if (!produto) {
+                produto = await prisma.produto.create({
+                    data: { nome: nomeNormalizado }
+                });
+            }
+
             const produtoLoja = await prisma.produtoLoja.create({
                 data: {
-                    loja: {
-                        connect: { id }
-                    },
+                    lojaId: id,
+                    produtoId: produto.id,
                     preco: dto.preco,
-                    ...(dto.marca ? { marca: dto.marca } : {}),
-                    produto: {
-                        connectOrCreate: {
-                            where: { nome: nomeNormalizado },
-                            create: { nome: nomeNormalizado }
-                        }
-                    }
+                    ...(dto.marca ? { marca: dto.marca } : {})
                 },
                 include: {
                     produto: true
@@ -47,7 +50,7 @@ export default class ProdutoController {
 
             ResponseVS(res, {
                 message: 'Produto adicionado com sucesso à loja.',
-                data: produtoLoja.produto
+                data: produtoLoja
             });
         } catch (err) {
             const erro = err as ErrorCustomVS;

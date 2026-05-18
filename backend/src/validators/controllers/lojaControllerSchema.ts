@@ -30,6 +30,12 @@ export const cadastroLojaSchema = z.strictObject({
     complemento: stringSchema
         .max(300, "No maximo 300 caracteres.")
         .optional(),
+    latitude: z.coerce.number()
+        .optional()
+        .default(0),
+    longitude: z.coerce.number()
+        .optional()
+        .default(0),
     estacionamento: booleanSchema
         .optional()
         .default(false),
