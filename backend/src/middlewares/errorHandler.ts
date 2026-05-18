@@ -83,7 +83,7 @@ const errorHandler: ErrorRequestHandler = (err: ErrorCustomVS, req: RequestCusto
             error: {
                 type,
                 name: err.name,
-                message: error,
+                message: err.message,
                 stack: err.stack,
             },
             req: {
