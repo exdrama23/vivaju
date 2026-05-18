@@ -5,6 +5,23 @@ import { Button } from '@/components/Global/Button';
 import { Input } from '@/components/Global/Input';
 import { apiRequest } from '@/services/api';
 import { LogIn, Mail, Lock, User, Store, ShieldCheck, Eye, EyeOff, Loader2, ArrowLeft } from 'lucide-react';
+import React from 'react';
+
+function CrabModelViewer() {
+  return React.createElement('model-viewer' as any, {
+    src: '/Model3D/asian_shore_crab.glb',
+    alt: 'Crab 3D',
+    className: 'h-full w-full object-contain',
+    'camera-controls': false,
+    'interaction-prompt': 'none',
+    'shadow-intensity': '0.8',
+    exposure: '1',
+    'camera-orbit': '15deg 72deg 110%', 
+    'disable-zoom': true,
+    'disable-pan': true,
+    loading: 'eager',
+  } as any);
+}
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -46,14 +63,14 @@ export function Login() {
       
       {/* ================= LADO ESQUERDO (BRANDING) ================= */}
       <div 
-        className="hidden lg:flex w-[40%] min-h-screen p-12 flex-col justify-between relative overflow-hidden bg-[var(--secondary)] sticky top-0"
+        className="hidden lg:flex w-[40%] min-h-screen px-12 pt-12 pb-0 flex-col relative bg-[var(--secondary)] sticky top-0"
         style={{
           backgroundImage: 'linear-gradient(rgba(45, 80, 22, 0.85), rgba(45, 80, 22, 0.95)), url(https://images.unsplash.com/photo-1578319114300-47863b469837?q=80&w=2070&auto=format&fit=crop)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
-        <div className="relative z-10">
+        <div className="relative z-10 flex flex-col h-full">
           <Link to="/" className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors font-bold mb-12 group">
             <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
             Voltar ao Início
@@ -68,6 +85,11 @@ export function Login() {
             <p className="text-white/70 text-lg leading-relaxed max-w-sm">
               Descubra comércios, culinária e eventos no coração da cidade. Sua jornada pelo Centro começa aqui.
             </p>
+          </div>
+
+          {/* Modelo 3D do Crab */}
+          <div className="flex-1 w-full pointer-events-auto -mx-12 -mb-12 flex items-center justify-center" style={{ transform: 'translateY(-80px) translateX(40px)' }}>
+            <CrabModelViewer />
           </div>
         </div>
 
