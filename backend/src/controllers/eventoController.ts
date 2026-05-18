@@ -13,61 +13,58 @@ export default class EventoController {
         try {
             const query = buscarEventosQuerySchema.parse(req.query);
             const { pagina, situacao, categoria, nome } = query;
-            const AND: object[] = [];
+            const conditions: any[] = [];
             const agora = new Date();
+            
             switch (situacao) {
                 case 'disponivel':
-                    AND.push({
+                    conditions.push({
                         fim: {
                             gte: agora
                         }
                     })
                     break;
                 case 'encerrado':
-                    AND.push({
+                    conditions.push({
                         fim: {
                             lte: agora
                         }
                     })
                     break;
                 case 'acontecendo':
-                    AND.push(
-                        {
-                            fim: {
-                                gte: agora
-                            }
-                        },
-                        {
-                            inicio: {
-                                lte: agora
-                            }
-                        }
-                    )
+                    conditions.push({
+                        AND: [
+                            { fim: { gte: agora } },
+                            { inicio: { lte: agora } }
+                        ]
+                    })
                     break;
                 default:
                     break;
             }
+            
             if(categoria){
-                AND.push({
+                conditions.push({
                     categoria: {
                         contains: FormatUtils.normalizeString(categoria)
                     }
                 })
             }
+            
             if(nome){
-                AND.push({
+                conditions.push({
                     nomeNormalizado: {
                         contains: FormatUtils.normalizeString(nome)
                     }
                 })
             }
+            
             const eventos = await prisma.evento.findMany({
-                where: {
-                    AND
-                },
+                where: conditions.length > 0 ? { AND: conditions } : {},
                 skip: (pagina-1)*10,
                 take: 10
             });
+            
             ResponseVS(res, {
                 data: eventos
             });
