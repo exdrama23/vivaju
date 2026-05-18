@@ -203,7 +203,7 @@ export function Login() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full h-14 bg-[var(--primary)] hover:bg-[var(--primary-dark)] text-white rounded-2xl text-sm font-black uppercase tracking-widest shadow-lg shadow-[var(--primary)]/20 transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2"
+                className="w-full h-14 bg-[var(--primary)] hover:bg-[var(--primary-dark)] text-white rounded-2xl text-sm font-black uppercase tracking-widest shadow-lg shadow-[var(--primary)]/20 transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
               >
                 {loading ? (
                   <>
