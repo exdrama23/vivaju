@@ -392,7 +392,7 @@ function CategoryGrid() {
         <Link 
           key={c.label} 
           to={c.path}
-          className="bg-[var(--cream)] rounded-2xl p-3.5 border border-[var(--cream-dark)] flex flex-col items-center gap-1.5 transition-all duration-200 hover:bg-[var(--primary-pale)] hover:border-[var(--primary-mid)] active:scale-95"
+          className="bg-[var(--cream)] rounded-2xl p-3.5 border border-[var(--cream-dark)] flex flex-col items-center gap-1.5 transition-all duration-200 hover:bg-[var(--primary-pale)] hover:border-[var(--primary-mid)] active:scale-95 cursor-pointer"
         >
           <span className="flex items-center justify-center w-14 h-14">
             {c.label === 'Lanches' ? (
@@ -619,7 +619,7 @@ export function Home() {
 
       {searchTerm.trim() ? (
         // Resultados de Busca
-        <section className="flex flex-col gap-4 py-6 sm:py-8">
+        <section className="flex flex-col gap-4 py-6 sm:py-8 ">
           <SectionHeader title={`Resultados para "${searchTerm}"`} subtitle={`${comerciosFiltrados.length} lojas encontradas`} />
           <div className="px-4 flex flex-col gap-3">
             {comerciosFiltrados.length > 0 ? (
@@ -636,7 +636,7 @@ export function Home() {
                       <Store className="w-5 h-5 text-[var(--gray-text)]" />
                     )}
                   </div>
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 ">
                     <p className="text-sm font-extrabold text-[var(--black)] mb-0.5 truncate">{c.nome}</p>
                     <p className="text-[11px] text-[var(--gray-text)] mb-1">{c.categoria} • 10-15 min</p>
                     <div className="flex gap-2 items-center">
@@ -660,7 +660,7 @@ export function Home() {
       ) : (
         <>
           {/* Categorias Rápidas */}
-          <div className="flex flex-col gap-3.5 py-6 sm:py-8">
+          <div className="flex flex-col gap-3.5 py-6 sm:py-8 ">
             <SectionHeader title="O que você quer?" />
             <CategoryGrid />
           </div>
@@ -668,7 +668,7 @@ export function Home() {
           <div className="h-10" />
 
           {/* Sugestões para você */}
-          <section className="flex flex-col gap-4 py-6 sm:py-8">
+          <section className="flex flex-col gap-4 py-6 sm:py-8 ">
             <SectionHeader 
               title="Sugestões para você" 
               subtitle="Com base na sua localização" 
@@ -717,6 +717,7 @@ export function Home() {
               navigateOnSelect={false}
               center={false}
               showMoreOnMobile={true}
+              useAnimatedIcons={true}
             />
           </div>
 

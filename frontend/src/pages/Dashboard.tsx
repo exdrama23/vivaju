@@ -48,7 +48,7 @@ export function Dashboard() {
     <div className="container mx-auto px-4 py-8 max-w-4xl md:pb-0 pb-24">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <h1 className="text-2xl sm:text-3xl font-bold">Meu Painel</h1>
-        <Button variant="outline" onClick={logout} className="w-full sm:w-auto">Sair</Button>
+        <Button variant="outline" onClick={logout} className="w-full sm:w-auto cursor-pointer">Sair</Button>
       </div>
 
       <Card className="mb-8">

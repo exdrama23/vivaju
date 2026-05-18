@@ -33,7 +33,7 @@ export function EventoCard({ evento }: { evento: Evento }) {
       </CardContent>
       <CardFooter className="p-3 sm:p-4 pt-0 mt-auto">
          <Link to="/mapa" className="w-full">
-            <Button variant="default" className="w-full h-9 sm:h-10 text-xs sm:text-sm">Ver no Mapa</Button>
+            <Button className="w-full h-9 sm:h-10 text-xs sm:text-sm bg-amber-700 hover:bg-amber-600 cursor-pointer">Ver no Mapa</Button>
          </Link>
       </CardFooter>
     </Card>

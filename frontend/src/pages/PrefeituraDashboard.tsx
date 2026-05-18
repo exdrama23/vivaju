@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { Navigate } from 'react-router-dom';
 import { useData } from '@/context/DataContext';
 import { 
   BarChart3, 
@@ -42,11 +44,17 @@ const heatmapPoints = [
 ];
 
 export function PrefeituraDashboard() {
+  const { user } = useAuth();
   const { comercios } = useData();
   const [activeTab, setActiveTab] = useState<'geral' | 'mapa' | 'denuncias'>('geral');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+
+  // Proteção de rota - redireciona se não for prefeitura
+  if (!user || user.tipo !== 'prefeitura') {
+    return <Navigate to="/" replace />;
+  }
 
   const totalLojas = comercios.length;
 
@@ -161,15 +169,10 @@ export function PrefeituraDashboard() {
         </div>
         
         <div className="flex items-center gap-3">
-          <button 
-            onClick={() => setShowProfileMenu(!showProfileMenu)}
-            className="w-10 h-10 rounded-xl bg-[var(--primary)] flex items-center justify-center text-white shadow-lg outline-none active:scale-95 transition-transform"
-          >
-            <div className="font-black text-[10px]">GP</div>
-          </button>
+          
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2.5 bg-white/5 rounded-xl text-white"
+            className="p-2.5 bg-white/5 rounded-xl text-white cursor-pointer"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -192,9 +195,9 @@ export function PrefeituraDashboard() {
               </Link>
               <Link 
                 to="/"
-                className="flex items-center gap-3 px-4 py-4 rounded-xl hover:bg-rose-50 text-rose-500 transition-all font-bold text-sm"
+                className="flex items-center gap-3 px-4 py-4 rounded-xl hover:bg-rose-50 text-rose-500 transition-all font-bold text-sm cursor-pointer"
               >
-                <LogOut className="w-5 h-5" />
+                <LogOut className="w-5 h-5 " />
                 Sair do Portal
               </Link>
             </div>
@@ -215,7 +218,7 @@ export function PrefeituraDashboard() {
                 <LayoutDashboard className="w-6 h-6" />
                 Voltar ao Dashboard
               </Link>
-              <Link to="/" className="w-full flex items-center gap-4 px-6 py-5 rounded-2xl bg-white/5 text-white/60 font-bold text-base">
+              <Link to="/" className="w-full flex items-center gap-4 px-6 py-5 rounded-2xl bg-white/5 text-white/60 font-bold text-base cursor-pointer">
                 <LogOut className="w-6 h-6" />
                 Sair do Portal
               </Link>
@@ -271,9 +274,9 @@ export function PrefeituraDashboard() {
                       <div className="h-px bg-[var(--gray-border)] my-1" />
                       <Link 
                         to="/"
-                        className="flex items-center gap-3 px-4 py-3.5 rounded-xl hover:bg-rose-50 text-rose-500 transition-all font-bold text-xs"
+                        className="flex items-center gap-3 px-4 py-3.5 rounded-xl hover:bg-rose-50 text-rose-500 transition-all font-bold text-xs cursor-pointer"
                       >
-                        <LogOut className="w-4 h-4" />
+                        <LogOut className="w-4 h-4 " />
                         Sair do Portal
                       </Link>
                     </div>
@@ -404,7 +407,7 @@ export function PrefeituraDashboard() {
                       </div>
                     ))}
                     <div className="pt-8">
-                      <Button className="w-full h-14 bg-[var(--secondary)] hover:bg-[var(--secondary-mid)] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-[var(--secondary)]/10">
+                      <Button className="w-full h-14 bg-[var(--secondary)] hover:bg-[var(--secondary-mid)] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-[var(--secondary)]/10 cursor-pointer">
                         Ver Relatório Completo
                       </Button>
                     </div>

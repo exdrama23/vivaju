@@ -122,13 +122,13 @@ export function UnifiedStoreSlider({ stores }: UnifiedStoreSliderProps) {
       <div className="absolute bottom-8 right-8 flex gap-2 z-40">
         <button
           onClick={prevSlide}
-          className="w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-sm flex items-center justify-center transition-all focus:outline-none"
+          className="w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-sm flex items-center justify-center transition-all focus:outline-none cursor-pointer"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
         <button
           onClick={nextSlide}
-          className="w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-sm flex items-center justify-center transition-all focus:outline-none"
+          className="w-10 h-10 rounded-full bg-white/90 hover:bg-white text-gray-800 shadow-sm flex items-center justify-center transition-all focus:outline-none cursor-pointer"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
@@ -146,7 +146,7 @@ export function UnifiedStoreSlider({ stores }: UnifiedStoreSliderProps) {
                 setIsTransitioning(false);
               }, 500);
             }}
-            className={`h-1.5 rounded-full transition-all duration-500 ${
+            className={`h-1.5 rounded-full transition-all duration-500 cursor-pointer ${
               idx === currentIndex ? 'bg-yellow-400 w-8' : 'bg-white/50 w-1.5 hover:bg-white/80'
             }`}
           />

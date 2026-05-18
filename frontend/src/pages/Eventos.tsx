@@ -79,7 +79,7 @@ export function Eventos() {
             />
           </div>
           
-          <Select value={situacao} onChange={(e: any) => setSituacao(e.target.value)} className="h-11">
+          <Select value={situacao} onChange={(e: any) => setSituacao(e.target.value)} className="h-11 cursor-pointer">
             <option value="todos">Todas situações</option>
             <option value="disponivel">Disponíveis</option>
             <option value="acontecendo">Acontecendo Agora</option>
@@ -106,7 +106,7 @@ export function Eventos() {
           <p className="text-gray-500 text-base sm:text-lg">Nenhum evento encontrado com esses filtros.</p>
           <Button 
             variant="ghost" 
-            className="mt-4 text-blue-600"
+            className="mt-4 text-blue-600 cursor-pointer"
             onClick={() => { setNome(''); setSituacao('disponivel'); setCategoria(''); }}
           >
             Limpar Filtros
@@ -127,7 +127,7 @@ export function Eventos() {
               disabled={pagina === 1 || loading}
               variant="outline"
               size="icon"
-              className="rounded-full"
+              className="rounded-full cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
@@ -141,7 +141,7 @@ export function Eventos() {
               disabled={!hasMore || loading}
               variant="outline"
               size="icon"
-              className="rounded-full"
+              className="rounded-full cursor-pointer"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>

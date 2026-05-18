@@ -347,7 +347,7 @@ export function ComercioDetalhe() {
                 type="button" 
                 onClick={() => navigate(-1)}
                 aria-label="Voltar" 
-                className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white cursor-pointer"
               >
                 <ChevronLeft className="w-6 h-6" aria-hidden="true" />
               </button>
@@ -355,7 +355,7 @@ export function ComercioDetalhe() {
                 type="button"
                 onClick={() => toggleFavorito(comercio.id)}
                 aria-label={comercio.favoritada ? 'Remover favorito' : 'Favoritar'}
-                className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white backdrop-blur-sm hover:bg-black/70 transition focus:outline-none focus:ring-2 focus:ring-white cursor-pointer"
               >
                 <Heart className={`w-5 h-5 ${comercio.favoritada ? 'fill-red-500 text-red-500' : ''}`} aria-hidden="true" />
               </button>
@@ -499,7 +499,7 @@ export function ComercioDetalhe() {
                       className="p-1 rounded-full hover:bg-gray-300 transition duration-300 ease-out transform hover:scale-110 active:scale-95"
                       aria-label="Fechar busca"
                     >
-                      <X className="w-4 h-4 text-gray-800" />
+                      <X className="w-4 h-4 text-gray-800 cursor-pointer" />
                     </button>
                   </div>
                 )}
@@ -597,7 +597,7 @@ export function ComercioDetalhe() {
             </div>
             <Button 
               onClick={() => setIsReviewModalOpen(true)}
-              className="mt-6 w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-xl"
+              className="mt-6 w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-8 rounded-xl cursor-pointer"
             >
               Escrever Avaliação
             </Button>
@@ -613,14 +613,14 @@ export function ComercioDetalhe() {
                 className="p-1 rounded-lg hover:bg-gray-100 transition"
                 aria-label="Fechar informações"
               >
-                <X className="w-5 h-5 text-gray-500" />
+                <X className="w-5 h-5 text-gray-500 cursor-pointer" />
               </button>
             </div>
             <SidebarContent comercio={comercio} />
             <Button 
               variant="ghost" 
               onClick={() => setIsReportModalOpen(true)}
-              className="w-full text-gray-400 hover:text-red-500 text-xs gap-2 pt-8"
+              className="w-full text-gray-400 hover:text-red-500 text-xs gap-2 pt-8 cursor-pointer"
             >
               <AlertTriangle size={14} /> Denunciar erro neste local
             </Button>
@@ -655,7 +655,7 @@ export function ComercioDetalhe() {
         <Button 
           variant="ghost" 
           onClick={() => setIsReportModalOpen(true)}
-          className="w-full text-gray-400 hover:text-red-500 text-xs gap-2 py-8"
+          className="w-full text-gray-400 hover:text-red-500 text-xs gap-2 py-8 cursor-pointer"
         >
           <AlertTriangle size={14} /> Denunciar erro neste local
         </Button>

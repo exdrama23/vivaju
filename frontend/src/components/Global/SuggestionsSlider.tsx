@@ -53,7 +53,7 @@ export function SuggestionsSlider({ comercios }: SuggestionsSliderProps) {
             <button
               key={comercio.id}
               onClick={() => handleNavigate(comercio.id)}
-              className="flex flex-col items-center gap-2 md:gap-3 flex-shrink-0 transition-all duration-200 group/item"
+              className="flex flex-col items-center gap-2 md:gap-3 flex-shrink-0 transition-all duration-200 group/item cursor-pointer"
             >
               {/* Logo em círculo */}
               <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-[var(--cream)] border-2 border-[var(--gray-border)] overflow-hidden flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover/item:border-[var(--primary)] group-hover/item:shadow-md active:border-[var(--primary)]">

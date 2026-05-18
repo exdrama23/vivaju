@@ -103,7 +103,7 @@ export function Login() {
                     type="button"
                     onClick={() => setTipo('cliente')}
                     className={`flex-1 flex items-center justify-center gap-2 py-3.5 text-xs font-black rounded-xl transition-all ${
-                      tipo === 'cliente' ? 'bg-white shadow-lg text-[var(--primary)]' : 'text-[var(--gray-text)] hover:bg-white/50'
+                      tipo === 'cliente' ? 'bg-white shadow-lg text-[var(--primary)]' : 'text-[var(--gray-text)] hover:bg-white/50 cursor-pointer'
                     }`}
                   >
                     <User className="w-4 h-4" />
@@ -113,7 +113,7 @@ export function Login() {
                     type="button"
                     onClick={() => setTipo('comerciante')}
                     className={`flex-1 flex items-center justify-center gap-2 py-3.5 text-xs font-black rounded-xl transition-all ${
-                      tipo === 'comerciante' ? 'bg-white shadow-lg text-[var(--primary)]' : 'text-[var(--gray-text)] hover:bg-white/50'
+                      tipo === 'comerciante' ? 'bg-white shadow-lg text-[var(--primary)]' : 'text-[var(--gray-text)] hover:bg-white/50 cursor-pointer'
                     }`}
                   >
                     <Store className="w-4 h-4" />
@@ -198,7 +198,7 @@ export function Login() {
           <div className="-mt-4 pt-4 border-t border-[var(--gray-border)] text-center space-y-6 pb-12">
             <p className="text-xs text-[var(--gray-text)] font-medium">Ainda não faz parte do VIVAJU?</p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Link to="/cadastro" state={{ tipo: 'cliente' }} className="flex-1 flex items-center justify-center py-3.5 px-4 rounded-xl border-2 border-[var(--primary)] text-[var(--primary)] font-black text-[10px] uppercase tracking-widest hover:bg-[var(--primary-pale)] transition-colors">
+              <Link to="/cadastro" state={{ tipo: 'cliente' }} className="flex-1 flex items-center justify-center py-3.5 px-4 rounded-xl border-2 border-[var(--primary)] text-[var(--primary)] font-black text-[10px] uppercase tracking-widest hover:bg-[var(--primary-pale)] transition-colors cursor-pointer">
                 Criar conta Visitante
               </Link>
               <Link to="/cadastro" state={{ tipo: 'comerciante' }} className="flex-1 flex items-center justify-center py-3.5 px-4 rounded-xl bg-[var(--secondary-pale)] text-[var(--secondary)] font-black text-[10px] uppercase tracking-widest hover:bg-[var(--secondary)] hover:text-white transition-all">

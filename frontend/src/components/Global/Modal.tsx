@@ -53,7 +53,7 @@ export function Modal({ isOpen, onClose, title, subtitle, children }: ModalProps
         <header className="flex items-center justify-between pb-4 md:pb-6 border-b border-neutral-200">
           <div className="flex items-center gap-4">
             <button onClick={onClose} className="text-black hover:text-black transition-colors md:hidden">
-              <X className="w-6 h-6" />
+              <X className="w-6 h-6 cursor-pointer" />
             </button>
 
             <div className="flex items-center gap-3">

@@ -120,6 +120,7 @@ export function Culinaria() {
           setFiltroAtual={(name) => setFiltroAtual({ name })}
           center={true}
           showMoreOnMobile={segmentos.length > 8}
+          useAnimatedIcons={true}
         />
       </div>
 

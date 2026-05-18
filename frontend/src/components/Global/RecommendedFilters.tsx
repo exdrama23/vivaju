@@ -100,6 +100,90 @@ const SearchHotelIcon = ({ className = "w-14 h-14" }) => {
   return <div ref={containerRef} className={cn("pointer-events-none", className)} style={{ filter: 'brightness(0) invert(1)' }} />;
 };
 
+// Lottie Animation Icon Component for "Pizzarias"
+const PizzaIcon = ({ className = "w-14 h-14" }) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let animation: any;
+
+    import('lottie-web')
+      .then(({ default: lottie }) => {
+        if (cancelled || !containerRef.current) return;
+
+        animation = lottie.loadAnimation({
+          container: containerRef.current,
+          renderer: 'svg',
+          loop: false,
+          autoplay: true,
+          path: '/animations/pizza.json',
+        });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setFailed(true);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+      if (animation) {
+        animation.destroy();
+      }
+    };
+  }, []);
+
+  if (failed) {
+    return <span className="text-lg">🍕</span>;
+  }
+
+  return <div ref={containerRef} className={cn("pointer-events-none", className)} style={{ transform: 'translateX(-2px)' }} />;
+};
+
+// Lottie Animation Icon Component for "Café"
+const CafeIcon = ({ className = "w-14 h-14" }) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let animation: any;
+
+    import('lottie-web')
+      .then(({ default: lottie }) => {
+        if (cancelled || !containerRef.current) return;
+
+        animation = lottie.loadAnimation({
+          container: containerRef.current,
+          renderer: 'svg',
+          loop: false,
+          autoplay: true,
+          path: '/animations/hot-beverage.json',
+        });
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setFailed(true);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+      if (animation) {
+        animation.destroy();
+      }
+    };
+  }, []);
+
+  if (failed) {
+    return <span className="text-lg">☕</span>;
+  }
+
+  return <div ref={containerRef} className={cn("pointer-events-none", className)} />;
+};
+
 const defaultCategoryIcons: { [key: string]: React.ReactNode } = {
   'tudo': <Sparkles className="w-6 h-6" />,
   'perfumaria': <Palette className="w-6 h-6" />,
@@ -124,6 +208,12 @@ const getCategoryIcon = (category: string, useAnimated: boolean = false) => {
   if (useAnimated) {
     if (lowerCategory === 'tudo') {
       return <SearchHotelIcon key={`icon-${category}`} className="w-10 h-10" />;
+    }
+    if (lowerCategory === 'pizzarias' || lowerCategory === 'pizza') {
+      return <PizzaIcon key={`icon-${category}`} className="w-14 h-14" />;
+    }
+    if (lowerCategory === 'café' || lowerCategory === 'cafe') {
+      return <CafeIcon key={`icon-${category}`} className="w-10 h-10" />;
     }
     return <RestaurantIcon key={`icon-${category}`} className="w-14 h-14" />;
   }
@@ -208,7 +298,7 @@ export function RecommendedFilters({
               onClick={() => handleSelectCategory(chip)}
               disabled={buscandoPorCategoria}
               className={cn(
-                "flex flex-col items-center gap-2 shrink-0 transition-all duration-200 w-24",
+                "flex flex-col items-center gap-2 shrink-0 transition-all duration-200 w-24 cursor-pointer",
                 buscandoPorCategoria && "opacity-50 cursor-not-allowed"
               )}
             >
@@ -253,7 +343,7 @@ export function RecommendedFilters({
               onClick={() => handleSelectCategory(chip)}
               disabled={buscandoPorCategoria}
               className={cn(
-                "flex flex-col items-center gap-2 transition-all duration-200",
+                "flex flex-col items-center gap-2 transition-all duration-200 cursor-pointer",
                 buscandoPorCategoria && "opacity-50 cursor-not-allowed"
               )}
             >
@@ -285,7 +375,7 @@ export function RecommendedFilters({
         {mobileHasMore && (
           <button
             onClick={handleOpenModal}
-            className="flex flex-col items-center gap-2 transition-all duration-200"
+            className="flex flex-col items-center gap-2 transition-all duration-200 cursor-pointer"
           >
             {/* Ícone dentro do círculo */}
             <div className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-200 border-2 bg-[#2d255e] border-[#2d255e] text-white active:bg-[#3d3570]">
@@ -336,7 +426,7 @@ export function RecommendedFilters({
                     }}
                     disabled={buscandoPorCategoria}
                     className={cn(
-                      "flex flex-col items-center gap-2 transition-all duration-200",
+                      "flex flex-col items-center gap-2 transition-all duration-200 cursor-pointer",
                       buscandoPorCategoria && "opacity-50 cursor-not-allowed"
                     )}
                   >
