@@ -1,7 +1,13 @@
 // * CORS
 import { CorsOptions } from 'cors';
 
-const allowedOrigins = ['http://localhost:5173', 'https://vivaju-front.onrender.com'];
+const allowedOrigins = [
+    'http://localhost:5173',   
+    'https://vivaju.vercel.app',          
+    'https://vivaju-frontend.vercel.app', 
+    
+    ...(process.env.ADDITIONAL_ORIGINS ? process.env.ADDITIONAL_ORIGINS.split(',') : [])
+];
 
 const corsConfig: CorsOptions = {
     origin: function(origin, callback) {
