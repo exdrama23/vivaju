@@ -472,15 +472,15 @@ export const mockHybridSliderData = [
   {
     id: "h1",
     nome: "Experiencia Gastronomica",
-    categoria: "Restaurantes",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-chef-preparing-a-dish-in-a-professional-kitchen-41031-large.mp4",
-    tipo: "video" as const
+    categoria: "Cafeterias e Restaurantes",
+    imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779197304/comercio_1_yiwzzr.png",
+    tipo: "imagem" as const
   },
   {
     id: "h2",
     nome: "Liquidacao de Verao",
     categoria: "Promocao Especial",
-    imagem: modaFemininaImages[1],
+    imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779216906/comercio_2_ticju6.png",
     tipo: "imagem" as const
   },
   {
@@ -526,7 +526,7 @@ export const mockStoreSliderComerciais = [
     nome: "Ofertas do Centro",
     categoria: "Promocao Especial",
     horarioFuncionamento: "08:00 - 18:00",
-    imagem: modaMasculinaImages[1],
+    imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779197304/comercio_1_yiwzzr.png",
     descricao: "As melhores ofertas da regiao central."
   },
   {
