@@ -470,31 +470,31 @@ export const vegano2Images = [
 
 export const mockHybridSliderData = [
   {
-    id: "h1",
+    id: "c21",
     nome: "Experiencia Gastronomica",
     categoria: "Cafeterias e Restaurantes",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779197304/comercio_1_yiwzzr.png",
     tipo: "imagem" as const
   },
   {
-    id: "h2",
-    nome: "Liquidacao de Verao",
+    id: "c11",
+    nome: "Moda e Estilo",
     categoria: "Promocao Especial",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779216906/comercio_2_ticju6.png",
     tipo: "imagem" as const
   },
   {
     id: "h3",
-    nome: "Moda e Estilo",
-    categoria: "Shopping",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-young-woman-walking-in-a-fashion-store-40156-large.mp4",
-    tipo: "video" as const
+    nome: "Pizzas e Delicias",
+    categoria: "Comida e Bebida",
+    imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779231004/comercio_3_x4c6ug.png",
+    tipo: "imagem" as const
   },
   {
     id: "h4",
-    nome: "Artesanato Regional",
-    categoria: "Feira de Negocios",
-    imagem: floriculturaImages[1],
+    nome: "Tecnologia e Inovacao",
+    categoria: "Equipamentos e Artefatos",
+    imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779230957/Comercio_4_zpzmm7.png",
     tipo: "imagem" as const
   }
 ] as const satisfies readonly HybridSliderItem[];
