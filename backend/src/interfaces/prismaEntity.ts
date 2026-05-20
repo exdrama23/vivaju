@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from '../generated/prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 
 export type DbClient = PrismaClient;
 export type DbTransaction = Prisma.TransactionClient;
