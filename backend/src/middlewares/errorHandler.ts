@@ -78,20 +78,17 @@ const errorHandler: ErrorRequestHandler = (err: ErrorCustomVS, req: RequestCusto
     
     const type = customType! || http.STATUS_CODES[status] || 'Internal Server Error';
 
-    if (status >= 500)
-        console.error(`Erro ${status} pego pelo handler:`,{
-            error: {
-                type,
-                name: err.name,
-                message: err.message,
-                stack: err.stack,
-            },
-            req: {
-                path: req.originalUrl,
-                method: req.method,
-                userId: req.user?.id || 'Não autenticado',
-            }
-        });
+    if (status >= 500) {
+        console.error('--- ERRO CAPTURADO PELO HANDLER ---');
+        console.error(`Status: ${status}`);
+        console.error(`Path: ${req.originalUrl}`);
+        console.error(`Method: ${req.method}`);
+        console.error(`Error Name: ${err.name}`);
+        console.error(`Error Message: ${err.message}`);
+        console.error(`Error Code: ${err.code || (err as any).cause?.code}`);
+        console.error('Stack Trace:', err.stack);
+        console.error('------------------------------------');
+    }
 
     res.status(status).json({ error, type, ...(issues?{issues}:{}) } satisfies ErrorResponse);
 }
