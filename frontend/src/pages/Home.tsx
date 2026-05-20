@@ -675,8 +675,7 @@ export function Home() {
               linkText="Ver mais" 
               to="/sugestoes"
             />
-            <SuggestionsSlider comercios={comercios.slice(0, 10)} />
-          </section>
+            <SuggestionsSlider comercios={comercios} />          </section>
 
           <div className="h-10" />
 

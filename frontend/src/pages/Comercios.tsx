@@ -37,17 +37,19 @@ export function Comercios() {
     setBuscandoPorCategoria(false);
   };
 
-  // Effect para atualizar quando a categoria na URL muda
+  // Effect para atualizar quando a categoria na URL muda ou a lista de comércios muda
   useEffect(() => {
     const categoriaDaUrl = searchParams.get('categoria');
     if (categoriaDaUrl) {
       buscarEmpresasCategoria(decodeURIComponent(categoriaDaUrl));
+    } else {
+      buscarEmpresasCategoria(filtroAtual.name);
     }
-  }, [searchParams]);
+  }, [searchParams, comercios]);
 
   useEffect(() => {
     buscarEmpresasCategoria(filtroAtual.name);
-  }, [filtroAtual.name]);
+  }, [filtroAtual.name, comercios]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
