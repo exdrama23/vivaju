@@ -1,122 +1,72 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useData } from '@/context/DataContext';
+import { useState, useMemo, useEffect } from 'react';
+import { Layout } from '@/components/Global/Layout';
 import { ComercioCard } from '@/components/Global/ComercioCard';
-import { Input } from '@/components/Global/Input';
 import { RecommendedFilters } from '@/components/Global/RecommendedFilters';
-import { Search, Loader2 } from 'lucide-react';
-import { cn } from '@/utils/utils';
-import type { Comercio } from '@/types/global';
+import { useData } from '@/context/DataContext';
+import { useSearchParams } from 'react-router-dom';
+import { StoreCardSkeleton, CategorySkeleton } from '@/components/Global/Skeleton';
 
 export function Comercios() {
+  const { comercios, randomCategories, isLoadingComercios } = useData();
   const [searchParams] = useSearchParams();
-  const { comercios, randomCategories } = useData();
-  const [search, setSearch] = useState('');
-  const [searchData, setSearchData] = useState({ active: false });
-  
-  // Verificar categoria na URL para inicializar o filtro
-  const categoriaDaUrl = searchParams.get('categoria') 
-    ? decodeURIComponent(searchParams.get('categoria')!)
-    : 'Tudo';
-  
-  const [filtroAtual, setFiltroAtual] = useState<{ name: string; empresas: Comercio[] }>({ 
-    name: categoriaDaUrl, 
-    empresas: comercios.filter(c => categoriaDaUrl === 'Tudo' ? true : c.categoria === categoriaDaUrl)
+  const categoriaDaUrl = searchParams.get('categoria');
+
+  const [filtroAtual, setFiltroAtual] = useState<{ name: string }>({ 
+    name: categoriaDaUrl || 'Todos' 
   });
-  const [buscandoPorCategoria, setBuscandoPorCategoria] = useState(false);
 
-  const buscarEmpresasCategoria = async (categoria: string) => {
-    setBuscandoPorCategoria(true);
-    await new Promise(resolve => setTimeout(resolve, 400));
-    
-    const filtrados = categoria === 'Tudo' 
-      ? comercios 
-      : comercios.filter(c => c.categoria === categoria);
-    
-    setFiltroAtual({ name: categoria, empresas: filtrados });
-    setBuscandoPorCategoria(false);
-  };
-
-  // Effect para atualizar quando a categoria na URL muda ou a lista de comércios muda
+  // Atualiza filtro se a URL mudar
   useEffect(() => {
-    const categoriaDaUrl = searchParams.get('categoria');
     if (categoriaDaUrl) {
-      buscarEmpresasCategoria(decodeURIComponent(categoriaDaUrl));
-    } else {
-      buscarEmpresasCategoria(filtroAtual.name);
+      setFiltroAtual({ name: categoriaDaUrl });
     }
-  }, [searchParams, comercios]);
+  }, [categoriaDaUrl]);
 
-  useEffect(() => {
-    buscarEmpresasCategoria(filtroAtual.name);
-  }, [filtroAtual.name, comercios]);
+  const comerciosExibidos = useMemo(() => {
+    if (filtroAtual.name === 'Todos' || filtroAtual.name === 'Tudo') return comercios;
+    return comercios.filter(c => c.categoria === filtroAtual.name);
+  }, [comercios, filtroAtual]);
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearch(value);
-    setSearchData({ active: value.length > 0 });
-  };
-
-  const filteredComercios = filtroAtual.empresas.filter(c => {
-    const matchesSearch = c.nome.toLowerCase().includes(search.toLowerCase()) || 
-                          c.produtos.some(p => p.nome.toLowerCase().includes(search.toLowerCase())) ||
-                          c.tags.some(t => t.toLowerCase().includes(search.toLowerCase()));
-    return matchesSearch;
-  });
+  const buscandoPorCategoria = false;
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 py-8 md:py-12 max-w-7xl md:pb-0 pb-24">
-      <div className="flex flex-col space-y-6 mb-8 md:mb-12">
-        <div className="space-y-2">
-          <h1 className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">Comércios Locais</h1>
-          <p className="text-[#5f6368] text-base sm:text-lg max-w-2xl font-normal">
-            Explore as melhores lojas e serviços do centro de Aracaju.
-          </p>
+    <Layout title="Comércios" showBackButton>
+      <div className="flex flex-col gap-6">
+        <div className="bg-white py-4 -mx-4 px-4 sticky top-0 z-10 border-b border-gray-100">
+          {isLoadingComercios ? (
+             <div className="flex justify-center gap-6 overflow-x-hidden">
+                {[...Array(6)].map((_, i) => <CategorySkeleton key={i} />)}
+             </div>
+          ) : (
+            <RecommendedFilters 
+              filtrosRecomendados={randomCategories}
+              filtroAtual={filtroAtual}
+              setFiltroAtual={(name) => setFiltroAtual({ name: name === 'Tudo' ? 'Todos' : name })}
+              buscandoPorCategoria={buscandoPorCategoria}
+              showMoreOnMobile={true}
+              useAnimatedIcons={true}
+            />
+          )}
         </div>
 
-        <div className="w-full max-w-2xl relative group">
-          <Search className={cn(
-            "absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors z-10",
-            searchData.active ? "text-[#1a73e8]" : "text-[#5f6368] group-focus-within:text-[#1a73e8]"
-          )} />
-          <Input 
-            placeholder="O que você está procurando?" 
-            className="pl-12 h-12 sm:h-14 text-sm sm:text-base rounded-full border-[#dadce0] bg-white shadow-sm focus-visible:ring-1 focus-visible:ring-[#1a73e8] focus-visible:border-transparent transition-all w-full"
-            value={search}
-            onChange={handleSearchChange}
-          />
-        </div>
-
-        <div className="pt-2">
-          <RecommendedFilters 
-            filtrosRecomendados={randomCategories}
-            filtroAtual={filtroAtual}
-            setFiltroAtual={(name) => setFiltroAtual(prev => ({ ...prev, name }))}
-            buscandoPorCategoria={buscandoPorCategoria}
-            showMoreOnMobile={true}
-            useAnimatedIcons={true}
-          />
+        <div className="flex flex-col gap-4">
+          {isLoadingComercios ? (
+            [...Array(6)].map((_, i) => <StoreCardSkeleton key={i} />)
+          ) : (
+            <>
+              {comerciosExibidos.length > 0 ? (
+                comerciosExibidos.map((comercio) => (
+                  <ComercioCard key={comercio.id} comercio={comercio} />
+                ))
+              ) : (
+                <div className="py-20 text-center text-gray-500 italic">
+                  Nenhum comércio encontrado nesta categoria.
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
-
-      {buscandoPorCategoria ? (
-        <div className="flex flex-col items-center justify-center py-20 gap-4">
-          <Loader2 className="w-8 h-8 text-[#1a73e8] animate-spin" />
-          <p className="text-[#5f6368] font-medium text-sm">Buscando estabelecimentos...</p>
-        </div>
-      ) : filteredComercios.length === 0 ? (
-        <div className="text-center py-12 sm:py-20 bg-[#f8f9fa] rounded-3xl sm:rounded-4xl border border-[#dadce0] border-dashed px-4">
-          <Search className="w-10 h-10 sm:w-12 sm:h-12 text-[#bdc1c6] mx-auto mb-4" />
-          <h3 className="text-lg sm:text-xl font-medium text-[#202124]">Nenhum comércio encontrado</h3>
-          <p className="text-[#5f6368] text-xs sm:text-sm mt-1">Tente ajustar seus filtros ou termo de busca.</p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
-          {filteredComercios.map(c => (
-            <ComercioCard key={c.id} comercio={c} />
-          ))}
-        </div>
-      )}
-    </div>
+    </Layout>
   );
 }

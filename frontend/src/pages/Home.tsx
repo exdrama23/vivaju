@@ -5,7 +5,7 @@ import { UnifiedStoreSlider } from '@/components/Global/UnifiedStoreSlider';
 import { RecommendedFilters } from '@/components/Global/RecommendedFilters';
 import { SuggestionsSlider } from '@/components/Global/SuggestionsSlider';
 import { EventoCarrossel } from '@/components/Global/EventoCarrossel';
-// import BannerSlider from '@/components/Global/BannerSlider';
+import { StoreCardSkeleton, EventSkeleton, CategorySkeleton } from '@/components/Global/Skeleton';
 import { mockHybridSliderData, getRestaurantesProximos } from '@/services/mockData';
 import { ArrowRight, Search, Star, MapPin, Bell, User, Store, Package } from 'lucide-react';
 import type { Produto } from '@/types/global';
@@ -46,7 +46,7 @@ function SectionHeader({ title, subtitle, linkText, to }: { title: string, subti
     </div>
   );
 }
-//animações Tenho que levar para outro arquivo depois
+
 function LunchIcon() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [failed, setFailed] = useState(false);
@@ -374,8 +374,20 @@ function FarmaciaIcon() {
 
   return <div ref={containerRef} className="w-14 h-14 -m-1 pointer-events-none" />;
 }
-//animações acima
-function CategoryGrid() {
+
+function CategoryGrid({ isLoading }: { isLoading?: boolean }) {
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-4 gap-2.5 px-4">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className="bg-[var(--cream)] rounded-2xl p-3.5 border border-[var(--cream-dark)] flex flex-col items-center gap-1.5 animate-pulse">
+            <div className="w-14 h-14 bg-gray-200 rounded-full" />
+            <div className="h-2 w-10 bg-gray-200 rounded mt-1" />
+          </div>
+        ))}
+      </div>
+    );
+  }
   const cats = [
     { icon: "🍔", label: "Lanches", path: "/culinaria" },
     { icon: "🍕", label: "Pizzas", path: "/culinaria" },
@@ -443,11 +455,13 @@ function PromoStrip({ children, className }: { children?: React.ReactNode, class
 }
 
 function RandomProductShowcase() {
-  const { comercios } = useData();
+  const { comercios, isLoadingComercios } = useData();
   const [selectedProducts, setSelectedProducts] = useState<{comercioId: string, comercioNome: string, produto: Produto}[]>([]);
   const [key, setKey] = useState(0);
 
   useEffect(() => {
+    if (isLoadingComercios) return;
+
     const pickProducts = () => {
       const allProducts: {comercioId: string, comercioNome: string, produto: Produto}[] = [];
       comercios.forEach(c => {
@@ -468,7 +482,17 @@ function RandomProductShowcase() {
     pickProducts();
     const interval = setInterval(pickProducts, 30000);
     return () => clearInterval(interval);
-  }, [comercios]);
+  }, [comercios, isLoadingComercios]);
+
+  if (isLoadingComercios) {
+    return (
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[...Array(4)].map((_, i) => (
+                <div key={i} className="bg-white/10 rounded-2xl p-3 animate-pulse h-48" />
+            ))}
+        </div>
+    );
+  }
 
   if (selectedProducts.length === 0) return null;
 
@@ -526,18 +550,16 @@ function RandomProductShowcase() {
 }
 
 export function Home() {
-  const { comercios, randomCategories, eventos } = useData();
+  const { comercios, randomCategories, eventos, isLoadingComercios, isLoadingEventos } = useData();
   const [filtroAtual, setFiltroAtual] = useState<{ name: string }>({ name: 'Todos' });
   const [searchTerm, setSearchTerm] = useState('');
 
   const restaurantesProximos = getRestaurantesProximos();
   
-  // Aleatoriza a lista de comércios ao carregar a página
   const shuffledComercios = useMemo(() => {
     return [...comercios].sort(() => Math.random() - 0.5);
   }, [comercios]);
 
-  // Filtra comércios por termo de busca
   const comerciosFiltrados = useMemo(() => {
     if (!searchTerm.trim()) return [];
     
@@ -553,7 +575,6 @@ export function Home() {
       ? shuffledComercios
       : shuffledComercios.filter(c => c.categoria === filtroAtual.name);
 
-  // Seleção robusta para "Lojas & Serviços": tente pegar 2 lojas + 2 restaurantes de forma aleatória.
   const restaurantesList = lojasExibidas.filter(c => {
     const cat = (c.categoria || '').toString().toLowerCase();
     return cat.includes('culin') || cat.includes('rest') || cat.includes('restaurante');
@@ -575,7 +596,6 @@ export function Home() {
     exibidosLojasServicos = [...exibidosLojasServicos, ...take(pool, remaining)];
   }
 
-  // Mapeia eventos para o formato esperado pelo EventoCarrossel
   const mappedEventos = eventos.map(ev => ({
     id: ev.id,
     nome: ev.nome,
@@ -588,15 +608,10 @@ export function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[var(--cream)] pb-8 md:pb-8">
-      {/* Custom Header for Home */}
-      
-
-      {/* Hero Section */}
       <section className="w-full">
         <UnifiedStoreSlider stores={mockHybridSliderData} />
       </section>
 
-      {/* Search Bar - Overlaid style from Homeadapt */}
       <div className="px-4 -mt-5 relative z-50">
         <div className="bg-white rounded-2xl shadow-lg flex items-center gap-2.5 px-4 py-3 border border-black/5">
           <Search className="w-[18px] h-[18px] text-[var(--gray-text)]" />
@@ -618,7 +633,6 @@ export function Home() {
       <div className="h-8" />
 
       {searchTerm.trim() ? (
-        // Resultados de Busca
         <section className="flex flex-col gap-4 py-6 sm:py-8 ">
           <SectionHeader title={`Resultados para "${searchTerm}"`} subtitle={`${comerciosFiltrados.length} lojas encontradas`} />
           <div className="px-4 flex flex-col gap-3">
@@ -659,15 +673,13 @@ export function Home() {
         </section>
       ) : (
         <>
-          {/* Categorias Rápidas */}
           <div className="flex flex-col gap-3.5 py-6 sm:py-8 ">
             <SectionHeader title="O que você quer?" />
-            <CategoryGrid />
+            <CategoryGrid isLoading={isLoadingComercios} />
           </div>
 
           <div className="h-10" />
 
-          {/* Sugestões para você */}
           <section className="flex flex-col gap-4 py-6 sm:py-8 ">
             <SectionHeader 
               title="Sugestões para você" 
@@ -675,18 +687,23 @@ export function Home() {
               linkText="Ver mais" 
               to="/sugestoes"
             />
-            <SuggestionsSlider comercios={comercios} />          </section>
+            {isLoadingComercios ? (
+                <div className="flex gap-8 px-4 overflow-x-hidden">
+                    {[...Array(5)].map((_, i) => <CategorySkeleton key={i} />)}
+                </div>
+            ) : (
+                <SuggestionsSlider comercios={comercios.slice(0, 10)} />
+            )}
+          </section>
 
           <div className="h-10" />
 
-          {/* Promo Strip #1 - Random Product Showcase */}
           <PromoStrip>
             <RandomProductShowcase />
           </PromoStrip>
 
           <div className="h-24" />
 
-          {/* Restaurantes Próximos */}
           <section className="flex flex-col gap-4 py-6 sm:py-8">
             <SectionHeader 
               title="Próximos a você" 
@@ -694,35 +711,45 @@ export function Home() {
               linkText="Ver tudo" 
               to="/culinaria"
             />
-            <SuggestionsSlider comercios={restaurantesProximos} />
+            {isLoadingComercios ? (
+                <div className="flex gap-8 px-4 overflow-x-hidden">
+                    {[...Array(5)].map((_, i) => <CategorySkeleton key={i} />)}
+                </div>
+            ) : (
+                <SuggestionsSlider comercios={restaurantesProximos} />
+            )}
           </section>
 
           <div className="h-12" />
 
-          
+          {isLoadingEventos ? (
+              <EventSkeleton />
+          ) : (
+              <EventoCarrossel eventos={mappedEventos} />
+          )}
 
           <div className="h-12" />
 
-          <EventoCarrossel eventos={mappedEventos} />
-
-          <div className="h-12" />
-
-          {/* Filtros Horizontais */}
           <div className="py-6">
-            <RecommendedFilters 
-              filtrosRecomendados={randomCategories}
-              filtroAtual={filtroAtual}
-              setFiltroAtual={(name) => setFiltroAtual({ name: name === 'Tudo' ? 'Todos' : name })}
-              navigateOnSelect={false}
-              center={false}
-              showMoreOnMobile={true}
-              useAnimatedIcons={true}
-            />
+            {isLoadingComercios ? (
+                <div className="flex justify-center gap-6 px-4 overflow-x-hidden">
+                    {[...Array(6)].map((_, i) => <CategorySkeleton key={i} />)}
+                </div>
+            ) : (
+                <RecommendedFilters 
+                    filtrosRecomendados={randomCategories}
+                    filtroAtual={filtroAtual}
+                    setFiltroAtual={(name) => setFiltroAtual({ name: name === 'Tudo' ? 'Todos' : name })}
+                    navigateOnSelect={false}
+                    center={false}
+                    showMoreOnMobile={true}
+                    useAnimatedIcons={true}
+                />
+            )}
           </div>
 
           <div className="h-10" />
 
-          {/* Lojas & Serviços */}
           <section className="flex flex-col gap-4 py-6 sm:py-8">
             <SectionHeader 
               title="Lojas & Serviços" 
@@ -731,43 +758,43 @@ export function Home() {
               to="/comercios"
             />
             <div className="px-4 flex flex-col gap-3">
-              {exibidosLojasServicos.map((c) => (
-                <Link 
-                  key={c.id} 
-                  to={`/comercios/${c.id}`}
-                  className="flex items-center gap-3 p-3.5 bg-white rounded-2xl border border-[var(--gray-border)] transition-all hover:translate-x-1 active:scale-[0.98]"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-[var(--cream)] flex items-center justify-center overflow-hidden flex-shrink-0">
-                    {c.imagem ? (
-                      <img src={c.imagem} alt={c.nome} className="w-full h-full object-cover" />
-                    ) : (
-                      <Store className="w-5 h-5 text-[var(--gray-text)]" />
-                    )}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-extrabold text-[var(--black)] mb-0.5 truncate">{c.nome}</p>
-                    <p className="text-[11px] text-[var(--gray-text)] mb-1">{c.categoria} • 10-15 min</p>
-                    <div className="flex gap-2 items-center">
-                      <div className="flex items-center gap-1">
-                        <Star className="w-3 h-3 fill-[var(--primary)] text-[var(--primary)]" />
-                        <span className="text-[11px] font-bold text-[var(--black)]">4.9</span>
+              {isLoadingComercios ? (
+                  [...Array(4)].map((_, i) => <StoreCardSkeleton key={i} />)
+              ) : (
+                  exibidosLojasServicos.map((c) => (
+                    <Link 
+                      key={c.id} 
+                      to={`/comercios/${c.id}`}
+                      className="flex items-center gap-3 p-3.5 bg-white rounded-2xl border border-[var(--gray-border)] transition-all hover:translate-x-1 active:scale-[0.98]"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-[var(--cream)] flex items-center justify-center overflow-hidden flex-shrink-0">
+                        {c.imagem ? (
+                          <img src={c.imagem} alt={c.nome} className="w-full h-full object-cover" />
+                        ) : (
+                          <Store className="w-5 h-5 text-[var(--gray-text)]" />
+                        )}
                       </div>
-                      <span className="w-0.5 h-0.5 rounded-full bg-[var(--gray-border)]" />
-                    </div>
-                  </div>
-                  <ArrowRight className="w-4 h-4 text-[var(--gray-border)]" />
-                </Link>
-              ))}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-extrabold text-[var(--black)] mb-0.5 truncate">{c.nome}</p>
+                        <p className="text-[11px] text-[var(--gray-text)] mb-1">{c.categoria} • 10-15 min</p>
+                        <div className="flex gap-2 items-center">
+                          <div className="flex items-center gap-1">
+                            <Star className="w-3 h-3 fill-[var(--primary)] text-[var(--primary)]" />
+                            <span className="text-[11px] font-bold text-[var(--black)]">4.9</span>
+                          </div>
+                          <span className="w-0.5 h-0.5 rounded-full bg-[var(--gray-border)]" />
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-[var(--gray-border)]" />
+                    </Link>
+                  ))
+              )}
             </div>
           </section>
 
           <div className="h-12" />
 
-          {/* Footer Branding */}
           <div className="mx-4 p-8 bg-[var(--secondary)] rounded-[20px] text-center">
-            {/* <p className="text-3xl mb-1">🦀</p>
-            <p className="text-lg font-extrabold text-white mb-1" style={{ fontFamily: "'Georgia', serif" }}>Mercado Central</p>
-            <p className="text-[11px] text-white/60">O melhor de Aracaju na sua tela</p> */}
           </div>
         </>
       )}
