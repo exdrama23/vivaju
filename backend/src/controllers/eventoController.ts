@@ -61,8 +61,8 @@ export default class EventoController {
             
             const eventos = await prisma.evento.findMany({
                 where: conditions.length > 0 ? { AND: conditions } : {},
-                skip: (pagina-1)*10,
-                take: 10
+                skip: (pagina-1)*100,
+                take: 100
             });
             
             ResponseVS(res, {

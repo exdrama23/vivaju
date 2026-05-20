@@ -117,13 +117,14 @@ export default class LojaController {
                     lojaFuncionamento: true
                 },
                 where: {
-                    estacionamento: false,
+                    // Remove strictly false filter to show shops that HAVE parking
+                    // We can filter out items that are ONLY parking lots by checking their category if needed
                 },
                 orderBy: {
                     dataAtualizacao: 'desc'
                 },
-                skip: (query.page-1)*10,
-                take: 10
+                skip: (query.page-1)*100,
+                take: 100
             });
             ResponseVS(res, {data: lojas});
         } catch (err) {
@@ -180,8 +181,8 @@ export default class LojaController {
                 orderBy: {
                     dataAtualizacao: 'desc'
                 },
-                skip: (query.page-1)*10,
-                take: 10
+                skip: (query.page-1)*100,
+                take: 100
             });
             ResponseVS(res, {data: lojas});
         } catch (err) {
@@ -262,8 +263,8 @@ export default class LojaController {
                 orderBy: {
                     dataAtualizacao: 'desc'
                 },
-                skip: (query.page-1)*10,
-                take: 10
+                skip: (query.page-1)*100,
+                take: 100
             });
             ResponseVS(res, {data: lojas});
         } catch (err) {
@@ -312,7 +313,6 @@ export default class LojaController {
                     lojaFuncionamento: true
                 },
                 where: {
-                    estacionamento: false,
                     produtoLoja: {
                         some: {
                             produto: {
@@ -326,8 +326,8 @@ export default class LojaController {
                 orderBy: {
                     dataAtualizacao: 'desc'
                 },
-                skip: (query.page-1)*10,
-                take: 10
+                skip: (query.page-1)*100,
+                take: 100
             });
             ResponseVS(res, {data: lojas});
         } catch (err) {
@@ -402,8 +402,8 @@ export default class LojaController {
                 orderBy: {
                     dataAtualizacao: 'desc'
                 },
-                skip: (query.page-1)*10,
-                take: 10
+                skip: (query.page-1)*100,
+                take: 100
             });
             ResponseVS(res, {data: lojas});
         } catch (err) {
