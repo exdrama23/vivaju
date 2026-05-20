@@ -50,10 +50,37 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const fetchComercios = async () => {
       try {
         const response = await apiRequest('/loja');
-        let data = response.data || [];
-        if (data.length === 0) data = mockComercios;
-        setComercios(data);
-        localStorage.setItem('vivaju_comercios_v5', JSON.stringify(data));
+        let rawData = response.data || [];
+        
+        const data = rawData.map((c: any) => ({
+          ...c,
+          categoria: c.categoriaLoja?.[0]?.categoria?.nome || 'Geral',
+          produtos: (c.produtoLoja || []).map((p: any) => ({
+            id: p.produto?.id,
+            nome: p.produto?.nome,
+            descricao: p.produto?.descricao,
+            preco: parseFloat(p.preco),
+            imagem: p.produto?.imagem
+          })),
+          avaliacoes: [], // Backend não tem avaliações ainda
+          tags: [], // Backend não tem tags ainda
+          statusAberto: true, // Mockado por enquanto
+          favoritada: false,
+          // Campos estendidos para ComercioExtendido
+          localizacao: c.logradouro || 'Aracaju, SE',
+          resumo_avaliacoes: 'Ainda não há avaliações',
+          redes_sociais: '',
+          rating: 0,
+          horarioFuncionamento: '08:00 - 18:00',
+        } as ComercioExtendido));
+
+        if (data.length === 0) {
+          setComercios(mockComercios);
+          localStorage.setItem('vivaju_comercios_v5', JSON.stringify(mockComercios));
+        } else {
+          setComercios(data);
+          localStorage.setItem('vivaju_comercios_v5', JSON.stringify(data));
+        }
       } catch (error) {
         console.error('Erro ao buscar comércios:', error);
         // Em caso de erro, mantém o que está no estado (que veio do localStorage no init)

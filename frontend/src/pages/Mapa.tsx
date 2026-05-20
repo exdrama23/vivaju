@@ -42,13 +42,13 @@ export function Mapa() {
 
   const filteredComercios = useMemo(() => 
     comercios.filter(c => 
-      c.nome.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      c.categoria.toLowerCase().includes(searchQuery.toLowerCase())
+      (c.nome || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (c.categoria || '').toLowerCase().includes(searchQuery.toLowerCase())
     ), [comercios, searchQuery]);
 
   const filteredParkings = useMemo(() => 
     estacionamentos.filter(e => 
-      e.nome.toLowerCase().includes(searchQuery.toLowerCase())
+      (e.nome || '').toLowerCase().includes(searchQuery.toLowerCase())
     ), [estacionamentos, searchQuery]);
 
   const [selectedComercio, setSelectedComercio] = useState<Comercio | null>(null);

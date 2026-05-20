@@ -312,8 +312,8 @@ export function ComercioDetalhe() {
   const filteredProducts = useMemo(() => {
     if (!comercio || !comercio.produtos) return [];
     return comercio.produtos.filter(p => 
-      p.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      p.descricao.toLowerCase().includes(searchTerm.toLowerCase())
+      (p.nome || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (p.descricao || '').toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [comercio, searchTerm]);
 

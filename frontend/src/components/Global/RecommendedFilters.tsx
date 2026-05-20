@@ -203,7 +203,7 @@ const defaultCategoryIcons: { [key: string]: React.ReactNode } = {
 };
 
 const getCategoryIcon = (category: string, useAnimated: boolean = false) => {
-  const lowerCategory = category.toLowerCase();
+  const lowerCategory = (category || '').toLowerCase();
   
   if (useAnimated) {
     if (lowerCategory === 'tudo') {

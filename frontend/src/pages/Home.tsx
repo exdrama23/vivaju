@@ -543,7 +543,7 @@ export function Home() {
     
     const termo = searchTerm.toLowerCase();
     return comercios.filter(c => 
-      c.nome.toLowerCase().includes(termo) || 
+      (c.nome || '').toLowerCase().includes(termo) || 
       (c.categoria && c.categoria.toLowerCase().includes(termo))
     );
   }, [searchTerm, comercios]);
