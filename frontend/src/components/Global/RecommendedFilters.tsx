@@ -265,9 +265,13 @@ export function RecommendedFilters({
     });
   };
 
-  const allChips = ['Tudo', ...filtrosRecomendados];
+  const allChips = useMemo(() => {
+    const uniqueCategories = filtrosRecomendados.filter(c => c && c !== 'Tudo' && c !== 'Todos');
+    return ['Tudo', ...uniqueCategories];
+  }, [filtrosRecomendados]);
+
   const mobileHasMore = showMoreOnMobile && allChips.length > 8;
-  const displayChipsDesktop = allChips; // desktop shows all categories (no 'Ver mais')
+  const displayChipsDesktop = allChips;
   const displayChipsMobile = mobileHasMore ? allChips.slice(0, 7) : allChips;
 
   return (
