@@ -70,8 +70,8 @@ importers:
         specifier: ^25.0.3
         version: 25.5.0
       '@types/pg':
-        specifier: ^8.16.0
-        version: 8.20.0
+        specifier: 8.11.11
+        version: 8.11.11
       prisma:
         specifier: ^7.5.0
         version: 7.5.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
@@ -276,9 +276,6 @@ packages:
 
   '@types/pg@8.11.11':
     resolution: {integrity: sha512-kGT1qKM8wJQ5qlawUrEkXgvMSXoV213KfMGXcwfDwUIfUHXqXYXOfS1nE1LINRJVVVx5wCm70XnFlMHaIcQAfw==}
-
-  '@types/pg@8.20.0':
-    resolution: {integrity: sha512-bEPFOaMAHTEP1EzpvHTbmwR8UsFyHSKsRisLIHVMXnpNefSbGA1bD6CVy+qKjGSqmZqNqBDV2azOBo8TgkcVow==}
 
   '@types/qs@6.15.0':
     resolution: {integrity: sha512-JawvT8iBVWpzTrz3EGw9BTQFg3BQNmwERdKE22vlTxawwtbyUSlMppvZYKLZzB5zgACXdXxbD3m1bXaMqP/9ow==}
@@ -1549,12 +1546,6 @@ snapshots:
       '@types/node': 25.5.0
       pg-protocol: 1.13.0
       pg-types: 4.1.0
-
-  '@types/pg@8.20.0':
-    dependencies:
-      '@types/node': 25.5.0
-      pg-protocol: 1.13.0
-      pg-types: 2.2.0
 
   '@types/qs@6.15.0': {}
 
