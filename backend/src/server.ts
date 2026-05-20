@@ -15,10 +15,10 @@ const server = http.createServer(app);
 app.set('trust proxy', 1); // * This is important for deployment in services like Render.
 
 // * Global Middlewares
+app.use(cors(corsConfig));
 app.use(cookieParser());
 app.use(express.json());
 app.use(RateLimit.general);
-app.use(cors(corsConfig));
 
 // * Cron tasks
 // import '@tasks/cronSessionsCleanup';
