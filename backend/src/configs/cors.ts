@@ -5,6 +5,7 @@ const allowedOrigins = [
     'http://localhost:5173',   
     'https://vivaju.vercel.app',          
     'https://vivaju-frontend.vercel.app', 
+    'https://vivaju-fy7no6ah4-alecs-projects-1285b31e.vercel.app',
     
     ...(process.env.ADDITIONAL_ORIGINS ? process.env.ADDITIONAL_ORIGINS.split(',') : [])
 ];
