@@ -93,9 +93,25 @@ export default class LojaController {
                     nome: true,
                     descricao: true,
                     vendedorAmbulante: true,
+                    latitude: true,
+                    longitude: true,
+                    imagem: true,
+                    telefoneContato: true,
+                    logradouro: true,
+                    estacionamento: true,
                     categoriaLoja: {
                         select: {
-                            categoria: true
+                            categoria: {
+                                select: {
+                                    nome: true
+                                }
+                            }
+                        }
+                    },
+                    produtoLoja: {
+                        select: {
+                            produto: true,
+                            preco: true
                         }
                     },
                     lojaFuncionamento: true
@@ -132,9 +148,25 @@ export default class LojaController {
                     nome: true,
                     descricao: true,
                     vendedorAmbulante: true,
+                    latitude: true,
+                    longitude: true,
+                    imagem: true,
+                    telefoneContato: true,
+                    logradouro: true,
+                    estacionamento: true,
                     categoriaLoja: {
                         select: {
-                            categoria: true
+                            categoria: {
+                                select: {
+                                    nome: true
+                                }
+                            }
+                        }
+                    },
+                    produtoLoja: {
+                        select: {
+                            produto: true,
+                            preco: true
                         }
                     },
                     lojaFuncionamento: true
@@ -174,9 +206,25 @@ export default class LojaController {
                     nome: true,
                     descricao: true,
                     vendedorAmbulante: true,
+                    latitude: true,
+                    longitude: true,
+                    imagem: true,
+                    telefoneContato: true,
+                    logradouro: true,
+                    estacionamento: true,
                     categoriaLoja: {
                         select: {
-                            categoria: true
+                            categoria: {
+                                select: {
+                                    nome: true
+                                }
+                            }
+                        }
+                    },
+                    produtoLoja: {
+                        select: {
+                            produto: true,
+                            preco: true
                         }
                     },
                     lojaFuncionamento: true
@@ -240,9 +288,25 @@ export default class LojaController {
                     nome: true,
                     descricao: true,
                     vendedorAmbulante: true,
+                    latitude: true,
+                    longitude: true,
+                    imagem: true,
+                    telefoneContato: true,
+                    logradouro: true,
+                    estacionamento: true,
                     categoriaLoja: {
                         select: {
-                            categoria: true
+                            categoria: {
+                                select: {
+                                    nome: true
+                                }
+                            }
+                        }
+                    },
+                    produtoLoja: {
+                        select: {
+                            produto: true,
+                            preco: true
                         }
                     },
                     lojaFuncionamento: true

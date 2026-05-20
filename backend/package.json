@@ -9,6 +9,9 @@
     "build": "tsc && tsc-alias",
     "postinstall": "prisma generate"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
