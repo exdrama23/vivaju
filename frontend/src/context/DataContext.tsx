@@ -29,23 +29,23 @@ const CACHE_KEYS = {
 };
 
 export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  // Stale-While-Revalidate: Initialize from LocalStorage if available
+  // Stale-While-Revalidate: Initialize from LocalStorage or Fallback to Mocks
   const [comercios, setComercios] = useState<ComercioExtendido[]>(() => {
     const saved = localStorage.getItem(CACHE_KEYS.COMERCIOS);
-    return saved ? JSON.parse(saved) : [];
+    return saved ? JSON.parse(saved) : mockComercios;
   });
   const [eventos, setEventos] = useState<Evento[]>(() => {
     const saved = localStorage.getItem(CACHE_KEYS.EVENTOS);
-    return saved ? JSON.parse(saved) : [];
+    return saved ? JSON.parse(saved) : mockEventos;
   });
   const [estacionamentos, setEstacionamentos] = useState<Estacionamento[]>(() => {
     const saved = localStorage.getItem(CACHE_KEYS.ESTACIONAMENTOS);
-    return saved ? JSON.parse(saved) : [];
+    return saved ? JSON.parse(saved) : mockEstacionamentos;
   });
 
-  const [isLoadingComercios, setIsLoadingComercios] = useState(comercios.length === 0);
-  const [isLoadingEventos, setIsLoadingEventos] = useState(eventos.length === 0);
-  const [isLoadingEstacionamentos, setIsLoadingEstacionamentos] = useState(estacionamentos.length === 0);
+  const [isLoadingComercios, setIsLoadingComercios] = useState(true);
+  const [isLoadingEventos, setIsLoadingEventos] = useState(true);
+  const [isLoadingEstacionamentos, setIsLoadingEstacionamentos] = useState(true);
 
   const randomCategories = useMemo(() => {
     const cats = Array.from(new Set(comercios.map(c => c.categoria))).filter(Boolean);
@@ -82,12 +82,9 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
         setComercios(mappedData);
         localStorage.setItem(CACHE_KEYS.COMERCIOS, JSON.stringify(mappedData));
-      } else if (comercios.length === 0) {
-        setComercios(mockComercios);
       }
     } catch (error) {
       console.error('Erro ao buscar comércios:', error);
-      if (comercios.length === 0) setComercios(mockComercios);
     } finally {
       setIsLoadingComercios(false);
     }
@@ -107,12 +104,9 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
         }));
         setEventos(mapped);
         localStorage.setItem(CACHE_KEYS.EVENTOS, JSON.stringify(mapped));
-      } else if (eventos.length === 0) {
-        setEventos(mockEventos);
       }
     } catch (error) {
       console.error('Erro ao buscar eventos:', error);
-      if (eventos.length === 0) setEventos(mockEventos as any);
     } finally {
       setIsLoadingEventos(false);
     }
@@ -137,12 +131,9 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
         } as Estacionamento));
         setEstacionamentos(mapped);
         localStorage.setItem(CACHE_KEYS.ESTACIONAMENTOS, JSON.stringify(mapped));
-      } else if (estacionamentos.length === 0) {
-        setEstacionamentos(mockEstacionamentos);
       }
     } catch (error) {
       console.error('Erro ao buscar estacionamentos:', error);
-      if (estacionamentos.length === 0) setEstacionamentos(mockEstacionamentos);
     } finally {
       setIsLoadingEstacionamentos(false);
     }
