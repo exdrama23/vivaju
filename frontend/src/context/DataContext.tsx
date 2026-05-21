@@ -29,20 +29,13 @@ const CACHE_KEYS = {
 };
 
 export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  // Stale-While-Revalidate: Initialize from LocalStorage or Fallback to Mocks
-  const [comercios, setComercios] = useState<ComercioExtendido[]>(() => {
-    const saved = localStorage.getItem(CACHE_KEYS.COMERCIOS);
-    return saved ? JSON.parse(saved) : mockComercios;
-  });
-  const [eventos, setEventos] = useState<Evento[]>(() => {
-    const saved = localStorage.getItem(CACHE_KEYS.EVENTOS);
-    return saved ? JSON.parse(saved) : mockEventos;
-  });
-  const [estacionamentos, setEstacionamentos] = useState<Estacionamento[]>(() => {
-    const saved = localStorage.getItem(CACHE_KEYS.ESTACIONAMENTOS);
-    return saved ? JSON.parse(saved) : mockEstacionamentos;
-  });
+  // Always initialize with Mocks to ensure data is present before backend response
+  const [comercios, setComercios] = useState<ComercioExtendido[]>(mockComercios);
+  const [eventos, setEventos] = useState<Evento[]>(mockEventos);
+  const [estacionamentos, setEstacionamentos] = useState<Estacionamento[]>(mockEstacionamentos);
 
+  // We keep the loading state as true initially to allow skeletons if desired,
+  // but the data above is already available for immediate rendering.
   const [isLoadingComercios, setIsLoadingComercios] = useState(true);
   const [isLoadingEventos, setIsLoadingEventos] = useState(true);
   const [isLoadingEstacionamentos, setIsLoadingEstacionamentos] = useState(true);
@@ -84,12 +77,10 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
         setComercios(mappedData);
         localStorage.setItem(CACHE_KEYS.COMERCIOS, JSON.stringify(mappedData));
-      } else {
-        setComercios(mockComercios);
       }
     } catch (error) {
       console.error('Erro ao buscar comércios:', error);
-      setComercios(mockComercios);
+      // Fallback to mocks is implicit as they are already in state
     } finally {
       setIsLoadingComercios(false);
     }
@@ -109,12 +100,9 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
         }));
         setEventos(mapped);
         localStorage.setItem(CACHE_KEYS.EVENTOS, JSON.stringify(mapped));
-      } else {
-        setEventos(mockEventos);
       }
     } catch (error) {
       console.error('Erro ao buscar eventos:', error);
-      setEventos(mockEventos);
     } finally {
       setIsLoadingEventos(false);
     }
@@ -139,12 +127,9 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
         } as Estacionamento));
         setEstacionamentos(mapped);
         localStorage.setItem(CACHE_KEYS.ESTACIONAMENTOS, JSON.stringify(mapped));
-      } else {
-        setEstacionamentos(mockEstacionamentos);
       }
     } catch (error) {
       console.error('Erro ao buscar estacionamentos:', error);
-      setEstacionamentos(mockEstacionamentos);
     } finally {
       setIsLoadingEstacionamentos(false);
     }
