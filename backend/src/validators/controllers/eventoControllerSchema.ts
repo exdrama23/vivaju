@@ -1,7 +1,7 @@
 import z from "zod";
 import { stringSchema } from "../shared/basicsSchema";
 
-export const buscarEventosQuerySchema = z.strictObject({
+export const buscarEventosQuerySchema = z.object({
     situacao: z.enum(["acontecendo", "encerrado", "todos", "disponivel"])
         .optional()
         .default("disponivel"),

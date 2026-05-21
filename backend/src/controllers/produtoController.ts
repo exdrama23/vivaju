@@ -12,7 +12,7 @@ export default class ProdutoController {
     static async adicionarProduto(req: RequestAuthVS, res: Response, next: NextFunction){
         try {
             const {id} = req.user;
-            const dto = z.strictObject({
+            const dto = z.object({
                 nome: stringSchema
                     .min(1)
                     .max(150),

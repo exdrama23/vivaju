@@ -2,7 +2,7 @@ import z from "zod";
 import { booleanSchema, emailSchema, stringSchema } from "../shared/basicsSchema";
 import { horaSchema, senhaSchema, telefoneSchema } from "../shared/utilsSchema";
 
-export const cadastroLojaSchema = z.strictObject({
+export const cadastroLojaSchema = z.object({
     nome: stringSchema
         .min(1, 'O nome da loja deve conter pelo menos 1 caractere')
         .max(150, 'O nome da loja deve conter no máximo 150 caracteres'),
@@ -39,7 +39,7 @@ export const cadastroLojaSchema = z.strictObject({
     estacionamento: booleanSchema
         .optional()
         .default(false),
-    estacionamentoInfo: z.strictObject({
+    estacionamentoInfo: z.object({
         preco: stringSchema
             .regex(/^\d+(\.\d{1,2})?$/, "Preco inválido"),
         tempoPreco: stringSchema
@@ -51,7 +51,7 @@ export const cadastroLojaSchema = z.strictObject({
 });
 export type CadastroLojaDTO = z.output<typeof cadastroLojaSchema>;
 
-export const editarLojaSchema = z.strictObject({
+export const editarLojaSchema = z.object({
     nome: stringSchema
         .min(1, 'O nome da loja deve conter pelo menos 1 caractere')
         .max(150, 'O nome da loja deve conter no máximo 150 caracteres')
@@ -79,13 +79,13 @@ export const editarLojaSchema = z.strictObject({
         .optional(),
     estacionamento: booleanSchema
         .optional(),
-    estacionamentoInfo: z.strictObject({
+    estacionamentoInfo: z.object({
         preco: stringSchema
             .regex(/^\d+(\.\d{1,2})?$/, "Preco inválido"),
         tempoPreco: stringSchema
             .max(20, "No maximo 20 caracteres.")
     }).optional(),
-    lojaFuncionamento: z.strictObject({
+    lojaFuncionamento: z.object({
         segAbr: horaSchema
             .nullable()
             .optional(),

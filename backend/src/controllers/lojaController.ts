@@ -80,7 +80,7 @@ export default class LojaController {
 
     static async buscarLojas(req: RequestCustomVS, res: Response, next: NextFunction){
         try {
-            const query = z.strictObject({
+            const query = z.object({
                 page: z.coerce.number()
                     .int()
                     .min(1)
@@ -135,7 +135,7 @@ export default class LojaController {
 
     static async buscarLojasPorNome(req: RequestCustomVS, res: Response, next: NextFunction){
         try {
-            const query = z.strictObject({
+            const query = z.object({
                 page: z.coerce.number()
                     .int()
                     .min(1)
@@ -193,7 +193,7 @@ export default class LojaController {
 
     static async buscarLojasPorCategoria(req: RequestCustomVS, res: Response, next: NextFunction){
         try {
-            const query = z.strictObject({
+            const query = z.object({
                 page: z.coerce.number()
                     .int()
                     .min(1)
@@ -275,7 +275,7 @@ export default class LojaController {
 
     static async buscarLojasPorProduto(req: RequestCustomVS, res: Response, next: NextFunction){
         try {
-            const query = z.strictObject({
+            const query = z.object({
                 page: z.coerce.number()
                     .int()
                     .min(1)
@@ -380,7 +380,7 @@ export default class LojaController {
 
     static async buscarEstacionamentos(req: RequestCustomVS, res: Response, next: NextFunction){
         try {
-            const query = z.strictObject({
+            const query = z.object({
                 page: z.coerce.number()
                     .int()
                     .min(1)

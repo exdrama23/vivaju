@@ -2,7 +2,7 @@ import z from "zod";
 import { emailSchema, stringSchema } from "../shared/basicsSchema";
 import { senhaSchema, telefoneSchema } from "../shared/utilsSchema";
 
-export const cadastroClienteSchema = z.strictObject({
+export const cadastroClienteSchema = z.object({
     email: emailSchema,
     senha: senhaSchema,
     telefone: telefoneSchema
@@ -12,7 +12,7 @@ export const cadastroClienteSchema = z.strictObject({
         .max(150, 'O nome deve conter no máximo 150 caracteres')
 });
 
-export const editarClienteSchema = z.strictObject({
+export const editarClienteSchema = z.object({
     telefone: telefoneSchema
         .nullable()
         .optional(),
