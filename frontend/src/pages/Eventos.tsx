@@ -21,26 +21,63 @@ export function Eventos() {
   const fetchEventos = useCallback(async (page: number) => {
     setLoading(true);
     try {
-      // Constrói a query string baseada nos filtros
+      const { mockEventos } = await import('@/services/mockData');
+      
+      // Busca no banco
       const params = new URLSearchParams({
         pagina: page.toString(),
-        situacao: situacao,
-        ...(nome && { nome }),
-        ...(categoria && { categoria })
+        situacao: 'todos' // Buscamos todos para filtrar localmente com precisão
       });
 
       const response = await apiRequest(`/evento?${params.toString()}`);
-      let data = response.data || [];
+      let apiData = response.data || [];
       
-      // Fallback para mock se a API retornar vazio
-      if (data.length === 0) {
-        const { mockEventos } = await import('@/services/mockData');
-        data = mockEventos;
+      // Mescla banco com mocks (evitando duplicatas pelo nome)
+      let combinedData = apiData.map((ev: any) => {
+        const mockMatch = mockEventos.find(m => m.nome.toLowerCase() === ev.nome.toLowerCase());
+        return {
+          ...ev,
+          imagem: ev.imagem || mockMatch?.imagem || null,
+          descricao: ev.descricao || mockMatch?.descricao || ev.descricao,
+          categoria: ev.categoria || mockMatch?.categoria || 'Geral'
+        };
+      });
+
+      // Se o banco estiver vazio e não houver busca ativa, usamos os mocks
+      if (apiData.length === 0) {
+        combinedData = mockEventos;
+      } else {
+        // Adiciona mocks que não estão no banco para ter uma lista completa
+        const onlyInMock = mockEventos.filter(
+          m => !apiData.some((a: any) => a.nome.toLowerCase() === m.nome.toLowerCase())
+        );
+        combinedData = [...combinedData, ...onlyInMock];
       }
 
-      setListaEventos(data);
-      // Se retornou 10 itens (o limite do backend), assumimos que pode haver mais
-      setHasMore(data.length >= 10);
+      // FILTRAGEM LOCAL (Garante que os filtros funcionem 100% mesmo com dados parciais)
+      const filtered = combinedData.filter(ev => {
+        const matchesNome = !nome || ev.nome.toLowerCase().includes(nome.toLowerCase());
+        const matchesCategoria = !categoria || ev.categoria.toLowerCase().includes(categoria.toLowerCase());
+        
+        // Lógica de Situação (MockData usa datas, Backend usa campo situacao)
+        let matchesSituacao = true;
+        const agora = new Date();
+        const inicio = new Date(ev.inicio);
+        const fim = new Date(ev.fim);
+
+        if (situacao === 'disponivel') {
+          matchesSituacao = inicio > agora;
+        } else if (situacao === 'acontecendo') {
+          matchesSituacao = agora >= inicio && agora <= fim;
+        } else if (situacao === 'encerrado') {
+          matchesSituacao = agora > fim;
+        }
+
+        return matchesNome && matchesCategoria && matchesSituacao;
+      });
+
+      setListaEventos(filtered);
+      setHasMore(false); // Como estamos filtrando localmente o set completo, desativamos a paginação do banco
     } catch (error) {
       console.error('Erro ao buscar eventos:', error);
       const { mockEventos } = await import('@/services/mockData');
@@ -120,32 +157,34 @@ export function Eventos() {
             ))}
           </div>
           
-          {/* Paginação */}
-          <div className="flex items-center justify-center gap-4 mt-12 mb-8">
-            <Button
-              onClick={() => handlePageChange(pagina - 1)}
-              disabled={pagina === 1 || loading}
-              variant="outline"
-              size="icon"
-              className="rounded-full cursor-pointer"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            
-            <span className="text-sm font-medium bg-gray-100 px-4 py-2 rounded-full">
-              Página {pagina}
-            </span>
+          {/* Paginação - Só aparece se houver mais de 10 eventos ou não estiver na primeira página */}
+          {(listaEventos.length > 10 || pagina > 1) && (
+            <div className="flex items-center justify-center gap-4 mt-12 mb-8">
+              <Button
+                onClick={() => handlePageChange(pagina - 1)}
+                disabled={pagina === 1 || loading}
+                variant="outline"
+                size="icon"
+                className="rounded-full cursor-pointer"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </Button>
+              
+              <span className="text-sm font-medium bg-gray-100 px-4 py-2 rounded-full">
+                Página {pagina}
+              </span>
 
-            <Button
-              onClick={() => handlePageChange(pagina + 1)}
-              disabled={!hasMore || loading}
-              variant="outline"
-              size="icon"
-              className="rounded-full cursor-pointer"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
+              <Button
+                onClick={() => handlePageChange(pagina + 1)}
+                disabled={!hasMore || loading}
+                variant="outline"
+                size="icon"
+                className="rounded-full cursor-pointer"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </Button>
+            </div>
+          )}
         </>
       )}
     </div>

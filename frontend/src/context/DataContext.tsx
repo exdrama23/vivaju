@@ -51,36 +51,60 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const rawData = response.data || [];
       
       if (rawData.length > 0) {
-        const mappedData = rawData.map((c: any) => ({
-          ...c,
-          categoria: c.categoriaLoja?.[0]?.categoria?.nome || 'Geral',
-          latitude: typeof c.latitude === 'number' ? c.latitude : -10.910501,
-          longitude: typeof c.longitude === 'number' ? c.longitude : -37.050332,
-          produtos: (c.produtoLoja || []).map((pl: any) => ({
+        const mappedData = rawData.map((c: any) => {
+          // Busca um comércio correspondente no mockData pelo nome
+          const mockMatch = mockComercios.find(m => m.nome.toLowerCase() === c.nome.toLowerCase());
+          
+          const rawBackendProducts = (c.produtoLoja || []).map((pl: any) => ({
             id: pl.produto?.id,
             comercioId: c.id,
             nome: pl.produto?.nome,
             descricao: pl.produto?.descricao || '',
             preco: parseFloat(pl.preco),
             imagem: pl.produto?.imagem || null
-          })),
-          avaliacoes: [],
-          tags: c.categoriaLoja?.map((cl: any) => cl.categoria?.nome).filter(Boolean) || [],
-          statusAberto: true,
-          favoritada: false,
-          localizacao: c.logradouro || 'Aracaju, SE',
-          resumo_avaliacoes: 'Sem avaliações',
-          redes_sociais: '',
-          rating: 0,
-          horarioFuncionamento: '08:00 - 18:00',
-        } as ComercioExtendido));
+          }));
+
+          // Remove duplicatas que venham do próprio banco de dados (pelo nome)
+          const backendProducts = rawBackendProducts.filter((item, index, self) =>
+            index === self.findIndex((t) => t.nome.toLowerCase() === item.nome.toLowerCase())
+          );
+
+          // Lógica de Mesclagem:
+          // Removemos duplicatas pelo nome entre banco e mock, priorizando o banco.
+          // Não limitamos mais a 10 produtos para permitir paginação.
+          let finalProducts = [...backendProducts];
+          
+          if (mockMatch?.produtos) {
+            const mockProductsToAdd = mockMatch.produtos.filter(
+              mp => !finalProducts.some(bp => bp.nome.toLowerCase() === mp.nome.toLowerCase())
+            );
+            finalProducts = [...finalProducts, ...mockProductsToAdd];
+          }
+
+          return {
+            ...c,
+            // Mantém o ID do backend para operações reais, mas preenche o que falta com mocks
+            categoria: c.categoriaLoja?.[0]?.categoria?.nome || mockMatch?.categoria || 'Geral',
+            latitude: typeof c.latitude === 'number' ? c.latitude : (mockMatch?.latitude || -10.910501),
+            longitude: typeof c.longitude === 'number' ? c.longitude : (mockMatch?.longitude || -37.050332),
+            produtos: finalProducts,
+            avaliacoes: [],
+            tags: c.categoriaLoja?.map((cl: any) => cl.categoria?.nome).filter(Boolean) || mockMatch?.tags || [],
+            statusAberto: true,
+            favoritada: false,
+            localizacao: c.logradouro || mockMatch?.localizacao || 'Aracaju, SE',
+            resumo_avaliacoes: mockMatch?.resumo_avaliacoes || 'Sem avaliações',
+            redes_sociais: mockMatch?.redes_sociais || '',
+            rating: mockMatch?.rating || 0,
+            horarioFuncionamento: mockMatch?.horarioFuncionamento || '08:00 - 18:00',
+          } as ComercioExtendido;
+        });
 
         setComercios(mappedData);
         localStorage.setItem(CACHE_KEYS.COMERCIOS, JSON.stringify(mappedData));
       }
     } catch (error) {
       console.error('Erro ao buscar comércios:', error);
-      // Fallback to mocks is implicit as they are already in state
     } finally {
       setIsLoadingComercios(false);
     }
@@ -92,12 +116,19 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const data = response.data || [];
       
       if (data.length > 0) {
-        const mapped = data.map((ev: any) => ({
-          ...ev,
-          inicio: ev.inicio,
-          fim: ev.fim,
-          local: ev.localizacao
-        }));
+        const mapped = data.map((ev: any) => {
+          // Busca correspondência no mock pelo nome para preencher imagem e descrição se faltar no banco
+          const mockMatch = mockEventos.find(m => m.nome.toLowerCase() === ev.nome.toLowerCase());
+
+          return {
+            ...ev,
+            inicio: ev.inicio,
+            fim: ev.fim,
+            local: ev.localizacao,
+            imagem: ev.imagem || mockMatch?.imagem || null,
+            descricao: ev.descricao || mockMatch?.descricao || ''
+          };
+        });
         setEventos(mapped);
         localStorage.setItem(CACHE_KEYS.EVENTOS, JSON.stringify(mapped));
       }

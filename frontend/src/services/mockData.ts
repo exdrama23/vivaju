@@ -484,14 +484,14 @@ export const mockHybridSliderData = [
     tipo: "imagem" as const
   },
   {
-    id: "h3",
+    id: "c18",
     nome: "Pizzas e Delicias",
     categoria: "Comida e Bebida",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779231004/comercio_3_x4c6ug.png",
     tipo: "imagem" as const
   },
   {
-    id: "h4",
+    id: "c16",
     nome: "Tecnologia e Inovacao",
     categoria: "Equipamentos e Artefatos",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779230957/Comercio_4_zpzmm7.png",
@@ -501,19 +501,19 @@ export const mockHybridSliderData = [
 
 export const mockVideoSliderComerciais = [
   {
-    id: "v1",
+    id: "c1",
     nome: "Gastronomia Premium",
     categoria: "Restaurantes",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-chef-preparing-a-dish-in-a-professional-kitchen-41031-large.mp4"
   },
   {
-    id: "v2",
+    id: "c12",
     nome: "Tendencias de Moda",
     categoria: "Shopping",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-young-woman-walking-in-a-fashion-store-40156-large.mp4"
   },
   {
-    id: "v3",
+    id: "c29",
     nome: "Eventos e Shows",
     categoria: "Eventos",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-with-lights-and-smoke-40155-large.mp4"
@@ -522,7 +522,7 @@ export const mockVideoSliderComerciais = [
 
 export const mockStoreSliderComerciais = [
   {
-    id: "cs1",
+    id: "c13",
     nome: "Ofertas do Centro",
     categoria: "Promocao Especial",
     horarioFuncionamento: "08:00 - 18:00",
@@ -530,7 +530,7 @@ export const mockStoreSliderComerciais = [
     descricao: "As melhores ofertas da regiao central."
   },
   {
-    id: "cs2",
+    id: "c24",
     nome: "Cultura Local",
     categoria: "Feira de Negocios",
     horarioFuncionamento: "09:00 - 20:00",
@@ -538,12 +538,12 @@ export const mockStoreSliderComerciais = [
     descricao: "Valorize o produtor local e nossa cultura."
   },
   {
-    id: "cs3",
+    id: "c21",
     nome: "Sabor no Calcadao",
     categoria: "Evento Gourmet",
     horarioFuncionamento: "11:00 - 23:00",
     imagem: cafeteriaGourmetImages[0],
-    descricao: "Sabores irresistiveis para voce aproveitar."
+    descricao: "Cafes especiais e gastronomia refinada."
   }
 ];
 
