@@ -61,6 +61,8 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
         const mappedData = rawData.map((c: any) => ({
           ...c,
           categoria: c.categoriaLoja?.[0]?.categoria?.nome || 'Geral',
+          latitude: typeof c.latitude === 'number' ? c.latitude : -10.910501,
+          longitude: typeof c.longitude === 'number' ? c.longitude : -37.050332,
           produtos: (c.produtoLoja || []).map((pl: any) => ({
             id: pl.produto?.id,
             comercioId: c.id,
@@ -82,9 +84,12 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
         setComercios(mappedData);
         localStorage.setItem(CACHE_KEYS.COMERCIOS, JSON.stringify(mappedData));
+      } else {
+        setComercios(mockComercios);
       }
     } catch (error) {
       console.error('Erro ao buscar comércios:', error);
+      setComercios(mockComercios);
     } finally {
       setIsLoadingComercios(false);
     }
@@ -104,9 +109,12 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
         }));
         setEventos(mapped);
         localStorage.setItem(CACHE_KEYS.EVENTOS, JSON.stringify(mapped));
+      } else {
+        setEventos(mockEventos);
       }
     } catch (error) {
       console.error('Erro ao buscar eventos:', error);
+      setEventos(mockEventos);
     } finally {
       setIsLoadingEventos(false);
     }
@@ -121,8 +129,8 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
         const mapped = rawData.map((item: any) => ({
           id: item.id,
           nome: item.nome,
-          latitude: item.latitude,
-          longitude: item.longitude,
+          latitude: typeof item.latitude === 'number' ? item.latitude : -10.910501,
+          longitude: typeof item.longitude === 'number' ? item.longitude : -37.050332,
           numeroVagas: 50,
           vagasOcupadas: Math.floor(Math.random() * 50),
           status: 'livre',
@@ -131,9 +139,12 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
         } as Estacionamento));
         setEstacionamentos(mapped);
         localStorage.setItem(CACHE_KEYS.ESTACIONAMENTOS, JSON.stringify(mapped));
+      } else {
+        setEstacionamentos(mockEstacionamentos);
       }
     } catch (error) {
       console.error('Erro ao buscar estacionamentos:', error);
+      setEstacionamentos(mockEstacionamentos);
     } finally {
       setIsLoadingEstacionamentos(false);
     }
