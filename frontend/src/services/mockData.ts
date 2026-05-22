@@ -470,28 +470,28 @@ export const vegano2Images = [
 
 export const mockHybridSliderData = [
   {
-    id: "051b03f5-a790-4d31-af42-327b2859c10b",
+    id: "bcc08a2b-2527-418c-b1da-19578c6ec1f5",
     nome: "Experiencia Gastronomica",
     categoria: "Cafeterias e Restaurantes",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779197304/comercio_1_yiwzzr.png",
     tipo: "imagem" as const
   },
   {
-    id: "6b50b912-ad40-47c7-a1e7-65f40f7175c4",
+    id: "351b1440-1e5a-4cac-b5ae-aea70e89b093",
     nome: "Moda e Estilo",
     categoria: "Promocao Especial",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779216906/comercio_2_ticju6.png",
     tipo: "imagem" as const
   },
   {
-    id: "0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b",
+    id: "a923af98-62a7-470f-bb98-04ead26ba35c",
     nome: "Pizzas e Delicias",
     categoria: "Comida e Bebida",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779231004/comercio_3_x4c6ug.png",
     tipo: "imagem" as const
   },
   {
-    id: "0c0c0c0c-0c0c-0c0c-0c0c-0c0c0c0c0c0c",
+    id: "c59fba7f-7e93-4853-93c5-fe28e2cdfc86",
     nome: "Tecnologia e Inovacao",
     categoria: "Equipamentos e Artefatos",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779230957/Comercio_4_zpzmm7.png",
