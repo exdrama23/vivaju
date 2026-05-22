@@ -470,28 +470,28 @@ export const vegano2Images = [
 
 export const mockHybridSliderData = [
   {
-    id: "c21",
+    id: "051b03f5-a790-4d31-af42-327b2859c10b",
     nome: "Experiencia Gastronomica",
     categoria: "Cafeterias e Restaurantes",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779197304/comercio_1_yiwzzr.png",
     tipo: "imagem" as const
   },
   {
-    id: "c11",
+    id: "6b50b912-ad40-47c7-a1e7-65f40f7175c4",
     nome: "Moda e Estilo",
     categoria: "Promocao Especial",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779216906/comercio_2_ticju6.png",
     tipo: "imagem" as const
   },
   {
-    id: "c18",
+    id: "0b0b0b0b-0b0b-0b0b-0b0b-0b0b0b0b0b0b",
     nome: "Pizzas e Delicias",
     categoria: "Comida e Bebida",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779231004/comercio_3_x4c6ug.png",
     tipo: "imagem" as const
   },
   {
-    id: "c16",
+    id: "0c0c0c0c-0c0c-0c0c-0c0c-0c0c0c0c0c0c",
     nome: "Tecnologia e Inovacao",
     categoria: "Equipamentos e Artefatos",
     imagem: "https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779230957/Comercio_4_zpzmm7.png",
@@ -501,28 +501,28 @@ export const mockHybridSliderData = [
 
 export const mockVideoSliderComerciais = [
   {
-    id: "c1",
+    id: "0d0d0d0d-0d0d-0d0d-0d0d-0d0d0d0d0d0d",
     nome: "Gastronomia Premium",
     categoria: "Restaurantes",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-chef-preparing-a-dish-in-a-professional-kitchen-41031-large.mp4"
   },
   {
-    id: "c12",
+    id: "0e0e0e0e-0e0e-0e0e-0e0e-0e0e0e0e0e0e",
     nome: "Tendencias de Moda",
     categoria: "Shopping",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-young-woman-walking-in-a-fashion-store-40156-large.mp4"
   },
   {
-    id: "c29",
+    id: "0f0f0f0f-0f0f-0f0f-0f0f-0f0f0f0f0f0f",
     nome: "Eventos e Shows",
     categoria: "Eventos",
-    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-with-lights-and-smoke-40155-large.mp4"
+    videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-crowd-at-at-a-concert-with-lights-and-smoke-40155-large.mp4"
   }
 ];
 
 export const mockStoreSliderComerciais = [
   {
-    id: "c13",
+    id: "051b03f5-a790-4d31-af42-327b2859c10b",
     nome: "Ofertas do Centro",
     categoria: "Promocao Especial",
     horarioFuncionamento: "08:00 - 18:00",
@@ -530,7 +530,7 @@ export const mockStoreSliderComerciais = [
     descricao: "As melhores ofertas da regiao central."
   },
   {
-    id: "c24",
+    id: "6b50b912-ad40-47c7-a1e7-65f40f7175c4",
     nome: "Cultura Local",
     categoria: "Feira de Negocios",
     horarioFuncionamento: "09:00 - 20:00",
@@ -538,7 +538,7 @@ export const mockStoreSliderComerciais = [
     descricao: "Valorize o produtor local e nossa cultura."
   },
   {
-    id: "c21",
+    id: "1c1c1c1c-1c1c-1c1c-1c1c-1c1c1c1c1c1c",
     nome: "Sabor no Calcadao",
     categoria: "Evento Gourmet",
     horarioFuncionamento: "11:00 - 23:00",
@@ -549,7 +549,7 @@ export const mockStoreSliderComerciais = [
 
 export const mockComercios: ComercioExtendido[] = [
   {
-    id: "c1",
+    id: "19390925-c05a-4ea9-b6bf-217edb231ed7",
     usuarioId: "u1",
     nome: "Burger Prime Aracaju",
     email: "contato@burgerprime.com",
@@ -573,20 +573,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c1-p1", comercioId: "c1", nome: "Classic Burger", descricao: "Pao brioche, carne 180g e queijo.", preco: 25.0, imagem: hamburgueriaImages[0] },
-      { id: "c1-p2", comercioId: "c1", nome: "Bacon Lovers", descricao: "Muito bacon crocante e cheddar.", preco: 32.0, imagem: hamburgueriaImages[1] },
-      { id: "c1-p3", comercioId: "c1", nome: "Cheddar Melt", descricao: "Cheddar cremoso e cebola caramelizada.", preco: 30.0, imagem: hamburgueriaImages[2] },
-      { id: "c1-p4", comercioId: "c1", nome: "Veggie Burger", descricao: "Hamburguer de grao de bico e alface.", preco: 28.0, imagem: hamburgueriaImages[3] },
-      { id: "c1-p5", comercioId: "c1", nome: "Double Monster", descricao: "Duas carnes de 180g e dobro de queijo.", preco: 45.0, imagem: hamburgueriaImages[4] },
-      { id: "c1-p6", comercioId: "c1", nome: "Batata Rustica", descricao: "Porcao de batatas com alecrim.", preco: 15.0, imagem: hamburgueriaImages[5] },
-      { id: "c1-p7", comercioId: "c1", nome: "Onion Rings", descricao: "Aneis de cebola empanados.", preco: 12.0, imagem: hamburgueriaImages[6] },
-      { id: "c1-p8", comercioId: "c1", nome: "Milkshake Morango", descricao: "Cremoso com pedacos de fruta.", preco: 18.0, imagem: hamburgueriaImages[7] },
-      { id: "c1-p9", comercioId: "c1", nome: "Refrigerante Lata", descricao: "Gelado 350ml.", preco: 6.0, imagem: hamburgueriaImages[8] },
-      { id: "c1-p10", comercioId: "c1", nome: "Petit Gateau", descricao: "Bolo quente com sorvete.", preco: 22.0, imagem: hamburgueriaImages[9] }
+      { id: "a0c69ed6-7936-4fa3-8236-a4ebeed62785", comercioId: "19390925-c05a-4ea9-b6bf-217edb231ed7", nome: "Classic Burger", descricao: "Pao brioche, carne 180g e queijo.", preco: 25.0, imagem: hamburgueriaImages[0] },
+      { id: "01b26701-efb6-4fac-a77d-b00c9a34700b", comercioId: "19390925-c05a-4ea9-b6bf-217edb231ed7", nome: "Bacon Lovers", descricao: "Muito bacon crocante e cheddar.", preco: 32.0, imagem: hamburgueriaImages[1] },
+      { id: "4a606aa6-9e65-4847-8ea3-f77ab44b5c05", comercioId: "19390925-c05a-4ea9-b6bf-217edb231ed7", nome: "Cheddar Melt", descricao: "Cheddar cremoso e cebola caramelizada.", preco: 30.0, imagem: hamburgueriaImages[2] },
+      { id: "5b36041a-82ec-4dbd-b1ae-a928cd6258f8", comercioId: "19390925-c05a-4ea9-b6bf-217edb231ed7", nome: "Veggie Burger", descricao: "Hamburguer de grao de bico e alface.", preco: 28.0, imagem: hamburgueriaImages[3] },
+      { id: "f01636ac-dc35-45a3-a559-15bb6742e868", comercioId: "19390925-c05a-4ea9-b6bf-217edb231ed7", nome: "Double Monster", descricao: "Duas carnes de 180g e dobro de queijo.", preco: 45.0, imagem: hamburgueriaImages[4] },
+      { id: "29b474ad-66de-41ca-881a-9b9997512ec8", comercioId: "19390925-c05a-4ea9-b6bf-217edb231ed7", nome: "Batata Rustica", descricao: "Porcao de batatas com alecrim.", preco: 15.0, imagem: hamburgueriaImages[5] },
+      { id: "47f86e48-f0d8-4f8b-b477-d681d528c87d", comercioId: "19390925-c05a-4ea9-b6bf-217edb231ed7", nome: "Onion Rings", descricao: "Aneis de cebola empanados.", preco: 12.0, imagem: hamburgueriaImages[6] },
+      { id: "5cf9cf6c-ee1d-45bd-a0f4-5bde17300ba9", comercioId: "19390925-c05a-4ea9-b6bf-217edb231ed7", nome: "Milkshake Morango", descricao: "Cremoso com pedacos de fruta.", preco: 18.0, imagem: hamburgueriaImages[7] },
+      { id: "50a414d6-8213-4b23-8667-985c38e7125b", comercioId: "19390925-c05a-4ea9-b6bf-217edb231ed7", nome: "Refrigerante Lata", descricao: "Gelado 350ml.", preco: 6.0, imagem: hamburgueriaImages[8] },
+      { id: "9a4fdf9f-d882-4061-98c4-5dbb86c69288", comercioId: "19390925-c05a-4ea9-b6bf-217edb231ed7", nome: "Petit Gateau", descricao: "Bolo quente com sorvete.", preco: 22.0, imagem: hamburgueriaImages[9] }
     ]
   },
   {
-    id: "c2",
+    id: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f",
     usuarioId: "u2",
     nome: "Pizzaria Napoli",
     email: "napoli@pizza.com",
@@ -610,20 +610,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c2-p1", comercioId: "c2", nome: "Pizza Margherita", descricao: "Molho de tomate, mussarela e manjericao.", preco: 45.0, imagem: pizzariaImages[0] },
-      { id: "c2-p2", comercioId: "c2", nome: "Pizza Calabresa", descricao: "Calabresa fatiada e cebola.", preco: 48.0, imagem: pizzariaImages[1] },
-      { id: "c2-p3", comercioId: "c2", nome: "Pizza Quatro Queijos", descricao: "Mussarela, provolone, parmesao e gorgonzola.", preco: 55.0, imagem: pizzariaImages[2] },
-      { id: "c2-p4", comercioId: "c2", nome: "Pizza Pepperoni", descricao: "Pepperoni com queijo especial.", preco: 58.0, imagem: pizzariaImages[3] },
-      { id: "c2-p5", comercioId: "c2", nome: "Pizza Portuguesa", descricao: "Ovo, presunto, cebola e ervilha.", preco: 52.0, imagem: pizzariaImages[4] },
-      { id: "c2-p6", comercioId: "c2", nome: "Pizza Vegetariana", descricao: "Mix de legumes e queijo.", preco: 50.0, imagem: pizzariaImages[5] },
-      { id: "c2-p7", comercioId: "c2", nome: "Calzone", descricao: "Pizza fechada recheada.", preco: 42.0, imagem: pizzariaImages[6] },
-      { id: "c2-p8", comercioId: "c2", nome: "Bruschetta", descricao: "Pao italiano com tomate.", preco: 20.0, imagem: pizzariaImages[7] },
-      { id: "c2-p9", comercioId: "c2", nome: "Vinho Tinto", descricao: "Taca de vinho da casa.", preco: 18.0, imagem: pizzariaImages[8] },
-      { id: "c2-p10", comercioId: "c2", nome: "Tiramisu", descricao: "Sobremesa tipica italiana.", preco: 25.0, imagem: pizzariaImages[9] }
+      { id: "c357fa93-2200-4d84-bc4d-ec5fcfefeaf5", comercioId: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f", nome: "Pizza Margherita", descricao: "Molho de tomate, mussarela e manjericao.", preco: 45.0, imagem: pizzariaImages[0] },
+      { id: "d2cd365b-75e1-4671-9a61-179bf14a70ba", comercioId: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f", nome: "Pizza Calabresa", descricao: "Calabresa fatiada e cebola.", preco: 48.0, imagem: pizzariaImages[1] },
+      { id: "e591dd74-ddfa-4f1f-8401-7b478d73fbef", comercioId: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f", nome: "Pizza Quatro Queijos", descricao: "Mussarela, provolone, parmesao e gorgonzola.", preco: 55.0, imagem: pizzariaImages[2] },
+      { id: "43e518d9-74fd-48b4-af47-7c2f869c2179", comercioId: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f", nome: "Pizza Pepperoni", descricao: "Pepperoni com queijo especial.", preco: 58.0, imagem: pizzariaImages[3] },
+      { id: "0edad591-5662-4775-83f7-47c3e6d0982f", comercioId: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f", nome: "Pizza Portuguesa", descricao: "Ovo, presunto, cebola e ervilha.", preco: 52.0, imagem: pizzariaImages[4] },
+      { id: "9b751a33-1132-491c-88e3-1d0e3b726fc5", comercioId: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f", nome: "Pizza Vegetariana", descricao: "Mix de legumes e queijo.", preco: 50.0, imagem: pizzariaImages[5] },
+      { id: "49572e6a-1f72-4203-aaef-40ba39e6e240", comercioId: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f", nome: "Calzone", descricao: "Pizza fechada recheada.", preco: 42.0, imagem: pizzariaImages[6] },
+      { id: "3338f34c-6a4f-459a-a161-ebe1f52a3f25", comercioId: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f", nome: "Bruschetta", descricao: "Pao italiano com tomate.", preco: 20.0, imagem: pizzariaImages[7] },
+      { id: "b07447a7-f4dd-4bef-8d6d-ee02f058c921", comercioId: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f", nome: "Vinho Tinto", descricao: "Taca de vinho da casa.", preco: 18.0, imagem: pizzariaImages[8] },
+      { id: "31d3ddcc-1c3d-4244-b790-2d242f0c5e43", comercioId: "b6c8a5fa-ec29-49db-9d44-66cc9cbd4c4f", nome: "Tiramisu", descricao: "Sobremesa tipica italiana.", preco: 25.0, imagem: pizzariaImages[9] }
     ]
   },
   {
-    id: "c3",
+    id: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa",
     usuarioId: "u3",
     nome: "Sakura Sushi",
     email: "sakura@sushi.com",
@@ -647,20 +647,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c3-p1", comercioId: "c3", nome: "Combinado 20 Pecas", descricao: "Mix de sushis e sashimis.", preco: 85.0, imagem: sushiImages[0] },
-      { id: "c3-p2", comercioId: "c3", nome: "Temaki Salmao", descricao: "Cone de alga com arroz e salmao.", preco: 30.0, imagem: sushiImages[1] },
-      { id: "c3-p3", comercioId: "c3", nome: "Hot Roll", descricao: "Sushi frito com molho tare.", preco: 28.0, imagem: sushiImages[2] },
-      { id: "c3-p4", comercioId: "c3", nome: "Sashimi Salmao", descricao: "10 fatias de salmao fresco.", preco: 45.0, imagem: sushiImages[3] },
-      { id: "c3-p5", comercioId: "c3", nome: "Uramaki Philadelphia", descricao: "Arroz, salmao e cream cheese.", preco: 25.0, imagem: sushiImages[4] },
-      { id: "c3-p6", comercioId: "c3", nome: "Sunomono", descricao: "Salada de pepino agridoce.", preco: 15.0, imagem: sushiImages[5] },
-      { id: "c3-p7", comercioId: "c3", nome: "Yakissoba", descricao: "Macarrao com legumes e carne.", preco: 40.0, imagem: sushiImages[6] },
-      { id: "c3-p8", comercioId: "c3", nome: "Guioza", descricao: "Pasteis japoneses grelhados.", preco: 22.0, imagem: sushiImages[7] },
-      { id: "c3-p9", comercioId: "c3", nome: "Saque Dose", descricao: "Bebida fermentada tradicional.", preco: 15.0, imagem: sushiImages[8] },
-      { id: "c3-p10", comercioId: "c3", nome: "Mochi", descricao: "Bolinho de arroz doce.", preco: 12.0, imagem: sushiImages[9] }
+      { id: "8532efc8-ac11-447b-ae30-3fd7a43470b9", comercioId: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa", nome: "Combinado 20 Pecas", descricao: "Mix de sushis e sashimis.", preco: 85.0, imagem: sushiImages[0] },
+      { id: "6bb1ad2b-3920-44bc-8413-c9cf87ec9509", comercioId: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa", nome: "Temaki Salmao", descricao: "Cone de alga com arroz e salmao.", preco: 30.0, imagem: sushiImages[1] },
+      { id: "9229244d-a7cc-4a76-a982-0b598bb5f701", comercioId: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa", nome: "Hot Roll", descricao: "Sushi frito com molho tare.", preco: 28.0, imagem: sushiImages[2] },
+      { id: "833785f9-b5f4-429e-b7e9-c5d6ecf20c09", comercioId: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa", nome: "Sashimi Salmao", descricao: "10 fatias de salmao fresco.", preco: 45.0, imagem: sushiImages[3] },
+      { id: "e7f87bfc-0b6f-46e4-ba4a-2e58f5c6d49b", comercioId: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa", nome: "Uramaki Philadelphia", descricao: "Arroz, salmao e cream cheese.", preco: 25.0, imagem: sushiImages[4] },
+      { id: "5c9df100-83ce-4cda-9484-c3ee72487cf7", comercioId: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa", nome: "Sunomono", descricao: "Salada de pepino agridoce.", preco: 15.0, imagem: sushiImages[5] },
+      { id: "8d5020f3-b15c-4459-a34a-d62b8d32506b", comercioId: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa", nome: "Yakissoba", descricao: "Macarrao com legumes e carne.", preco: 40.0, imagem: sushiImages[6] },
+      { id: "cd6cfabf-69c0-4ab6-a2f2-3632674bafa1", comercioId: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa", nome: "Guioza", descricao: "Pasteis japoneses grelhados.", preco: 22.0, imagem: sushiImages[7] },
+      { id: "76d541b1-1f25-4c6a-a0c6-c79ba0d268da", comercioId: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa", nome: "Saque Dose", descricao: "Bebida fermentada tradicional.", preco: 15.0, imagem: sushiImages[8] },
+      { id: "fe6e39e9-5822-4ace-b330-c25aa68f5706", comercioId: "7be3235e-e9ae-46e4-a7b9-1e978e7c34aa", nome: "Mochi", descricao: "Bolinho de arroz doce.", preco: 12.0, imagem: sushiImages[9] }
     ]
   },
   {
-    id: "c4",
+    id: "804575fc-a38a-418a-b321-607b127950a5",
     usuarioId: "u4",
     nome: "Sabor do Nordeste",
     email: "nordeste@sabor.com",
@@ -684,20 +684,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c4-p1", comercioId: "c4", nome: "Prato nordestino", descricao: "Arroz, mistura de feijão e pedaços de frango frito.", preco: 60.0, imagem: comidaNordestinaImages[0] },
-      { id: "c4-p2", comercioId: "c4", nome: "Feijão Nordestino", descricao: "feijao fradinho temperado com tomates.", preco: 40.0, imagem: comidaNordestinaImages[1] },
-      { id: "c4-p3", comercioId: "c4", nome: "Prato simples", descricao: "Peixe cozido com batata, aroz, salada e feijão", preco: 75.0, imagem: comidaNordestinaImages[2] },
-      { id: "c4-p4", comercioId: "c4", nome: "Bobo de Camarao", descricao: "Creme de macaxeira com camarao.", preco: 80.0, imagem: comidaNordestinaImages[3] },
-      { id: "c4-p5", comercioId: "c4", nome: "Sarapatel", descricao: "Prato regional bem temperado.", preco: 35.0, imagem: comidaNordestinaImages[4] },
-      { id: "c4-p6", comercioId: "c4", nome: "Macaxeira Frita", descricao: "Porcao crocante.", preco: 15.0, imagem: comidaNordestinaImages[5] },
-      { id: "c4-p7", comercioId: "c4", nome: "Queijo Coalho Grelhado", descricao: "Com mel de engenho.", preco: 12.0, imagem: comidaNordestinaImages[6] },
-      { id: "c4-p8", comercioId: "c4", nome: "Tapioca de banana", descricao: "Tapioca quentinha com banana.", preco: 10.0, imagem: comidaNordestinaImages[7] },
-      { id: "c4-p9", comercioId: "c4", nome: "Cuscuz com Ovo", descricao: "Cuscuz de milho tradicional.", preco: 8.0, imagem: comidaNordestinaImages[8] },
-      { id: "c4-p10", comercioId: "c4", nome: "Pudim", descricao: "Doce caseiro em calda.", preco: 12.0, imagem: comidaNordestinaImages[9] }
+      { id: "c7771bde-2041-410a-8a0f-f0fbf61d21f0", comercioId: "804575fc-a38a-418a-b321-607b127950a5", nome: "Prato nordestino", descricao: "Arroz, mistura de feijão e pedaços de frango frito.", preco: 60.0, imagem: comidaNordestinaImages[0] },
+      { id: "397885a0-54ac-427e-86b9-b9b2e09b053e", comercioId: "804575fc-a38a-418a-b321-607b127950a5", nome: "Feijão Nordestino", descricao: "feijao fradinho temperado com tomates.", preco: 40.0, imagem: comidaNordestinaImages[1] },
+      { id: "22b4d6ad-d444-45bc-8333-5ed97514f8f6", comercioId: "804575fc-a38a-418a-b321-607b127950a5", nome: "Prato simples", descricao: "Peixe cozido com batata, aroz, salada e feijão", preco: 75.0, imagem: comidaNordestinaImages[2] },
+      { id: "0d210440-8be5-407d-bbc2-627060378ec1", comercioId: "804575fc-a38a-418a-b321-607b127950a5", nome: "Bobo de Camarao", descricao: "Creme de macaxeira com camarao.", preco: 80.0, imagem: comidaNordestinaImages[3] },
+      { id: "17d5ac14-bdfb-44f4-82c7-f7e9fda1bd1a", comercioId: "804575fc-a38a-418a-b321-607b127950a5", nome: "Sarapatel", descricao: "Prato regional bem temperado.", preco: 35.0, imagem: comidaNordestinaImages[4] },
+      { id: "91348f9c-7f0e-415b-a269-a844181bf384", comercioId: "804575fc-a38a-418a-b321-607b127950a5", nome: "Macaxeira Frita", descricao: "Porcao crocante.", preco: 15.0, imagem: comidaNordestinaImages[5] },
+      { id: "9fceb3ee-33e2-4aec-a649-79d5b7b15da5", comercioId: "804575fc-a38a-418a-b321-607b127950a5", nome: "Queijo Coalho Grelhado", descricao: "Com mel de engenho.", preco: 12.0, imagem: comidaNordestinaImages[6] },
+      { id: "8cd5ecaf-820a-4ba2-9caf-c5888ca2990a", comercioId: "804575fc-a38a-418a-b321-607b127950a5", nome: "Tapioca de banana", descricao: "Tapioca quentinha com banana.", preco: 10.0, imagem: comidaNordestinaImages[7] },
+      { id: "8ddefb20-7f35-4081-b7ca-cff0abc1d1d2", comercioId: "804575fc-a38a-418a-b321-607b127950a5", nome: "Cuscuz com Ovo", descricao: "Cuscuz de milho tradicional.", preco: 8.0, imagem: comidaNordestinaImages[8] },
+      { id: "fa4a0cc8-4758-4832-91f0-d8c891ad1375", comercioId: "804575fc-a38a-418a-b321-607b127950a5", nome: "Pudim", descricao: "Doce caseiro em calda.", preco: 12.0, imagem: comidaNordestinaImages[9] }
     ]
   },
   {
-    id: "c5",
+    id: "1585bb9f-66a6-4a65-abf8-81a3e99842e7",
     usuarioId: "u5",
     nome: "La Trattoria",
     email: "trattoria@italiana.com",
@@ -721,20 +721,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c5-p1", comercioId: "c5", nome: "Lasanha Bolonhesa", descricao: "Massa fresca com carne e queijo.", preco: 50.0, imagem: italianaImages[0] },
-      { id: "c5-p2", comercioId: "c5", nome: "Fettuccine Alfredo", descricao: "Molho branco e parmesao.", preco: 45.0, imagem: italianaImages[1] },
-      { id: "c5-p3", comercioId: "c5", nome: "Gnocchi ao Pesto", descricao: "Nhoque artesanal com molho pesto.", preco: 42.0, imagem: italianaImages[2] },
-      { id: "c5-p4", comercioId: "c5", nome: "Ravioli de Abobora", descricao: "Manteiga de salvia e nozes.", preco: 48.0, imagem: italianaImages[3] },
-      { id: "c5-p5", comercioId: "c5", nome: "Risoto Cogumelos", descricao: "Mix de cogumelos frescos.", preco: 55.0, imagem: italianaImages[4] },
-      { id: "c5-p6", comercioId: "c5", nome: "Carpaccio", descricao: "Laminas de carne e alcaparras.", preco: 38.0, imagem: italianaImages[5] },
-      { id: "c5-p7", comercioId: "c5", nome: "Spaghetti Carbonara", descricao: "Pancetta, ovos e parmesao.", preco: 46.0, imagem: italianaImages[6] },
-      { id: "c5-p8", comercioId: "c5", nome: "Vinho", descricao: "Vinho tinto seco.", preco: 25.0, imagem: italianaImages[7] },
-      { id: "c5-p9", comercioId: "c5", nome: "Panna Cotta", descricao: "Sobremesa de nata e frutas.", preco: 20.0, imagem: italianaImages[8] },
-      { id: "c5-p10", comercioId: "c5", nome: "Agua Mineral", descricao: "500ml sem gas.", preco: 5.0, imagem: italianaImages[9] }
+      { id: "d1966e2f-7d2b-41c9-b87a-8e428fca95f7", comercioId: "1585bb9f-66a6-4a65-abf8-81a3e99842e7", nome: "Lasanha Bolonhesa", descricao: "Massa fresca com carne e queijo.", preco: 50.0, imagem: italianaImages[0] },
+      { id: "bac21acf-484d-4caa-be9c-94934a0b874b", comercioId: "1585bb9f-66a6-4a65-abf8-81a3e99842e7", nome: "Fettuccine Alfredo", descricao: "Molho branco e parmesao.", preco: 45.0, imagem: italianaImages[1] },
+      { id: "0aa51e30-6527-468d-b4fb-4ca2d325cc92", comercioId: "1585bb9f-66a6-4a65-abf8-81a3e99842e7", nome: "Gnocchi ao Pesto", descricao: "Nhoque artesanal com molho pesto.", preco: 42.0, imagem: italianaImages[2] },
+      { id: "87cc44de-7a0f-44dc-be65-093d5991dc08", comercioId: "1585bb9f-66a6-4a65-abf8-81a3e99842e7", nome: "Ravioli de Abobora", descricao: "Manteiga de salvia e nozes.", preco: 48.0, imagem: italianaImages[3] },
+      { id: "040afb6e-2f50-45fe-92d9-d376e6949d11", comercioId: "1585bb9f-66a6-4a65-abf8-81a3e99842e7", nome: "Risoto Cogumelos", descricao: "Mix de cogumelos frescos.", preco: 55.0, imagem: italianaImages[4] },
+      { id: "9ab011c3-e656-4dfc-90e2-6d84c0dabc4b", comercioId: "1585bb9f-66a6-4a65-abf8-81a3e99842e7", nome: "Carpaccio", descricao: "Laminas de carne e alcaparras.", preco: 38.0, imagem: italianaImages[5] },
+      { id: "e6a16093-b093-447f-abee-516c0aafaa58", comercioId: "1585bb9f-66a6-4a65-abf8-81a3e99842e7", nome: "Spaghetti Carbonara", descricao: "Pancetta, ovos e parmesao.", preco: 46.0, imagem: italianaImages[6] },
+      { id: "503c5432-8249-4f0c-92cd-d7b90dc1e024", comercioId: "1585bb9f-66a6-4a65-abf8-81a3e99842e7", nome: "Vinho", descricao: "Vinho tinto seco.", preco: 25.0, imagem: italianaImages[7] },
+      { id: "94981397-7016-411c-b149-06d5fb97c056", comercioId: "1585bb9f-66a6-4a65-abf8-81a3e99842e7", nome: "Panna Cotta", descricao: "Sobremesa de nata e frutas.", preco: 20.0, imagem: italianaImages[8] },
+      { id: "5dee8c5d-c2fb-462f-b22a-fb8072821aff", comercioId: "1585bb9f-66a6-4a65-abf8-81a3e99842e7", nome: "Agua Mineral", descricao: "500ml sem gas.", preco: 5.0, imagem: italianaImages[9] }
     ]
   },
   {
-    id: "c6",
+    id: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f",
     usuarioId: "u6",
     nome: "Texas Steakhouse",
     email: "texas@steak.com",
@@ -758,20 +758,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c6-p1", comercioId: "c6", nome: "Ribeye Steak", descricao: "Corte macio de 300g.", preco: 95.0, imagem: steakhouseImages[0] },
-      { id: "c6-p2", comercioId: "c6", nome: "Picanha Nobre", descricao: "Grelhada na parrilla.", preco: 88.0, imagem: steakhouseImages[1] },
-      { id: "c6-p3", comercioId: "c6", nome: "Costela BBQ", descricao: "Costela de porco com molho barbecue.", preco: 75.0, imagem: steakhouseImages[2] },
-      { id: "c6-p4", comercioId: "c6", nome: "T-Bone", descricao: "Corte com osso super suculento.", preco: 110.0, imagem: steakhouseImages[3] },
-      { id: "c6-p5", comercioId: "c6", nome: "Linguica Artesanal", descricao: "Porcao de linguica temperada.", preco: 35.0, imagem: steakhouseImages[4] },
-      { id: "c6-p6", comercioId: "c6", nome: "Pao de Alho", descricao: "Recheado com muito queijo.", preco: 18.0, imagem: steakhouseImages[5] },
-      { id: "c6-p7", comercioId: "c6", nome: "Batata Recheada", descricao: "Com bacon e sour cream.", preco: 28.0, imagem: steakhouseImages[6] },
-      { id: "c6-p8", comercioId: "c6", nome: "Salada Caesar", descricao: "Mix de folhas e frango grelhado.", preco: 32.0, imagem: steakhouseImages[7] },
-      { id: "c6-p9", comercioId: "c6", nome: "Cerveja Artesanal", descricao: "Garrafa 500ml local.", preco: 22.0, imagem: steakhouseImages[8] },
-      { id: "c6-p10", comercioId: "c6", nome: "Brownie de Chocolate", descricao: "Com calda quente.", preco: 20.0, imagem: steakhouseImages[9] }
+      { id: "e5d95b40-88b1-4d82-a000-b73e86dcf45b", comercioId: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f", nome: "Ribeye Steak", descricao: "Corte macio de 300g.", preco: 95.0, imagem: steakhouseImages[0] },
+      { id: "e7f8a178-f81e-4916-9ba8-693fe723884d", comercioId: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f", nome: "Picanha Nobre", descricao: "Grelhada na parrilla.", preco: 88.0, imagem: steakhouseImages[1] },
+      { id: "ee2dc080-3575-4dd1-a0be-356b2b937cf1", comercioId: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f", nome: "Costela BBQ", descricao: "Costela de porco com molho barbecue.", preco: 75.0, imagem: steakhouseImages[2] },
+      { id: "eac85bf8-a106-459d-ace4-3e3289fb7894", comercioId: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f", nome: "T-Bone", descricao: "Corte com osso super suculento.", preco: 110.0, imagem: steakhouseImages[3] },
+      { id: "80d09e17-5593-4956-9e93-222fb972d34c", comercioId: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f", nome: "Linguica Artesanal", descricao: "Porcao de linguica temperada.", preco: 35.0, imagem: steakhouseImages[4] },
+      { id: "e1278198-ee0c-48ed-b888-98bcaa01e88a", comercioId: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f", nome: "Pao de Alho", descricao: "Recheado com muito queijo.", preco: 18.0, imagem: steakhouseImages[5] },
+      { id: "e5d1017d-d83a-4d5a-93ee-0dc02bd12882", comercioId: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f", nome: "Batata Recheada", descricao: "Com bacon e sour cream.", preco: 28.0, imagem: steakhouseImages[6] },
+      { id: "dbdf2d97-f38d-478d-a7f9-9712282a9f75", comercioId: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f", nome: "Salada Caesar", descricao: "Mix de folhas e frango grelhado.", preco: 32.0, imagem: steakhouseImages[7] },
+      { id: "014dcf0e-5a43-4849-8c80-1f8eb13cf1a3", comercioId: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f", nome: "Cerveja Artesanal", descricao: "Garrafa 500ml local.", preco: 22.0, imagem: steakhouseImages[8] },
+      { id: "a3085a5c-ec12-4ee8-9fc8-3da6d3de993b", comercioId: "f7d1c949-bdc1-4d63-ad4d-9225759cc93f", nome: "Brownie de Chocolate", descricao: "Com calda quente.", preco: 20.0, imagem: steakhouseImages[9] }
     ]
   },
   {
-    id: "c7",
+    id: "60295a80-3e9a-4422-8136-5a4375330a11",
     usuarioId: "u7",
     nome: "Marisqueira Aju",
     email: "contato@marisqueira.com",
@@ -795,20 +795,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c7-p1", comercioId: "c7", nome: "Grelhado de Peixe", descricao: "File de peixe com legumes.", preco: 65.0, imagem: frutosdoMarImages[0] },
-      { id: "c7-p2", comercioId: "c7", nome: "Camarao ao Alho e Oleo", descricao: "Porcao farta de camarao.", preco: 78.0, imagem: frutosdoMarImages[1] },
-      { id: "c7-p3", comercioId: "c7", nome: "Casquinha de Siri", descricao: "Tradicional e gratinada.", preco: 20.0, imagem: frutosdoMarImages[2] },
-      { id: "c7-p4", comercioId: "c7", nome: "Polvo Grelhado", descricao: "Com batatas ao murro.", preco: 95.0, imagem: frutosdoMarImages[3] },
-      { id: "c7-p5", comercioId: "c7", nome: "Lula a Dore", descricao: "Aneis de lula empanados.", preco: 45.0, imagem: frutosdoMarImages[4] },
-      { id: "c7-p6", comercioId: "c7", nome: "Caldeirada", descricao: "Mix de frutos do mar cozidos.", preco: 120.0, imagem: frutosdoMarImages[5] },
-      { id: "c7-p7", comercioId: "c7", nome: "Risoto de Camarao", descricao: "Cremoso com camaroes médios.", preco: 72.0, imagem: frutosdoMarImages[6] },
-      { id: "c7-p8", comercioId: "c7", nome: "Vinho Branco", descricao: "Ideal para acompanhar peixes.", preco: 80.0, imagem: frutosdoMarImages[7] },
-      { id: "c7-p9", comercioId: "c7", nome: "Sorvete de Fruta", descricao: "Refrescante sobremesa.", preco: 15.0, imagem: frutosdoMarImages[8] },
-      { id: "c7-p10", comercioId: "c7", nome: "Agua de Coco", descricao: "Natural da fruta.", preco: 8.0, imagem: frutosdoMarImages[9] }
+      { id: "41b48cb8-2b4e-46e9-b4f4-7dbf777a7e86", comercioId: "60295a80-3e9a-4422-8136-5a4375330a11", nome: "Grelhado de Peixe", descricao: "File de peixe com legumes.", preco: 65.0, imagem: frutosdoMarImages[0] },
+      { id: "3b77bc04-f3de-4b3a-8744-d4edf2289290", comercioId: "60295a80-3e9a-4422-8136-5a4375330a11", nome: "Camarao ao Alho e Oleo", descricao: "Porcao farta de camarao.", preco: 78.0, imagem: frutosdoMarImages[1] },
+      { id: "30dbe636-e1ce-43a4-8418-d5bd12ed32b2", comercioId: "60295a80-3e9a-4422-8136-5a4375330a11", nome: "Casquinha de Siri", descricao: "Tradicional e gratinada.", preco: 20.0, imagem: frutosdoMarImages[2] },
+      { id: "a55fc383-0798-4158-b818-869297a99bcb", comercioId: "60295a80-3e9a-4422-8136-5a4375330a11", nome: "Polvo Grelhado", descricao: "Com batatas ao murro.", preco: 95.0, imagem: frutosdoMarImages[3] },
+      { id: "36612c0b-1b8f-4cb4-8c04-711f8b0f6a5d", comercioId: "60295a80-3e9a-4422-8136-5a4375330a11", nome: "Lula a Dore", descricao: "Aneis de lula empanados.", preco: 45.0, imagem: frutosdoMarImages[4] },
+      { id: "b1012ce1-967e-4d86-bcf4-d462bcf48607", comercioId: "60295a80-3e9a-4422-8136-5a4375330a11", nome: "Caldeirada", descricao: "Mix de frutos do mar cozidos.", preco: 120.0, imagem: frutosdoMarImages[5] },
+      { id: "88560019-667e-4cc6-9fdc-58c54ff2518d", comercioId: "60295a80-3e9a-4422-8136-5a4375330a11", nome: "Risoto de Camarao", descricao: "Cremoso com camaroes médios.", preco: 72.0, imagem: frutosdoMarImages[6] },
+      { id: "03dbaf7e-1d36-40e6-a31a-5fcc8897ef37", comercioId: "60295a80-3e9a-4422-8136-5a4375330a11", nome: "Vinho Branco", descricao: "Ideal para acompanhar peixes.", preco: 80.0, imagem: frutosdoMarImages[7] },
+      { id: "06933b47-de8b-4935-8985-f9380882c0bd", comercioId: "60295a80-3e9a-4422-8136-5a4375330a11", nome: "Sorvete de Fruta", descricao: "Refrescante sobremesa.", preco: 15.0, imagem: frutosdoMarImages[8] },
+      { id: "6bf1d383-dd46-4729-ab20-0598d2aa7054", comercioId: "60295a80-3e9a-4422-8136-5a4375330a11", nome: "Agua de Coco", descricao: "Natural da fruta.", preco: 8.0, imagem: frutosdoMarImages[9] }
     ]
   },
   {
-    id: "c8",
+    id: "370c50c5-06b3-4ada-b558-8ab10b3de186",
     usuarioId: "u8",
     nome: "Horta Urbana",
     email: "contato@hortaurbana.com",
@@ -832,20 +832,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c8-p1", comercioId: "c8", nome: "Bowl Mediterraneo", descricao: "Mix de graos e vegetais assados.", preco: 38.0, imagem: veganoImages[0] },
-      { id: "c8-p2", comercioId: "c8", nome: "Burger Vegano", descricao: "Hamburguer de lentilha e maionese verde.", preco: 32.0, imagem: veganoImages[1] },
-      { id: "c8-p3", comercioId: "c8", nome: "Lasanha de Abobrinha", descricao: "Massa de abobrinha e molho de castanha.", preco: 42.0, imagem: veganoImages[2] },
-      { id: "c8-p4", comercioId: "c8", nome: "Tacos de Jaca", descricao: "Proteina de jaca temperada e guacamole.", preco: 30.0, imagem: veganoImages[3] },
-      { id: "c8-p5", comercioId: "c8", nome: "Homus com Paes", descricao: "Pasta de grao de bico artesanal.", preco: 22.0, imagem: veganoImages[4] },
-      { id: "c8-p6", comercioId: "c8", nome: "Suco Verde", descricao: "Couve, limao e gengibre.", preco: 14.0, imagem: veganoImages[5] },
-      { id: "c8-p7", comercioId: "c8", nome: "Kombucha", descricao: "Bebida fermentada refrescante.", preco: 18.0, imagem: veganoImages[6] },
-      { id: "c8-p8", comercioId: "c8", nome: "Brownie Vegano", descricao: "Chocolate 70% e farinha de amendoas.", preco: 15.0, imagem: veganoImages[7] },
-      { id: "c8-p9", comercioId: "c8", nome: "Salada de Graca", descricao: "Folhas, sementes e molho de mostarda.", preco: 25.0, imagem: veganoImages[8] },
-      { id: "c8-p10", comercioId: "c8", nome: "Quiche de Alho Poro", descricao: "Massa sem gluten e recheio cremoso.", preco: 16.0, imagem: veganoImages[9] }
+      { id: "3e94af56-c2c7-4b07-9e71-83b9bb4f5e93", comercioId: "370c50c5-06b3-4ada-b558-8ab10b3de186", nome: "Bowl Mediterraneo", descricao: "Mix de graos e vegetais assados.", preco: 38.0, imagem: veganoImages[0] },
+      { id: "32e212b8-559c-4683-9f60-5ca9e5c242cf", comercioId: "370c50c5-06b3-4ada-b558-8ab10b3de186", nome: "Burger Vegano", descricao: "Hamburguer de lentilha e maionese verde.", preco: 32.0, imagem: veganoImages[1] },
+      { id: "88cb8797-cbbc-447d-ae24-05560e31035d", comercioId: "370c50c5-06b3-4ada-b558-8ab10b3de186", nome: "Lasanha de Abobrinha", descricao: "Massa de abobrinha e molho de castanha.", preco: 42.0, imagem: veganoImages[2] },
+      { id: "8a552983-828a-4519-8529-5a7aaac8af35", comercioId: "370c50c5-06b3-4ada-b558-8ab10b3de186", nome: "Tacos de Jaca", descricao: "Proteina de jaca temperada e guacamole.", preco: 30.0, imagem: veganoImages[3] },
+      { id: "ca8a86af-c9d3-4b3f-9a17-7bdfdeb3d9f0", comercioId: "370c50c5-06b3-4ada-b558-8ab10b3de186", nome: "Homus com Paes", descricao: "Pasta de grao de bico artesanal.", preco: 22.0, imagem: veganoImages[4] },
+      { id: "edbaf407-d0f9-458c-b1ee-2301999893ad", comercioId: "370c50c5-06b3-4ada-b558-8ab10b3de186", nome: "Suco Verde", descricao: "Couve, limao e gengibre.", preco: 14.0, imagem: veganoImages[5] },
+      { id: "d7a16bc2-6c80-4d86-ac75-d553a24fe122", comercioId: "370c50c5-06b3-4ada-b558-8ab10b3de186", nome: "Kombucha", descricao: "Bebida fermentada refrescante.", preco: 18.0, imagem: veganoImages[6] },
+      { id: "dc4331d9-6bd7-4e16-bdac-108fc707829d", comercioId: "370c50c5-06b3-4ada-b558-8ab10b3de186", nome: "Brownie Vegano", descricao: "Chocolate 70% e farinha de amendoas.", preco: 15.0, imagem: veganoImages[7] },
+      { id: "11b9d1f7-e088-43f0-8064-e2808df052c3", comercioId: "370c50c5-06b3-4ada-b558-8ab10b3de186", nome: "Salada de Graca", descricao: "Folhas, sementes e molho de mostarda.", preco: 25.0, imagem: veganoImages[8] },
+      { id: "76b4275e-0747-42a9-a693-d1e2de969a7e", comercioId: "370c50c5-06b3-4ada-b558-8ab10b3de186", nome: "Quiche de Alho Poro", descricao: "Massa sem gluten e recheio cremoso.", preco: 16.0, imagem: veganoImages[9] }
     ]
   },
   {
-    id: "c9",
+    id: "b964e86d-6567-4b01-b63c-5e6ec7ba5435",
     usuarioId: "u9",
     nome: "La Fiesta Mexicana",
     email: "fiesta@mexicano.com",
@@ -869,20 +869,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c9-p1", comercioId: "c9", nome: "Tacos Al Pastor", descricao: "Tortillas de milho com porco.", preco: 35.0, imagem: mexicanaImages[0] },
-      { id: "c9-p2", comercioId: "c9", nome: "Burrito Supreme", descricao: "Carne, feijão, arroz e queijo", preco: 40.0, imagem: mexicanaImages[1] },
-      { id: "c9-p3", comercioId: "c9", nome: "Nachos com Chili", descricao: "Crocantes com molho picante.", preco: 38.0, imagem: mexicanaImages[2] },
-      { id: "c9-p4", comercioId: "c9", nome: "Quesadilla", descricao: "Tortilla de trigo com queijo derretido.", preco: 32.0, imagem: mexicanaImages[3] },
-      { id: "c9-p5", comercioId: "c9", nome: "Enchiladas", descricao: "Tortillas enroladas com molho verde.", preco: 42.0, imagem: mexicanaImages[4] },
-      { id: "c9-p6", comercioId: "c9", nome: "Guacamoles", descricao: "Porcao grande com totopos.", preco: 25.0, imagem: mexicanaImages[5] },
-      { id: "c9-p7", comercioId: "c9", nome: "Fajitas de Pollo", descricao: "Tiras de frango grelhadas.", preco: 55.0, imagem: mexicanaImages[6] },
-      { id: "c9-p8", comercioId: "c9", nome: "Margarita", descricao: "Drink classico de tequila.", preco: 28.0, imagem: mexicanaImages[7] },
-      { id: "c9-p9", comercioId: "c9", nome: "Churros", descricao: "Com doce de leite ou chocolate.", preco: 15.0, imagem: mexicanaImages[8] },
-      { id: "c9-p10", comercioId: "c9", nome: "Cerveja Sol", descricao: "Long neck gelada com limao.", preco: 12.0, imagem: mexicanaImages[9] }
+      { id: "84284420-422d-4622-bfbf-725a3de33907", comercioId: "b964e86d-6567-4b01-b63c-5e6ec7ba5435", nome: "Tacos Al Pastor", descricao: "Tortillas de milho com porco.", preco: 35.0, imagem: mexicanaImages[0] },
+      { id: "27d1933e-6b61-4705-8f60-d2ed8f5f044b", comercioId: "b964e86d-6567-4b01-b63c-5e6ec7ba5435", nome: "Burrito Supreme", descricao: "Carne, feijão, arroz e queijo", preco: 40.0, imagem: mexicanaImages[1] },
+      { id: "703cde92-5667-4495-af10-b6aa8d5a9a77", comercioId: "b964e86d-6567-4b01-b63c-5e6ec7ba5435", nome: "Nachos com Chili", descricao: "Crocantes com molho picante.", preco: 38.0, imagem: mexicanaImages[2] },
+      { id: "5e29b889-9976-40eb-82bb-51bb73a73786", comercioId: "b964e86d-6567-4b01-b63c-5e6ec7ba5435", nome: "Quesadilla", descricao: "Tortilla de trigo com queijo derretido.", preco: 32.0, imagem: mexicanaImages[3] },
+      { id: "b84c1653-a9fd-46f4-8835-eab3dd8140ce", comercioId: "b964e86d-6567-4b01-b63c-5e6ec7ba5435", nome: "Enchiladas", descricao: "Tortillas enroladas com molho verde.", preco: 42.0, imagem: mexicanaImages[4] },
+      { id: "ae9786ed-dbc2-42e0-87b0-502e54992ea9", comercioId: "b964e86d-6567-4b01-b63c-5e6ec7ba5435", nome: "Guacamoles", descricao: "Porcao grande com totopos.", preco: 25.0, imagem: mexicanaImages[5] },
+      { id: "53a1ed27-3845-4a87-887c-fb61bb7498b1", comercioId: "b964e86d-6567-4b01-b63c-5e6ec7ba5435", nome: "Fajitas de Pollo", descricao: "Tiras de frango grelhadas.", preco: 55.0, imagem: mexicanaImages[6] },
+      { id: "412b018c-17e4-4944-8537-649b9e6b9a82", comercioId: "b964e86d-6567-4b01-b63c-5e6ec7ba5435", nome: "Margarita", descricao: "Drink classico de tequila.", preco: 28.0, imagem: mexicanaImages[7] },
+      { id: "f2945405-79e0-461c-a56d-6286d5dc01d0", comercioId: "b964e86d-6567-4b01-b63c-5e6ec7ba5435", nome: "Churros", descricao: "Com doce de leite ou chocolate.", preco: 15.0, imagem: mexicanaImages[8] },
+      { id: "190be21a-da64-498d-bd7e-f1d4c324c618", comercioId: "b964e86d-6567-4b01-b63c-5e6ec7ba5435", nome: "Cerveja Sol", descricao: "Long neck gelada com limao.", preco: 12.0, imagem: mexicanaImages[9] }
     ]
   },
   {
-    id: "c10",
+    id: "5f30cc30-a02d-4c1d-b450-c585fa2f9236",
     usuarioId: "u10",
     nome: "Pampa Churrascaria",
     email: "pampa@churrasco.com",
@@ -906,20 +906,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c10-p1", comercioId: "c10", nome: "Rodizio Completo", descricao: "Acesso total ao buffet e carnes.", preco: 89.0, imagem: steakhouseImages[0] },
-      { id: "c10-p2", comercioId: "c10", nome: "Espeto de Picanha", descricao: "Corte selecionado e macio.", preco: 95.0, imagem: steakhouseImages[1] },
-      { id: "c10-p3", comercioId: "c10", nome: "Costela 12 Horas", descricao: "Assada lentamente no fogo de chao.", preco: 75.0, imagem: steakhouseImages[2] },
-      { id: "c10-p4", comercioId: "c10", nome: "Cupim Casqueirado", descricao: "Muito saboroso e suculento.", preco: 65.0, imagem: steakhouseImages[3] },
-      { id: "c10-p5", comercioId: "c10", nome: "Maminha na Brasa", descricao: "Acompanha farofa e vinagrete.", preco: 55.0, imagem: steakhouseImages[4] },
-      { id: "c10-p6", comercioId: "c10", nome: "Coracao de Frango", descricao: "Porcao petisco clássica.", preco: 25.0, imagem: steakhouseImages[5] },
-      { id: "c10-p7", comercioId: "c10", nome: "Abacaxi Grelhado", descricao: "Com canela e acucar.", preco: 12.0, imagem: steakhouseImages[6] },
-      { id: "c10-p8", comercioId: "c10", nome: "Maionese Caseira", descricao: "Receita tradicional da casa.", preco: 15.0, imagem: steakhouseImages[7] },
-      { id: "c10-p9", comercioId: "c10", nome: "Caipirinha", descricao: "Limao, acucar e cachaca.", preco: 20.0, imagem: steakhouseImages[8] },
-      { id: "c10-p10", comercioId: "c10", nome: "Pudim de Leite", descricao: "Sobremesa favorita do brasileiro.", preco: 12.0, imagem: steakhouseImages[9] }
+      { id: "50baca5c-e739-4511-b92a-ee8f401585b8", comercioId: "5f30cc30-a02d-4c1d-b450-c585fa2f9236", nome: "Rodizio Completo", descricao: "Acesso total ao buffet e carnes.", preco: 89.0, imagem: steakhouseImages[0] },
+      { id: "1fd618ac-ea3e-4052-825f-b40368440c9e", comercioId: "5f30cc30-a02d-4c1d-b450-c585fa2f9236", nome: "Espeto de Picanha", descricao: "Corte selecionado e macio.", preco: 95.0, imagem: steakhouseImages[1] },
+      { id: "1bdc2c85-7062-45df-8928-3c15506d21c8", comercioId: "5f30cc30-a02d-4c1d-b450-c585fa2f9236", nome: "Costela 12 Horas", descricao: "Assada lentamente no fogo de chao.", preco: 75.0, imagem: steakhouseImages[2] },
+      { id: "022cb0b2-4686-4d16-97e0-019ed41d0e2b", comercioId: "5f30cc30-a02d-4c1d-b450-c585fa2f9236", nome: "Cupim Casqueirado", descricao: "Muito saboroso e suculento.", preco: 65.0, imagem: steakhouseImages[3] },
+      { id: "c7eb45cf-90e1-47c3-8a21-324e5be1da63", comercioId: "5f30cc30-a02d-4c1d-b450-c585fa2f9236", nome: "Maminha na Brasa", descricao: "Acompanha farofa e vinagrete.", preco: 55.0, imagem: steakhouseImages[4] },
+      { id: "c9f6ea94-b4f7-4656-b8b4-9b1f434cdba3", comercioId: "5f30cc30-a02d-4c1d-b450-c585fa2f9236", nome: "Coracao de Frango", descricao: "Porcao petisco clássica.", preco: 25.0, imagem: steakhouseImages[5] },
+      { id: "223c646c-908b-48a7-8f80-6e73b6a9e6ab", comercioId: "5f30cc30-a02d-4c1d-b450-c585fa2f9236", nome: "Abacaxi Grelhado", descricao: "Com canela e acucar.", preco: 12.0, imagem: steakhouseImages[6] },
+      { id: "7b60245f-e6e9-434c-8f1e-cc5ae03748a2", comercioId: "5f30cc30-a02d-4c1d-b450-c585fa2f9236", nome: "Maionese Caseira", descricao: "Receita tradicional da casa.", preco: 15.0, imagem: steakhouseImages[7] },
+      { id: "5de48bfb-87a0-45bf-aca0-1a0cc7fb21cc", comercioId: "5f30cc30-a02d-4c1d-b450-c585fa2f9236", nome: "Caipirinha", descricao: "Limao, acucar e cachaca.", preco: 20.0, imagem: steakhouseImages[8] },
+      { id: "27222acf-e242-4184-a74f-f35f843f985d", comercioId: "5f30cc30-a02d-4c1d-b450-c585fa2f9236", nome: "Pudim de Leite", descricao: "Sobremesa favorita do brasileiro.", preco: 12.0, imagem: steakhouseImages[9] }
     ]
   },
   {
-    id: "c11",
+    id: "64efb979-d979-4530-b33f-9ee55de262ab",
     usuarioId: "u11",
     nome: "C&A",
     email: "moda@gmail.com",
@@ -941,20 +941,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c11-p1", comercioId: "c11", nome: "Camisa Polo", descricao: "Algodao pima em varias cores.", preco: 120.0, imagem: modaMasculinaImages[0] },
-      { id: "c11-p2", comercioId: "c11", nome: "Calca Jeans Slim", descricao: "Lavagem escura e corte moderno.", preco: 180.0, imagem: modaMasculinaImages[1] },
-      { id: "c11-p3", comercioId: "c11", nome: "Bermuda Chino", descricao: "Ideal para dias quentes.", preco: 90.0, imagem: modaMasculinaImages[2] },
-      { id: "c11-p4", comercioId: "c11", nome: "Camiseta Basica", descricao: "Algodao premium super macio.", preco: 50.0, imagem: modaMasculinaImages[3] },
-      { id: "c11-p5", comercioId: "c11", nome: "Blazer Social", descricao: "Corte italiano slim fit.", preco: 450.0, imagem: modaMasculinaImages[4] },
-      { id: "c11-p6", comercioId: "c11", nome: "Sapato Social", descricao: "Couro legitimo feito a mao.", preco: 320.0, imagem: modaMasculinaImages[5] },
-      { id: "c11-p7", comercioId: "c11", nome: "Casaco", descricao: "Acessorios essenciais.", preco: 85.0, imagem: modaMasculinaImages[6] },
-      { id: "c11-p8", comercioId: "c11", nome: "Jaqueta de Couro", descricao: "Estilo e durabilidade.", preco: 600.0, imagem: modaMasculinaImages[7] },
-      { id: "c11-p9", comercioId: "c11", nome: "Relogio Analogico", descricao: "Pulseira de aco inox.", preco: 250.0, imagem: modaMasculinaImages[8] },
-      { id: "c11-p10", comercioId: "c11", nome: "Meias Estampadas", descricao: "Kit com 3 unidades.", preco: 40.0, imagem: modaMasculinaImages[9] }
+      { id: "0f754e12-85c8-4ae2-a55b-245257885c39", comercioId: "64efb979-d979-4530-b33f-9ee55de262ab", nome: "Camisa Polo", descricao: "Algodao pima em varias cores.", preco: 120.0, imagem: modaMasculinaImages[0] },
+      { id: "8b5ff9f7-0c36-49fb-9dfe-692ac4786b1d", comercioId: "64efb979-d979-4530-b33f-9ee55de262ab", nome: "Calca Jeans Slim", descricao: "Lavagem escura e corte moderno.", preco: 180.0, imagem: modaMasculinaImages[1] },
+      { id: "f7a02462-e51c-4694-a7f1-ec56bf0cf27d", comercioId: "64efb979-d979-4530-b33f-9ee55de262ab", nome: "Bermuda Chino", descricao: "Ideal para dias quentes.", preco: 90.0, imagem: modaMasculinaImages[2] },
+      { id: "587f747d-f487-4875-9975-013799cce84d", comercioId: "64efb979-d979-4530-b33f-9ee55de262ab", nome: "Camiseta Basica", descricao: "Algodao premium super macio.", preco: 50.0, imagem: modaMasculinaImages[3] },
+      { id: "1f7f913f-f93e-4634-9f78-40d2abcf207f", comercioId: "64efb979-d979-4530-b33f-9ee55de262ab", nome: "Blazer Social", descricao: "Corte italiano slim fit.", preco: 450.0, imagem: modaMasculinaImages[4] },
+      { id: "df64a125-6f5e-4781-96d7-c7aff11b896b", comercioId: "64efb979-d979-4530-b33f-9ee55de262ab", nome: "Sapato Social", descricao: "Couro legitimo feito a mao.", preco: 320.0, imagem: modaMasculinaImages[5] },
+      { id: "19f8bf07-6073-45fb-8c4d-80d701c719d6", comercioId: "64efb979-d979-4530-b33f-9ee55de262ab", nome: "Casaco", descricao: "Acessorios essenciais.", preco: 85.0, imagem: modaMasculinaImages[6] },
+      { id: "b5d8e254-de2f-4989-8447-41b3572a0480", comercioId: "64efb979-d979-4530-b33f-9ee55de262ab", nome: "Jaqueta de Couro", descricao: "Estilo e durabilidade.", preco: 600.0, imagem: modaMasculinaImages[7] },
+      { id: "6c75470a-6b1e-4a3e-a75c-18035fdb8b9c", comercioId: "64efb979-d979-4530-b33f-9ee55de262ab", nome: "Relogio Analogico", descricao: "Pulseira de aco inox.", preco: 250.0, imagem: modaMasculinaImages[8] },
+      { id: "969d5c5b-a595-4afc-9b19-fc1f33b5695a", comercioId: "64efb979-d979-4530-b33f-9ee55de262ab", nome: "Meias Estampadas", descricao: "Kit com 3 unidades.", preco: 40.0, imagem: modaMasculinaImages[9] }
     ]
   },
   {
-    id: "c12",
+    id: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb",
     usuarioId: "u12",
     nome: "Donna Bella",
     email: "donna@bella.com",
@@ -976,20 +976,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c12-p1", comercioId: "c12", nome: "Vestido Floral", descricao: "Leve e ideal para o verao.", preco: 150.0, imagem: modaFemininaImages[0] },
-      { id: "c12-p2", comercioId: "c12", nome: "Blusa de Seda", descricao: "Toque suave e caimento perfeito.", preco: 120.0, imagem: modaFemininaImages[1] },
-      { id: "c12-p3", comercioId: "c12", nome: "Saia Midi", descricao: "Elegancia para the trabalho.", preco: 110.0, imagem: modaFemininaImages[2] },
-      { id: "c12-p4", comercioId: "c12", nome: "Calca Pantalona", descricao: "Corte amplo e confortavel.", preco: 140.0, imagem: modaFemininaImages[3] },
-      { id: "c12-p5", comercioId: "c12", nome: "Macacao Longo", descricao: "Peca unica sofisticada.", preco: 220.0, imagem: modaFemininaImages[4] },
-      { id: "c12-p6", comercioId: "c12", nome: "Bolsa de Couro", descricao: "Acessorio de alta durabilidade.", preco: 350.0, imagem: modaFemininaImages[5] },
-      { id: "c12-p7", comercioId: "c12", nome: "Sandalia de Salto", descricao: "Conforto e beleza nos pés.", preco: 180.0, imagem: modaFemininaImages[6] },
-      { id: "c12-p8", comercioId: "c12", nome: "Colar Perola", descricao: "Joia delicada e classica.", preco: 95.0, imagem: modaFemininaImages[7] },
-      { id: "c12-p9", comercioId: "c12", nome: "Cardigan Leve", descricao: "Para as noites frescas.", preco: 85.0, imagem: modaFemininaImages[8] },
-      { id: "c12-p10", comercioId: "c12", nome: "Oculos de Sol", descricao: "Protecao com estilo.", preco: 130.0, imagem: modaFemininaImages[9] }
+      { id: "0460c997-9c1b-4fc8-93de-db730bb5c541", comercioId: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb", nome: "Vestido Floral", descricao: "Leve e ideal para o verao.", preco: 150.0, imagem: modaFemininaImages[0] },
+      { id: "7ec484e2-4891-4976-83c4-3b6123653a66", comercioId: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb", nome: "Blusa de Seda", descricao: "Toque suave e caimento perfeito.", preco: 120.0, imagem: modaFemininaImages[1] },
+      { id: "09de420c-00e0-4388-866c-101ff49a993f", comercioId: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb", nome: "Saia Midi", descricao: "Elegancia para the trabalho.", preco: 110.0, imagem: modaFemininaImages[2] },
+      { id: "57ecb787-0a6c-49bc-907e-69e7bf9efc28", comercioId: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb", nome: "Calca Pantalona", descricao: "Corte amplo e confortavel.", preco: 140.0, imagem: modaFemininaImages[3] },
+      { id: "f4590a69-5ce3-43d0-80fc-58145c42a4e2", comercioId: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb", nome: "Macacao Longo", descricao: "Peca unica sofisticada.", preco: 220.0, imagem: modaFemininaImages[4] },
+      { id: "32eb2f03-ce6d-46dc-a976-1ac53be353c7", comercioId: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb", nome: "Bolsa de Couro", descricao: "Acessorio de alta durabilidade.", preco: 350.0, imagem: modaFemininaImages[5] },
+      { id: "91054b71-f631-40b8-99c8-1807a8fde890", comercioId: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb", nome: "Sandalia de Salto", descricao: "Conforto e beleza nos pés.", preco: 180.0, imagem: modaFemininaImages[6] },
+      { id: "f3ce41b0-89c9-4641-9201-23efabe952f4", comercioId: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb", nome: "Colar Perola", descricao: "Joia delicada e classica.", preco: 95.0, imagem: modaFemininaImages[7] },
+      { id: "97de204b-bdcb-4a88-9146-be416b699e66", comercioId: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb", nome: "Cardigan Leve", descricao: "Para as noites frescas.", preco: 85.0, imagem: modaFemininaImages[8] },
+      { id: "73469fbd-4e3e-4efc-907c-d3824f178aaf", comercioId: "7420e5b0-7262-4d7d-87c0-d0b193f7fabb", nome: "Oculos de Sol", descricao: "Protecao com estilo.", preco: 130.0, imagem: modaFemininaImages[9] }
     ]
   },
   {
-    id: "c13",
+    id: "976c8a97-0f10-41fd-a57f-2a3030fefb85",
     usuarioId: "u13",
     nome: "Supermercado Viva",
     email: "sac@viva.com",
@@ -1011,20 +1011,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c13-p1", comercioId: "c13", nome: "Arroz Branco 5kg", descricao: "Tipo 1, graos selecionados.", preco: 25.0, imagem: supermercadoImages[0] },
-      { id: "c13-p2", comercioId: "c13", nome: "Feijao Carioca 1kg", descricao: "Cozimento rapido.", preco: 8.0, imagem: supermercadoImages[1] },
-      { id: "c13-p3", comercioId: "c13", nome: "Oleo de Soja", descricao: "900ml refinado.", preco: 6.5, imagem: supermercadoImages[2] },
-      { id: "c13-p4", comercioId: "c13", nome: "Leite Integral 1L", descricao: "Rico em calcio.", preco: 5.5, imagem: supermercadoImages[3] },
-      { id: "c13-p5", comercioId: "c13", nome: "Cafe Torrado 500g", descricao: "Aroma intenso.", preco: 18.0, imagem: supermercadoImages[4] },
-      { id: "c13-p6", comercioId: "c13", nome: "Acucar Refinado 1kg", descricao: "Solubilidade extra.", preco: 4.5, imagem: supermercadoImages[5] },
-      { id: "c13-p7", comercioId: "c13", nome: "Macarrao Espaguete", descricao: "Massa com ovos 500g.", preco: 4.0, imagem: supermercadoImages[6] },
-      { id: "c13-p8", comercioId: "c13", nome: "Detergente Liquido", descricao: "Neutro 500ml.", preco: 2.5, imagem: supermercadoImages[7] },
-      { id: "c13-p9", comercioId: "c13", nome: "Papel Higienico", descricao: "Folha dupla 12 rolos.", preco: 15.0, imagem: supermercadoImages[8] },
-      { id: "c13-p10", comercioId: "c13", nome: "Sabao em Po 1kg", descricao: "Limpeza profunda.", preco: 12.0, imagem: supermercadoImages[9] }
+      { id: "ea86982b-683e-46de-b88b-52090dbb08ec", comercioId: "976c8a97-0f10-41fd-a57f-2a3030fefb85", nome: "Arroz Branco 5kg", descricao: "Tipo 1, graos selecionados.", preco: 25.0, imagem: supermercadoImages[0] },
+      { id: "5364c099-9ddc-481f-a42f-fe2123d7b061", comercioId: "976c8a97-0f10-41fd-a57f-2a3030fefb85", nome: "Feijao Carioca 1kg", descricao: "Cozimento rapido.", preco: 8.0, imagem: supermercadoImages[1] },
+      { id: "301c44c5-e325-4501-afae-267687d7ef3f", comercioId: "976c8a97-0f10-41fd-a57f-2a3030fefb85", nome: "Oleo de Soja", descricao: "900ml refinado.", preco: 6.5, imagem: supermercadoImages[2] },
+      { id: "cc4d8a8b-e7e8-4900-8635-3866d1385ea3", comercioId: "976c8a97-0f10-41fd-a57f-2a3030fefb85", nome: "Leite Integral 1L", descricao: "Rico em calcio.", preco: 5.5, imagem: supermercadoImages[3] },
+      { id: "4f468218-6525-44cc-8925-36089c77343a", comercioId: "976c8a97-0f10-41fd-a57f-2a3030fefb85", nome: "Cafe Torrado 500g", descricao: "Aroma intenso.", preco: 18.0, imagem: supermercadoImages[4] },
+      { id: "4a3e7480-34fd-4c82-b9e3-e5aa8220672e", comercioId: "976c8a97-0f10-41fd-a57f-2a3030fefb85", nome: "Acucar Refinado 1kg", descricao: "Solubilidade extra.", preco: 4.5, imagem: supermercadoImages[5] },
+      { id: "b7529b98-dc65-40f8-9449-1ba351c1f91b", comercioId: "976c8a97-0f10-41fd-a57f-2a3030fefb85", nome: "Macarrao Espaguete", descricao: "Massa com ovos 500g.", preco: 4.0, imagem: supermercadoImages[6] },
+      { id: "d52d0239-4206-4719-967f-b8bec24cda41", comercioId: "976c8a97-0f10-41fd-a57f-2a3030fefb85", nome: "Detergente Liquido", descricao: "Neutro 500ml.", preco: 2.5, imagem: supermercadoImages[7] },
+      { id: "fd3fe5a9-381b-4d95-9b39-8995300840d1", comercioId: "976c8a97-0f10-41fd-a57f-2a3030fefb85", nome: "Papel Higienico", descricao: "Folha dupla 12 rolos.", preco: 15.0, imagem: supermercadoImages[8] },
+      { id: "c01a8a50-8189-4d88-8458-766738dd58f1", comercioId: "976c8a97-0f10-41fd-a57f-2a3030fefb85", nome: "Sabao em Po 1kg", descricao: "Limpeza profunda.", preco: 12.0, imagem: supermercadoImages[9] }
     ]
   },
   {
-    id: "c14",
+    id: "e9296662-1216-4a94-b14e-22b35b0236ea",
     usuarioId: "u14",
     nome: "Farmacia Central",
     email: "contato@farmaciacentral.com",
@@ -1046,20 +1046,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c14-p1", comercioId: "c14", nome: "Paracetamol 750mg", descricao: "Analgésico e antitérmico.", preco: 15.0, imagem: farmciaImages[0] },
-      { id: "c14-p2", comercioId: "c14", nome: "Vitamina C 1g", descricao: "Efervescente 10 unidades.", preco: 20.0, imagem: farmciaImages[1] },
-      { id: "c14-p3", comercioId: "c14", nome: "Alcool em Gel", descricao: "Higiene das maos 500ml.", preco: 12.0, imagem: farmciaImages[2] },
-      { id: "c14-p4", comercioId: "c14", nome: "Protetor Solar FPS 50", descricao: "Protecao contra raios UV.", preco: 45.0, imagem: farmciaImages[3] },
-      { id: "c14-p5", comercioId: "c14", nome: "Sabonete Liquido", descricao: "Glicerinado neutro.", preco: 18.0, imagem: farmciaImages[4] },
-      { id: "c14-p6", comercioId: "c14", nome: "Creme Dental", descricao: "Acao branqueadora.", preco: 8.5, imagem: farmciaImages[5] },
-      { id: "c14-p7", comercioId: "c14", nome: "Fralda G 40 unidades", descricao: "Conforto para o bebe.", preco: 55.0, imagem: farmciaImages[6] },
-      { id: "c14-p8", comercioId: "c14", nome: "Shampoo Anticaspa", descricao: "Tratamento eficaz.", preco: 30.0, imagem: farmciaImages[7] },
-      { id: "c14-p9", comercioId: "c14", nome: "Escova de Dente", descricao: "Cerdas macias.", preco: 12.0, imagem: farmciaImages[8] },
-      { id: "c14-p10", comercioId: "c14", nome: "Mascara Descartavel", descricao: "Pacote com 50 unidades.", preco: 25.0, imagem: farmciaImages[9] }
+      { id: "0299bb79-15b7-4f1a-837f-6ea4c18b3bfe", comercioId: "e9296662-1216-4a94-b14e-22b35b0236ea", nome: "Paracetamol 750mg", descricao: "Analgésico e antitérmico.", preco: 15.0, imagem: farmciaImages[0] },
+      { id: "b030dacb-ad61-4667-a18e-70e9e2975563", comercioId: "e9296662-1216-4a94-b14e-22b35b0236ea", nome: "Vitamina C 1g", descricao: "Efervescente 10 unidades.", preco: 20.0, imagem: farmciaImages[1] },
+      { id: "1957281a-3ecf-4df5-b4e7-fe7cfc3929b5", comercioId: "e9296662-1216-4a94-b14e-22b35b0236ea", nome: "Alcool em Gel", descricao: "Higiene das maos 500ml.", preco: 12.0, imagem: farmciaImages[2] },
+      { id: "5e265505-5f16-44ec-befb-cc45bd7719f5", comercioId: "e9296662-1216-4a94-b14e-22b35b0236ea", nome: "Protetor Solar FPS 50", descricao: "Protecao contra raios UV.", preco: 45.0, imagem: farmciaImages[3] },
+      { id: "0bc279d0-eb41-41db-b45a-d7a5dfbe12a0", comercioId: "e9296662-1216-4a94-b14e-22b35b0236ea", nome: "Sabonete Liquido", descricao: "Glicerinado neutro.", preco: 18.0, imagem: farmciaImages[4] },
+      { id: "abaced62-383b-4d72-90a9-0c0215ed1aa3", comercioId: "e9296662-1216-4a94-b14e-22b35b0236ea", nome: "Creme Dental", descricao: "Acao branqueadora.", preco: 8.5, imagem: farmciaImages[5] },
+      { id: "1bec20da-036c-408c-9777-e3d502627010", comercioId: "e9296662-1216-4a94-b14e-22b35b0236ea", nome: "Fralda G 40 unidades", descricao: "Conforto para o bebe.", preco: 55.0, imagem: farmciaImages[6] },
+      { id: "fbe11caf-fc0a-490a-abda-b5ea44349e9c", comercioId: "e9296662-1216-4a94-b14e-22b35b0236ea", nome: "Shampoo Anticaspa", descricao: "Tratamento eficaz.", preco: 30.0, imagem: farmciaImages[7] },
+      { id: "8ba52b41-7b38-4023-b144-0da444eed4a5", comercioId: "e9296662-1216-4a94-b14e-22b35b0236ea", nome: "Escova de Dente", descricao: "Cerdas macias.", preco: 12.0, imagem: farmciaImages[8] },
+      { id: "3abf35c2-469c-45bb-a5a5-5cd9f5445557", comercioId: "e9296662-1216-4a94-b14e-22b35b0236ea", nome: "Mascara Descartavel", descricao: "Pacote com 50 unidades.", preco: 25.0, imagem: farmciaImages[9] }
     ]
   },
   {
-    id: "c15",
+    id: "70b60365-80bf-4322-871a-241ac10429e8",
     usuarioId: "u15",
     nome: "Papelaria Criativa",
     email: "vendas@criativa.com",
@@ -1081,20 +1081,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c15-p1", comercioId: "c15", nome: "Caderno Universitario", descricao: "10 materias capa dura.", preco: 25.0, imagem: papelariaCriativaImages[0] },
-      { id: "c15-p2", comercioId: "c15", nome: "Canetas", descricao: "Escrita suave pacote com 3.", preco: 5.0, imagem: papelariaCriativaImages[1] },
-      { id: "c15-p3", comercioId: "c15", nome: "Lapis de Cor 24 cores", descricao: "Qualidade artistica.", preco: 40.0, imagem: papelariaCriativaImages[2] },
-      { id: "c15-p4", comercioId: "c15", nome: "Agenda 2026", descricao: "Organize seu dia.", preco: 35.0, imagem: papelariaCriativaImages[3] },
-      { id: "c15-p5", comercioId: "c15", nome: "Mochila Escolar", descricao: "Resistente e espacosa.", preco: 120.0, imagem: papelariaCriativaImages[4] },
-      { id: "c15-p6", comercioId: "c15", nome: "Estojo Duplo", descricao: "Organizacao garantida.", preco: 30.0, imagem: papelariaCriativaImages[5] },
-      { id: "c15-p7", comercioId: "c15", nome: "Resma Papel A4", descricao: "500 folhas brancas.", preco: 28.0, imagem: papelariaCriativaImages[6] },
-      { id: "c15-p8", comercioId: "c15", nome: "Grampeador Metal", descricao: "Alta durabilidade.", preco: 15.0, imagem: papelariaCriativaImages[7] },
-      { id: "c15-p9", comercioId: "c15", nome: "Calculadora Cientifica", descricao: "Ideal para estudantes.", preco: 65.0, imagem: papelariaCriativaImages[8] },
-      { id: "c15-p10", comercioId: "c15", nome: "Tinta Guache", descricao: "Kit com 6 cores.", preco: 12.0, imagem: papelariaCriativaImages[9] }
+      { id: "655d2322-9fa8-4b82-a2be-8eed0b7e01ec", comercioId: "70b60365-80bf-4322-871a-241ac10429e8", nome: "Caderno Universitario", descricao: "10 materias capa dura.", preco: 25.0, imagem: papelariaCriativaImages[0] },
+      { id: "5e5f9d78-2293-4445-ad3c-97d4a7e03ad1", comercioId: "70b60365-80bf-4322-871a-241ac10429e8", nome: "Canetas", descricao: "Escrita suave pacote com 3.", preco: 5.0, imagem: papelariaCriativaImages[1] },
+      { id: "d2f58f8d-7e94-4401-96d2-19279990e648", comercioId: "70b60365-80bf-4322-871a-241ac10429e8", nome: "Lapis de Cor 24 cores", descricao: "Qualidade artistica.", preco: 40.0, imagem: papelariaCriativaImages[2] },
+      { id: "b78e6bfd-5f14-4db2-89c1-bfcff84ecf27", comercioId: "70b60365-80bf-4322-871a-241ac10429e8", nome: "Agenda 2026", descricao: "Organize seu dia.", preco: 35.0, imagem: papelariaCriativaImages[3] },
+      { id: "9ee77367-ffc0-4c14-a2bb-fa5252a02fc9", comercioId: "70b60365-80bf-4322-871a-241ac10429e8", nome: "Mochila Escolar", descricao: "Resistente e espacosa.", preco: 120.0, imagem: papelariaCriativaImages[4] },
+      { id: "18849b0e-b696-41f4-ac28-eee50a11a8e7", comercioId: "70b60365-80bf-4322-871a-241ac10429e8", nome: "Estojo Duplo", descricao: "Organizacao garantida.", preco: 30.0, imagem: papelariaCriativaImages[5] },
+      { id: "3214355a-9013-406a-b85b-564c2c23145d", comercioId: "70b60365-80bf-4322-871a-241ac10429e8", nome: "Resma Papel A4", descricao: "500 folhas brancas.", preco: 28.0, imagem: papelariaCriativaImages[6] },
+      { id: "0e0cab6f-1a19-41a5-861a-af0c61d46b42", comercioId: "70b60365-80bf-4322-871a-241ac10429e8", nome: "Grampeador Metal", descricao: "Alta durabilidade.", preco: 15.0, imagem: papelariaCriativaImages[7] },
+      { id: "c8bb7f06-08f8-4309-a2ca-aa2051d275c4", comercioId: "70b60365-80bf-4322-871a-241ac10429e8", nome: "Calculadora Cientifica", descricao: "Ideal para estudantes.", preco: 65.0, imagem: papelariaCriativaImages[8] },
+      { id: "b4ecb54e-fdc3-4053-b52d-916ac1b8e719", comercioId: "70b60365-80bf-4322-871a-241ac10429e8", nome: "Tinta Guache", descricao: "Kit com 6 cores.", preco: 12.0, imagem: papelariaCriativaImages[9] }
     ]
   },
   {
-    id: "c16",
+    id: "02aee07c-d363-4e45-b263-e86fec7cb9cc",
     usuarioId: "u16",
     nome: "Tech World Informática",
     email: "vendas@techworld.com",
@@ -1116,20 +1116,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c16-p1", comercioId: "c16", nome: "Notebook i5 8GB", descricao: "SSD 256GB, tela Full HD.", preco: 3500.0, imagem: informticaImages[0] },
-      { id: "c16-p2", comercioId: "c16", nome: "Mouse Gamer", descricao: "RGB com 12000 DPI.", preco: 150.0, imagem: informticaImages[1] },
-      { id: "c16-p3", comercioId: "c16", nome: "Teclado Mecanico", descricao: "Switch Blue, padrao ABNT2.", preco: 250.0, imagem: informticaImages[2] },
-      { id: "c16-p4", comercioId: "c16", nome: "Monitor 24 Pol", descricao: "Painel IPS, 75Hz.", preco: 850.0, imagem: informticaImages[3] },
-      { id: "c16-p5", comercioId: "c16", nome: "Roteador WiFi 6", descricao: "Alta velocidade e cobertura.", preco: 300.0, imagem: informticaImages[4] },
-      { id: "c16-p6", comercioId: "c16", nome: "Headset Gamer", descricao: "Som surround 7.1.", preco: 200.0, imagem: informticaImages[5] },
-      { id: "c16-p7", comercioId: "c16", nome: "Impressora Multifuncional", descricao: "Tanque de tinta colorido.", preco: 950.0, imagem: informticaImages[6] },
-      { id: "c16-p8", comercioId: "c16", nome: "SSD 480GB", descricao: "Upgrade de velocidade.", preco: 180.0, imagem: informticaImages[7] },
-      { id: "c16-p9", comercioId: "c16", nome: "Webcam Full HD", descricao: "Ideal for home office.", preco: 120.0, imagem: informticaImages[8] },
-      { id: "c16-p10", comercioId: "c16", nome: "Pendrive 64GB", descricao: "Armazenamento portatil.", preco: 45.0, imagem: informticaImages[9] }
+      { id: "b83ab7fa-bda5-437e-8f41-b648fd537f14", comercioId: "02aee07c-d363-4e45-b263-e86fec7cb9cc", nome: "Notebook i5 8GB", descricao: "SSD 256GB, tela Full HD.", preco: 3500.0, imagem: informticaImages[0] },
+      { id: "c3c94ce4-2ab7-40d1-bc78-1a0db48b3412", comercioId: "02aee07c-d363-4e45-b263-e86fec7cb9cc", nome: "Mouse Gamer", descricao: "RGB com 12000 DPI.", preco: 150.0, imagem: informticaImages[1] },
+      { id: "03d2a30f-9ecb-4359-9c35-357d73ce2430", comercioId: "02aee07c-d363-4e45-b263-e86fec7cb9cc", nome: "Teclado Mecanico", descricao: "Switch Blue, padrao ABNT2.", preco: 250.0, imagem: informticaImages[2] },
+      { id: "b20ad5f1-3a7e-4aa0-9e8d-6beb4827dda5", comercioId: "02aee07c-d363-4e45-b263-e86fec7cb9cc", nome: "Monitor 24 Pol", descricao: "Painel IPS, 75Hz.", preco: 850.0, imagem: informticaImages[3] },
+      { id: "3a39058a-1004-4a2d-b72c-d083ab0d69aa", comercioId: "02aee07c-d363-4e45-b263-e86fec7cb9cc", nome: "Roteador WiFi 6", descricao: "Alta velocidade e cobertura.", preco: 300.0, imagem: informticaImages[4] },
+      { id: "bf48eae8-50ed-4205-998f-a3e2fdd1397d", comercioId: "02aee07c-d363-4e45-b263-e86fec7cb9cc", nome: "Headset Gamer", descricao: "Som surround 7.1.", preco: 200.0, imagem: informticaImages[5] },
+      { id: "3b948596-0003-474c-ae6d-84c96a4820ff", comercioId: "02aee07c-d363-4e45-b263-e86fec7cb9cc", nome: "Impressora Multifuncional", descricao: "Tanque de tinta colorido.", preco: 950.0, imagem: informticaImages[6] },
+      { id: "996491a3-0496-40f1-a9cb-6f50a6441422", comercioId: "02aee07c-d363-4e45-b263-e86fec7cb9cc", nome: "SSD 480GB", descricao: "Upgrade de velocidade.", preco: 180.0, imagem: informticaImages[7] },
+      { id: "1c8b7ac6-9f8d-4cb1-b0d0-fbac992ef661", comercioId: "02aee07c-d363-4e45-b263-e86fec7cb9cc", nome: "Webcam Full HD", descricao: "Ideal for home office.", preco: 120.0, imagem: informticaImages[8] },
+      { id: "3aa4b9c2-9552-4478-b8d5-ab4fa719cc6b", comercioId: "02aee07c-d363-4e45-b263-e86fec7cb9cc", nome: "Pendrive 64GB", descricao: "Armazenamento portatil.", preco: 45.0, imagem: informticaImages[9] }
     ]
   },
   {
-    id: "c17",
+    id: "5e073e28-2332-4098-838f-a45263caa1c3",
     usuarioId: "u17",
     nome: "Livraria Saber",
     email: "contato@saber.com",
@@ -1151,20 +1151,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c17-p1", comercioId: "c17", nome: "O Senhor dos Aneis", descricao: "Edicao de colecionador.", preco: 95.0, imagem: livrariaImages[0] },
-      { id: "c17-p2", comercioId: "c17", nome: "Dom Casmurro", descricao: "Classico de Machado de Assis.", preco: 30.0, imagem: livrariaImages[1] },
-      { id: "c17-p3", comercioId: "c17", nome: "Harry Potter 1", descricao: "A Pedra Filosofal.", preco: 45.0, imagem: livrariaImages[2] },
-      { id: "c17-p4", comercioId: "c17", nome: "1984 George Orwell", descricao: "Distopia clássica.", preco: 35.0, imagem: livrariaImages[3] },
-      { id: "c17-p5", comercioId: "c17", nome: "Box Sherlock Holmes", descricao: "Todas as historias do detetive.", preco: 120.0, imagem: livrariaImages[4] },
-      { id: "c17-p6", comercioId: "c17", nome: "Caderneta de Notas", descricao: "Papel de alta gramatura.", preco: 25.0, imagem: livrariaImages[5] },
-      { id: "c17-p7", comercioId: "c17", nome: "Luminaria de Leitura", descricao: "Clip para livros.", preco: 40.0, imagem: livrariaImages[6] },
-      { id: "c17-p8", comercioId: "c17", nome: "Marcador Magnético", descricao: "Kit com 5 unidades.", preco: 15.0, imagem: livrariaImages[7] },
-      { id: "c17-p9", comercioId: "c17", nome: "Dicionario de Ingles", descricao: "Edicao atualizada.", preco: 55.0, imagem: livrariaImages[8] },
-      { id: "c17-p10", comercioId: "c17", nome: "Quebra-cabeca Literário", descricao: "1000 pecas tema livros.", preco: 70.0, imagem: livrariaImages[9] }
+      { id: "bc9709db-98eb-41b8-8ca1-37e919bdec1e", comercioId: "5e073e28-2332-4098-838f-a45263caa1c3", nome: "O Senhor dos Aneis", descricao: "Edicao de colecionador.", preco: 95.0, imagem: livrariaImages[0] },
+      { id: "4482d644-1fd4-40f3-beb7-d1d864102952", comercioId: "5e073e28-2332-4098-838f-a45263caa1c3", nome: "Dom Casmurro", descricao: "Classico de Machado de Assis.", preco: 30.0, imagem: livrariaImages[1] },
+      { id: "4ed6751c-81a0-4bc3-8c54-4d84358834ef", comercioId: "5e073e28-2332-4098-838f-a45263caa1c3", nome: "Harry Potter 1", descricao: "A Pedra Filosofal.", preco: 45.0, imagem: livrariaImages[2] },
+      { id: "5622e4fc-6b63-4796-92dd-947395e8de2a", comercioId: "5e073e28-2332-4098-838f-a45263caa1c3", nome: "1984 George Orwell", descricao: "Distopia clássica.", preco: 35.0, imagem: livrariaImages[3] },
+      { id: "eb587e5e-b40a-4c78-a645-d16b2d9c5b11", comercioId: "5e073e28-2332-4098-838f-a45263caa1c3", nome: "Box Sherlock Holmes", descricao: "Todas as historias do detetive.", preco: 120.0, imagem: livrariaImages[4] },
+      { id: "98524996-a6ae-4ffb-8eb7-8b949f998140", comercioId: "5e073e28-2332-4098-838f-a45263caa1c3", nome: "Caderneta de Notas", descricao: "Papel de alta gramatura.", preco: 25.0, imagem: livrariaImages[5] },
+      { id: "d21c3c38-fcf3-4ce5-9b76-2daa0b2d00e1", comercioId: "5e073e28-2332-4098-838f-a45263caa1c3", nome: "Luminaria de Leitura", descricao: "Clip para livros.", preco: 40.0, imagem: livrariaImages[6] },
+      { id: "304f5f54-26af-481f-8860-4c0ef822f8bd", comercioId: "5e073e28-2332-4098-838f-a45263caa1c3", nome: "Marcador Magnético", descricao: "Kit com 5 unidades.", preco: 15.0, imagem: livrariaImages[7] },
+      { id: "b19c2e5c-ed2f-4c93-9393-2ea884cac54b", comercioId: "5e073e28-2332-4098-838f-a45263caa1c3", nome: "Dicionario de Ingles", descricao: "Edicao atualizada.", preco: 55.0, imagem: livrariaImages[8] },
+      { id: "11a5e033-d167-4607-bef2-13e0774e7802", comercioId: "5e073e28-2332-4098-838f-a45263caa1c3", nome: "Quebra-cabeca Literário", descricao: "1000 pecas tema livros.", preco: 70.0, imagem: livrariaImages[9] }
     ]
   },
   {
-    id: "c18",
+    id: "4db28b99-b848-4fc5-8748-423d8c5449e2",
     usuarioId: "u18",
     nome: "Pizzaria Bella Italia",
     email: "bella@italia.com",
@@ -1188,20 +1188,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c18-p1", comercioId: "c18", nome: "Pizza de Pesto", descricao: "Molho pesto e queijo brie.", preco: 65.0, imagem: pizzariaBellaImages[0] },
-      { id: "c18-p2", comercioId: "c18", nome: "Pizza de Rucula", descricao: "Tomate seco e mussarela de bufala.", preco: 60.0, imagem: pizzariaBellaImages[1] },
-      { id: "c18-p3", comercioId: "c18", nome: "Calzone de Frango", descricao: "Recheio cremoso com catupiry.", preco: 45.0, imagem: pizzariaBellaImages[2] },
-      { id: "c18-p4", comercioId: "c18", nome: "Pizza Doce", descricao: "Chocolate com morangos frescos.", preco: 50.0, imagem: pizzariaBellaImages[3] },
-      { id: "c18-p5", comercioId: "c18", nome: "Pizza de Camarao", descricao: "Camaroes médios e alho poro.", preco: 75.0, imagem: pizzariaBellaImages[4] },
-      { id: "c18-p6", comercioId: "c18", nome: "Focaccia Alecrim", descricao: "Pao italiano com sal grosso.", preco: 25.0, imagem: pizzariaBellaImages[5] },
-      { id: "c18-p7", comercioId: "c18", nome: "Salada Caprese", descricao: "Tomate, mussarela e manjericao.", preco: 35.0, imagem: pizzariaBellaImages[6] },
-      { id: "c18-p8", comercioId: "c18", nome: "Suco de Uva", descricao: "Integral 500ml.", preco: 15.0, imagem: pizzariaBellaImages[7] },
-      { id: "c18-p9", comercioId: "c18", nome: "Cerveja Long Neck", descricao: "Gelada 355ml.", preco: 10.0, imagem: pizzariaBellaImages[8] },
-      { id: "c18-p10", comercioId: "c18", nome: "Cannoli", descricao: "Doce siciliano com ricota.", preco: 18.0, imagem: pizzariaBellaImages[9] }
+      { id: "32c62795-c95e-4830-aa99-f4f5d41975ed", comercioId: "4db28b99-b848-4fc5-8748-423d8c5449e2", nome: "Pizza de Pesto", descricao: "Molho pesto e queijo brie.", preco: 65.0, imagem: pizzariaBellaImages[0] },
+      { id: "98cc7d1f-712b-4514-989b-de29f7b527ca", comercioId: "4db28b99-b848-4fc5-8748-423d8c5449e2", nome: "Pizza de Rucula", descricao: "Tomate seco e mussarela de bufala.", preco: 60.0, imagem: pizzariaBellaImages[1] },
+      { id: "09fa8091-e9ca-46e1-bff7-ef6e9b06e55d", comercioId: "4db28b99-b848-4fc5-8748-423d8c5449e2", nome: "Calzone de Frango", descricao: "Recheio cremoso com catupiry.", preco: 45.0, imagem: pizzariaBellaImages[2] },
+      { id: "075231e2-133f-46f9-afd7-c83a9487e4f0", comercioId: "4db28b99-b848-4fc5-8748-423d8c5449e2", nome: "Pizza Doce", descricao: "Chocolate com morangos frescos.", preco: 50.0, imagem: pizzariaBellaImages[3] },
+      { id: "2d27ad76-82b2-4990-bab6-335376b1f386", comercioId: "4db28b99-b848-4fc5-8748-423d8c5449e2", nome: "Pizza de Camarao", descricao: "Camaroes médios e alho poro.", preco: 75.0, imagem: pizzariaBellaImages[4] },
+      { id: "ab156551-0319-4fda-8d0b-5b6fba85e041", comercioId: "4db28b99-b848-4fc5-8748-423d8c5449e2", nome: "Focaccia Alecrim", descricao: "Pao italiano com sal grosso.", preco: 25.0, imagem: pizzariaBellaImages[5] },
+      { id: "04694f4e-ed48-4894-99aa-b1f44d414f07", comercioId: "4db28b99-b848-4fc5-8748-423d8c5449e2", nome: "Salada Caprese", descricao: "Tomate, mussarela e manjericao.", preco: 35.0, imagem: pizzariaBellaImages[6] },
+      { id: "d08805f6-a5d4-47bc-999d-2fd33ce3d887", comercioId: "4db28b99-b848-4fc5-8748-423d8c5449e2", nome: "Suco de Uva", descricao: "Integral 500ml.", preco: 15.0, imagem: pizzariaBellaImages[7] },
+      { id: "cc16f2be-4559-4908-8c6b-502118a5748b", comercioId: "4db28b99-b848-4fc5-8748-423d8c5449e2", nome: "Cerveja Long Neck", descricao: "Gelada 355ml.", preco: 10.0, imagem: pizzariaBellaImages[8] },
+      { id: "48883edf-9701-47d9-ac3d-d302ea831b65", comercioId: "4db28b99-b848-4fc5-8748-423d8c5449e2", nome: "Cannoli", descricao: "Doce siciliano com ricota.", preco: 18.0, imagem: pizzariaBellaImages[9] }
     ]
   },
   {
-    id: "c19",
+    id: "2779dcdb-771a-4c84-99f3-deabe074cac1",
     usuarioId: "u19",
     nome: "Sushi Zen",
     email: "contato@sushizen.com",
@@ -1225,20 +1225,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c19-p1", comercioId: "c19", nome: "Combo Zen 30", descricao: "Selecao do chef com 30 pecas.", preco: 120.0, imagem: sushi2Images[0] },
-      { id: "c19-p2", comercioId: "c19", nome: "Nigiri de Atum", descricao: "6 unidades de atum fresco.", preco: 40.0, imagem: sushi2Images[1] },
-      { id: "c19-p3", comercioId: "c19", nome: "Poke Salmao", descricao: "Tigela com arroz e acompanhamentos.", preco: 55.0, imagem: sushi2Images[2] },
-      { id: "c19-p4", comercioId: "c19", nome: "Uramaki Ebi", descricao: "Camarao empanado e cream cheese.", preco: 35.0, imagem: sushi2Images[3] },
-      { id: "c19-p5", comercioId: "c19", nome: "Shimeji na Manteiga", descricao: "Porcao de cogumelos quentes.", preco: 30.0, imagem: sushi2Images[4] },
-      { id: "c19-p6", comercioId: "c19", nome: "Harumaki de Carne", descricao: "Rolinho primavera crocante.", preco: 15.0, imagem: sushi2Images[5] },
-      { id: "c19-p7", comercioId: "c19", nome: "Temaki Philadelphia", descricao: "Salmao, cream cheese e cebolinha.", preco: 32.0, imagem: sushi2Images[6] },
-      { id: "c19-p8", comercioId: "c19", nome: "Sashimi de Polvo", descricao: "8 fatias finas de polvo.", preco: 50.0, imagem: sushi2Images[7] },
-      { id: "c19-p9", comercioId: "c19", nome: "Saque Junmai", descricao: "Garrafa pequena 300ml.", preco: 60.0, imagem: sushi2Images[8] },
-      { id: "c19-p10", comercioId: "c19", nome: "Tempura de Sorvete", descricao: "Sobremesa frita e gelada.", preco: 25.0, imagem: sushi2Images[9] }
+      { id: "c0cb7690-8b47-48a7-9367-f8e7ae7b5235", comercioId: "2779dcdb-771a-4c84-99f3-deabe074cac1", nome: "Combo Zen 30", descricao: "Selecao do chef com 30 pecas.", preco: 120.0, imagem: sushi2Images[0] },
+      { id: "4e771b33-b8f7-49ef-89a9-8d343f871415", comercioId: "2779dcdb-771a-4c84-99f3-deabe074cac1", nome: "Nigiri de Atum", descricao: "6 unidades de atum fresco.", preco: 40.0, imagem: sushi2Images[1] },
+      { id: "c5a6e179-2780-442a-8479-e50e2fa26774", comercioId: "2779dcdb-771a-4c84-99f3-deabe074cac1", nome: "Poke Salmao", descricao: "Tigela com arroz e acompanhamentos.", preco: 55.0, imagem: sushi2Images[2] },
+      { id: "d64260fa-7719-4ac6-b9b4-af5459f30c4f", comercioId: "2779dcdb-771a-4c84-99f3-deabe074cac1", nome: "Uramaki Ebi", descricao: "Camarao empanado e cream cheese.", preco: 35.0, imagem: sushi2Images[3] },
+      { id: "436959f9-1c69-4c90-ac28-a84470ab523b", comercioId: "2779dcdb-771a-4c84-99f3-deabe074cac1", nome: "Shimeji na Manteiga", descricao: "Porcao de cogumelos quentes.", preco: 30.0, imagem: sushi2Images[4] },
+      { id: "d60a139a-658c-4003-add1-a82556932987", comercioId: "2779dcdb-771a-4c84-99f3-deabe074cac1", nome: "Harumaki de Carne", descricao: "Rolinho primavera crocante.", preco: 15.0, imagem: sushi2Images[5] },
+      { id: "feac5443-6663-4a71-b481-824bb2f35bc2", comercioId: "2779dcdb-771a-4c84-99f3-deabe074cac1", nome: "Temaki Philadelphia", descricao: "Salmao, cream cheese e cebolinha.", preco: 32.0, imagem: sushi2Images[6] },
+      { id: "278aff4f-9035-42e4-b4d5-efaa37177280", comercioId: "2779dcdb-771a-4c84-99f3-deabe074cac1", nome: "Sashimi de Polvo", descricao: "8 fatias finas de polvo.", preco: 50.0, imagem: sushi2Images[7] },
+      { id: "12420dff-5c4b-4411-8e1d-4b8cf1de30f4", comercioId: "2779dcdb-771a-4c84-99f3-deabe074cac1", nome: "Saque Junmai", descricao: "Garrafa pequena 300ml.", preco: 60.0, imagem: sushi2Images[8] },
+      { id: "cb2baf10-f9c9-49e6-9e63-68ae27466dc7", comercioId: "2779dcdb-771a-4c84-99f3-deabe074cac1", nome: "Tempura de Sorvete", descricao: "Sobremesa frita e gelada.", preco: 25.0, imagem: sushi2Images[9] }
     ]
   },
   {
-    id: "c20",
+    id: "132657c3-58aa-4227-969a-ee9a6b67e1d5",
     usuarioId: "u20",
     nome: "Dragao Dourado",
     email: "contato@dragaodourado.com",
@@ -1262,20 +1262,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c20-p1", comercioId: "c20", nome: "Yakissoba Especial", descricao: "Carne, frango e legumes.", preco: 48.0, imagem: comidaChinesaImages[0] },
-      { id: "c20-p2", comercioId: "c20", nome: "Frango Xadrez", descricao: "Com amendoim e pimentao.", preco: 42.0, imagem: comidaChinesaImages[1] },
-      { id: "c20-p3", comercioId: "c20", nome: "Carne com Batata", descricao: "Tiras de carne e batatas fritas.", preco: 45.0, imagem: comidaChinesaImages[2] },
-      { id: "c20-p4", comercioId: "c20", nome: "Arroz Colorido", descricao: "Presunto, ovo e cebolinha.", preco: 25.0, imagem: comidaChinesaImages[3] },
-      { id: "c20-p5", comercioId: "c20", nome: "Lombo Agridoce", descricao: "Com abacaxi e molho especial.", preco: 40.0, imagem: comidaChinesaImages[4] },
-      { id: "c20-p6", comercioId: "c20", nome: "Guioza Suino", descricao: "6 unidades no vapor.", preco: 22.0, imagem: comidaChinesaImages[5] },
-      { id: "c20-p7", comercioId: "c20", nome: "Rolinho Primavera", descricao: "Legumes crocantes.", preco: 8.0, imagem: comidaChinesaImages[6] },
-      { id: "c20-p8", comercioId: "c20", nome: "Banana Caramelizada", descricao: "Com gergelim.", preco: 15.0, imagem: comidaChinesaImages[7] },
-      { id: "c20-p9", comercioId: "c20", nome: "Cha de Jasmim", descricao: "Bebida tradicional quente.", preco: 10.0, imagem: comidaChinesaImages[8] },
-      { id: "c20-p10", comercioId: "c20", nome: "Biscoito da Sorte", descricao: "Mensagem surpresa.", preco: 2.0, imagem: comidaChinesaImages[9] }
+      { id: "e0279105-e9ab-4818-899f-648d385ef5a7", comercioId: "132657c3-58aa-4227-969a-ee9a6b67e1d5", nome: "Yakissoba Especial", descricao: "Carne, frango e legumes.", preco: 48.0, imagem: comidaChinesaImages[0] },
+      { id: "bc2fd930-66a2-4f91-8141-61faf4c1f7f5", comercioId: "132657c3-58aa-4227-969a-ee9a6b67e1d5", nome: "Frango Xadrez", descricao: "Com amendoim e pimentao.", preco: 42.0, imagem: comidaChinesaImages[1] },
+      { id: "59422a86-15aa-4e6a-93c9-8411261c8db9", comercioId: "132657c3-58aa-4227-969a-ee9a6b67e1d5", nome: "Carne com Batata", descricao: "Tiras de carne e batatas fritas.", preco: 45.0, imagem: comidaChinesaImages[2] },
+      { id: "0a250b5c-b141-45fb-8cec-69cade6f2c12", comercioId: "132657c3-58aa-4227-969a-ee9a6b67e1d5", nome: "Arroz Colorido", descricao: "Presunto, ovo e cebolinha.", preco: 25.0, imagem: comidaChinesaImages[3] },
+      { id: "7f733655-180c-4ff3-b30d-599be57806d6", comercioId: "132657c3-58aa-4227-969a-ee9a6b67e1d5", nome: "Lombo Agridoce", descricao: "Com abacaxi e molho especial.", preco: 40.0, imagem: comidaChinesaImages[4] },
+      { id: "3b5bd7a1-3f87-43d8-8a0e-4cee00107379", comercioId: "132657c3-58aa-4227-969a-ee9a6b67e1d5", nome: "Guioza Suino", descricao: "6 unidades no vapor.", preco: 22.0, imagem: comidaChinesaImages[5] },
+      { id: "c837f9df-4aaa-4dd6-9318-093dc006e1cd", comercioId: "132657c3-58aa-4227-969a-ee9a6b67e1d5", nome: "Rolinho Primavera", descricao: "Legumes crocantes.", preco: 8.0, imagem: comidaChinesaImages[6] },
+      { id: "d591aa51-ec8d-4d06-b22b-f621dc7bb5f0", comercioId: "132657c3-58aa-4227-969a-ee9a6b67e1d5", nome: "Banana Caramelizada", descricao: "Com gergelim.", preco: 15.0, imagem: comidaChinesaImages[7] },
+      { id: "60d89167-0b11-4f9e-9d34-1027a61847c8", comercioId: "132657c3-58aa-4227-969a-ee9a6b67e1d5", nome: "Cha de Jasmim", descricao: "Bebida tradicional quente.", preco: 10.0, imagem: comidaChinesaImages[8] },
+      { id: "d967f6d9-9876-4bae-968c-f8a7f44782fb", comercioId: "132657c3-58aa-4227-969a-ee9a6b67e1d5", nome: "Biscoito da Sorte", descricao: "Mensagem surpresa.", preco: 2.0, imagem: comidaChinesaImages[9] }
     ]
   },
   {
-    id: "c21",
+    id: "f1907879-9c36-4b87-94d0-7615ca200291",
     usuarioId: "u21",
     nome: "Grao Gourmet",
     email: "cafe@graogourmet.com",
@@ -1299,20 +1299,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c21-p1", comercioId: "c21", nome: "Expresso Duplo", descricao: "Blend da casa intenso.", preco: 8.0, imagem: cafeteriaGourmetImages[0] },
-      { id: "c21-p2", comercioId: "c21", nome: "Cappuccino Italiano", descricao: "Com cacau em po e canela.", preco: 12.0, imagem: cafeteriaGourmetImages[1] },
-      { id: "c21-p3", comercioId: "c21", nome: "Flat White", descricao: "Leite vaporizado e cafe.", preco: 14.0, imagem: cafeteriaGourmetImages[2] },
-      { id: "c21-p4", comercioId: "c21", nome: "Croissant de Chocolate", descricao: "Massa folhada e recheio.", preco: 10.0, imagem: cafeteriaGourmetImages[3] },
-      { id: "c21-p5", comercioId: "c21", nome: "Pao de Queijo", descricao: "Porcao com 5 unidades.", preco: 15.0, imagem: cafeteriaGourmetImages[4] },
-      { id: "c21-p6", comercioId: "c21", nome: "Bolo de Cenoura", descricao: "Com cobertura de brigadeiro.", preco: 12.0, imagem: cafeteriaGourmetImages[5] },
-      { id: "c21-p7", comercioId: "c21", nome: "Toast de Avocado", descricao: "Pao integral e abacate.", preco: 22.0, imagem: cafeteriaGourmetImages[6] },
-      { id: "c21-p8", comercioId: "c21", nome: "Iced Latte", descricao: "Refrescante com gelo.", preco: 16.0, imagem: cafeteriaGourmetImages[7] },
-      { id: "c21-p9", comercioId: "c21", nome: "Cha Gelado", descricao: "Limao e hortela.", preco: 10.0, imagem: cafeteriaGourmetImages[8] },
-      { id: "c21-p10", comercioId: "c21", nome: "Quiche Loraine", descricao: "Bacon e queijo.", preco: 18.0, imagem: cafeteriaGourmetImages[9] }
+      { id: "033f085e-dda6-4ec4-804e-373959fec8f0", comercioId: "f1907879-9c36-4b87-94d0-7615ca200291", nome: "Expresso Duplo", descricao: "Blend da casa intenso.", preco: 8.0, imagem: cafeteriaGourmetImages[0] },
+      { id: "5b1f4eb0-4123-4070-b423-2ed84d026a75", comercioId: "f1907879-9c36-4b87-94d0-7615ca200291", nome: "Cappuccino Italiano", descricao: "Com cacau em po e canela.", preco: 12.0, imagem: cafeteriaGourmetImages[1] },
+      { id: "edde415d-3dac-4de7-84f9-7932520e7d2b", comercioId: "f1907879-9c36-4b87-94d0-7615ca200291", nome: "Flat White", descricao: "Leite vaporizado e cafe.", preco: 14.0, imagem: cafeteriaGourmetImages[2] },
+      { id: "fc9209a2-01b0-4541-be72-813e9af33de8", comercioId: "f1907879-9c36-4b87-94d0-7615ca200291", nome: "Croissant de Chocolate", descricao: "Massa folhada e recheio.", preco: 10.0, imagem: cafeteriaGourmetImages[3] },
+      { id: "a0a186c5-ef09-47d7-83be-39f78a70324c", comercioId: "f1907879-9c36-4b87-94d0-7615ca200291", nome: "Pao de Queijo", descricao: "Porcao com 5 unidades.", preco: 15.0, imagem: cafeteriaGourmetImages[4] },
+      { id: "cc42c062-d13e-4d2e-ab9b-384ee21a7746", comercioId: "f1907879-9c36-4b87-94d0-7615ca200291", nome: "Bolo de Cenoura", descricao: "Com cobertura de brigadeiro.", preco: 12.0, imagem: cafeteriaGourmetImages[5] },
+      { id: "1f480266-5a97-4f69-9d9c-1007ec5eceb1", comercioId: "f1907879-9c36-4b87-94d0-7615ca200291", nome: "Toast de Avocado", descricao: "Pao integral e abacate.", preco: 22.0, imagem: cafeteriaGourmetImages[6] },
+      { id: "d29962d1-21b3-41fd-aff7-57dc7c8820a7", comercioId: "f1907879-9c36-4b87-94d0-7615ca200291", nome: "Iced Latte", descricao: "Refrescante com gelo.", preco: 16.0, imagem: cafeteriaGourmetImages[7] },
+      { id: "ce6347b3-57c2-4a1a-8ba0-4f39c04cc7f7", comercioId: "f1907879-9c36-4b87-94d0-7615ca200291", nome: "Cha Gelado", descricao: "Limao e hortela.", preco: 10.0, imagem: cafeteriaGourmetImages[8] },
+      { id: "51db0cff-03da-43a4-9942-63e22ebbddf0", comercioId: "f1907879-9c36-4b87-94d0-7615ca200291", nome: "Quiche Loraine", descricao: "Bacon e queijo.", preco: 18.0, imagem: cafeteriaGourmetImages[9] }
     ]
   },
   {
-    id: "c22",
+    id: "9135ca0e-b8a1-4712-8303-4d16112c9692",
     usuarioId: "u22",
     nome: "Gelato Supremo",
     email: "gelato@supremo.com",
@@ -1336,20 +1336,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c22-p1", comercioId: "c22", nome: "Gelato de Pistache", descricao: "Pistache italiano puro.", preco: 18.0, imagem: sorveteriaPremiumImages[0] },
-      { id: "c22-p2", comercioId: "c22", nome: "Gelato de Chocolate", descricao: "Belga 70% cacau.", preco: 16.0, imagem: sorveteriaPremiumImages[1] },
-      { id: "c22-p3", comercioId: "c22", nome: "Sorbet de Morango", descricao: "Sem leite, pura fruta.", preco: 15.0, imagem: sorveteriaPremiumImages[2] },
-      { id: "c22-p4", comercioId: "c22", nome: "Gelato de Avela", descricao: "Com pedacos crocantes.", preco: 17.0, imagem: sorveteriaPremiumImages[3] },
-      { id: "c22-p5", comercioId: "c22", nome: "Casquinha Artesanal", descricao: "Feita na hora.", preco: 5.0, imagem: sorveteriaPremiumImages[4] },
-      { id: "c22-p6", comercioId: "c22", nome: "Milkshake de Baunilha", descricao: "Com favas naturais.", preco: 22.0, imagem: sorveteriaPremiumImages[5] },
-      { id: "c22-p7", comercioId: "c22", nome: "Petit Gateau", descricao: "Com uma bola de gelato.", preco: 28.0, imagem: sorveteriaPremiumImages[6] },
-      { id: "c22-p8", comercioId: "c22", nome: "Affogato", descricao: "Expresso com gelato.", preco: 18.0, imagem: sorveteriaPremiumImages[7] },
-      { id: "c22-p9", comercioId: "c22", nome: "Copo Familiar 500ml", descricao: "Escolha ate 3 sabores.", preco: 45.0, imagem: sorveteriaPremiumImages[8] },
-      { id: "c22-p10", comercioId: "c22", nome: "Picolé Gourmet", descricao: "Banho de chocolate.", preco: 12.0, imagem: sorveteriaPremiumImages[9] }
+      { id: "9d987d33-50b2-4717-9640-a903d4308f2e", comercioId: "9135ca0e-b8a1-4712-8303-4d16112c9692", nome: "Gelato de Pistache", descricao: "Pistache italiano puro.", preco: 18.0, imagem: sorveteriaPremiumImages[0] },
+      { id: "dbc60e4a-7e4b-47cb-8c81-2c83a188b6ef", comercioId: "9135ca0e-b8a1-4712-8303-4d16112c9692", nome: "Gelato de Chocolate", descricao: "Belga 70% cacau.", preco: 16.0, imagem: sorveteriaPremiumImages[1] },
+      { id: "b5980ff8-9d3f-4abe-82cd-eee713eca68c", comercioId: "9135ca0e-b8a1-4712-8303-4d16112c9692", nome: "Sorbet de Morango", descricao: "Sem leite, pura fruta.", preco: 15.0, imagem: sorveteriaPremiumImages[2] },
+      { id: "0ad56ca4-9968-42f4-a122-8903beb24a0e", comercioId: "9135ca0e-b8a1-4712-8303-4d16112c9692", nome: "Gelato de Avela", descricao: "Com pedacos crocantes.", preco: 17.0, imagem: sorveteriaPremiumImages[3] },
+      { id: "a42f2762-0193-45ff-b6f9-6a6443b417d6", comercioId: "9135ca0e-b8a1-4712-8303-4d16112c9692", nome: "Casquinha Artesanal", descricao: "Feita na hora.", preco: 5.0, imagem: sorveteriaPremiumImages[4] },
+      { id: "0c3c49de-245d-44cb-b38e-209725ce9cd7", comercioId: "9135ca0e-b8a1-4712-8303-4d16112c9692", nome: "Milkshake de Baunilha", descricao: "Com favas naturais.", preco: 22.0, imagem: sorveteriaPremiumImages[5] },
+      { id: "ea72779f-53c0-4adf-849f-ffe325f60db6", comercioId: "9135ca0e-b8a1-4712-8303-4d16112c9692", nome: "Petit Gateau", descricao: "Com uma bola de gelato.", preco: 28.0, imagem: sorveteriaPremiumImages[6] },
+      { id: "a3d1396f-fa65-4b86-8182-5a68531f4aca", comercioId: "9135ca0e-b8a1-4712-8303-4d16112c9692", nome: "Affogato", descricao: "Expresso com gelato.", preco: 18.0, imagem: sorveteriaPremiumImages[7] },
+      { id: "08c1a5bf-6d2f-464e-bd12-d11384475e8d", comercioId: "9135ca0e-b8a1-4712-8303-4d16112c9692", nome: "Copo Familiar 500ml", descricao: "Escolha ate 3 sabores.", preco: 45.0, imagem: sorveteriaPremiumImages[8] },
+      { id: "573ab189-c4de-49c8-8cde-385f7945a1fe", comercioId: "9135ca0e-b8a1-4712-8303-4d16112c9692", nome: "Picolé Gourmet", descricao: "Banho de chocolate.", preco: 12.0, imagem: sorveteriaPremiumImages[9] }
     ]
   },
   {
-    id: "c23",
+    id: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6",
     usuarioId: "u23",
     nome: "Kids World",
     email: "vendas@kidsworld.com",
@@ -1371,20 +1371,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c23-p1", comercioId: "c23", nome: "Robo Inteligente", descricao: "Caminha e fala frases.", preco: 280.0, imagem: lojadeBrinquedosImages[0] },
-      { id: "c23-p2", comercioId: "c23", nome: "Pista de Loop", descricao: "Inclui 2 carrinhos velozes.", preco: 150.0, imagem: lojadeBrinquedosImages[1] },
-      { id: "c23-p3", comercioId: "c23", nome: "Kit de Cozinha", descricao: "Com fogao e panelinhas.", preco: 110.0, imagem: lojadeBrinquedosImages[2] },
-      { id: "c23-p4", comercioId: "c23", nome: "Urso Gigante", descricao: "1 metro de fofura.", preco: 250.0, imagem: lojadeBrinquedosImages[3] },
-      { id: "c23-p5", comercioId: "c23", nome: "Quebra-cabeca 3D", descricao: "Monumento historico.", preco: 85.0, imagem: lojadeBrinquedosImages[4] },
-      { id: "c23-p6", comercioId: "c23", nome: "Lego City", descricao: "Delegacia de policia.", preco: 350.0, imagem: lojadeBrinquedosImages[5] },
-      { id: "c23-p7", comercioId: "c23", nome: "Boneco Heroi", descricao: "Com luz e som.", preco: 95.0, imagem: lojadeBrinquedosImages[6] },
-      { id: "c23-p8", comercioId: "c23", nome: "Patinete 3 Rodas", descricao: "Estabilidade para os pequenos.", preco: 180.0, imagem: lojadeBrinquedosImages[7] },
-      { id: "c23-p9", comercioId: "c23", nome: "Mascara de Dinossauro", descricao: "Abre a boca e ruge.", preco: 130.0, imagem: lojadeBrinquedosImages[8] },
-      { id: "c23-p10", comercioId: "c23", nome: "Jogo de Magica", descricao: "Aprenda 50 truques.", preco: 75.0, imagem: lojadeBrinquedosImages[9] }
+      { id: "7714836a-0c3d-4cdd-8a0f-96befc64110f", comercioId: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6", nome: "Robo Inteligente", descricao: "Caminha e fala frases.", preco: 280.0, imagem: lojadeBrinquedosImages[0] },
+      { id: "7065903f-41a3-47ed-beb9-0f03cd29209b", comercioId: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6", nome: "Pista de Loop", descricao: "Inclui 2 carrinhos velozes.", preco: 150.0, imagem: lojadeBrinquedosImages[1] },
+      { id: "1f679f09-09f9-425f-864a-110663a0ca89", comercioId: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6", nome: "Kit de Cozinha", descricao: "Com fogao e panelinhas.", preco: 110.0, imagem: lojadeBrinquedosImages[2] },
+      { id: "0658ebaa-2907-45bc-9f8d-0fb639af92aa", comercioId: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6", nome: "Urso Gigante", descricao: "1 metro de fofura.", preco: 250.0, imagem: lojadeBrinquedosImages[3] },
+      { id: "71a918e3-1d57-4e82-9152-8354fce6a56f", comercioId: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6", nome: "Quebra-cabeca 3D", descricao: "Monumento historico.", preco: 85.0, imagem: lojadeBrinquedosImages[4] },
+      { id: "ffd73e47-ad08-4393-88ae-a0bd20a544ee", comercioId: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6", nome: "Lego City", descricao: "Delegacia de policia.", preco: 350.0, imagem: lojadeBrinquedosImages[5] },
+      { id: "94f52af1-abf1-4234-bcd3-d9fa5714ecba", comercioId: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6", nome: "Boneco Heroi", descricao: "Com luz e som.", preco: 95.0, imagem: lojadeBrinquedosImages[6] },
+      { id: "5f75f815-34c0-45e0-b305-a1329a5a9636", comercioId: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6", nome: "Patinete 3 Rodas", descricao: "Estabilidade para os pequenos.", preco: 180.0, imagem: lojadeBrinquedosImages[7] },
+      { id: "2507d6f2-ab6d-4019-a31a-fef170cb1c69", comercioId: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6", nome: "Mascara de Dinossauro", descricao: "Abre a boca e ruge.", preco: 130.0, imagem: lojadeBrinquedosImages[8] },
+      { id: "71e6bf89-1ff6-40d7-8b5c-e327929d770a", comercioId: "3143ed73-89e6-4e2d-a3e4-ac2b419a4bf6", nome: "Jogo de Magica", descricao: "Aprenda 50 truques.", preco: 75.0, imagem: lojadeBrinquedosImages[9] }
     ]
   },
   {
-    id: "c24",
+    id: "db23b67b-2c2e-412f-9361-e407b9e400b3",
     usuarioId: "u24",
     nome: "Jardim Encantado",
     email: "flores@jardim.com",
@@ -1406,20 +1406,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c24-p1", comercioId: "c24", nome: "Buque de Girassois", descricao: "5 flores grandes e vibrantes.", preco: 85.0, imagem: floriculturaImages[0] },
-      { id: "c24-p2", comercioId: "c24", nome: "Rosa Unitaria", descricao: "Embalada com laco de cetim.", preco: 15.0, imagem: floriculturaImages[1] },
-      { id: "c24-p3", comercioId: "c24", nome: "Vaso de Violetas", descricao: "Diversas cores disponiveis.", preco: 25.0, imagem: floriculturaImages[2] },
-      { id: "c24-p4", comercioId: "c24", nome: "Bonsai de Jabuticaba", descricao: "Arvore em miniatura.", preco: 180.0, imagem: floriculturaImages[3] },
-      { id: "c24-p5", comercioId: "c24", nome: "Cesta de Orquideas", descricao: "Luxuoso arranjo misto.", preco: 250.0, imagem: floriculturaImages[4] },
-      { id: "c24-p6", comercioId: "c24", nome: "Kalanchoe no Vaso", descricao: "Flor da fortuna colorida.", preco: 30.0, imagem: floriculturaImages[5] },
-      { id: "c24-p7", comercioId: "c24", nome: "Terrario de Cactos", descricao: "Ecossistema em vidro.", preco: 95.0, imagem: floriculturaImages[6] },
-      { id: "c24-p8", comercioId: "c24", nome: "Sementes de Rosas", descricao: "Pacote com 20 sementes.", preco: 12.0, imagem: floriculturaImages[7] },
-      { id: "c24-p9", comercioId: "c24", nome: "Adubo Organico", descricao: "Saco de 1kg reforcado.", preco: 20.0, imagem: floriculturaImages[8] },
-      { id: "c24-p10", comercioId: "c24", nome: "Vaso de Barro", descricao: "Artesanato local decorado.", preco: 40.0, imagem: floriculturaImages[9] }
+      { id: "a4c98df7-9c6a-4be0-aca2-124dde04d522", comercioId: "db23b67b-2c2e-412f-9361-e407b9e400b3", nome: "Buque de Girassois", descricao: "5 flores grandes e vibrantes.", preco: 85.0, imagem: floriculturaImages[0] },
+      { id: "2ead8f1f-68d7-4a1a-98df-2c8f4a343d3b", comercioId: "db23b67b-2c2e-412f-9361-e407b9e400b3", nome: "Rosa Unitaria", descricao: "Embalada com laco de cetim.", preco: 15.0, imagem: floriculturaImages[1] },
+      { id: "08357755-33a9-4a47-a49f-f90102536f21", comercioId: "db23b67b-2c2e-412f-9361-e407b9e400b3", nome: "Vaso de Violetas", descricao: "Diversas cores disponiveis.", preco: 25.0, imagem: floriculturaImages[2] },
+      { id: "279bb4e9-8e20-4b5a-aebd-ff00402be0be", comercioId: "db23b67b-2c2e-412f-9361-e407b9e400b3", nome: "Bonsai de Jabuticaba", descricao: "Arvore em miniatura.", preco: 180.0, imagem: floriculturaImages[3] },
+      { id: "1133388b-baf2-4378-af05-097d79e6d643", comercioId: "db23b67b-2c2e-412f-9361-e407b9e400b3", nome: "Cesta de Orquideas", descricao: "Luxuoso arranjo misto.", preco: 250.0, imagem: floriculturaImages[4] },
+      { id: "e9c1408e-763e-4630-8222-e289a11880b8", comercioId: "db23b67b-2c2e-412f-9361-e407b9e400b3", nome: "Kalanchoe no Vaso", descricao: "Flor da fortuna colorida.", preco: 30.0, imagem: floriculturaImages[5] },
+      { id: "f659756f-a349-4b66-b255-71efc334dbdb", comercioId: "db23b67b-2c2e-412f-9361-e407b9e400b3", nome: "Terrario de Cactos", descricao: "Ecossistema em vidro.", preco: 95.0, imagem: floriculturaImages[6] },
+      { id: "a06e0280-37b3-4ba3-81b5-1b20b15dc692", comercioId: "db23b67b-2c2e-412f-9361-e407b9e400b3", nome: "Sementes de Rosas", descricao: "Pacote com 20 sementes.", preco: 12.0, imagem: floriculturaImages[7] },
+      { id: "e4bd86c4-f252-4480-9aae-52f2b76ae3a2", comercioId: "db23b67b-2c2e-412f-9361-e407b9e400b3", nome: "Adubo Organico", descricao: "Saco de 1kg reforcado.", preco: 20.0, imagem: floriculturaImages[8] },
+      { id: "350f20d2-aa5c-4364-81dd-095099165faa", comercioId: "db23b67b-2c2e-412f-9361-e407b9e400b3", nome: "Vaso de Barro", descricao: "Artesanato local decorado.", preco: 40.0, imagem: floriculturaImages[9] }
     ]
   },
   {
-    id: "c25",
+    id: "c081ff71-a71d-4e73-91c4-d8a03e51f18d",
     usuarioId: "u25",
     nome: "Arte no Papel",
     email: "vendas@artenopapel.com",
@@ -1441,20 +1441,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c25-p1", comercioId: "c25", nome: "Canetas Brush Pen", descricao: "Kit com 12 cores dual tip.", preco: 65.0, imagem: papelariaImages[0] },
-      { id: "c25-p2", comercioId: "c25", nome: "Caderno Pontilhado", descricao: "Ideal para Bullet Journal.", preco: 55.0, imagem: papelariaImages[1] },
-      { id: "c25-p3", comercioId: "c25", nome: "Washi Tapes", descricao: "Conjunto com 5 rolos decorados.", preco: 25.0, imagem: papelariaImages[2] },
-      { id: "c25-p4", comercioId: "c25", nome: "Estojo Holografico", descricao: "Espacoso e moderno.", preco: 35.0, imagem: papelariaImages[3] },
-      { id: "c25-p5", comercioId: "c25", nome: "Aquarela Profissional", descricao: "Pastilha com 24 cores.", preco: 120.0, imagem: papelariaImages[4] },
-      { id: "c25-p6", comercioId: "c25", nome: "Pinceis de Agua", descricao: "Set com 3 tamanhos.", preco: 40.0, imagem: papelariaImages[5] },
-      { id: "c25-p7", comercioId: "c25", nome: "Bloco de Desenho", descricao: "Papel 200g para artes.", preco: 30.0, imagem: papelariaImages[6] },
-      { id: "c25-p8", comercioId: "c25", nome: "Carimbos Decorativos", descricao: "Kit com temas de plantas.", preco: 45.0, imagem: papelariaImages[7] },
-      { id: "c25-p9", comercioId: "c25", nome: "Grampeador Rose Gold", descricao: "Elegancia na sua mesa.", preco: 28.0, imagem: papelariaImages[8] },
-      { id: "c25-p10", comercioId: "c25", nome: "Planners 2026", descricao: "Organizacao completa anual.", preco: 80.0, imagem: papelariaImages[9] }
+      { id: "d0e274de-066e-4339-a182-42e7c048b187", comercioId: "c081ff71-a71d-4e73-91c4-d8a03e51f18d", nome: "Canetas Brush Pen", descricao: "Kit com 12 cores dual tip.", preco: 65.0, imagem: papelariaImages[0] },
+      { id: "1b362c0a-4420-474a-ba06-cb5194d0799c", comercioId: "c081ff71-a71d-4e73-91c4-d8a03e51f18d", nome: "Caderno Pontilhado", descricao: "Ideal para Bullet Journal.", preco: 55.0, imagem: papelariaImages[1] },
+      { id: "1859959e-7385-4983-8044-ad8861ad0453", comercioId: "c081ff71-a71d-4e73-91c4-d8a03e51f18d", nome: "Washi Tapes", descricao: "Conjunto com 5 rolos decorados.", preco: 25.0, imagem: papelariaImages[2] },
+      { id: "69deaf73-382c-4c1c-848e-bb1b201707c7", comercioId: "c081ff71-a71d-4e73-91c4-d8a03e51f18d", nome: "Estojo Holografico", descricao: "Espacoso e moderno.", preco: 35.0, imagem: papelariaImages[3] },
+      { id: "69974d43-cfb0-4ae9-b722-fc0b82025f4f", comercioId: "c081ff71-a71d-4e73-91c4-d8a03e51f18d", nome: "Aquarela Profissional", descricao: "Pastilha com 24 cores.", preco: 120.0, imagem: papelariaImages[4] },
+      { id: "0f47ec10-543f-45b3-93a4-8ff961751a20", comercioId: "c081ff71-a71d-4e73-91c4-d8a03e51f18d", nome: "Pinceis de Agua", descricao: "Set com 3 tamanhos.", preco: 40.0, imagem: papelariaImages[5] },
+      { id: "ce80f1dd-d9cc-484f-8451-05879476b438", comercioId: "c081ff71-a71d-4e73-91c4-d8a03e51f18d", nome: "Bloco de Desenho", descricao: "Papel 200g para artes.", preco: 30.0, imagem: papelariaImages[6] },
+      { id: "f99e3948-6924-4678-95c4-03effc484eac", comercioId: "c081ff71-a71d-4e73-91c4-d8a03e51f18d", nome: "Carimbos Decorativos", descricao: "Kit com temas de plantas.", preco: 45.0, imagem: papelariaImages[7] },
+      { id: "9ef3144e-6c05-4e6d-8636-0fc0cd8724ad", comercioId: "c081ff71-a71d-4e73-91c4-d8a03e51f18d", nome: "Grampeador Rose Gold", descricao: "Elegancia na sua mesa.", preco: 28.0, imagem: papelariaImages[8] },
+      { id: "632c083e-8040-4b34-81c1-d05a21fc9ae6", comercioId: "c081ff71-a71d-4e73-91c4-d8a03e51f18d", nome: "Planners 2026", descricao: "Organizacao completa anual.", preco: 80.0, imagem: papelariaImages[9] }
     ]
   },
   {
-    id: "c26",
+    id: "56587e4b-b86c-4936-b582-3c902f10d87a",
     usuarioId: "u26",
     nome: "Glamour Make",
     email: "sac@glamourmake.com",
@@ -1476,21 +1476,21 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c26-p1", comercioId: "c26", nome: "Base Matte Fluida", descricao: "Cobertura alta e natural.", preco: 150.0, imagem: lojadeMaquiagemImages[0] },
-      { id: "c26-p2", comercioId: "c26", nome: "Paleta de Sombras", descricao: "18 tons nudes e cintilantes.", preco: 120.0, imagem: lojadeMaquiagemImages[1] },
-      { id: "c26-p3", comercioId: "c26", nome: "Batom Vermelho", descricao: "Acabamento aveludado.", preco: 45.0, imagem: lojadeMaquiagemImages[2] },
-      { id: "c26-p4", comercioId: "c26", nome: "Rimel Curvador", descricao: "Efeito cilios posticos.", preco: 60.0, imagem: lojadeMaquiagemImages[3] },
-      { id: "c26-p5", comercioId: "c26", nome: "Iluminador Compacto", descricao: "Brilho intenso e duradouro.", preco: 55.0, imagem: lojadeMaquiagemImages[4] },
-      { id: "c26-p6", comercioId: "c26", nome: "Delineador em Caneta", descricao: "Traco preciso e a prova d'agua.", preco: 38.0, imagem: lojadeMaquiagemImages[5] },
-      { id: "c26-p7", comercioId: "c26", nome: "Kit de Pinceis", descricao: "7 peças profissionais.", preco: 110.0, imagem: lojadeMaquiagemImages[6] },
-      { id: "c26-p8", comercioId: "c26", nome: "Blush Rosado", descricao: "Efeito saude imediato.", preco: 42.0, imagem: lojadeMaquiagemImages[7] },
-      { id: "c26-p9", comercioId: "c26", nome: "Esponja de Mistura", descricao: "Maciez e espalhabilidade.", preco: 25.0, imagem: lojadeMaquiagemImages[8] },
-      { id: "c26-p10", comercioId: "c26", nome: "Fixador de Maquiagem", descricao: "Spray refrescante 100ml.", preco: 50.0, imagem: lojadeMaquiagemImages[9] }
+      { id: "fac6b5a6-3832-4ef5-abcb-7b71b979e0fb", comercioId: "56587e4b-b86c-4936-b582-3c902f10d87a", nome: "Base Matte Fluida", descricao: "Cobertura alta e natural.", preco: 150.0, imagem: lojadeMaquiagemImages[0] },
+      { id: "a09f178b-b89a-49fa-9bbd-9ffdb249af20", comercioId: "56587e4b-b86c-4936-b582-3c902f10d87a", nome: "Paleta de Sombras", descricao: "18 tons nudes e cintilantes.", preco: 120.0, imagem: lojadeMaquiagemImages[1] },
+      { id: "ff742dfa-9b31-4281-a6fa-c36e080eb615", comercioId: "56587e4b-b86c-4936-b582-3c902f10d87a", nome: "Batom Vermelho", descricao: "Acabamento aveludado.", preco: 45.0, imagem: lojadeMaquiagemImages[2] },
+      { id: "bfd69b40-2018-47fb-a296-f6f3724a5c6c", comercioId: "56587e4b-b86c-4936-b582-3c902f10d87a", nome: "Rimel Curvador", descricao: "Efeito cilios posticos.", preco: 60.0, imagem: lojadeMaquiagemImages[3] },
+      { id: "00855383-413c-4a41-9d06-fac6df0d24e7", comercioId: "56587e4b-b86c-4936-b582-3c902f10d87a", nome: "Iluminador Compacto", descricao: "Brilho intenso e duradouro.", preco: 55.0, imagem: lojadeMaquiagemImages[4] },
+      { id: "24479aed-771a-40c7-9f00-da86d89dd9c8", comercioId: "56587e4b-b86c-4936-b582-3c902f10d87a", nome: "Delineador em Caneta", descricao: "Traco preciso e a prova d'agua.", preco: 38.0, imagem: lojadeMaquiagemImages[5] },
+      { id: "188254d5-d4f6-41c1-84fb-0c58d2c57983", comercioId: "56587e4b-b86c-4936-b582-3c902f10d87a", nome: "Kit de Pinceis", descricao: "7 peças profissionais.", preco: 110.0, imagem: lojadeMaquiagemImages[6] },
+      { id: "51e771f6-6bdc-4d72-9e91-93971e40fad4", comercioId: "56587e4b-b86c-4936-b582-3c902f10d87a", nome: "Blush Rosado", descricao: "Efeito saude imediato.", preco: 42.0, imagem: lojadeMaquiagemImages[7] },
+      { id: "e36bf1ce-40d8-44b1-89a5-494e0ca1b4ff", comercioId: "56587e4b-b86c-4936-b582-3c902f10d87a", nome: "Esponja de Mistura", descricao: "Maciez e espalhabilidade.", preco: 25.0, imagem: lojadeMaquiagemImages[8] },
+      { id: "450eec39-facb-41b6-be3b-d70bc1eb4d48", comercioId: "56587e4b-b86c-4936-b582-3c902f10d87a", nome: "Fixador de Maquiagem", descricao: "Spray refrescante 100ml.", preco: 50.0, imagem: lojadeMaquiagemImages[9] }
     ],
     // estacionamento: false
   },
   {
-    id: "c27",
+    id: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66",
     usuarioId: "u27",
     nome: "Forte Construcoes",
     email: "vendas@forteconstrucoes.com",
@@ -1512,20 +1512,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c27-p1", comercioId: "c27", nome: "Cimento 50kg", descricao: "Alta resistencia inicial.", preco: 35.0, imagem: materiaisdeConstruoImages[0] },
-      { id: "c27-p2", comercioId: "c27", nome: "Tinta Acrilica 18L", descricao: "Branco gelo rendimento extra.", preco: 280.0, imagem: materiaisdeConstruoImages[1] },
-      { id: "c27-p3", comercioId: "c27", nome: "Furadeira Impacto", descricao: "Potencia 600W com maleta.", preco: 220.0, imagem: materiaisdeConstruoImages[2] },
-      { id: "c27-p4", comercioId: "c27", nome: "Piso Ceramico", descricao: "Caixa com 2.5m2 amadeirado.", preco: 85.0, imagem: materiaisdeConstruoImages[3] },
-      { id: "c27-p5", comercioId: "c27", nome: "Argamassa ACIII", descricao: "Uso interno e externo 20kg.", preco: 45.0, imagem: materiaisdeConstruoImages[4] },
-      { id: "c27-p6", comercioId: "c27", nome: "Kit de Chaves", descricao: "Fenda e Philips 6 pecas.", preco: 60.0, imagem: materiaisdeConstruoImages[5] },
-      { id: "c27-p7", comercioId: "c27", nome: "Torneira Gourmet", descricao: "Flexivel com jato duplo.", preco: 180.0, imagem: materiaisdeConstruoImages[6] },
-      { id: "c27-p8", comercioId: "c27", nome: "Luminaria Plafon", descricao: "LED 18W embutir.", preco: 35.0, imagem: materiaisdeConstruoImages[7] },
-      { id: "c27-p9", comercioId: "c27", nome: "Escada Alumínio", descricao: "5 degraus reforçada.", preco: 150.0, imagem: materiaisdeConstruoImages[8] },
-      { id: "c27-p10", comercioId: "c27", nome: "Saco de Cal 20kg", descricao: "Para pintura e reboco.", preco: 18.0, imagem: materiaisdeConstruoImages[9] }
+      { id: "2048aa1c-cd70-4557-9649-d88c7390abad", comercioId: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66", nome: "Cimento 50kg", descricao: "Alta resistencia inicial.", preco: 35.0, imagem: materiaisdeConstruoImages[0] },
+      { id: "1d6ba559-8ad4-478e-8afc-7af8944ac259", comercioId: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66", nome: "Tinta Acrilica 18L", descricao: "Branco gelo rendimento extra.", preco: 280.0, imagem: materiaisdeConstruoImages[1] },
+      { id: "ab94b07c-088a-45d9-9586-be03474e00cf", comercioId: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66", nome: "Furadeira Impacto", descricao: "Potencia 600W com maleta.", preco: 220.0, imagem: materiaisdeConstruoImages[2] },
+      { id: "c37ce32f-16c1-442b-b191-f6727d36d47b", comercioId: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66", nome: "Piso Ceramico", descricao: "Caixa com 2.5m2 amadeirado.", preco: 85.0, imagem: materiaisdeConstruoImages[3] },
+      { id: "21d45479-b733-4106-bf31-4462d36e00a7", comercioId: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66", nome: "Argamassa ACIII", descricao: "Uso interno e externo 20kg.", preco: 45.0, imagem: materiaisdeConstruoImages[4] },
+      { id: "9cdc16fd-f1d2-430d-b68b-d71fb0f6066c", comercioId: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66", nome: "Kit de Chaves", descricao: "Fenda e Philips 6 pecas.", preco: 60.0, imagem: materiaisdeConstruoImages[5] },
+      { id: "17ee1b0e-de4c-474d-a1a7-862d8ba987fe", comercioId: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66", nome: "Torneira Gourmet", descricao: "Flexivel com jato duplo.", preco: 180.0, imagem: materiaisdeConstruoImages[6] },
+      { id: "c54081c0-bd06-4842-a1d1-88c78c9714cf", comercioId: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66", nome: "Luminaria Plafon", descricao: "LED 18W embutir.", preco: 35.0, imagem: materiaisdeConstruoImages[7] },
+      { id: "2723c69a-fbd2-4720-a728-8ec74cf70146", comercioId: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66", nome: "Escada Alumínio", descricao: "5 degraus reforçada.", preco: 150.0, imagem: materiaisdeConstruoImages[8] },
+      { id: "29c7defc-730d-45ff-8c5e-6b5821602cf1", comercioId: "d08f3104-a9e5-4967-8f71-5c0cf95f1f66", nome: "Saco de Cal 20kg", descricao: "Para pintura e reboco.", preco: 18.0, imagem: materiaisdeConstruoImages[9] }
     ]
   },
   {
-    id: "c28",
+    id: "5754f5b4-6e4e-4063-8f96-7d96153f3a93",
     usuarioId: "u28",
     nome: "Vinho & Sabor",
     email: "contato@vinhosabor.com",
@@ -1547,20 +1547,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c28-p1", comercioId: "c28", nome: "Malbec Argentino", descricao: "Reserva 2022 encorpado.", preco: 95.0, imagem: vegano2Images[0] },
-      { id: "c28-p2", comercioId: "c28", nome: "Chardonnay Chileno", descricao: "Notas de frutas tropicais.", preco: 75.0, imagem: vegano2Images[1] },
-      { id: "c28-p3", comercioId: "c28", nome: "Espumante Brut", descricao: "Metodo tradicional 750ml.", preco: 120.0, imagem: vegano2Images[2] },
-      { id: "c28-p4", comercioId: "c28", nome: "Vinho Rose", descricao: "Leve e refrescante para o verao.", preco: 65.0, imagem: vegano2Images[3] },
-      { id: "c28-p5", comercioId: "c28", nome: "Vinho do Porto", descricao: "Doce e fortificado.", preco: 180.0, imagem: vegano2Images[4] },
-      { id: "c28-p6", comercioId: "c28", nome: "Taca de Cristal", descricao: "Set com 2 unidades.", preco: 110.0, imagem: vegano2Images[5] },
-      { id: "c28-p7", comercioId: "c28", nome: "Saca-rolhas Alavanca", descricao: "Facilidade e precisao.", preco: 55.0, imagem: vegano2Images[6] },
-      { id: "c28-p8", comercioId: "c28", nome: "Decanter de Vidro", descricao: "Para aeracao do vinho.", preco: 140.0, imagem: vegano2Images[7] },
-      { id: "c28-p9", comercioId: "c28", nome: "Queijo Parmesao", descricao: "Peca de 300g maturada.", preco: 45.0, imagem: vegano2Images[8] },
-      { id: "c28-p10", comercioId: "c28", nome: "Antepasto de Berinjela", descricao: "Pote de 200g artesanal.", preco: 25.0, imagem: vegano2Images[9] }
+      { id: "fe2f827f-7350-420b-85f3-ff1959ea4ebf", comercioId: "5754f5b4-6e4e-4063-8f96-7d96153f3a93", nome: "Malbec Argentino", descricao: "Reserva 2022 encorpado.", preco: 95.0, imagem: vegano2Images[0] },
+      { id: "c1a6d3bf-c0f1-4f3e-acbf-adbe0cc4af8e", comercioId: "5754f5b4-6e4e-4063-8f96-7d96153f3a93", nome: "Chardonnay Chileno", descricao: "Notas de frutas tropicais.", preco: 75.0, imagem: vegano2Images[1] },
+      { id: "67b5ceea-221a-43b8-a496-541123eee6bb", comercioId: "5754f5b4-6e4e-4063-8f96-7d96153f3a93", nome: "Espumante Brut", descricao: "Metodo tradicional 750ml.", preco: 120.0, imagem: vegano2Images[2] },
+      { id: "35e26540-09e8-44a6-bd9c-14509a05eabf", comercioId: "5754f5b4-6e4e-4063-8f96-7d96153f3a93", nome: "Vinho Rose", descricao: "Leve e refrescante para o verao.", preco: 65.0, imagem: vegano2Images[3] },
+      { id: "bb032a0a-c838-4a93-bed8-1c6ef590f2be", comercioId: "5754f5b4-6e4e-4063-8f96-7d96153f3a93", nome: "Vinho do Porto", descricao: "Doce e fortificado.", preco: 180.0, imagem: vegano2Images[4] },
+      { id: "79256322-af84-448e-aaf6-93d078e2fc0f", comercioId: "5754f5b4-6e4e-4063-8f96-7d96153f3a93", nome: "Taca de Cristal", descricao: "Set com 2 unidades.", preco: 110.0, imagem: vegano2Images[5] },
+      { id: "2cb4e940-1fa5-4833-a668-0114b0429ab5", comercioId: "5754f5b4-6e4e-4063-8f96-7d96153f3a93", nome: "Saca-rolhas Alavanca", descricao: "Facilidade e precisao.", preco: 55.0, imagem: vegano2Images[6] },
+      { id: "392e81c0-bad3-4277-9f1f-30b39bcad6fc", comercioId: "5754f5b4-6e4e-4063-8f96-7d96153f3a93", nome: "Decanter de Vidro", descricao: "Para aeracao do vinho.", preco: 140.0, imagem: vegano2Images[7] },
+      { id: "c95ae35f-e8a7-4d67-bd41-74fadd4530c8", comercioId: "5754f5b4-6e4e-4063-8f96-7d96153f3a93", nome: "Queijo Parmesao", descricao: "Peca de 300g maturada.", preco: 45.0, imagem: vegano2Images[8] },
+      { id: "ecd049d2-fd5c-4faa-8137-2f106f948996", comercioId: "5754f5b4-6e4e-4063-8f96-7d96153f3a93", nome: "Antepasto de Berinjela", descricao: "Pote de 200g artesanal.", preco: 25.0, imagem: vegano2Images[9] }
     ]
   },
   {
-    id: "c29",
+    id: "3831083a-23d3-4b97-a4b7-27dfdc914ec7",
     usuarioId: "u29",
     nome: "Acordes & Notas",
     email: "musica@acordes.com",
@@ -1582,20 +1582,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c29-p1", comercioId: "c29", nome: "Violao de Aco", descricao: "Sonoridade brilhante e macia.", preco: 650.0, imagem: lojadeInstrumentosMusicaisImages[0] },
-      { id: "c29-p2", comercioId: "c29", nome: "Guitarra Strato", descricao: "3 captadores single coil.", preco: 1200.0, imagem: lojadeInstrumentosMusicaisImages[1] },
-      { id: "c29-p3", comercioId: "c29", nome: "Teclado 61 Teclas", descricao: "Com sensibilidade ao toque.", preco: 950.0, imagem: lojadeInstrumentosMusicaisImages[2] },
-      { id: "c29-p4", comercioId: "c29", nome: "Cajon de Madeira", descricao: "Percussao versatil.", preco: 350.0, imagem: lojadeInstrumentosMusicaisImages[3] },
-      { id: "c29-p5", comercioId: "c29", nome: "Amplificador 15W", descricao: "Ideal para estudo em casa.", preco: 480.0, imagem: lojadeInstrumentosMusicaisImages[4] },
-      { id: "c29-p6", comercioId: "c29", nome: "Encordoamento Aco", descricao: "Kit 0.10 completo.", preco: 45.0, imagem: lojadeInstrumentosMusicaisImages[5] },
-      { id: "c29-p7", comercioId: "c29", nome: "Palhetas Sortidas", descricao: "Pacote com 10 unidades.", preco: 20.0, imagem: lojadeInstrumentosMusicaisImages[6] },
-      { id: "c29-p8", comercioId: "c29", nome: "Cabo P10 3m", descricao: "Blindagem anti-ruido.", preco: 55.0, imagem: lojadeInstrumentosMusicaisImages[7] },
-      { id: "c29-p9", comercioId: "c29", nome: "Suporte de Chao", descricao: "Para violao ou guitarra.", preco: 65.0, imagem: lojadeInstrumentosMusicaisImages[8] },
-      { id: "c29-p10", comercioId: "c29", nome: "Afinador Digital", descricao: "Clip para headstock.", preco: 40.0, imagem: lojadeInstrumentosMusicaisImages[9] }
+      { id: "f97e1970-a1a0-48f9-8bae-ad577e2396cd", comercioId: "3831083a-23d3-4b97-a4b7-27dfdc914ec7", nome: "Violao de Aco", descricao: "Sonoridade brilhante e macia.", preco: 650.0, imagem: lojadeInstrumentosMusicaisImages[0] },
+      { id: "63c51387-32f6-4b67-9b24-c9e12e76a1a1", comercioId: "3831083a-23d3-4b97-a4b7-27dfdc914ec7", nome: "Guitarra Strato", descricao: "3 captadores single coil.", preco: 1200.0, imagem: lojadeInstrumentosMusicaisImages[1] },
+      { id: "c5561043-b496-4d8f-976d-f627ab54e0d6", comercioId: "3831083a-23d3-4b97-a4b7-27dfdc914ec7", nome: "Teclado 61 Teclas", descricao: "Com sensibilidade ao toque.", preco: 950.0, imagem: lojadeInstrumentosMusicaisImages[2] },
+      { id: "9e0e5a6c-f706-47d8-9458-585a9b4378fa", comercioId: "3831083a-23d3-4b97-a4b7-27dfdc914ec7", nome: "Cajon de Madeira", descricao: "Percussao versatil.", preco: 350.0, imagem: lojadeInstrumentosMusicaisImages[3] },
+      { id: "20882770-0f4d-40d5-b1ed-e5129c1257db", comercioId: "3831083a-23d3-4b97-a4b7-27dfdc914ec7", nome: "Amplificador 15W", descricao: "Ideal para estudo em casa.", preco: 480.0, imagem: lojadeInstrumentosMusicaisImages[4] },
+      { id: "fc953ca7-e483-4ede-a7a0-aaa5d152ba64", comercioId: "3831083a-23d3-4b97-a4b7-27dfdc914ec7", nome: "Encordoamento Aco", descricao: "Kit 0.10 completo.", preco: 45.0, imagem: lojadeInstrumentosMusicaisImages[5] },
+      { id: "1b68fcda-ad9e-4ebc-9e3c-b225930bccc7", comercioId: "3831083a-23d3-4b97-a4b7-27dfdc914ec7", nome: "Palhetas Sortidas", descricao: "Pacote com 10 unidades.", preco: 20.0, imagem: lojadeInstrumentosMusicaisImages[6] },
+      { id: "0f310918-2b50-4eb5-bbeb-f22e48c97d19", comercioId: "3831083a-23d3-4b97-a4b7-27dfdc914ec7", nome: "Cabo P10 3m", descricao: "Blindagem anti-ruido.", preco: 55.0, imagem: lojadeInstrumentosMusicaisImages[7] },
+      { id: "cf33924f-8835-4390-bc9b-4491545da4c3", comercioId: "3831083a-23d3-4b97-a4b7-27dfdc914ec7", nome: "Suporte de Chao", descricao: "Para violao ou guitarra.", preco: 65.0, imagem: lojadeInstrumentosMusicaisImages[8] },
+      { id: "19f1a671-029c-472b-bb2f-b2cf9546d7c6", comercioId: "3831083a-23d3-4b97-a4b7-27dfdc914ec7", nome: "Afinador Digital", descricao: "Clip para headstock.", preco: 40.0, imagem: lojadeInstrumentosMusicaisImages[9] }
     ]
   },
   {
-    id: "c30",
+    id: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59",
     usuarioId: "u30",
     nome: "Pet Care",
     email: "contato@petcare.com",
@@ -1617,20 +1617,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c30-p1", comercioId: "c30", nome: "Racao Premium 10kg", descricao: "Para caes adultos porte medio.", preco: 180.0, imagem: petShopImages[0] },
-      { id: "c30-p2", comercioId: "c30", nome: "Petisco Dental", descricao: "Limpeza dos dentes e hálito.", preco: 25.0, imagem: petShopImages[1] },
-      { id: "c30-p3", comercioId: "c30", nome: "Shampoo para Pets", descricao: "Hipoalergenico 500ml.", preco: 35.0, imagem: petShopImages[2] },
-      { id: "c30-p4", comercioId: "c30", nome: "Cama Macia G", descricao: "Conforto para o sono do pet.", preco: 120.0, imagem: petShopImages[3] },
-      { id: "c30-p5", comercioId: "c30", nome: "Coleira Ajustavel", descricao: "Com guia de 1.2m.", preco: 55.0, imagem: petShopImages[4] },
-      { id: "c30-p6", comercioId: "c30", nome: "Brinquedo Mordedor", descricao: "Borracha resistente.", preco: 28.0, imagem: petShopImages[5] },
-      { id: "c30-p7", comercioId: "c30", nome: "Caixa de Transporte", descricao: "Seguranca em viagens.", preco: 150.0, imagem: petShopImages[6] },
-      { id: "c30-p8", comercioId: "c30", nome: "Arranhador para Gatos", descricao: "Com 3 niveis e brinquedo.", preco: 95.0, imagem: petShopImages[7] },
-      { id: "c30-p9", comercioId: "c30", nome: "Comedouro Inox", descricao: "Antiderrapante 500ml.", preco: 30.0, imagem: petShopImages[8] },
-      { id: "c30-p10", comercioId: "c30", nome: "Areia Sanitaria 4kg", descricao: "Absorcao de odores.", preco: 22.0, imagem: petShopImages[9] }
+      { id: "014a5ebc-7b11-4a2d-9fbc-fe12df4833ae", comercioId: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59", nome: "Racao Premium 10kg", descricao: "Para caes adultos porte medio.", preco: 180.0, imagem: petShopImages[0] },
+      { id: "a4ec4ead-9072-4367-95a9-d0b77004ce38", comercioId: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59", nome: "Petisco Dental", descricao: "Limpeza dos dentes e hálito.", preco: 25.0, imagem: petShopImages[1] },
+      { id: "6ce4013a-22e7-4ca0-950a-7b852446ae9b", comercioId: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59", nome: "Shampoo para Pets", descricao: "Hipoalergenico 500ml.", preco: 35.0, imagem: petShopImages[2] },
+      { id: "0240f4cb-4ecf-4c26-94ab-d72f012d7668", comercioId: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59", nome: "Cama Macia G", descricao: "Conforto para o sono do pet.", preco: 120.0, imagem: petShopImages[3] },
+      { id: "2252241c-59b5-4844-ab23-274488b319a0", comercioId: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59", nome: "Coleira Ajustavel", descricao: "Com guia de 1.2m.", preco: 55.0, imagem: petShopImages[4] },
+      { id: "3f1635e0-457c-414a-9d20-11f0311c3747", comercioId: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59", nome: "Brinquedo Mordedor", descricao: "Borracha resistente.", preco: 28.0, imagem: petShopImages[5] },
+      { id: "cc433459-1bf1-4ec9-b1af-9cd59aa8ed1c", comercioId: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59", nome: "Caixa de Transporte", descricao: "Seguranca em viagens.", preco: 150.0, imagem: petShopImages[6] },
+      { id: "c855ebdd-e96a-43b2-a901-f5e80bc219d9", comercioId: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59", nome: "Arranhador para Gatos", descricao: "Com 3 niveis e brinquedo.", preco: 95.0, imagem: petShopImages[7] },
+      { id: "742ebba0-a7ec-4234-8e8a-dd413a6a230e", comercioId: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59", nome: "Comedouro Inox", descricao: "Antiderrapante 500ml.", preco: 30.0, imagem: petShopImages[8] },
+      { id: "1b3e3670-4e3c-4537-93ad-69ee2293c3cb", comercioId: "2adb1e5b-9f35-4a26-9a84-c87f1c7bfa59", nome: "Areia Sanitaria 4kg", descricao: "Absorcao de odores.", preco: 22.0, imagem: petShopImages[9] }
     ]
   },
   {
-    id: "c31",
+    id: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402",
     usuarioId: "u31",
     nome: "Tempo & Estilo",
     email: "contato@tempoestilo.com",
@@ -1652,20 +1652,20 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c31-p1", comercioId: "c31", nome: "Relogio Cronografo", descricao: "Aco inoxidavel e resistente a agua.", preco: 850.0, imagem: relojoariaImages[0] },
-      { id: "c31-p2", comercioId: "c31", nome: "Relogio de Pulso Classico", descricao: "Pulseira de couro legitimo.", preco: 450.0, imagem: relojoariaImages[1] },
-      { id: "c31-p3", comercioId: "c31", nome: "Relogio Digital Sport", descricao: "Com cronometro e alarme.", preco: 250.0, imagem: relojoariaImages[2] },
-      { id: "c31-p4", comercioId: "c31", nome: "Relogio Feminino Gold", descricao: "Com cristais delicados.", preco: 600.0, imagem: relojoariaImages[3] },
-      { id: "c31-p5", comercioId: "c31", nome: "Smartwatch Elite", descricao: "Notificacoes e saude.", preco: 1200.0, imagem: relojoariaImages[4] },
-      { id: "c31-p6", comercioId: "c31", nome: "Relogio de Parede Retro", descricao: "Decorativo em metal.", preco: 180.0, imagem: relojoariaImages[5] },
-      { id: "c31-p7", comercioId: "c31", nome: "Pulseira de Aco", descricao: "Reposicao para varios modelos.", preco: 85.0, imagem: relojoariaImages[6] },
-      { id: "c31-p8", comercioId: "c31", nome: "Bateria de Relogio", descricao: "Troca inclusa no valor.", preco: 30.0, imagem: relojoariaImages[7] },
-      { id: "c31-p9", comercioId: "c31", nome: "Caixa para Relogios", descricao: "Capacidade para 6 unidades.", preco: 110.0, imagem: relojoariaImages[8] },
-      { id: "c31-p10", comercioId: "c31", nome: "Relogio Minimalista", descricao: "Design clean e moderno.", preco: 380.0, imagem: relojoariaImages[9] }
+      { id: "d59dd291-276b-450c-bfe1-768c41c34dd9", comercioId: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402", nome: "Relogio Cronografo", descricao: "Aco inoxidavel e resistente a agua.", preco: 850.0, imagem: relojoariaImages[0] },
+      { id: "1d9cc354-fdd2-4499-8674-bcfcd5de9d7c", comercioId: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402", nome: "Relogio de Pulso Classico", descricao: "Pulseira de couro legitimo.", preco: 450.0, imagem: relojoariaImages[1] },
+      { id: "aa1663a8-7856-46d5-83b7-d897ec831ed5", comercioId: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402", nome: "Relogio Digital Sport", descricao: "Com cronometro e alarme.", preco: 250.0, imagem: relojoariaImages[2] },
+      { id: "4b94ba9c-997b-4b00-881c-38ca80d7aa9c", comercioId: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402", nome: "Relogio Feminino Gold", descricao: "Com cristais delicados.", preco: 600.0, imagem: relojoariaImages[3] },
+      { id: "e436941f-1746-449f-813f-5304498ca031", comercioId: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402", nome: "Smartwatch Elite", descricao: "Notificacoes e saude.", preco: 1200.0, imagem: relojoariaImages[4] },
+      { id: "cc2aaae1-b280-4566-9e44-0f7c57b47bc6", comercioId: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402", nome: "Relogio de Parede Retro", descricao: "Decorativo em metal.", preco: 180.0, imagem: relojoariaImages[5] },
+      { id: "77c0373a-e027-42c4-9e83-016a5bb1c328", comercioId: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402", nome: "Pulseira de Aco", descricao: "Reposicao para varios modelos.", preco: 85.0, imagem: relojoariaImages[6] },
+      { id: "90330810-8612-490b-a82f-5794e7845c93", comercioId: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402", nome: "Bateria de Relogio", descricao: "Troca inclusa no valor.", preco: 30.0, imagem: relojoariaImages[7] },
+      { id: "4b1fed4d-efa1-4647-89e4-ebfe398b6cbe", comercioId: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402", nome: "Caixa para Relogios", descricao: "Capacidade para 6 unidades.", preco: 110.0, imagem: relojoariaImages[8] },
+      { id: "e1204a5f-aa8b-4eb9-9d66-4747828374fa", comercioId: "946ce7a2-e078-4ca0-b7d0-7dff7b2e8402", nome: "Relogio Minimalista", descricao: "Design clean e moderno.", preco: 380.0, imagem: relojoariaImages[9] }
     ]
   },
   {
-    id: "c32",
+    id: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5",
     usuarioId: "u32",
     nome: "Joias & Brilho",
     email: "vendas@joiasbrilho.com",
@@ -1687,16 +1687,16 @@ export const mockComercios: ComercioExtendido[] = [
     favoritada: false,
     avaliacoes: [],
     produtos: [
-      { id: "c32-p1", comercioId: "c32", nome: "Maxi Brinco Dourado", descricao: "Design moderno e leve.", preco: 45.0, imagem: bijuteriasImages[0] },
-      { id: "c32-p2", comercioId: "c32", nome: "Colar de Perolas", descricao: "Bijuteria fina e elegante.", preco: 35.0, imagem: bijuteriasImages[1] },
-      { id: "c32-p3", comercioId: "c32", nome: "Pulseira com Berloques", descricao: "Personalize do seu jeito.", preco: 55.0, imagem: bijuteriasImages[2] },
-      { id: "c32-p4", comercioId: "c32", nome: "Anel com Pedra", descricao: "Ajustavel e brilhante.", preco: 25.0, imagem: bijuteriasImages[3] },
-      { id: "c32-p5", comercioId: "c32", nome: "Tiara de Veludo", descricao: "Acessorio para cabelo.", preco: 20.0, imagem: bijuteriasImages[4] },
-      { id: "c32-p6", comercioId: "c32", nome: "Tornozeleira de Conchas", descricao: "Estilo praiano e verao.", preco: 15.0, imagem: bijuteriasImages[5] },
-      { id: "c32-p7", comercioId: "c32", nome: "Kit de Aneis", descricao: "5 unidades para falange.", preco: 30.0, imagem: bijuteriasImages[6] },
-      { id: "c32-p8", comercioId: "c32", nome: "Choker de Strass", descricao: "Para brilhar em festas.", preco: 40.0, imagem: bijuteriasImages[7] },
-      { id: "c32-p9", comercioId: "c32", nome: "Presilhas de Cabelo", descricao: "Par decorado com brilhos.", preco: 12.0, imagem: bijuteriasImages[8] },
-      { id: "c32-p10", comercioId: "c32", nome: "Relogio Bijuteria", descricao: "Acessorio funcional e lindo.", preco: 75.0, imagem: bijuteriasImages[9] }
+      { id: "7d0c07ee-df5a-4eee-9d97-5b54ce90f4fb", comercioId: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5", nome: "Maxi Brinco Dourado", descricao: "Design moderno e leve.", preco: 45.0, imagem: bijuteriasImages[0] },
+      { id: "bca7a59e-09f2-421d-ac56-1f5ff94b4da6", comercioId: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5", nome: "Colar de Perolas", descricao: "Bijuteria fina e elegante.", preco: 35.0, imagem: bijuteriasImages[1] },
+      { id: "856167b2-6194-4dac-beb9-4a36c67cb2e4", comercioId: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5", nome: "Pulseira com Berloques", descricao: "Personalize do seu jeito.", preco: 55.0, imagem: bijuteriasImages[2] },
+      { id: "f453fccc-35d6-42a0-b442-1e48a8e6a969", comercioId: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5", nome: "Anel com Pedra", descricao: "Ajustavel e brilhante.", preco: 25.0, imagem: bijuteriasImages[3] },
+      { id: "a38f6786-1b26-456e-9604-b6145fc75db2", comercioId: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5", nome: "Tiara de Veludo", descricao: "Acessorio para cabelo.", preco: 20.0, imagem: bijuteriasImages[4] },
+      { id: "f303ad99-1b6e-4d02-9908-17b4363242df", comercioId: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5", nome: "Tornozeleira de Conchas", descricao: "Estilo praiano e verao.", preco: 15.0, imagem: bijuteriasImages[5] },
+      { id: "65a85bed-62e6-47fe-b226-2801ab17c402", comercioId: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5", nome: "Kit de Aneis", descricao: "5 unidades para falange.", preco: 30.0, imagem: bijuteriasImages[6] },
+      { id: "f8de5b74-98b9-42fa-8ad9-e36b2837d570", comercioId: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5", nome: "Choker de Strass", descricao: "Para brilhar em festas.", preco: 40.0, imagem: bijuteriasImages[7] },
+      { id: "8639664b-2df0-48d9-bdf5-ad044b1ff8ae", comercioId: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5", nome: "Presilhas de Cabelo", descricao: "Par decorado com brilhos.", preco: 12.0, imagem: bijuteriasImages[8] },
+      { id: "a91b1bae-aca0-4ee0-aa0b-ddae425f7bdf", comercioId: "c70690d9-f21a-4ee6-9488-ba5e9c89c7c5", nome: "Relogio Bijuteria", descricao: "Acessorio funcional e lindo.", preco: 75.0, imagem: bijuteriasImages[9] }
     ]
   }
 ];
@@ -1886,9 +1886,11 @@ export function getRestaurantesProximos(
   userLat: number = -10.91058576633602,
   userLon: number = -37.05137269380025,
   limit: number = 12,
-  radiusKm: number = 5
+  radiusKm: number = 5,
+  comercios?: ComercioExtendido[]
 ): ComercioExtendido[] {
-  return mockComercios
+  const source = comercios || mockComercios;
+  return source
     .filter(comercio => RESTAURANT_CATEGORIES.includes(comercio.categoria))
     .map(comercio => ({
       ...comercio,

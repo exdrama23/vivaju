@@ -3,6 +3,7 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Home, Map as MapIcon, Store, Calendar, User, Utensils } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { cn } from '@/utils/utils';
+import { NotificationManager } from './NotificationManager';
 const logoUrl = 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1778259234/Logo_jwzmd2.png';
 
 export function Layout() {
@@ -45,7 +46,7 @@ export function Layout() {
   return (
     <div className="flex flex-col h-screen bg-white overflow-hidden">
       <header className={cn(
-        "fixed top-0 z-60 w-full transition-all duration-300",
+        "hidden md:block fixed top-0 z-60 w-full transition-all duration-300",
         isScrolled 
           ? "bg-white border-b border-[#dadce0] shadow-sm py-0" 
           : isHome 
@@ -137,14 +138,14 @@ export function Layout() {
         ref={mainRef}
         className={cn(
           "flex-1 flex flex-col overflow-y-auto overflow-x-hidden bg-[var(--cream)] pb-0 md:pb-0",
-          !isHome && "pt-16"
+          !isHome && "md:pt-16"
         )}
       >
         <Outlet />
       </main>
 
       {/* Mobile Bottom Navigation - M3 Style */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-60 border-t border-[var(--gray-border)] bg-white pb-safe">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-60 border-t border-[var(--gray-border)] bg-white pb-safe mobile-bottom-nav">
         <div className="flex h-16 items-center justify-around px-2">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -170,8 +171,27 @@ export function Layout() {
               </Link>
             );
           })}
+          {/* Item de Perfil/Login Adicionado para Mobile */}
+          <Link
+            to={user ? "/dashboard" : "/login"}
+            className="flex flex-col items-center justify-center w-full h-full gap-1 group"
+          >
+            <div className={cn(
+              'flex items-center justify-center w-12 h-8 rounded-full transition-all duration-200',
+              location.pathname === (user ? "/dashboard" : "/login") ? 'bg-[var(--primary-pale)] text-[var(--primary)]' : 'text-[var(--gray-text)] group-hover:bg-[var(--primary-pale)]'
+            )}>
+              <User className={cn('h-5 w-5', location.pathname === (user ? "/dashboard" : "/login") ? 'fill-[var(--primary)]' : '')} />
+            </div>
+            <span className={cn(
+              'text-[10px] font-bold transition-colors',
+              location.pathname === (user ? "/dashboard" : "/login") ? 'text-[var(--primary)]' : 'text-[var(--gray-text)]'
+            )}>
+              {user ? 'Perfil' : 'Entrar'}
+            </span>
+          </Link>
         </div>
       </nav>
+      <NotificationManager />
     </div>
   );
 }

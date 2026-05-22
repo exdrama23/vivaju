@@ -182,3 +182,8 @@
     border-right-color: var(--border);
   }
 }
+
+/* Hide mobile bottom navigation when a conversation is open */
+body.hide-mobile-nav .mobile-bottom-nav {
+  display: none !important;
+}

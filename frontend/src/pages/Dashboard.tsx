@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useData } from '@/context/DataContext';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/Global/Button';
 import { Input } from '@/components/Global/Input';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/Global/Card';
@@ -9,6 +9,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/Global/Ca
 export function Dashboard() {
   const { user, logout, adicionarProduto, adicionarCategoria } = useAuth();
   useData();
+  const navigate = useNavigate();
 
   // Estados para Categorias
   const [nomeCategoria, setNomeCategoria] = useState('');
@@ -48,7 +49,10 @@ export function Dashboard() {
     <div className="container mx-auto px-4 py-8 max-w-4xl md:pb-0 pb-24">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <h1 className="text-2xl sm:text-3xl font-bold">Meu Painel</h1>
-        <Button variant="outline" onClick={logout} className="w-full sm:w-auto cursor-pointer">Sair</Button>
+        <div className="flex gap-2 w-full sm:w-auto">
+          <Button onClick={() => navigate('/chats')} className="w-full sm:w-auto">Ir para Chat</Button>
+          <Button variant="outline" onClick={logout} className="w-full sm:w-auto cursor-pointer">Sair</Button>
+        </div>
       </div>
 
       <Card className="mb-8">

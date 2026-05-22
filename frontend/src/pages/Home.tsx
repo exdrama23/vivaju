@@ -554,7 +554,7 @@ export function Home() {
   const [filtroAtual, setFiltroAtual] = useState<{ name: string }>({ name: 'Todos' });
   const [searchTerm, setSearchTerm] = useState('');
 
-  const restaurantesProximos = getRestaurantesProximos();
+  const restaurantesProximos = getRestaurantesProximos(undefined, undefined, undefined, undefined, comercios);
   
   const shuffledComercios = useMemo(() => {
     return [...comercios].sort(() => Math.random() - 0.5);

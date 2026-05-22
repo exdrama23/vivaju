@@ -12,7 +12,8 @@ import { PrefeituraDashboard } from '@/pages/PrefeituraDashboard';
 import { Login } from '@/pages/Login';
 import { Cadastro } from '@/pages/Cadastro';
 import { Dashboard } from '@/pages/Dashboard';
-import  Teste  from '@/pages/teste';
+import Chats from '@/pages/Chats';
+import Teste from '@/pages/teste';
 
 function App() {
   return (
@@ -30,10 +31,12 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="cadastro" element={<Cadastro />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="chats" element={<Chats />} />
         <Route path="teste" element={<Teste />} />
       </Route>
     </Routes>
   );
 }
+
 
 export default App;

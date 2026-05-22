@@ -2,11 +2,13 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
   ChevronLeft, Heart, Search, Star, ChevronRight, Phone, MapPin, 
-  Navigation, AtSign, Info, X, AlertTriangle 
+  Navigation, AtSign, Info, X, AlertTriangle, MessageCircle
 } from 'lucide-react';
 import { useData } from '@/context/DataContext';
+import { useAuth } from '@/context/AuthContext';
 import { Modal } from '@/components/Global/Modal';
 import { Button } from '@/components/Global/Button';
+import { criarOuBuscarChat } from '@/services/chatsfunction';
 import type { ComercioExtendido } from '@/services/mockData';
 
 const ITEMS_PER_PAGE = 20;
@@ -280,6 +282,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, isMobile = false }:
 export function ComercioDetalhe() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const { comercios, addAvaliacao, toggleFavorito } = useData();
   const comercio = comercios.find(c => c.id === id) as ComercioExtendido | undefined;
 
@@ -423,6 +426,20 @@ export function ComercioDetalhe() {
                 <span className="text-gray-500">({avaliacoes.length})</span>
                 <ChevronRight className="w-4 h-4 text-gray-400" aria-hidden="true" />
               </button>
+
+              {user?.tipo === 'cliente' && (
+                <button
+                  type="button"
+                  onClick={async () => {
+                    const chatId = await criarOuBuscarChat(comercio.id);
+                    if (chatId !== '0') navigate(`/chats?id=${chatId}`);
+                  }}
+                  className="flex items-center gap-2 self-start lg:self-center shrink-0 px-5 py-2 bg-orange-600 text-white rounded-full text-sm font-bold hover:bg-orange-700 cursor-pointer transition shadow-md active:scale-95"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Conversar
+                </button>
+              )}
               
             </div>
             
