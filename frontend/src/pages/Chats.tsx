@@ -26,8 +26,10 @@ export default function Chats() {
     const [isOtherUserTyping, setIsOtherUserTyping] = useState(false);
     const [searchMessages, setSearchMessages] = useState('');
     const [showSearch, setShowSearch] = useState(false);
-    const [isConnected, setIsConnected] = useState(socket.connected);
+    const [socketStatus, setSocketStatus] = useState<'connecting' | 'connected' | 'disconnected'>(socket.connected ? 'connected' : 'connecting');
+    const [isSendingMessage, setIsSendingMessage] = useState(false);
     const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const isSendingMessageRef = useRef(false);
 
     const conversaAtualIdRef = useRef(conversaAtualId);
     useEffect(() => {
@@ -60,17 +62,28 @@ export default function Chats() {
         }
     };
 
+    const ordenarMensagens = (mensagens: Mensagem[]) => [...mensagens].sort((a, b) => {
+        const tempoA = new Date(a.datetime).getTime();
+        const tempoB = new Date(b.datetime).getTime();
+        if (tempoA !== tempoB) return tempoA - tempoB;
+        return a.id.localeCompare(b.id);
+    });
+
+    const isConnected = socketStatus === 'connected';
+
     useEffect(() => {
         if (!usuario) {
             navigate('/login');
             return;
         }
 
-        const handleConnect = () => setIsConnected(true);
-        const handleDisconnect = () => setIsConnected(false);
+        const handleConnect = () => setSocketStatus('connected');
+        const handleDisconnect = () => setSocketStatus('disconnected');
+        const handleConnectError = () => setSocketStatus('disconnected');
 
         socket.on('connect', handleConnect);
         socket.on('disconnect', handleDisconnect);
+        socket.on('connect_error', handleConnectError);
 
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
@@ -103,7 +116,7 @@ export default function Chats() {
                     conversa.id === message.chatId
                         ? {
                             ...conversa,
-                            mensagens: [...conversa.mensagens, messageFormat],
+                            mensagens: ordenarMensagens([...conversa.mensagens, messageFormat]),
                             contadorMensagens: conversa.mensagens.length + 1,
                             ultimaMensagem: message.text,
                             naoLidas: conversaAtualIdRef.current === message.chatId ? 0 : conversa.naoLidas + 1,
@@ -157,6 +170,7 @@ export default function Chats() {
         return () => {
             socket.off('connect', handleConnect);
             socket.off('disconnect', handleDisconnect);
+            socket.off('connect_error', handleConnectError);
             socket.off('receivedMessage', handleMessage);
             socket.off('userStatus', handleStatus);
             socket.off('userTyping', handleTyping);
@@ -234,7 +248,9 @@ export default function Chats() {
     
     const mensagensFiltradas = conversaAtual?.mensagens.filter(m => 
         m.texto.toLowerCase().includes(searchMessages.toLowerCase())
-    ) || [];
+    ) ? ordenarMensagens(conversaAtual.mensagens.filter(m => 
+        m.texto.toLowerCase().includes(searchMessages.toLowerCase())
+    )) : [];
 
     return (
         <div className="flex h-[100dvh] bg-gray-50 font-sans overflow-hidden w-full relative">
@@ -324,7 +340,7 @@ export default function Chats() {
 
             {/* Janela de Chat Principal */}
             <main className={`${conversaAtualId === '0' ? 'hidden md:flex' : 'flex'} flex-1 flex-col bg-white overflow-hidden relative shadow-2xl md:shadow-none z-0`}>
-                {!isConnected && (
+                {socketStatus === 'disconnected' && (
                     <div className="absolute top-0 left-0 right-0 bg-yellow-50 text-yellow-800 text-[10px] py-1.5 text-center font-bold z-50 border-b border-yellow-100 flex items-center justify-center gap-2">
                         <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
                         Problemas na conexão. Tentando reconectar...
@@ -453,7 +469,13 @@ export default function Chats() {
                                         ref={textareaRef}
                                         value={mensagemEnvio}
                                         onChange={handleChangeMsg}
-                                        placeholder={isConnected ? "Escreva sua mensagem..." : "Conexão perdida..."}
+                                        placeholder={
+                                            socketStatus === 'connected'
+                                                ? 'Escreva sua mensagem...'
+                                                : socketStatus === 'connecting'
+                                                    ? 'Conectando...'
+                                                    : 'Conexão perdida...'
+                                        }
                                         disabled={!isConnected}
                                         rows={1}
                                         className="w-full bg-transparent border-none outline-none text-gray-800 text-xs md:text-sm resize-none py-1 md:py-1.5 font-bold placeholder:text-gray-400 scroll-none"
@@ -467,35 +489,74 @@ export default function Chats() {
                                 </div>
                                 <button
                                     ref={btnEnviarRef}
-                                    disabled={!mensagemEnvio.trim() || !isConnected}
+                                    disabled={!mensagemEnvio.trim() || !isConnected || isSendingMessage}
                                     onClick={async () => {
-                                        if (!mensagemEnvio.trim()) return;
-                                        const res = await enviarMensagem(mensagemEnvio.trim(), conversaAtualId);
-                                        if (res.success) {
-                                            const novaMensagem: Mensagem = {
-                                                id: res.id || '',
-                                                texto: res.texto || mensagemEnvio.trim(),
-                                                remetente: 'usuario',
-                                                hora: res.hora || new Date().toTimeString().slice(0, 5),
-                                                datetime: new Date(),
-                                                lida: true
-                                            };
+                                        const mensagemAtual = mensagemEnvio.trim();
+                                        if (!mensagemAtual || isSendingMessageRef.current) return;
 
-                                            setDadosConversas(prev => prev.map(conversa =>
-                                                conversa.id === conversaAtualId
-                                                    ? {
-                                                        ...conversa,
-                                                        mensagens: [...conversa.mensagens, novaMensagem],
-                                                        contadorMensagens: conversa.mensagens.length + 1,
-                                                        ultimaMensagem: novaMensagem.texto,
-                                                    }
-                                                    : conversa
-                                            ));
+                                        isSendingMessageRef.current = true;
+                                        setIsSendingMessage(true);
 
-                                            setMensagemEnvio('');
-                                            if (textareaRef.current) textareaRef.current.style.height = 'auto';
-                                            socket.emit('typing', { chatId: conversaAtualId, isTyping: false });
-                                            setTimeout(() => scrollToBottom('smooth'), 50);
+                                        const tempoAgora = new Date();
+                                        const horaAgora = `${tempoAgora.getHours().toString().padStart(2, '0')}:${tempoAgora.getMinutes().toString().padStart(2, '0')}`;
+                                        const mensagemTempId = `temp-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+                                        const mensagemTemp: Mensagem = {
+                                            id: mensagemTempId,
+                                            texto: mensagemAtual,
+                                            remetente: 'usuario',
+                                            hora: horaAgora,
+                                            datetime: tempoAgora,
+                                            lida: true
+                                        };
+
+                                        setDadosConversas(prev => prev.map(conversa =>
+                                            conversa.id === conversaAtualId
+                                                ? {
+                                                    ...conversa,
+                                                    mensagens: ordenarMensagens([...conversa.mensagens, mensagemTemp]),
+                                                    contadorMensagens: conversa.mensagens.length + 1,
+                                                    ultimaMensagem: mensagemTemp.texto,
+                                                }
+                                                : conversa
+                                        ));
+
+                                        setMensagemEnvio('');
+                                        if (textareaRef.current) textareaRef.current.style.height = 'auto';
+                                        socket.emit('typing', { chatId: conversaAtualId, isTyping: false });
+                                        setTimeout(() => scrollToBottom('smooth'), 50);
+
+                                        try {
+                                            const res = await enviarMensagem(mensagemAtual, conversaAtualId);
+                                            if (res.success) {
+                                                setDadosConversas(prev => prev.map(conversa =>
+                                                    conversa.id === conversaAtualId
+                                                        ? {
+                                                            ...conversa,
+                                                            mensagens: conversa.mensagens.map(m =>
+                                                                m.id === mensagemTempId
+                                                                    ? {
+                                                                        ...m,
+                                                                        id: res.id || m.id,
+                                                                        texto: res.texto || m.texto,
+                                                                        hora: res.hora || m.hora,
+                                                                        datetime: new Date(),
+                                                                    }
+                                                                    : m
+                                                            ),
+                                                        }
+                                                        : conversa
+                                                ));
+                                            } else {
+                                                setDadosConversas(prev => prev.map(conversa =>
+                                                    conversa.id === conversaAtualId
+                                                        ? { ...conversa, mensagens: conversa.mensagens.filter(m => m.id !== mensagemTempId) }
+                                                        : conversa
+                                                ));
+                                            }
+                                        } finally {
+                                            isSendingMessageRef.current = false;
+                                            setIsSendingMessage(false);
                                         }
                                     }}
                                     className="p-3 md:p-4 bg-orange-600 text-white rounded-2xl hover:bg-orange-700 transition-all shadow-xl active:scale-95 disabled:opacity-40 disabled:scale-100 disabled:shadow-none cursor-pointer"

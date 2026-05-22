@@ -104,7 +104,7 @@ export function conversaConstructor(usuarioTipo: string, chat: any): Conversa {
             datetime: new Date(msg.dataCriacao),
             id: msg.id,
             lida: msg.lida
-        })).reverse(),
+        })),
         contadorMensagens: chat.mensagens.length
     };
 }
