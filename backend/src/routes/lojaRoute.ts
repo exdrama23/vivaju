@@ -1,16 +1,17 @@
-import express, { type RequestHandler } from 'express';
-import { apenasLoja, VSAuth } from '@middlewares/VSAuth';
+import { Router } from 'express';
 import LojaController from '@controllers/lojaController';
+import { VSAuth } from '@middlewares/VSAuth';
 
-const router = express.Router();
+const router = Router();
 
-router.post('/loja', LojaController.cadastroLoja as RequestHandler);
-router.put('/loja', VSAuth, apenasLoja, LojaController.editarLoja as RequestHandler);
-router.get('/loja', LojaController.buscarLojas as RequestHandler);
-router.get('/loja/nome/:nome', LojaController.buscarLojasPorNome as RequestHandler);
-router.get('/loja/categoria/:categoria', LojaController.buscarLojasPorCategoria as RequestHandler);
-router.get('/loja/produto/:produto', LojaController.buscarLojasPorProduto as RequestHandler);
-router.get('/loja/id/:id', LojaController.buscarLojaPorId as RequestHandler);
-router.get('/loja/estacionamento', LojaController.buscarEstacionamentos as RequestHandler);
+router.post('/', LojaController.cadastroLoja);
+router.get('/', LojaController.buscarLojas);
+router.get('/estacionamento', LojaController.buscarEstacionamentos);
+router.get('/:id', LojaController.buscarLojaPorId);
+router.get('/nome/:nome', LojaController.buscarLojasPorNome);
+router.get('/categoria/:categoria', LojaController.buscarLojasPorCategoria);
+router.get('/produto/:produto', LojaController.buscarLojasPorProduto);
+
+router.patch('/', VSAuth, LojaController.editarLoja);
 
 export default router;

@@ -3,10 +3,12 @@ import type { CookieOptions, Response } from 'express';
 import { AccessTokenPayload } from '@interfaces/cookiesEntity';
 import { JWT_SECRET } from './constants';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const cookieOptions: CookieOptions = {
     httpOnly: true,
-    secure: true,
-    sameSite: 'strict',
+    secure: isProduction,  // false em dev, true em prod
+    sameSite: isProduction ? 'none' : 'lax',  // 'lax' funciona melhor em dev
     path: '/',
 };
 

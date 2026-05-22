@@ -12,7 +12,21 @@ import errorHandler from '@middlewares/errorHandler';
 const port = process.env.PORT || 2923;
 const app = express();
 const server = http.createServer(app);
+import { Server } from 'socket.io';
+import { setupSockets } from './sockets/instanceSocket';
+
+const io = new Server(server, {
+    cors: {
+        origin: corsConfig.origin,
+        credentials: true,
+        methods: ['GET', 'POST']
+    }
+});
+
+setupSockets(io);
+
 app.set('trust proxy', 1); // * This is important for deployment in services like Render.
+
 
 // * Global Middlewares
 app.use(cors(corsConfig));

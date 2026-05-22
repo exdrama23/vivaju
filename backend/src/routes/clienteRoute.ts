@@ -4,8 +4,8 @@ import ClienteController from '@controllers/clienteController';
 
 const router = express.Router();
 
-router.post('/cliente', ClienteController.cadastroCliente as RequestHandler);
-router.put('/cliente', VSAuth, apenasCliente, ClienteController.editarCliente as RequestHandler);
-router.get('/cliente/id/:id', ClienteController.buscarClientePorId as RequestHandler);
+router.post('/', ClienteController.cadastroCliente as RequestHandler);
+router.put('/', VSAuth, apenasCliente, ClienteController.editarCliente as RequestHandler);
+router.get('/id/:id', ClienteController.buscarClientePorId as RequestHandler);
 
 export default router;

@@ -1,9 +1,9 @@
+import type { Request, Response, NextFunction } from 'express';
 import prisma from '@configs/db';
 import type { ErrorCustomVS } from '@interfaces/customErrorEntity';
 import type { RequestAuthVS, RequestCustomVS } from '@interfaces/requestEntity';
 import { cadastroLojaSchema, editarLojaSchema } from '@validators/controllers/lojaControllerSchema';
 import { ResponseVS } from '@utils/response';
-import type { Response, NextFunction } from 'express';
 import Errors from "@utils/errorClasses"
 import Argon2Utils from '@utils/argon2';
 import FormatUtils from '@utils/format';
@@ -11,9 +11,10 @@ import z from 'zod';
 
 export default class LojaController {
 
-    static async cadastroLoja(req: RequestCustomVS, res: Response, next: NextFunction){
+    static async cadastroLoja(req: Request, res: Response, next: NextFunction){
         try {
-            const dto = cadastroLojaSchema.parse(req.body);
+            const customReq = req as RequestCustomVS;
+            const dto = cadastroLojaSchema.parse(customReq.body);
             const {senha, estacionamentoInfo, ...resto} = dto;
             const emailExiste = await prisma.loja.findUnique({
                 where: {email: dto.email}
@@ -39,10 +40,11 @@ export default class LojaController {
         }
     }
 
-    static async editarLoja(req: RequestAuthVS, res: Response, next: NextFunction){
+    static async editarLoja(req: Request, res: Response, next: NextFunction){
         try {
-            const {id} = req.user;
-            const dto = editarLojaSchema.parse(req.body);
+            const authReq = req as RequestAuthVS;
+            const {id} = authReq.user;
+            const dto = editarLojaSchema.parse(authReq.body);
             const { estacionamentoInfo, lojaFuncionamento, ...resto } = dto;
             await prisma.loja.update({
                 where: {id},

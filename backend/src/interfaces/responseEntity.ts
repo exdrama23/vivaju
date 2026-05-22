@@ -26,4 +26,7 @@ export type ErrorType =
     | 'VS_AUTH_REQUIRED'
     | 'VS_AUTH_INVALID'
     | 'VS_AUTH_EXPIRED'
-    | 'VS_AUTH_LIMITED_ACCESS';
+    | 'VS_AUTH_LIMITED_ACCESS'
+    | 'CHAT_UNAUTHORIZED_SENDER'
+    | 'CHAT_BLOCKED'
+    | 'CHAT_DISABLED';
