@@ -45,13 +45,13 @@ export function Sugestoes() {
   const allCategories = ['Tudo', ...randomCategories];
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-[#F7F0E4]">
       {/* Header */}
       <div className="sticky top-0 z-40 bg-white border-b border-[#dadce0]">
         <div className="container mx-auto px-4 sm:px-6 py-4 flex items-center gap-4">
           <button
             onClick={() => navigate(-1)}
-            className="p-2 hover:bg-[#f8f9fa] rounded-full transition-colors"
+            className="p-2 hover:bg-[#f8f9fa] rounded-full transition-colors cursor-pointer"
           >
             <ChevronLeft className="w-6 h-6 text-[#5f6368]" />
           </button>
@@ -60,7 +60,7 @@ export function Sugestoes() {
       </div>
 
       {/* Conteúdo Principal */}
-      <main className="container mx-auto px-4 sm:px-6 py-8 flex-1">
+      <main className="container mx-auto px-4 sm:px-6 py-8 flex-1 bg-[#F7F0E4]">
         {/* Filtros por Categoria - Desktop */}
         <div className="mb-8 hidden md:flex flex-wrap gap-3">
           {allCategories.map((categoria) => {
@@ -72,7 +72,7 @@ export function Sugestoes() {
               <button
                 key={categoria}
                 onClick={() => setFiltroAtual(categoria)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 border font-medium text-sm ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 border font-medium text-sm cursor-pointer ${
                   isActive
                     ? 'bg-[#e8f0fe] border-[#1a73e8] text-[#1a73e8]'
                     : 'bg-[#f8f9fa] border-[#dadce0] text-[#3c4043] hover:bg-[#e8f0fe] hover:border-[#1a73e8]'
@@ -90,7 +90,7 @@ export function Sugestoes() {
           {/* Botão Scroll Esquerdo */}
           <button
             onClick={() => scrollFiltros('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -ml-10 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0]"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -ml-10 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0] cursor-pointer"
             aria-label="Scroll left"
           >
             <ChevronLeft className="w-4 h-4 text-[#5f6368]" />
@@ -111,7 +111,7 @@ export function Sugestoes() {
                 <button
                   key={categoria}
                   onClick={() => setFiltroAtual(categoria)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-200 border font-medium text-sm whitespace-nowrap flex-shrink-0 ${
+                  className={`flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-200 border font-medium text-sm whitespace-nowrap flex-shrink-0 cursor-pointer ${
                     isActive
                       ? 'bg-[#e8f0fe] border-[#1a73e8] text-[#1a73e8]'
                       : 'bg-[#f8f9fa] border-[#dadce0] text-[#3c4043]'
@@ -127,7 +127,7 @@ export function Sugestoes() {
           {/* Botão Scroll Direito */}
           <button
             onClick={() => scrollFiltros('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 -mr-10 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0]"
+            className="absolute right-0 top-1/2 -translate-y-1/2 -mr-10 z-10 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#f8f9fa] border border-[#dadce0] cursor-pointer"
             aria-label="Scroll right"
           >
             <ChevronRight className="w-4 h-4 text-[#5f6368]" />
@@ -149,7 +149,7 @@ export function Sugestoes() {
                 <button
                   key={comercio.id}
                   onClick={() => navigate(`/comercios/${comercio.id}`)}
-                  className="w-full flex items-center gap-4 p-4 rounded-lg border border-[#dadce0] bg-[#f8f9fa] hover:bg-white hover:border-[#1a73e8] transition-all duration-200 text-left"
+                  className="w-full flex items-center gap-4 p-4 rounded-lg border border-[#dadce0] bg-[#f8f9fa] hover:bg-white hover:border-[#1a73e8] transition-all duration-200 text-left cursor-pointer"
                 >
                   {/* Logo */}
                   <div className="w-16 h-16 rounded-lg bg-white border border-[#dadce0] overflow-hidden flex items-center justify-center flex-shrink-0">

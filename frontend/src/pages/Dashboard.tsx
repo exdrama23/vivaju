@@ -50,7 +50,7 @@ export function Dashboard() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <h1 className="text-2xl sm:text-3xl font-bold">Meu Painel</h1>
         <div className="flex gap-2 w-full sm:w-auto">
-          <Button onClick={() => navigate('/chats')} className="w-full sm:w-auto">Ir para Chat</Button>
+          <Button onClick={() => navigate('/chats')} className="w-full sm:w-auto cursor-pointer">Ir para Chat</Button>
           <Button variant="outline" onClick={logout} className="w-full sm:w-auto cursor-pointer">Sair</Button>
         </div>
       </div>
@@ -150,7 +150,7 @@ export function Dashboard() {
                     onChange={e => setNomeCategoria(e.target.value)}
                     className="text-sm"
                   />
-                  <Button type="submit" className="w-full text-sm h-10">Adicionar Categoria</Button>
+                  <Button type="submit" className="w-full text-sm h-10 cursor-pointer">Adicionar Categoria</Button>
                 </form>
 
                 <div className="space-y-2">
@@ -199,7 +199,7 @@ export function Dashboard() {
                       className="text-sm"
                     />
                   </div>
-                  <Button type="submit" className="w-full text-sm h-10">Adicionar Produto</Button>
+                  <Button type="submit" className="w-full text-sm h-10 cursor-pointer">Adicionar Produto</Button>
                 </form>
 
                 <div className="space-y-2">
