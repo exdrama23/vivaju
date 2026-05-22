@@ -49,6 +49,9 @@ export function Login() {
       const endpoint = tipo === 'comerciante' ? '/login/loja' : '/login/cliente';
       const response = await apiRequest(endpoint, { method: 'POST', data: { email, senha } });
       const userData = response.data || { id: 'u-logado', nome: 'Usuário', tipo };
+      if (userData?.socketToken) {
+        localStorage.setItem('vivaju_socket_token', userData.socketToken);
+      }
       login({ ...userData, email, tipo: (userData.tipo === 'comerciante' || tipo === 'comerciante') ? 'comerciante' : 'cliente' });
       navigate('/dashboard');
     } catch (err: any) {

@@ -33,6 +33,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     } finally {
       setUser(null);
       localStorage.removeItem('vivaju_user');
+      localStorage.removeItem('vivaju_socket_token');
     }
   };
 

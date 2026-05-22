@@ -4,6 +4,9 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:2923";
 
 const socket: Socket = io(apiUrl, {
     withCredentials: true,
+    auth: (cb) => {
+        cb({ token: localStorage.getItem('vivaju_socket_token') || undefined });
+    },
     reconnection: true,
     reconnectionDelay: 1000,
     reconnectionDelayMax: 5000,
