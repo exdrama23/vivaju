@@ -37,7 +37,7 @@ export interface UserStatusSocket {
     status: string;
     userId?: string;
     chatId: string;
-};
+}
 
 export interface TypingSocket {
     chatId: string;
@@ -55,11 +55,15 @@ interface CarregarConversasBackResponse {
     conversaAtual: string;
 }
 
+function normalizeUserType(userType: string) {
+    return userType === 'comerciante' ? 'loja' : userType;
+}
+
 export async function carregarConversasBack(usuario: { tipo: string, nome: string, id: string }, idAtual: string): Promise<CarregarConversasBackResponse> {
     const response = usuario.tipo === 'cliente' ? await axiosWe('/custom/chats-clientes') : await axiosWe('/custom/chats-lojas');
     const data = response.data.data.chats;
 
-    const conversas = data.map((chat: any) => conversaConstructor(usuario.tipo, chat));
+    const conversas = data.map((chat: any) => conversaConstructor(normalizeUserType(usuario.tipo), chat));
     let conversaAtual = idAtual || '0';
 
     const conversasSorted = [...conversas].sort((a, b) => {
@@ -72,7 +76,9 @@ export async function carregarConversasBack(usuario: { tipo: string, nome: strin
 }
 
 export function conversaConstructor(usuarioTipo: string, chat: any): Conversa {
-    const outroUsuario = usuarioTipo === 'cliente' ? chat.loja : chat.cliente;
+    const tipoNormalizado = normalizeUserType(usuarioTipo);
+    const outroUsuario = tipoNormalizado === 'cliente' ? chat.loja : chat.cliente;
+
     return {
         id: chat.id,
         bloqueadoStatus: chat.bloqueado,
@@ -87,19 +93,19 @@ export function conversaConstructor(usuarioTipo: string, chat: any): Conversa {
             const msg = chat.mensagens[0]?.dataCriacao;
             if (!msg) return '';
             const horario = new Date(msg);
-            return `${String(horario.getHours()).padStart(2, "0")}:${String(horario.getMinutes()).padStart(2, "0")}`;
+            return `${String(horario.getHours()).padStart(2, '0')}:${String(horario.getMinutes()).padStart(2, '0')}`;
         })(),
         naoLidas: chat.mensagens.reduce((ac: number, msg: any) => {
-            if (msg.enviadoPor !== usuarioTipo && !msg.lida) ac++;
+            if (msg.enviadoPor !== tipoNormalizado && !msg.lida) ac++;
             return ac;
         }, 0),
         avatar: outroUsuario.imagem || null,
         mensagens: chat.mensagens.map((msg: any) => ({
             texto: msg.conteudo,
-            remetente: msg.enviadoPor === usuarioTipo ? 'usuario' : 'eles',
+            remetente: msg.enviadoPor === tipoNormalizado ? 'usuario' : 'eles',
             hora: (() => {
                 const horario = new Date(msg.dataCriacao);
-                return `${String(horario.getHours()).padStart(2, "0")}:${String(horario.getMinutes()).padStart(2, "0")}`;
+                return `${String(horario.getHours()).padStart(2, '0')}:${String(horario.getMinutes()).padStart(2, '0')}`;
             })(),
             datetime: new Date(msg.dataCriacao),
             id: msg.id,

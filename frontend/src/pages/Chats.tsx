@@ -41,15 +41,20 @@ export default function Chats() {
         try {
             if (conversaAtualId !== '0') {
                 document.body.classList.add('hide-mobile-nav');
+                sessionStorage.setItem('vivaju_active_chat_id', conversaAtualId);
             } else {
                 document.body.classList.remove('hide-mobile-nav');
+                sessionStorage.removeItem('vivaju_active_chat_id');
             }
         } catch (e) {
             // ignore em ambientes sem DOM
         }
 
         return () => {
-            try { document.body.classList.remove('hide-mobile-nav'); } catch { }
+            try {
+                document.body.classList.remove('hide-mobile-nav');
+                sessionStorage.removeItem('vivaju_active_chat_id');
+            } catch { }
         };
     }, [conversaAtualId]);
 
@@ -105,9 +110,70 @@ export default function Chats() {
         carregar();
 
         const handleMessage = (message: MessageSocket) => {
-            if (message.userType === usuario?.tipo) return;
-
             const agora = new Date();
+
+            const normalize = (t?: string) => t === 'loja' ? 'comerciante' : t;
+            if (normalize(message.userType) === normalize(usuario?.tipo)) return;
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             const hora = `${agora.getHours().toString().padStart(2, '0')}:${agora.getMinutes().toString().padStart(2, '0')}`;
             const messageFormat: Mensagem = { texto: message.text, remetente: 'eles', hora, id: message.id, datetime: agora, lida: false };
 

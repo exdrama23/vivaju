@@ -15,10 +15,11 @@ export const NotificationManager: React.FC = () => {
         if (!user) return;
 
         const handleNewNotification = (data: { chatId: string, senderName: string, text: string }) => {
-            // Não mostrar notificação se já estiver na página de chats e no chat específico
             const params = new URLSearchParams(location.search);
-            const currentChatId = params.get('id');
-            
+            const currentChatIdFromUrl = params.get('id');
+            const currentChatIdFromState = sessionStorage.getItem('vivaju_active_chat_id');
+            const currentChatId = currentChatIdFromUrl || currentChatIdFromState;
+
             if (location.pathname === '/chats' && currentChatId === data.chatId) return;
 
             setNotification(data);
