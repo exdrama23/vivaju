@@ -91,7 +91,7 @@ export function VideoStoreSlider({ stores }: VideoStoreSliderProps) {
 
           <div className="pt-4">
             <Link to={`/comercios/${stores[currentIndex].id}`}>
-              <Button className="rounded-full px-10 shadow-xl bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold">
+              <Button className="rounded-full px-10 shadow-xl bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold cursor-pointer">
                 Ver detalhes
               </Button>
             </Link>
