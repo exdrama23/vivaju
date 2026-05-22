@@ -27,6 +27,7 @@ export function Cadastro() {
   const location = useLocation();
   const navigate = useNavigate();
   const { register } = useAuth();
+  const senhaForte = /^(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 
   const [tipo, setTipo] = useState<'cliente' | 'comerciante'>(location.state?.tipo || 'cliente');
   const [loading, setLoading] = useState(false);
@@ -121,7 +122,11 @@ export function Cadastro() {
       navigate('/dashboard');
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : 'Erro ao realizar o cadastro. Verifique os dados e tente novamente.';
-      setError(errorMessage);
+      setError(
+        errorMessage === 'Campos inválidos'
+          ? 'Campos inválidos. A senha precisa ter no mínimo 8 caracteres, com letra maiuscula, com números e caracteres especiais.'
+          : errorMessage
+      );
     } finally {
       setLoading(false);
     }
@@ -285,6 +290,9 @@ export function Cadastro() {
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
                   </div>
+                  <p className={`ml-1 text-[11px] font-medium transition-colors ${senha && !senhaForte.test(senha) ? 'text-amber-600' : 'text-[var(--gray-text)]'}`}>
+                    A senha deve ter pelo menos 8 caracteres, com letra maiúscula e minuscula, com números e caracteres especiais.
+                  </p>
                 </div>
 
                 {tipo === 'comerciante' && (

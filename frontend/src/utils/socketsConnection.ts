@@ -16,15 +16,15 @@ const socket: Socket = io(apiUrl, {
 
 // Log de erros para debug
 socket.on('connect', () => {
-    console.log('✅ Socket conectado com sucesso!');
+    console.log('Socket conectado com sucesso!');
 });
 
 socket.on('connect_error', (error) => {
-    console.error('❌ Erro de conexão WebSocket:', error);
+    console.error('Erro de conexão WebSocket:', error);
 });
 
 socket.on('disconnect', (reason) => {
-    console.warn('⚠️ Socket desconectado. Motivo:', reason);
+    console.warn('Socket desconectado. Motivo:', reason);
 });
 
 export default socket;
