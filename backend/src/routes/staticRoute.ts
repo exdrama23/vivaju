@@ -1,4 +1,3 @@
-// * Imports
 import express from 'express';
 import type { SuccessResponse, ErrorResponse } from '@interfaces/responseEntity'
 

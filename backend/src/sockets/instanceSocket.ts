@@ -4,7 +4,6 @@ import { setupNotifications } from './notificationSocket';
 import jwt from 'jsonwebtoken';
 import { AccessTokenPayload } from '@interfaces/cookiesEntity';
 
-// Função para parsear cookies manualmente
 function parseCookies(cookieString: string): Record<string, string> {
     const cookies: Record<string, string> = {};
     if (!cookieString) return cookies;
@@ -32,30 +31,30 @@ export function setupSockets(io: Server) {
             const token = cookies.accessToken || authToken;
 
             if (!token) {
-                console.error('[Socket Auth] ❌ Nenhum token encontrado no cookie nem no auth payload');
+                console.error('[Socket Auth] Nenhum token encontrado no cookie nem no auth payload');
                 console.debug('[Socket Auth] Cookies recebidos:', Object.keys(cookies));
                 return next(new Error('Autenticação necessária.'));
             }
 
             const user = jwt.verify(token, process.env.JWT_SECRET!) as AccessTokenPayload;
             socket.data.user = user;
-            console.log(`[Socket Auth] ✅ Usuário autenticado: ${user.id} (${user.tipo})`);
+            console.log(`[Socket Auth] Usuário autenticado: ${user.id} (${user.tipo})`);
             next();
         } catch (err) {
             const errorMsg = err instanceof Error ? err.message : String(err);
-            console.error('[Socket Auth] ❌ Erro de autenticação:', errorMsg);
+            console.error('[Socket Auth] Erro de autenticação:', errorMsg);
             next(new Error('Sessão inválida ou expirada.'));
         }
     });
 
     ioVS.on('connection', (socket: Socket) => {
-        console.log(`[Socket] ✅ Nova conexão: ${socket.id}`);
+        console.log(`[Socket] Nova conexão: ${socket.id}`);
         setupChat(io, socket);
         setupNotifications(io, socket);
     });
 
     ioVS.on('connect_error', (error: any) => {
-        console.error('[Socket] ❌ Erro na conexão:', error);
+        console.error('[Socket] Erro na conexão:', error);
     });
 }
 

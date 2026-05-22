@@ -16,7 +16,6 @@ export const setupNotifications = (io: Server, socket: Socket) => {
 
     const user = socket.data.user;
 
-    // Join room for individual user notifications
     socket.join(`user:${user.id}`);
 
 }
