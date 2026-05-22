@@ -26,17 +26,13 @@ export function setupSockets(io: Server) {
     ioVS.use((socket, next) => {
         try {
             const cookieHeader = socket.handshake?.headers?.cookie || '';
-            
-            if (!cookieHeader) {
-                console.error('[Socket Auth] ❌ Nenhum header de cookie encontrado');
-                return next(new Error('Autenticação necessária.'));
-            }
+            const authToken = (socket.handshake?.auth as { token?: string } | undefined)?.token;
 
             const cookies = parseCookies(cookieHeader);
-            const token = cookies.accessToken;
+            const token = cookies.accessToken || authToken;
 
             if (!token) {
-                console.error('[Socket Auth] ❌ Nenhum token encontrado no cookie');
+                console.error('[Socket Auth] ❌ Nenhum token encontrado no cookie nem no auth payload');
                 console.debug('[Socket Auth] Cookies recebidos:', Object.keys(cookies));
                 return next(new Error('Autenticação necessária.'));
             }

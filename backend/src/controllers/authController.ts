@@ -33,7 +33,8 @@ export default class AuthController {
                 data: {
                     id: lojaPorEmail.id,
                     nome: lojaPorEmail.nome,
-                    tipo: "comerciante"
+                    tipo: "comerciante",
+                    socketToken: accessToken
                 }
             });
         } catch (err) {
@@ -65,7 +66,8 @@ export default class AuthController {
                 data: {
                     id: clientePorEmail.id,
                     nome: clientePorEmail.nome,
-                    tipo: "cliente"
+                    tipo: "cliente",
+                    socketToken: accessToken
                 }
             });
         } catch (err) {
