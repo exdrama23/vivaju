@@ -5,8 +5,9 @@ import { Mapa } from '@/pages/Mapa';
 import { Comercios } from '@/pages/Comercios';
 import { ComercioDetalhe } from '@/pages/ComercioDetalhe';
 import { Eventos } from '@/pages/Eventos';
-// import { Estacionamentos } from '@/pages/Estacionamentos';
+import { Estacionamentos } from '@/pages/Estacionamentos';
 import { Culinaria } from '@/pages/Culinaria';
+import { PontosTuristicos } from '@/pages/PontosTuristicos';
 import { Sugestoes } from '@/pages/Sugestoes';
 import { PrefeituraDashboard } from '@/pages/PrefeituraDashboard';
 import { Login } from '@/pages/Login';
@@ -24,7 +25,8 @@ function App() {
         <Route path="comercios" element={<Comercios />} />
         <Route path="comercios/:id" element={<ComercioDetalhe />} />
         <Route path="eventos" element={<Eventos />} />
-        {/* <Route path="estacionamentos" element={<Estacionamentos />} /> */}
+        <Route path="pontos-turisticos" element={<PontosTuristicos />} />
+        <Route path="estacionamentos" element={<Estacionamentos />} />
         <Route path="culinaria" element={<Culinaria />} />
         <Route path="sugestoes" element={<Sugestoes />} />
         <Route path="prefeitura" element={<PrefeituraDashboard />} />

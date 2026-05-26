@@ -104,4 +104,5 @@ export interface Estacionamento {
   status: 'livre' | 'médio' | 'lotado';
   precoHora: number;
   tempoPreco: string;
+  horarioFuncionamento?: string;
 }

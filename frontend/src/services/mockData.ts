@@ -1825,28 +1825,99 @@ export const mockEventos: Evento[] = [
 
 ];
 
-export const mockEstacionamentos: Estacionamento[] = [
+// Estacionamentos temporariamente desativados
+export const mockEstacionamentos: Estacionamento[] = [];
+
+export const mockPontosTuristicos = [
   {
-    id: 'est1',
-    nome: 'Estacionamento Central',
-    latitude: -10.910694,
-    longitude: -37.050180,
-    numeroVagas: 100,
-    vagasOcupadas: 45,
-    status: 'livre',
-    precoHora: 5.0,
-    tempoPreco: 'hora'
+    id: 'pt1',
+    nome: 'Museu da Gente Sergipana',
+    categoria: 'Cultura',
+    imagem: 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779806985/48a4774b-5104-45d3-b0b7-748c8c086094.png',
+    descricao: 'Localizado na Avenida Ivo do Prado, é um dos museus interativos mais modernos do Brasil. Ele usa a tecnologia para imergir o visitante nas raízes, no sotaque e na cultura do povo de Sergipe.',
+    latitude: -10.917463,
+    longitude: -37.047562,
   },
   {
-    id: 'est2',
-    nome: 'Park Atalaia',
-    latitude: -10.908654,
-    longitude: -37.050631,
-    numeroVagas: 50,
-    vagasOcupadas: 48,
-    status: 'lotado',
-    precoHora: 8.0,
-    tempoPreco: 'hora'
+    id: 'pt2',
+    nome: 'Mercado Municipal Antonio Franco',
+    categoria: 'História',
+    imagem: 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779807118/e77d8eee-b6f0-41a6-8e26-e40115c7f9fa.png',
+    descricao: 'O verdadeiro epicentro cultural e comercial do Centro. É o lugar perfeito para encontrar artesanato, literatura de cordel, castanhas, queijos e a autêntica culinária sergipana. É um ecossistema gigante para os lojistas do VIVAJU.',
+    latitude: -10.907389,
+    longitude: -37.049136,
+  },
+  {
+    id: 'pt3',
+    nome: 'Praça Fausto Cardoso',
+    categoria: 'Lazer',
+    imagem: 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779807281/a9c8c126-0a9b-4dc1-bd30-114677d1afe8.png',
+    descricao: 'A praça mais antiga e imponente da cidade. Cercada por palmeiras imperiais, é um ponto de respiro e o marco zero da história política da capital.',
+    latitude: -10.913297,
+    longitude: -37.048698, 
+  },
+  {
+    id: 'pt4',
+    nome: 'Largo da Gente Sergipana',
+    categoria: 'Cultura',
+    imagem: 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779811951/55f8476e-cd90-4f6e-83df-fd6f20e1e034.png',
+    descricao: 'Um monumento espetacular instalado nas águas do Rio Sergipe, bem em frente ao Museu da Gente Sergipana. Conta com estátuas gigantes que homenageiam as principais manifestações folclóricas do estado, como o Lambe-Sujo e o Cacumbi.',
+    latitude: -10.917258,
+    longitude: -37.047057,
+  },
+  {
+    id: 'pt5',
+    nome: 'Palácio Museu Olímpio Campos',
+    categoria: 'História',
+    imagem: 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779812007/c4744cbb-aa6e-4a3c-8b38-d9e6e05bbd32.png',
+    descricao: 'De frente para a Praça Fausto Cardoso, esta construção lindíssima foi a sede do Governo Estadual. Hoje, funciona como um museu totalmente restaurado que preserva a história política e a arquitetura do século XIX.',
+    latitude: -10.912880,
+    longitude: -37.049383, 
+  },
+  {
+    id: 'pt6',
+    nome: 'Catedral Metropolitana de Aracaju',
+    categoria: 'Arquitetura',
+    imagem: 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779812261/c425a3b6-169f-4d84-b00e-578fdd2d37de.png',
+    descricao: 'Um marco arquitetônico com influências neoclássicas e neogóticas, situado na Praça Olímpio Campos. Sua cúpula pintada e os vitrais são de uma beleza indiscutível.',
+    latitude: -10.913403,
+    longitude: -37.051796,
+  },
+  {
+    id: 'pt7',
+    nome: 'Ponte do Imperador',
+    categoria: 'História',
+    imagem: 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779812465/21a4091d-7044-44c5-a178-513f7519e534.png',
+    descricao: 'Um ancoradouro construído em 1859 especialmente para a comitiva do Imperador Dom Pedro II. Hoje é um belo mirante às margens do Rio Sergipe.',
+    latitude: -10.913458,
+    longitude: -37.047697,
+  },
+  {
+    id: 'pt8',
+    nome: 'Centro Cultural de Aracaju',
+    categoria: 'Cultura',
+    imagem: 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779812521/c2d84c28-6bc0-445c-9a31-4fcb6ee6e21e.png',
+    descricao: 'Localizado na Praça General Valadão, o espaço abriga teatro, biblioteca, sala de exibições e o Museu da Cidade. É uma âncora fundamental para os eventos da nossa "Agenda Viva".',
+    latitude: -10.909700,
+    longitude: -37.048800,
+  },
+  {
+    id: 'pt9',
+    nome: 'Espaço Zé Peixe',
+    categoria: 'Lazer',
+    imagem: 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779812638/3f52c1c6-650f-4cb3-a216-044f9cd7946a.png',
+    descricao: 'Uma homenagem ao lendário prático que guiava as embarcações no Rio Sergipe a nado. O prédio histórico abriga restaurante, cafeteria e um mirante agradável de frente para o rio.',
+    latitude: -10.908984,
+    longitude: -37.047793,
+  },
+  {
+    id: 'pt10',
+    nome: 'Rua do Turista',
+    categoria: 'Compras',
+    imagem: 'https://res.cloudinary.com/dcqks32rh/image/upload/q_auto/f_auto/v1779812698/02c41301-a956-4246-8931-adf29238a343.png',
+    descricao: 'Um centro comercial aconchegante e coberto no meio do calçadão, que reúne dezenas de lojas de artesanato, serviços e lanchonetes locais.',
+    latitude: -10.910200,
+    longitude: -37.050800,
   }
 ];
 

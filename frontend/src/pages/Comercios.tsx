@@ -7,6 +7,12 @@ import { useSearchParams } from 'react-router-dom';
 import { StoreCardSkeleton, CategorySkeleton } from '@/components/Global/Skeleton';
 import { Search } from 'lucide-react';
 
+const normalizeText = (value: string) =>
+  (value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
 export function Comercios() {
   const { comercios, isLoadingComercios } = useData();
   const [searchParams] = useSearchParams();
@@ -34,10 +40,16 @@ export function Comercios() {
   }, [categoriaDaUrl]);
 
   const comerciosExibidos = useMemo(() => {
+    const search = normalizeText(searchTerm);
     const filtered = comercios.filter(c => {
-      const matchesFiltro = filtroAtual.name === 'Todos' || filtroAtual.name === 'Tudo' || c.categoria === filtroAtual.name;
-      const matchesBusca = c.nome.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          c.categoria.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesFiltro =
+        filtroAtual.name === 'Todos' ||
+        filtroAtual.name === 'Tudo' ||
+        normalizeText(c.categoria).includes(normalizeText(filtroAtual.name));
+      const matchesBusca =
+        normalizeText(c.nome).includes(search) ||
+        normalizeText(c.categoria).includes(search) ||
+        normalizeText(c.descricao || '').includes(search);
       return matchesFiltro && matchesBusca;
     });
     console.log('Comercios.tsx - filtered result:', filtered);

@@ -1,11 +1,11 @@
-import { Store, Calendar, Car } from 'lucide-react';
+import { Store, Calendar, Landmark } from 'lucide-react';
 import { cn } from '@/utils/utils';
 
 interface MapFiltersProps {
   activeFilters: {
     comercios: boolean;
     eventos: boolean;
-    estacionamentos: boolean;
+    pontosTuristicos: boolean;
   };
   onFilterChange: (key: keyof MapFiltersProps['activeFilters']) => void;
 }
@@ -36,15 +36,15 @@ export function MapFilters({ activeFilters, onFilterChange }: MapFiltersProps) {
         <Calendar className="w-4 h-4" /> Eventos
       </button>
       <button
-        onClick={() => onFilterChange('estacionamentos')}
+        onClick={() => onFilterChange('pontosTuristicos')}
         className={cn(
           "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all shadow-sm border whitespace-nowrap cursor-pointer",
-          activeFilters.estacionamentos 
-            ? "bg-[#e6f4ea] border-transparent text-[#1e8e3e]" 
+          activeFilters.pontosTuristicos 
+            ? "bg-blue-50 border-transparent text-blue-600" 
             : "bg-white border-[#dadce0] text-[#3c4043] hover:bg-[#f8f9fa]"
         )}
       >
-        <Car className="w-4 h-4" /> Estacionamentos
+        <Landmark className="w-4 h-4" /> Pontos Turísticos
       </button>
     </div>
   );

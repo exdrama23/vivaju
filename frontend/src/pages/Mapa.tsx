@@ -11,16 +11,18 @@ import { Button } from '@/components/Global/Button';
 import { Modal } from '@/components/Global/Modal';
 import { Polyline, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import type { Comercio } from '@/types/global';
+import type { ComercioExtendido } from '@/services/mockData';
+
+import { mockPontosTuristicos } from '@/services/mockData';
 
 export function Mapa() {
-  const { comercios, estacionamentos } = useData();
+  const { comercios } = useData();
   
   const [showMap, setShowMap] = useState(false);
   const [filters, setFilters] = useState({
     comercios: true,
     eventos: true,
-    estacionamentos: true,
+    pontosTuristicos: true,
   });
   const [searchQuery, setSearchQuery] = useState('');
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
@@ -35,6 +37,8 @@ export function Mapa() {
   });
 
   const defaultCenter = useMemo(() => [-10.910501, -37.050332] as [number, number], []);
+  const [mapCenter, setMapCenter] = useState<[number, number]>(defaultCenter);
+  const [selectedPontoId, setSelectedPontoId] = useState<string | null>(null);
 
   const handleFilterChange = (key: keyof typeof filters) => {
     setFilters(prev => ({ ...prev, [key]: !prev[key] }));
@@ -46,12 +50,7 @@ export function Mapa() {
       (c.categoria || '').toLowerCase().includes(searchQuery.toLowerCase())
     ), [comercios, searchQuery]);
 
-  const filteredParkings = useMemo(() => 
-    estacionamentos.filter(e => 
-      (e.nome || '').toLowerCase().includes(searchQuery.toLowerCase())
-    ), [estacionamentos, searchQuery]);
-
-  const [selectedComercio, setSelectedComercio] = useState<Comercio | null>(null);
+  const [selectedComercio, setSelectedComercio] = useState<ComercioExtendido | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenDetails = (id: string) => {
@@ -156,6 +155,13 @@ export function Mapa() {
     iconAnchor: [8, 8]
   });
 
+  const handleViewOnMap = (lat: number, lng: number, id?: string) => {
+    setMapCenter([lat, lng]);
+    if (id) setSelectedPontoId(id);
+    // ensure map view is shown on mobile
+    setShowMap(true);
+  };
+
   return (
     <div className="flex flex-col md:flex-row flex-1 w-full h-[calc(100vh-64px)] md:h-full relative overflow-hidden bg-white">
       {/* Modais de Localização */}
@@ -178,7 +184,7 @@ export function Mapa() {
       </Modal>
 
       {/* Toggle Button - Mobile Only */}
-      <div className={`md:hidden absolute bottom-24 left-1/2 -translate-x-1/2 z-[1000] flex bg-white/90 backdrop-blur-sm p-1.5 rounded-2xl shadow-2xl border border-[#dadce0]`}>
+      <div className={`md:hidden absolute bottom-24 left-1/2 -translate-x-1/2 z-1000 flex bg-white/90 backdrop-blur-sm p-1.5 rounded-2xl shadow-2xl border border-[#dadce0]`}>
         <button
           onClick={() => setShowMap(false)}
           className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 text-xs font-medium ${!showMap ? 'bg-[#1a73e8] text-white shadow-md' : 'text-[#5f6368]'}`}
@@ -194,7 +200,7 @@ export function Mapa() {
       </div>
 
       {/* Sidebar - Local Data Only */}
-      <div className={`w-full md:w-80 lg:w-90 bg-white z-10 flex flex-col p-4 sm:p-6 gap-4 sm:gap-6 md:h-full shrink-0 overflow-y-auto border-r border-[#dadce0] transition-all md:relative absolute inset-0 ${showMap ? 'translate-x-[-100%] md:translate-x-0 hidden md:flex' : 'translate-x-0 flex'}`}>
+      <div className={`w-full md:w-80 lg:w-90 bg-white z-10 flex flex-col p-4 sm:p-6 gap-4 sm:gap-6 md:h-full shrink-0 overflow-y-auto border-r border-[#dadce0] transition-all md:relative absolute inset-0 ${showMap ? '-translate-x-full md:translate-x-0 hidden md:flex' : 'translate-x-0 flex'}`}>
         <div className="space-y-1">
           <h1 className="text-lg sm:text-xl font-medium flex items-center gap-2 text-[#202124]">
             <ShoppingBag className="text-[#1a73e8] w-5 h-5" /> VivaJu Centro
@@ -238,7 +244,7 @@ export function Mapa() {
 
       <div className={`flex-1 relative bg-[#f1f3f4] h-full transition-all ${showMap ? 'flex' : 'hidden md:flex'}`}>
         <MapFilters activeFilters={filters} onFilterChange={handleFilterChange} />
-        <MapContainer center={defaultCenter} zoom={18} className="w-full h-full">
+        <MapContainer center={mapCenter} zoom={18} className="w-full h-full">
           {routeCoords.length > 0 && (
             <Polyline positions={routeCoords} pathOptions={{ color: '#1a73e8', weight: 4, dashArray: '1, 10' }} />
           )}
@@ -270,22 +276,24 @@ export function Mapa() {
             </MapMarker>
           ))}
 
-          {/* Renderização dos Estacionamentos Locais */}
-          {filters.estacionamentos && filteredParkings.map(e => (
+          {/* Renderização dos Pontos Turísticos */}
+          {filters.pontosTuristicos && mockPontosTuristicos.map(pt => (
             <MapMarker 
-              key={e.id} 
-              position={[e.latitude, e.longitude]} 
-              type="estacionamento"
+              key={pt.id} 
+              position={[pt.latitude, pt.longitude]} 
+              type="pontoTuristico"
               onClick={() => {}}
+              openPopup={selectedPontoId === pt.id}
             >
               <MapPopup
-                title={e.nome}
-                description="Estacionamento"
-                type="estacionamento"
-                lat={e.latitude}
-                lng={e.longitude}
+                title={pt.nome}
+                description={pt.categoria}
+                imageUrl={pt.imagem}
+                type="pontoTuristico"
+                lat={pt.latitude}
+                lng={pt.longitude}
                 onTraceRoute={handleTraceRoute}
-                onOpenDetails={() => {}}
+                onOpenDetails={() => handleViewOnMap(pt.latitude, pt.longitude, pt.id)}
               />
             </MapMarker>
           ))}

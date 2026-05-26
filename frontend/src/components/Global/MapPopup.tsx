@@ -6,14 +6,14 @@ interface MapPopupProps {
   title: string;
   description?: string;
   imageUrl?: string;
-  type: 'comercio' | 'evento' | 'estacionamento';
+  type: 'comercio' | 'evento' | 'estacionamento' | 'pontoTuristico';
   lat: number;
   lng: number;
   onTraceRoute?: (lat: number, lng: number) => void;
   onOpenDetails?: () => void;
 }
 
-export function MapPopup({ title, description, imageUrl, lat, lng, onTraceRoute, onOpenDetails }: MapPopupProps) {
+export function MapPopup({ title, description, imageUrl, type, lat, lng, onTraceRoute, onOpenDetails }: MapPopupProps) {
   const streetViewUrl = `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`;
 
   return (
@@ -38,22 +38,47 @@ export function MapPopup({ title, description, imageUrl, lat, lng, onTraceRoute,
 
           <div className="flex flex-col gap-2 pt-1">
             <div className="flex gap-2">
-              <Button 
-                size="sm" 
-                onClick={onOpenDetails}
-                className="flex-1 h-9 text-xs rounded-full shadow-sm"
-              >
-                <Eye className="w-3.5 h-3.5 mr-1" /> Detalhes
-              </Button>
-              <Button 
-                size="sm" 
-                variant="outline"
-                onClick={() => onTraceRoute?.(lat, lng)}
-                className="flex-1 h-9 text-xs rounded-full border-[#dadce0] text-[#1a73e8] hover:bg-[#e8f0fe] hover:border-transparent"
-              >
-                <Navigation className="w-3.5 h-3.5 mr-1" /> Rota
-              </Button>
-            </div>
+              {type === 'estacionamento' ? (
+                <>
+                  <a
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1"
+                  >
+                    <Button size="sm" className="flex-1 h-9 text-xs rounded-full shadow-sm">
+                      <Navigation className="w-3.5 h-3.5 mr-1" /> Rota no Maps
+                    </Button>
+                  </a>
+                  <Button 
+                    size="sm" 
+                    variant="outline"
+                    onClick={() => onTraceRoute?.(lat, lng)}
+                    className="flex-1 h-9 text-xs rounded-full border-[#dadce0] text-[#1a73e8] hover:bg-[#e8f0fe] hover:border-transparent"
+                  >
+                    <Navigation className="w-3.5 h-3.5 mr-1" /> Rota
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button 
+                    size="sm" 
+                    onClick={onOpenDetails}
+                    className="flex-1 h-9 text-xs rounded-full shadow-sm"
+                  >
+                    <Eye className="w-3.5 h-3.5 mr-1" /> Detalhes
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="outline"
+                    onClick={() => onTraceRoute?.(lat, lng)}
+                    className="flex-1 h-9 text-xs rounded-full border-[#dadce0] text-[#1a73e8] hover:bg-[#e8f0fe] hover:border-transparent"
+                  >
+                    <Navigation className="w-3.5 h-3.5 mr-1" /> Rota
+                  </Button>
+                </>
+              )}
+              </div>
 
             <a href={streetViewUrl} target="_blank" rel="noreferrer" className="w-full">
               <Button variant="ghost" size="sm" className="w-full h-8 text-[10px] text-[#5f6368] hover:bg-[#f1f3f4] rounded-full">

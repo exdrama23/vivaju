@@ -1,552 +1,983 @@
-import { useState } from 'react';
-import { useAuth } from '@/context/AuthContext';
-import { Navigate } from 'react-router-dom';
-import { useData } from '@/context/DataContext';
-import { 
-  BarChart3, 
-  Users, 
-  Store, 
-  AlertTriangle, 
-  TrendingUp, 
-  TrendingDown, 
-  Car,
-  Search,
-  ChevronRight,
-  ShieldCheck,
-  LayoutDashboard,
-  FileText,
-  Bell,
-  LogOut,
-  MapPinned,
-  Info,
-  Clock,
-  Menu,
-  X,
-  ChevronLeft
-} from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/Global/Card';
-import { MapContainer } from '@/components/Global/MapContainer';
-import { Circle, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Button } from '@/components/Global/Button';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useMemo } from "react";
+import {
+  AreaChart, Area, BarChart, Bar, LineChart, Line,
+  PieChart, Pie, Cell, RadarChart, Radar, PolarGrid,
+  PolarAngleAxis, XAxis, YAxis, CartesianGrid, Tooltip,
+  ResponsiveContainer, ComposedChart,
+} from "recharts";
+import {
+  Users, Store, AlertTriangle, Car, Search, ShieldCheck,
+  LayoutDashboard, LogOut, MapPinned, Menu, X, ChevronLeft,
+  Activity, Zap, CheckCircle2, Database, Bell, TrendingUp,
+  TrendingDown, ChevronDown, Filter, Download, RefreshCw,
+  BarChart2, Map, FileText, MoreHorizontal, ArrowUpRight,
+  ArrowDownRight, Clock, MapPin, ShoppingBag, Coffee, Scissors,
+  Briefcase, Star, Eye, AlertCircle, CheckSquare, Package,
+} from "lucide-react";
+
+import { MapContainer, TileLayer, Circle, Popup as LeafletPopup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+
+const C = {
+  primary:    "#2E7D52",
+  primaryL:   "#3a9e68",
+  secondary:  "#1B3A2D",
+  secondaryL: "#254d3c",
+  cream:      "#F6F4EE",
+  grayBorder: "#E2E0D8",
+  grayText:   "#7A7870",
+  black:      "#1A1916",
+  white:      "#FFFFFF",
+  danger:     "#EF4444",
+  warning:    "#F59E0B",
+  info:       "#3B82F6",
+  success:    "#10B981",
+};
 
 const mockDenuncias = [
-  { id: 1, loja: 'Pastelaria Central', motivo: 'Obstrução de calçada', data: '22 Mar, 2026', status: 'pendente' },
-  { id: 2, loja: 'Loja do João', motivo: 'Som alto após as 22h', data: '21 Mar, 2026', status: 'resolvido' },
-  { id: 3, loja: 'Ambulante Sem Registro', motivo: 'Venda em local proibido', data: '20 Mar, 2026', status: 'em análise' },
-  { id: 4, loja: 'Bar da Orla', motivo: 'Falta de licença sanitária', data: '19 Mar, 2026', status: 'pendente' },
+  { id: 1, protocolo: "DEN-2024-001", loja: "Pastelaria Central",   motivo: "Obstrução de calçada",       data: "26/01/2025 08:12", user: "admin",     status: "pendente"   },
+  { id: 2, protocolo: "DEN-2024-002", loja: "Loja do João",         motivo: "Som alto após as 22h",       data: "26/01/2025 07:55", user: "system",    status: "resolvido"  },
+  { id: 3, protocolo: "DEN-2024-003", loja: "Ambulante s/ Registro",motivo: "Venda em local proibido",    data: "26/01/2025 06:40", user: "admin",     status: "em análise" },
+  { id: 4, protocolo: "DEN-2024-004", loja: "Bar da Orla",          motivo: "Falta de licença sanitária", data: "25/01/2025 22:17", user: "fiscal_01", status: "pendente"   },
+  { id: 5, protocolo: "DEN-2024-005", loja: "Mercadinho Bom Preço", motivo: "Validade vencida",           data: "25/01/2025 19:03", user: "fiscal_02", status: "resolvido"  },
 ];
 
-const heatmapPoints = [
-  { pos: [-10.9125, -37.0520] as [number, number], intensity: 500, label: 'Fluxo Crítico' },
-  { pos: [-10.9105, -37.0503] as [number, number], intensity: 300, label: 'Fluxo Alto' },
-  { pos: [-10.9150, -37.0550] as [number, number], intensity: 100, label: 'Fluxo Normal' },
+const activityData = [
+  { hora: "08h", ocorrencias: 4, resolvidos: 3 },
+  { hora: "09h", ocorrencias: 7, resolvidos: 5 },
+  { hora: "10h", ocorrencias: 12, resolvidos: 9 },
+  { hora: "11h", ocorrencias: 9, resolvidos: 8 },
+  { hora: "12h", ocorrencias: 6, resolvidos: 4 },
+  { hora: "13h", ocorrencias: 8, resolvidos: 7 },
+  { hora: "14h", ocorrencias: 15, resolvidos: 11 },
+  { hora: "15h", ocorrencias: 18, resolvidos: 14 },
+  { hora: "16h", ocorrencias: 13, resolvidos: 10 },
+  { hora: "17h", ocorrencias: 10, resolvidos: 8 },
+];
+
+const categorias = [
+  { nome: "Alimentação",     qtd: 342, cor: C.primary  },
+  { nome: "Vestuário",       qtd: 218, cor: C.info     },
+  { nome: "Serviços",        qtd: 187, cor: C.warning  },
+  { nome: "Ambulantes",      qtd: 156, cor: C.danger   },
+  { nome: "Eletrônicos",     qtd: 98,  cor: "#8B5CF6"  },
+  { nome: "Saúde/Farmácia",  qtd: 87,  cor: C.success  },
+  { nome: "Entretenimento",  qtd: 64,  cor: "#EC4899"  },
+  { nome: "Outros",          qtd: 52,  cor: C.grayText },
+];
+
+const fluxoHorario = [
+  { hora: "06h", fluxo: 120  },
+  { hora: "07h", fluxo: 380  },
+  { hora: "08h", fluxo: 720  },
+  { hora: "09h", fluxo: 940  },
+  { hora: "10h", fluxo: 1250 },
+  { hora: "11h", fluxo: 1480 },
+  { hora: "12h", fluxo: 1620 },
+  { hora: "13h", fluxo: 1380 },
+  { hora: "14h", fluxo: 1510 },
+  { hora: "15h", fluxo: 1690 },
+  { hora: "16h", fluxo: 1740 },
+  { hora: "17h", fluxo: 1850 },
+  { hora: "18h", fluxo: 1620 },
+  { hora: "19h", fluxo: 1200 },
+  { hora: "20h", fluxo: 780  },
+  { hora: "21h", fluxo: 420  },
+  { hora: "22h", fluxo: 180  },
+];
+
+const crescimentoMensal = [
+  { mes: "Jan", novos: 18, fechados: 4  },
+  { mes: "Fev", novos: 24, fechados: 6  },
+  { mes: "Mar", novos: 31, fechados: 5  },
+  { mes: "Abr", novos: 22, fechados: 8  },
+  { mes: "Mai", novos: 28, fechados: 4  },
+  { mes: "Jun", novos: 35, fechados: 7  },
+  { mes: "Jul", novos: 41, fechados: 9  },
+  { mes: "Ago", novos: 38, fechados: 5  },
+  { mes: "Set", novos: 29, fechados: 6  },
+  { mes: "Out", novos: 44, fechados: 8  },
+  { mes: "Nov", novos: 52, fechados: 10 },
+  { mes: "Dez", novos: 33, fechados: 7  },
+];
+
+const topRuas = [
+  { rua: "R. João Pessoa",    lojas: 187 },
+  { rua: "Av. Ivo do Prado",  lojas: 164 },
+  { rua: "R. Itabaiana",      lojas: 143 },
+  { rua: "R. Laranjeiras",    lojas: 128 },
+  { rua: "Av. Rio Branco",    lojas: 112 },
+  { rua: "R. Estância",       lojas: 98  },
+  { rua: "R. Divina Pastora", lojas: 87  },
+  { rua: "R. Pacatuba",       lojas: 74  },
+];
+
+const porteEmpresa = [
+  { name: "Microempresa",       value: 58, cor: C.primary  },
+  { name: "Pequeno Porte",      value: 27, cor: C.info     },
+  { name: "Médio Porte",        value: 11, cor: C.warning  },
+  { name: "Grande Porte",       value: 4,  cor: C.danger   },
+];
+
+const setoresRadar = [
+  { setor: "Diversidade",  centro: 82, media: 65 },
+  { setor: "Densidade",    centro: 91, media: 70 },
+  { setor: "Formalização", centro: 74, media: 60 },
+  { setor: "Crescimento",  centro: 88, media: 72 },
+  { setor: "Regularidade", centro: 69, media: 68 },
+  { setor: "Acessib.",     centro: 77, media: 65 },
+];
+
+const densidadeQuadras = [
+  { quadra: "Q-01", densidade: 94, lojas: 48, alvara: 92 },
+  { quadra: "Q-02", densidade: 87, lojas: 41, alvara: 88 },
+  { quadra: "Q-03", densidade: 76, lojas: 35, alvara: 79 },
+  { quadra: "Q-04", densidade: 68, lojas: 29, alvara: 71 },
+  { quadra: "Q-05", densidade: 55, lojas: 22, alvara: 63 },
+  { quadra: "Q-06", densidade: 43, lojas: 18, alvara: 58 },
+];
+
+const Pill = ({ children, color = C.grayBorder, text = C.grayText }: { children: React.ReactNode, color?: string, text?: string }) => (
+  <span style={{
+    display: "inline-flex", alignItems: "center", gap: 4,
+    padding: "2px 10px", borderRadius: 999, fontSize: 11, fontWeight: 700,
+    background: color + "22", color: text, border: `1px solid ${color}44`,
+    letterSpacing: "0.05em", textTransform: "uppercase",
+  }}>{children}</span>
+);
+
+const StatusBadge = ({ status }: { status: string }) => {
+  const map: Record<string, { bg: string, text: string, label: string }> = {
+    pendente:    { bg: "#FEF3C7", text: "#92400E", label: "Pendente"   },
+    resolvido:   { bg: "#D1FAE5", text: "#065F46", label: "Resolvido"  },
+    "em análise":{ bg: "#DBEAFE", text: "#1E40AF", label: "Em análise" },
+  };
+  const s = map[status] || map.pendente;
+  return (
+    <span style={{
+      padding: "3px 10px", borderRadius: 999, fontSize: 11, fontWeight: 700,
+      background: s.bg, color: s.text,
+    }}>{s.label}</span>
+  );
+};
+
+const KpiCard = ({ icon: Icon, label, value, delta, deltaLabel, color }: { icon: any, label: string, value: string, delta: number, deltaLabel: string, color: string }) => {
+  const isUp = delta >= 0;
+  return (
+    <div style={{
+      background: C.white, border: `1px solid ${C.grayBorder}`,
+      borderRadius: 16, padding: "18px 20px",
+      display: "flex", flexDirection: "column", gap: 12,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <span style={{ fontSize: 11, fontWeight: 700, color: C.grayText, textTransform: "uppercase", letterSpacing: "0.08em" }}>{label}</span>
+        <div style={{ background: color + "18", borderRadius: 10, padding: 7 }}>
+          <Icon size={15} style={{ color }} />
+        </div>
+      </div>
+      <div>
+        <p style={{ fontSize: 28, fontWeight: 900, color: C.black, lineHeight: 1, margin: 0 }}>{value}</p>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+        {isUp
+          ? <ArrowUpRight size={13} style={{ color: C.success }} />
+          : <ArrowDownRight size={13} style={{ color: C.danger }} />}
+        <span style={{ fontSize: 11, fontWeight: 700, color: isUp ? C.success : C.danger }}>{Math.abs(delta)}%</span>
+        <span style={{ fontSize: 11, color: C.grayText }}>{deltaLabel}</span>
+      </div>
+    </div>
+  );
+};
+
+const SectionTitle = ({ children, action }: { children: React.ReactNode, action?: string }) => (
+  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+    <h3 style={{ fontSize: 13, fontWeight: 700, color: C.black, margin: 0 }}>{children}</h3>
+    {action && <button style={{ fontSize: 11, fontWeight: 700, color: C.primary, background: "none", border: "none", cursor: "pointer", letterSpacing: "0.06em", textTransform: "uppercase" }}>{action}</button>}
+  </div>
+);
+
+const Card = ({ children, style = {} }: { children: React.ReactNode, style?: React.CSSProperties }) => (
+  <div style={{ background: C.white, border: `1px solid ${C.grayBorder}`, borderRadius: 16, overflow: "hidden", ...style }}>
+    {children}
+  </div>
+);
+
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
+  return (
+    <div style={{ background: C.secondary, borderRadius: 10, padding: "8px 14px", boxShadow: "0 4px 16px rgba(0,0,0,0.2)" }}>
+      <p style={{ margin: "0 0 4px", fontSize: 11, color: "rgba(255,255,255,0.6)", fontWeight: 700 }}>{label}</p>
+      {payload.map((p: any, i: number) => (
+        <p key={i} style={{ margin: 0, fontSize: 13, fontWeight: 700, color: p.color || C.white }}>{p.name}: {p.value}</p>
+      ))}
+    </div>
+  );
+};
+
+const NAV_ITEMS = [
+  { id: "geral",        label: "Dashboard",      Icon: LayoutDashboard, badge: null        },
+  { id: "mapa",         label: "Mapa de Calor",  Icon: MapPinned,       badge: null        },
+  { id: "geomarketing", label: "Geomarketing",   Icon: BarChart2,       badge: "NOVO"      },
+  { id: "denuncias",    label: "Denúncias",      Icon: AlertTriangle,   badge: "24"        },
+  { id: "relatorios",   label: "Relatórios",     Icon: FileText,        badge: null        },
 ];
 
 export function PrefeituraDashboard() {
-  const { user } = useAuth();
-  const { comercios } = useData();
-  const [activeTab, setActiveTab] = useState<'geral' | 'mapa' | 'denuncias'>('geral');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeTab, setActiveTab]             = useState("geral");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen]   = useState(false);
+  const [notifOpen, setNotifOpen]             = useState(false);
+  const [isMobile, setIsMobile]               = useState(false);
 
-  // Proteção de rota - redireciona se não for prefeitura
-  if (!user || user.tipo !== 'prefeitura') {
-    return <Navigate to="/" replace />;
-  }
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const totalLojas = comercios.length;
+  const Sidebar = ({ isMobileView = false }) => (
+    <div style={{
+      display: "flex", flexDirection: "column", height: "100%",
+      justifyContent: "space-between",
+    }}>
+      <div>
+        <div style={{
+          display: "flex", alignItems: "center",
+          gap: sidebarCollapsed && !isMobileView ? 0 : 12,
+          justifyContent: (sidebarCollapsed && !isMobileView) ? "center" : "flex-start",
+          padding: "0 0 32px",
+          marginBottom: 8,
+          position: "relative"
+        }}>
+          {(!sidebarCollapsed || isMobileView) && (
+            <div>
+              <p style={{ margin: 0, fontWeight: 900, fontSize: 15, color: C.white, lineHeight: 1.2, fontFamily: "Georgia, serif" }}>
+                Gestão <span style={{ color: C.primary }}>Urbana</span>
+              </p>
+              <p style={{ margin: 0, fontSize: 10, color: "rgba(255,255,255,0.4)", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}>Portal Municipal</p>
+            </div>
+          )}
+          {isMobileView && (
+            <button 
+              onClick={() => setMobileMenuOpen(false)}
+              style={{ position: "absolute", right: 0, top: 0, background: "none", border: "none", color: C.white, cursor: "pointer" }}
+            >
+              <X size={24} />
+            </button>
+          )}
+        </div>
 
-  const NavButtons = ({ isMobile = false }) => (
-    <>
-      <button 
-        onClick={() => { setActiveTab('geral'); if(isMobile) setMobileMenuOpen(false); }}
-        className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all font-bold text-sm ${
-          activeTab === 'geral' 
-          ? 'bg-white shadow-xl text-[var(--secondary)]' 
-          : 'text-white/60 hover:text-white hover:bg-white/5'
-        } ${sidebarCollapsed && !isMobile ? 'justify-center px-0' : ''}`}
-        title="Dashboard"
-      >
-        <LayoutDashboard className="w-5 h-5 shrink-0" />
-        {(!sidebarCollapsed || isMobile) && <span className="truncate">Dashboard</span>}
-      </button>
-      <button 
-        onClick={() => { setActiveTab('mapa'); if(isMobile) setMobileMenuOpen(false); }}
-        className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all font-bold text-sm ${
-          activeTab === 'mapa' 
-          ? 'bg-white shadow-xl text-[var(--secondary)]' 
-          : 'text-white/60 hover:text-white hover:bg-white/5'
-        } ${sidebarCollapsed && !isMobile ? 'justify-center px-0' : ''}`}
-        title="Mapa de Calor"
-      >
-        <MapPinned className="w-5 h-5 shrink-0" />
-        {(!sidebarCollapsed || isMobile) && <span className="truncate">Mapa de Calor</span>}
-      </button>
-      <button 
-        onClick={() => { setActiveTab('denuncias'); if(isMobile) setMobileMenuOpen(false); }}
-        className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl transition-all font-bold text-sm ${
-          activeTab === 'denuncias' 
-          ? 'bg-white shadow-xl text-[var(--secondary)]' 
-          : 'text-white/60 hover:text-white hover:bg-white/5'
-        } ${sidebarCollapsed && !isMobile ? 'justify-center px-0' : ''}`}
-        title="Denúncias"
-      >
-        <AlertTriangle className="w-5 h-5 shrink-0" />
-        {(!sidebarCollapsed || isMobile) && <span className="truncate">Denúncias</span>}
-      </button>
-    </>
+        <nav style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          {(!sidebarCollapsed || isMobileView) && (
+            <p style={{ fontSize: 9, fontWeight: 800, color: "rgba(255,255,255,0.3)", letterSpacing: "0.18em", textTransform: "uppercase", margin: "0 8px 8px", padding: "0 8px" }}>Navegação</p>
+          )}
+          {NAV_ITEMS.map(({ id, label, Icon, badge }) => {
+            const active = activeTab === id;
+            return (
+              <button
+                key={id}
+                onClick={() => { setActiveTab(id); setMobileMenuOpen(false); }}
+                style={{
+                  width: "100%", display: "flex", alignItems: "center",
+                  gap: 12, padding: (sidebarCollapsed && !isMobileView) ? "12px 0" : "11px 14px",
+                  justifyContent: (sidebarCollapsed && !isMobileView) ? "center" : "flex-start",
+                  borderRadius: 12, border: "none", cursor: "pointer",
+                  background: active ? C.white : "transparent",
+                  color: active ? C.secondary : "rgba(255,255,255,0.55)",
+                  fontWeight: 700, fontSize: 13, transition: "all 0.18s",
+                  position: "relative",
+                }}
+              >
+                <Icon size={17} style={{ flexShrink: 0, color: active ? C.primary : "inherit" }} />
+                {(!sidebarCollapsed || isMobileView) && (
+                  <>
+                    <span style={{ flex: 1, textAlign: "left" }}>{label}</span>
+                    {badge && (
+                      <span style={{
+                        fontSize: 9, fontWeight: 800, padding: "2px 7px", borderRadius: 999,
+                        background: badge === "NOVO" ? C.primary : C.danger,
+                        color: C.white, letterSpacing: "0.06em",
+                      }}>{badge}</span>
+                    )}
+                  </>
+                )}
+              </button>
+            );
+          })}
+        </nav>
+      </div>
+
+      <div>
+        {(!sidebarCollapsed || isMobileView) && (
+          <div style={{
+            borderTop: "1px solid rgba(255,255,255,0.07)",
+            paddingTop: 16, marginBottom: 12,
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 10px" }}>
+              <div style={{
+                width: 34, height: 34, borderRadius: 10,
+                background: C.primary + "33",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <Users size={16} color={C.primary} />
+              </div>
+              <div>
+                <p style={{ margin: 0, fontSize: 12, fontWeight: 800, color: C.white }}>Alec</p>
+                <p style={{ margin: 0, fontSize: 10, color: "rgba(255,255,255,0.4)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>Administrador</p>
+              </div>
+            </div>
+          </div>
+        )}
+        <button style={{
+          width: "100%", display: "flex", alignItems: "center",
+          gap: 10, padding: (sidebarCollapsed && !isMobileView) ? "12px 0" : "10px 12px",
+          justifyContent: (sidebarCollapsed && !isMobileView) ? "center" : "flex-start",
+          borderRadius: 12, border: "none", cursor: "pointer",
+          background: "transparent", color: "rgba(255,255,255,0.35)",
+          fontWeight: 700, fontSize: 12,
+        }}>
+          <LogOut size={16} />
+          {(!sidebarCollapsed || isMobileView) && "Sair do Portal"}
+        </button>
+      </div>
+    </div>
   );
 
-  return (
-    <div className="flex w-full h-screen bg-[var(--cream)] font-sans selection:bg-white selection:text-[var(--primary)] overflow-hidden">
-      
-      {/* ================= BARRA LATERAL (SIDEBAR - DESKTOP) ================= */}
-      <aside 
-        className={`hidden lg:flex flex-col bg-[var(--secondary)] py-8 sticky top-0 h-screen justify-between shrink-0 border-r border-white/5 shadow-2xl transition-all duration-500 ease-in-out relative z-[110] ${
-          sidebarCollapsed ? 'w-20 px-3' : 'w-72 px-6'
-        }`}
-      >
-        {/* Toggle Button */}
-        <button 
-          onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-          className="absolute -right-4 top-10 w-8 h-8 bg-[var(--primary)] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-[120]"
-        >
-          <ChevronLeft className={`w-5 h-5 transition-transform duration-500 ${sidebarCollapsed ? 'rotate-180' : ''}`} />
-        </button>
-
-        <div className="space-y-12">
-          {/* Logo / Título */}
-          <div className={`space-y-2 ${sidebarCollapsed ? 'flex flex-col items-center' : ''}`}>
-            <div className={`flex items-center gap-4 ${sidebarCollapsed ? 'justify-center' : ''}`}>
-              <div className="p-3 bg-[var(--primary)] rounded-[20px] text-white shadow-lg shadow-[var(--primary)]/30 shrink-0">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              {!sidebarCollapsed && (
-                <h1 className="text-xl font-black text-white leading-tight animate-in fade-in duration-500" style={{ fontFamily: "'Georgia', serif" }}>
-                  Gestão <br /> <span className="text-[var(--primary)]">Urbana</span>
-                </h1>
-              )}
-            </div>
-            {!sidebarCollapsed && <p className="text-white/40 text-[9px] font-black uppercase tracking-widest ml-1 animate-in fade-in">Portal do Gestor</p>}
-          </div>
-
-          {/* Menu */}
-          <nav className="space-y-2">
-            <NavButtons />
-            <div className={`pt-8 border-t border-white/10 mt-6 ${sidebarCollapsed ? 'flex justify-center' : ''}`}>
-              {!sidebarCollapsed && <p className="text-[9px] font-black uppercase tracking-widest text-white/30 px-6 mb-4">Relatórios</p>}
-              <button 
-                className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-white/60 hover:text-white hover:bg-white/5 transition-all font-bold text-sm ${sidebarCollapsed ? 'justify-center px-0' : ''}`}
-                title="Exportar Dados"
-              >
-                <FileText className="w-5 h-5 shrink-0" />
-                {!sidebarCollapsed && <span className="truncate">Exportar Dados</span>}
-              </button>
-            </div>
-          </nav>
-        </div>
-
-        {/* Footer Sidebar */}
-        <div className="space-y-4">
-          <Link 
-            to="/" 
-            className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl bg-white/5 text-white/60 hover:text-white transition-all font-bold text-sm ${sidebarCollapsed ? 'justify-center px-0' : ''}`}
-            title="Sair do Portal"
-          >
-            <LogOut className="w-5 h-5 shrink-0" />
-            {!sidebarCollapsed && <span className="truncate">Sair do Portal</span>}
-          </Link>
-        </div>
-      </aside>
-
-      {/* ================= MOBILE HEADER ================= */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-20 bg-[var(--secondary)] z-[100] flex items-center justify-between px-6 border-b border-white/5">
-        <div className="flex items-center gap-3">
-          <ShieldCheck className="w-6 h-6 text-[var(--primary)]" />
-          <h1 className="text-lg font-black text-white" style={{ fontFamily: "'Georgia', serif" }}>Gestão Urbana</h1>
-        </div>
-        
-        <div className="flex items-center gap-3">
-          
+  const Header = () => (
+    <header style={{
+      display: "flex", alignItems: "center", justifyContent: "space-between",
+      padding: isMobile ? "0 16px" : "0 28px", height: 60,
+      background: "rgba(255,255,255,0.9)", backdropFilter: "blur(12px)",
+      borderBottom: `1px solid ${C.grayBorder}`,
+      position: "sticky", top: 0, zIndex: 40,
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        {isMobile && (
           <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2.5 bg-white/5 rounded-xl text-white cursor-pointer"
+            onClick={() => setMobileMenuOpen(true)}
+            style={{ background: "none", border: "none", color: C.black, cursor: "pointer", padding: 4 }}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <Menu size={20} />
+          </button>
+        )}
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ fontSize: 12, color: C.grayText, fontWeight: 600 }}>Portal</span>
+          <ChevronDown size={12} style={{ color: C.grayText }} />
+          <span style={{ fontSize: 12, fontWeight: 700, color: C.black }}>
+            {NAV_ITEMS.find(n => n.id === activeTab)?.label}
+          </span>
+        </div>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        {!isMobile && (
+          <div style={{ position: "relative" }}>
+            <Search size={13} style={{ position: "absolute", left: 11, top: "50%", transform: "translateY(-50%)", color: C.grayText }} />
+            <input
+              placeholder="Buscar..."
+              style={{
+                padding: "7px 14px 7px 32px",
+                border: `1px solid ${C.grayBorder}`,
+                borderRadius: 10, fontSize: 12,
+                background: C.cream, outline: "none",
+                width: 200, color: C.black,
+              }}
+            />
+          </div>
+        )}
+        <div style={{ position: "relative" }}>
+          <button
+            onClick={() => setNotifOpen(!notifOpen)}
+            style={{
+              width: 36, height: 36, borderRadius: 10,
+              border: `1px solid ${C.grayBorder}`,
+              background: C.white, display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "pointer", position: "relative",
+            }}
+          >
+            <Bell size={15} color={C.grayText} />
+            {notifOpen && (
+               <span style={{
+                position: "absolute", top: 6, right: 6,
+                width: 7, height: 7, borderRadius: 999, background: C.danger,
+              }} />
+            )}
           </button>
         </div>
-
-        {showProfileMenu && (
+        {!isMobile && (
           <>
-            <div className="fixed inset-0 z-[110]" onClick={() => setShowProfileMenu(false)} />
-            <div className="absolute right-6 top-20 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-[var(--gray-border)] p-2 z-[120] animate-in fade-in slide-in-from-top-2 duration-200">
-              <div className="p-4 border-b border-[var(--gray-border)] mb-2">
-                <p className="text-xs font-black text-[var(--black)]">Gestão Prefeitura</p>
-                <p className="text-[10px] font-bold text-[var(--gray-text)] uppercase tracking-widest">Administrador</p>
+            <button style={{
+              width: 36, height: 36, borderRadius: 10,
+              border: `1px solid ${C.grayBorder}`,
+              background: C.white, display: "flex", alignItems: "center", justifyContent: "center",
+              cursor: "pointer",
+            }}>
+              <RefreshCw size={14} color={C.grayText} />
+            </button>
+            <div style={{ width: 1, height: 24, background: C.grayBorder }} />
+            <div style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
+              <div style={{
+                width: 32, height: 32, borderRadius: 9,
+                background: C.primary + "22",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <Users size={15} color={C.primary} />
               </div>
-              <Link 
-                to="/dashboard"
-                className="flex items-center gap-3 px-4 py-4 rounded-xl hover:bg-[var(--cream)] text-[var(--gray-text)] hover:text-[var(--primary)] transition-all font-bold text-sm"
-              >
-                <LayoutDashboard className="w-5 h-5" />
-                Voltar ao Dashboard?
-              </Link>
-              <Link 
-                to="/"
-                className="flex items-center gap-3 px-4 py-4 rounded-xl hover:bg-rose-50 text-rose-500 transition-all font-bold text-sm cursor-pointer"
-              >
-                <LogOut className="w-5 h-5 " />
-                Sair do Portal
-              </Link>
+              <div style={{ lineHeight: 1 }}>
+                <p style={{ margin: 0, fontSize: 12, fontWeight: 800, color: C.black }}>Alec</p>
+                <p style={{ margin: 0, fontSize: 10, color: C.primary, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" }}>Admin</p>
+              </div>
+              <ChevronDown size={13} color={C.grayText} />
             </div>
           </>
         )}
       </div>
+    </header>
+  );
 
-      {/* ================= MOBILE MENU OVERLAY ================= */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 bg-[var(--secondary)] z-[90] pt-24 p-6 animate-in fade-in duration-300">
-          <nav className="space-y-4">
-            <NavButtons isMobile />
-            <div className="pt-10 border-t border-white/10 mt-6">
-              <Link 
-                to="/dashboard"
-                className="w-full flex items-center gap-4 px-6 py-5 rounded-2xl bg-white/5 text-white/60 font-bold text-base mb-2"
-              >
-                <LayoutDashboard className="w-6 h-6" />
-                Voltar ao Dashboard
-              </Link>
-              <Link to="/" className="w-full flex items-center gap-4 px-6 py-5 rounded-2xl bg-white/5 text-white/60 font-bold text-base cursor-pointer">
-                <LogOut className="w-6 h-6" />
-                Sair do Portal
-              </Link>
+  const TabGeral = () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+      <div style={{
+        background: `linear-gradient(135deg, ${C.secondary} 0%, ${C.secondaryL} 100%)`,
+        borderRadius: 18, padding: isMobile ? "20px" : "22px 28px",
+        display: "flex", flexDirection: isMobile ? "column" : "row",
+        alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between",
+        gap: 20, position: "relative",
+      }}>
+        <div style={{ zIndex: 1 }}>
+          <p style={{ margin: "0 0 4px", fontSize: 10, fontWeight: 800, color: C.primary, textTransform: "uppercase", letterSpacing: "0.2em" }}>Painel Executivo · Janeiro 2025</p>
+          <h2 style={{ margin: "0 0 8px", fontSize: 20, fontWeight: 900, color: C.white, fontFamily: "Georgia, serif" }}>
+            Operação Centro Histórico
+          </h2>
+          <p style={{ margin: 0, fontSize: 12, color: "rgba(255,255,255,0.5)", maxWidth: 480 }}>
+            Monitoramento de Alta Precisão · Área: 1,35 km² · Aracaju/SE
+          </p>
+        </div>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", zIndex: 1 }}>
+          {[
+            { label: "Pendências",   value: "24", color: C.danger  },
+            { label: "Atualizações", value: "128", color: C.info   },
+            { label: "Rotas ativas", value: "41",  color: C.success},
+          ].map(item => (
+            <div key={item.label} style={{
+              background: "rgba(255,255,255,0.08)", borderRadius: 12,
+              padding: "10px 16px", textAlign: "center", minWidth: 80,
+            }}>
+              <p style={{ margin: 0, fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.08em" }}>{item.label}</p>
+              <p style={{ margin: 0, fontSize: 22, fontWeight: 900, color: item.color }}>{item.value}</p>
             </div>
-          </nav>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 14 }}>
+        <KpiCard icon={Store}         label="Comércios"      value="1.204"  delta={3.2}   deltaLabel="vs mês ant."  color={C.danger}  />
+        <KpiCard icon={Activity}      label="Ativos Hoje"    value="982"    delta={1.8}   deltaLabel="vs ontem"     color={C.success} />
+        <KpiCard icon={Car}           label="Vagas Ocup."    value="78%"    delta={-2.1}  deltaLabel="vs semana"    color={C.grayText}/>
+        <KpiCard icon={AlertTriangle} label="Alertas Ativos" value="24"     delta={12.5}  deltaLabel="vs ontem"     color={C.warning} />
+        <KpiCard icon={Zap}           label="Resp. Média"    value="14 min" delta={-8.3}  deltaLabel="vs semana"    color={C.info}    />
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 340px", gap: 16 }}>
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle action="Ver Relatório">Atividade do Dia</SectionTitle>
+          <ResponsiveContainer width="100%" height={220}>
+            <ComposedChart data={activityData}>
+              <CartesianGrid strokeDasharray="3 3" stroke={C.grayBorder} vertical={false} />
+              <XAxis dataKey="hora" tick={{ fontSize: 11, fill: C.grayText }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 11, fill: C.grayText }} axisLine={false} tickLine={false} />
+              <Tooltip content={<CustomTooltip />} />
+              <Area type="monotone" dataKey="ocorrencias" fill={C.primary + "22"} stroke={C.primary} strokeWidth={2} name="Ocorrências" dot={false} />
+              <Bar dataKey="resolvidos" fill={C.info + "55"} radius={[4,4,0,0]} name="Resolvidos" />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </Card>
+
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle>Status de Alvarás</SectionTitle>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16, marginTop: 8 }}>
+            <ResponsiveContainer width="100%" height={160}>
+              <PieChart>
+                <Pie data={[{ value: 75 }, { value: 25 }]} innerRadius={50} outerRadius={75} dataKey="value" startAngle={90} endAngle={-270}>
+                  <Cell fill={C.primary} />
+                  <Cell fill={C.danger} />
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+            <div style={{ display: "flex", gap: 20 }}>
+              {[
+                { label: "Regulares",   pct: "75%", color: C.primary },
+                { label: "Irregulares", pct: "25%", color: C.danger  },
+              ].map(i => (
+                <div key={i.label} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                  <span style={{ width: 10, height: 10, borderRadius: 3, background: i.color, flexShrink: 0 }} />
+                  <span style={{ fontSize: 11, fontWeight: 700, color: C.grayText }}>{i.label}</span>
+                  <span style={{ fontSize: 13, fontWeight: 900, color: C.black }}>{i.pct}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 16 }}>
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle>Ocorrências por Região</SectionTitle>
+          {[
+            { label: "Centro",        val: 85, color: C.primary },
+            { label: "Orla (Atalaia)",val: 60, color: C.info    },
+            { label: "Jardins",       val: 45, color: C.warning },
+            { label: "Outros",        val: 20, color: C.grayBorder },
+          ].map((item, i) => (
+            <div key={i} style={{ marginBottom: 14 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
+                <span style={{ fontSize: 12, fontWeight: 700, color: C.grayText }}>{item.label}</span>
+                <span style={{ fontSize: 12, fontWeight: 900, color: C.black }}>{item.val}%</span>
+              </div>
+              <div style={{ background: C.cream, borderRadius: 8, height: 8, overflow: "hidden" }}>
+                <div style={{ width: `${item.val}%`, height: "100%", background: item.color, borderRadius: 8 }} />
+              </div>
+            </div>
+          ))}
+        </Card>
+
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle>Integrações de Sistema</SectionTitle>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {[
+              { name: "Vigilância Sanitária",    status: "online",  latency: "12ms"  },
+              { name: "Polícia Militar",          status: "online",  latency: "28ms"  },
+              { name: "SMTT",                     status: "offline", latency: "—"     },
+              { name: "Receita Municipal",        status: "online",  latency: "45ms"  },
+            ].map((s, i) => (
+              <div key={i} style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                padding: "10px 14px", borderRadius: 10,
+                border: `1px solid ${C.grayBorder}`, background: C.cream + "66",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <span style={{
+                    width: 8, height: 8, borderRadius: 999,
+                    background: s.status === "online" ? C.success : C.danger,
+                    flexShrink: 0,
+                  }} />
+                  <span style={{ fontSize: 12, fontWeight: 700, color: C.black }}>{s.name}</span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <Pill color={s.status === "online" ? C.success : C.danger} text={s.status === "online" ? C.success : C.danger}>{s.status}</Pill>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+
+      <Card>
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 600 }}>
+            <thead>
+              <tr style={{ background: C.cream }}>
+                {["Protocolo", "Estabelecimento", "Motivo", "Data/Hora", "Status"].map(h => (
+                  <th key={h} style={{ padding: "10px 18px", textAlign: "left", fontSize: 10, fontWeight: 800, color: C.grayText, textTransform: "uppercase", letterSpacing: "0.1em" }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {mockDenuncias.map((d, i) => (
+                <tr key={i} style={{ borderTop: `1px solid ${C.grayBorder}` }}>
+                  <td style={{ padding: "12px 18px", fontSize: 12, fontWeight: 700, color: C.primary }}>{d.protocolo}</td>
+                  <td style={{ padding: "12px 18px", fontSize: 12, fontWeight: 600, color: C.black }}>{d.loja}</td>
+                  <td style={{ padding: "12px 18px", fontSize: 12, color: C.grayText }}>{d.motivo}</td>
+                  <td style={{ padding: "12px 18px", fontSize: 11, color: C.grayText }}>{d.data}</td>
+                  <td style={{ padding: "12px 18px" }}><StatusBadge status={d.status} /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </div>
+  );
+
+  const TabMapa = () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <Card style={{ padding: "20px 24px" }}>
+        <SectionTitle>Mapa de Calor Operacional — Centro Histórico</SectionTitle>
+        <div style={{
+          height: 500, borderRadius: 12, overflow: "hidden", border: `1px solid ${C.grayBorder}`
+        }}>
+          <MapContainer 
+            center={[-10.909436, -37.050389]} 
+            zoom={15} 
+            style={{ height: '100%', width: '100%' }}
+            zoomControl={false}
+          >
+            <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
+            
+            {/* Heatmap Regions - Focused strictly on the 1.35km² Historic Center */}
+            {[
+              { name: "Av. Ivo do Prado (Corredor Comercial)", coords: [-10.914, -37.048], color: C.danger, radius: 280, status: "Alta Densidade" },
+              { name: "Mercado Central / Albano Franco", coords: [-10.911, -37.050], color: C.danger, radius: 300, status: "Crítico" },
+              { name: "Praça Fausto Cardoso (Governo)", coords: [-10.909, -37.051], color: C.warning, radius: 200, status: "Monitorado" },
+              { name: "Calçadão João Pessoa (Varejo)", coords: [-10.907, -37.050], color: C.danger, radius: 250, status: "Alta Atividade" },
+              { name: "Terminal Rodoviário Centro", coords: [-10.913, -37.049], color: C.danger, radius: 220, status: "Crítico" },
+              { name: "Rua de Itabaiana (Serviços)", coords: [-10.910, -37.054], color: C.info, radius: 200, status: "Normal" },
+              { name: "Av. Rio Branco", coords: [-10.911, -37.048], color: C.warning, radius: 180, status: "Monitorado" },
+            ].map((region, idx) => (
+              <Circle 
+                key={idx}
+                center={region.coords as [number, number]}
+                pathOptions={{ fillColor: region.color, color: region.color, fillOpacity: 0.45, weight: 1 }}
+                radius={region.radius}
+              >
+                <LeafletPopup>
+                  <div style={{ padding: 4 }}>
+                    <p style={{ margin: 0, fontWeight: 800, color: C.black }}>{region.name}</p>
+                    <p style={{ margin: '4px 0 0', fontSize: 11, color: region.color }}>Status: {region.status}</p>
+                    <p style={{ margin: '2px 0 0', fontSize: 10, color: C.grayText }}>Área de monitoramento intensivo.</p>
+                  </div>
+                </LeafletPopup>
+              </Circle>
+            ))}
+          </MapContainer>
+        </div>
+        <div style={{ marginTop: 12, display: "flex", gap: 16, justifyContent: "center" }}>
+          {[{l: "Crítico / Alta Densidade", c: C.danger}, {l: "Monitorado", c: C.warning}, {l: "Fluxo Normal", c: C.info}].map(item => (
+            <div key={item.l} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <div style={{ width: 12, height: 12, borderRadius: 3, background: item.c, opacity: 0.7 }} />
+              <span style={{ fontSize: 11, fontWeight: 700, color: C.grayText }}>{item.l}</span>
+            </div>
+          ))}
+        </div>
+      </Card>
+      <div style={{
+        padding: "12px 20px", background: C.cream, borderRadius: 12,
+        border: `1px solid ${C.grayBorder}`, display: "flex", alignItems: "center", gap: 10,
+      }}>
+        <AlertCircle size={14} style={{ color: C.grayText, flexShrink: 0 }} />
+        <p style={{ margin: 0, fontSize: 11, color: C.grayText, lineHeight: 1.5 }}>
+          Análise focada no perímetro de 1,35 km² do Centro Histórico. Coordenadas de referência: -10.9094, -37.0503.
+        </p>
+      </div>
+    </div>
+  );
+
+  const TabDenuncias = () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 14 }}>
+        {[
+          { label: "Total",       value: mockDenuncias.length,                                           color: C.primary },
+          { label: "Pendentes",   value: mockDenuncias.filter(d => d.status === "pendente").length,      color: C.danger  },
+          { label: "Em Análise",  value: mockDenuncias.filter(d => d.status === "em análise").length,    color: C.warning },
+          { label: "Resolvidas",  value: mockDenuncias.filter(d => d.status === "resolvido").length,     color: C.success },
+        ].map(s => (
+          <div key={s.label} style={{
+            background: C.white, border: `1px solid ${C.grayBorder}`,
+            borderRadius: 14, padding: "16px 20px",
+            borderTop: `3px solid ${s.color}`,
+          }}>
+            <p style={{ margin: 0, fontSize: 10, fontWeight: 800, color: C.grayText, textTransform: "uppercase", letterSpacing: "0.1em" }}>{s.label}</p>
+            <p style={{ margin: "4px 0 0", fontSize: 26, fontWeight: 900, color: s.color }}>{s.value}</p>
+          </div>
+        ))}
+      </div>
+      <Card>
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 800 }}>
+            <thead>
+              <tr style={{ background: C.cream }}>
+                {["#", "Protocolo", "Estabelecimento", "Motivo", "Data/Hora", "Operador", "Status", ""].map(h => (
+                  <th key={h} style={{ padding: "10px 18px", textAlign: "left", fontSize: 10, fontWeight: 800, color: C.grayText, textTransform: "uppercase", letterSpacing: "0.1em" }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {mockDenuncias.map((d, i) => (
+                <tr key={i} style={{ borderTop: `1px solid ${C.grayBorder}`, cursor: "pointer" }}>
+                  <td style={{ padding: "13px 18px", fontSize: 12, color: C.grayText }}>{d.id}</td>
+                  <td style={{ padding: "13px 18px", fontSize: 11, fontWeight: 700, color: C.primary }}>{d.protocolo}</td>
+                  <td style={{ padding: "13px 18px", fontSize: 12, fontWeight: 600, color: C.black }}>{d.loja}</td>
+                  <td style={{ padding: "13px 18px", fontSize: 12, color: C.grayText }}>{d.motivo}</td>
+                  <td style={{ padding: "13px 18px", fontSize: 11, color: C.grayText }}>{d.data}</td>
+                  <td style={{ padding: "13px 18px" }}><Pill>{d.user}</Pill></td>
+                  <td style={{ padding: "13px 18px" }}><StatusBadge status={d.status} /></td>
+                  <td style={{ padding: "13px 18px" }}>
+                    <MoreHorizontal size={15} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </div>
+  );
+
+  const TabGeomarketing = () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+      <div style={{
+        background: `linear-gradient(135deg, ${C.secondary} 0%, #264d38 100%)`,
+        borderRadius: 18, padding: isMobile ? "20px" : "20px 26px",
+        display: "flex", flexDirection: isMobile ? "column" : "row",
+        alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between",
+        gap: 16
+      }}>
+        <div>
+          <p style={{ margin: "0 0 3px", fontSize: 10, fontWeight: 800, color: C.primary, textTransform: "uppercase", letterSpacing: "0.2em" }}>Análise Espacial Comercial</p>
+          <h2 style={{ margin: "0 0 6px", fontSize: 18, fontWeight: 900, color: C.white, fontFamily: "Georgia, serif" }}>
+            Geomarketing · Centro de Aracaju
+          </h2>
+        </div>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button style={{ padding: "9px 16px", borderRadius: 10, border: "none", background: C.primary, fontSize: 12, fontWeight: 700, color: C.white, cursor: "pointer" }}>
+            Exportar
+          </button>
+        </div>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14 }}>
+        {[
+          { icon: Store,     label: "Total de Comércios",  value: "1.204",  sub: "+52 este mês",   color: C.primary },
+          { icon: MapPin,    label: "Quadras Mapeadas",    value: "48",     sub: "100% cobertura", color: C.info    },
+          { icon: TrendingUp,label: "Crescimento Anual",   value: "+18,4%", sub: "vs ano anterior",color: C.success },
+        ].map(k => (
+          <div key={k.label} style={{
+            background: C.white, border: `1px solid ${C.grayBorder}`,
+            borderRadius: 14, padding: "18px 20px",
+            display: "flex", flexDirection: "column", gap: 10,
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: C.grayText, textTransform: "uppercase" }}>{k.label}</span>
+              <k.icon size={14} style={{ color: k.color }} />
+            </div>
+            <p style={{ margin: 0, fontSize: 26, fontWeight: 900, color: C.black }}>{k.value}</p>
+            <span style={{ fontSize: 11, color: C.grayText }}>{k.sub}</span>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 16 }}>
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle>Distribuição por Categoria</SectionTitle>
+          <ResponsiveContainer width="100%" height={260}>
+            <BarChart data={categorias} layout="vertical" margin={{ left: 10, right: 20 }}>
+              <XAxis type="number" hide />
+              <YAxis dataKey="nome" type="category" tick={{ fontSize: 11, fill: C.grayText }} axisLine={false} tickLine={false} width={90} />
+              <Tooltip content={<CustomTooltip />} />
+              <Bar dataKey="qtd" radius={[0, 6, 6, 0]}>
+                {categorias.map((e, i) => <Cell key={i} fill={e.cor} />)}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </Card>
+
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle>Fluxo de Pessoas por Horário</SectionTitle>
+          <ResponsiveContainer width="100%" height={260}>
+            <AreaChart data={fluxoHorario}>
+              <CartesianGrid strokeDasharray="3 3" stroke={C.grayBorder} vertical={false} />
+              <XAxis dataKey="hora" tick={{ fontSize: 10, fill: C.grayText }} axisLine={false} tickLine={false} interval={2} />
+              <YAxis tick={{ fontSize: 10, fill: C.grayText }} axisLine={false} tickLine={false} />
+              <Tooltip content={<CustomTooltip />} />
+              <Area type="monotone" dataKey="fluxo" stroke={C.primary} strokeWidth={2} fill={C.primary + "22"} dot={false} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </Card>
+      </div>
+
+      {/* Reintegrating Missing Row 2: Porte + Crescimento Mensal */}
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "340px 1fr", gap: 16 }}>
+        {/* Porte das Empresas */}
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle>Porte dos Estabelecimentos</SectionTitle>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+            <ResponsiveContainer width="100%" height={180}>
+              <PieChart>
+                <Pie data={porteEmpresa} innerRadius={55} outerRadius={80} dataKey="value" startAngle={90} endAngle={-270}>
+                  {porteEmpresa.map((e, i) => <Cell key={i} fill={e.cor} />)}
+                </Pie>
+                <Tooltip formatter={(v) => `${v}%`} />
+              </PieChart>
+            </ResponsiveContainer>
+            <div style={{ display: "flex", flexDirection: "column", gap: 6, width: "100%" }}>
+              {porteEmpresa.map(p => (
+                <div key={p.name} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "5px 10px", background: C.cream, borderRadius: 8 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <span style={{ width: 10, height: 10, borderRadius: 3, background: p.cor, flexShrink: 0 }} />
+                    <span style={{ fontSize: 11, fontWeight: 600, color: C.grayText }}>{p.name}</span>
+                  </div>
+                  <span style={{ fontSize: 12, fontWeight: 900, color: C.black }}>{p.value}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
+
+        {/* Crescimento Mensal */}
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle action="Projeção">Abertura × Fechamento</SectionTitle>
+          <ResponsiveContainer width="100%" height={240}>
+            <ComposedChart data={crescimentoMensal}>
+              <CartesianGrid strokeDasharray="3 3" stroke={C.grayBorder} vertical={false} />
+              <XAxis dataKey="mes" tick={{ fontSize: 11, fill: C.grayText }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fontSize: 11, fill: C.grayText }} axisLine={false} tickLine={false} />
+              <Tooltip content={<CustomTooltip />} />
+              <Bar dataKey="novos"    fill={C.primary}          radius={[5,5,0,0]} name="Abertos" />
+              <Bar dataKey="fechados" fill={C.danger + "99"}    radius={[5,5,0,0]} name="Fechados" />
+              <Line type="monotone" dataKey="novos" stroke={C.primaryL} strokeWidth={2} dot={false} name="Tendência" />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </Card>
+      </div>
+
+      {/* Reintegrating Missing Row 3: Top Ruas + Radar + Densidade */}
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr", gap: 16 }}>
+        {/* Top Ruas */}
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle>Top Ruas Comerciais</SectionTitle>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {topRuas.map((r, i) => (
+              <div key={r.rua} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ fontSize: 10, fontWeight: 900, color: i < 3 ? C.primary : C.grayText, width: 16, textAlign: "right" }}>
+                  {i + 1}
+                </span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: C.black }}>{r.rua}</span>
+                    <span style={{ fontSize: 11, fontWeight: 900, color: C.primary }}>{r.lojas}</span>
+                  </div>
+                  <div style={{ background: C.cream, borderRadius: 4, height: 5, overflow: "hidden" }}>
+                    <div style={{ width: `${(r.lojas / topRuas[0].lojas) * 100}%`, height: "100%", background: i < 3 ? C.primary : C.grayBorder, borderRadius: 4 }} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        {/* Radar */}
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle>Índices Comparativos</SectionTitle>
+          <ResponsiveContainer width="100%" height={240}>
+            <RadarChart data={setoresRadar}>
+              <PolarGrid stroke={C.grayBorder} />
+              <PolarAngleAxis dataKey="setor" tick={{ fontSize: 10, fill: C.grayText }} />
+              <Radar name="Centro" dataKey="centro" stroke={C.primary} fill={C.primary} fillOpacity={0.25} />
+              <Radar name="Média SE" dataKey="media" stroke={C.info} fill={C.info} fillOpacity={0.1} strokeDasharray="4 2" />
+              <Tooltip content={<CustomTooltip />} />
+            </RadarChart>
+          </ResponsiveContainer>
+        </Card>
+
+        {/* Densidade por Quadra */}
+        <Card style={{ padding: "20px 24px" }}>
+          <SectionTitle>Densidade por Quadra</SectionTitle>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "60px 1fr 50px 50px", gap: 8, marginBottom: 4 }}>
+              {["Quadra", "Ocupação", "Lojas", "Alv.%"].map(h => (
+                <span key={h} style={{ fontSize: 9, fontWeight: 800, color: C.grayText, textTransform: "uppercase", letterSpacing: "0.08em" }}>{h}</span>
+              ))}
+            </div>
+            {densidadeQuadras.map(q => (
+              <div key={q.quadra} style={{ display: "grid", gridTemplateColumns: "60px 1fr 50px 50px", gap: 8, alignItems: "center" }}>
+                <span style={{ fontSize: 11, fontWeight: 700, color: C.black, fontFamily: "monospace" }}>{q.quadra}</span>
+                <div style={{ background: C.cream, borderRadius: 4, height: 7, overflow: "hidden" }}>
+                  <div style={{
+                    width: `${q.densidade}%`, height: "100%", borderRadius: 4,
+                    background: q.densidade > 80 ? C.danger : q.densidade > 60 ? C.warning : C.primary,
+                  }} />
+                </div>
+                <span style={{ fontSize: 11, fontWeight: 700, color: C.black, textAlign: "right" }}>{q.lojas}</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: q.alvara > 85 ? C.success : q.alvara > 70 ? C.warning : C.danger, textAlign: "right" }}>{q.alvara}%</span>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+
+  const TabRelatorios = () => (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+      {[
+        { title: "Relatório Mensal de Alvarás",    desc: "Janeiro 2025 · 48 pág.",     icon: FileText,  date: "26/01/2025" },
+        { title: "Ocorrências por Região",          desc: "Q4 2024 · Consolidado",      icon: AlertTriangle, date: "15/01/2025" },
+        { title: "Cadastro de Estabelecimentos",    desc: "Base completa · CSV + PDF",  icon: Database,  date: "01/01/2025" },
+      ].map((r, i) => (
+        <Card key={i} style={{ padding: "20px 22px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
+            <r.icon size={18} style={{ color: C.primary }} />
+            <Pill>{r.date}</Pill>
+          </div>
+          <p style={{ margin: "0 0 4px", fontSize: 13, fontWeight: 700, color: C.black }}>{r.title}</p>
+          <p style={{ margin: "0 0 16px", fontSize: 11, color: C.grayText }}>{r.desc}</p>
+          <button style={{ padding: "7px 14px", borderRadius: 8, border: `1px solid ${C.grayBorder}`, background: "transparent", fontSize: 11, fontWeight: 700, color: C.grayText, cursor: "pointer" }}>
+            Baixar
+          </button>
+        </Card>
+      ))}
+    </div>
+  );
+
+  return (
+    <div style={{
+      display: "flex", width: "100%", height: "100vh",
+      background: C.cream, fontFamily: "'Inter', system-ui, sans-serif",
+      overflow: "hidden",
+    }}>
+      {!isMobile && (
+        <aside style={{
+          display: "flex", flexDirection: "column",
+          background: C.secondary,
+          width: sidebarCollapsed ? 72 : 240,
+          padding: sidebarCollapsed ? "28px 10px" : "28px 16px",
+          transition: "width 0.3s ease, padding 0.3s ease",
+          height: "100vh", position: "sticky", top: 0,
+          flexShrink: 0, zIndex: 110,
+          borderRight: "1px solid rgba(255,255,255,0.05)",
+        }}>
+          <button
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            style={{
+              position: "absolute", right: -14, top: 38,
+              width: 28, height: 28,
+              background: C.primary, border: "none",
+              borderRadius: "50%", cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              boxShadow: `0 2px 8px ${C.primary}66`,
+              zIndex: 120, transition: "transform 0.2s",
+            }}
+          >
+            <ChevronLeft size={14} color={C.white} style={{ transform: sidebarCollapsed ? "rotate(180deg)" : "none", transition: "transform 0.3s" }} />
+          </button>
+          <Sidebar />
+        </aside>
+      )}
+
+      {mobileMenuOpen && (
+        <div style={{
+          position: "fixed", inset: 0, background: C.secondary,
+          zIndex: 200, padding: "20px",
+        }}>
+          <Sidebar isMobileView />
         </div>
       )}
 
-      {/* ================= CONTEÚDO PRINCIPAL ================= */}
-      <div className="flex-1 h-full overflow-y-auto no-scrollbar scroll-smooth">
-        <main className="p-6 lg:p-12 gap-8 lg:gap-12 max-w-full lg:max-w-7xl mx-auto w-full pt-28 lg:pt-12 flex flex-col">
-          
-          {/* Header Content */}
-          <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <h2 className="text-3xl lg:text-5xl font-black text-[var(--black)] mb-2" style={{ fontFamily: "'Georgia', serif" }}>
-                {activeTab === 'geral' ? 'Visão Geral' : activeTab === 'mapa' ? 'Análise Geo-Espacial' : 'Controle de Denúncias'}
-              </h2>
-              <p className="text-[var(--gray-text)] font-medium text-sm lg:text-base">Bem-vindo ao centro de controle urbano de Aracaju.</p>
-            </div>
-            <div className="flex items-center gap-4">
-              <button className="relative w-12 h-12 flex items-center justify-center bg-white rounded-2xl border border-[var(--gray-border)] text-[var(--gray-text)] hover:text-[var(--primary)] transition-colors shadow-sm">
-                <Bell className="w-5 h-5" />
-                <span className="absolute top-3 right-3 w-2 h-2 bg-[var(--primary)] rounded-full border-2 border-white" />
-              </button>
-              
-              {/* Profile Menu */}
-              <div className="relative">
-                <button 
-                  onClick={() => setShowProfileMenu(!showProfileMenu)}
-                  className="flex items-center gap-3 bg-white p-2 pr-4 rounded-2xl border border-[var(--gray-border)] shadow-sm hover:border-[var(--primary)] transition-all outline-none"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-[var(--secondary-pale)] flex items-center justify-center text-[var(--secondary)] font-black text-xs shrink-0">
-                    GP
-                  </div>
-                  <div className="hidden sm:block text-left">
-                    <p className="text-[11px] font-black text-[var(--black)] leading-tight">Gestão Prefeitura</p>
-                    <p className="text-[9px] font-bold text-[var(--gray-text)] uppercase tracking-widest">Admin</p>
-                  </div>
-                </button>
-
-                {showProfileMenu && (
-                  <>
-                    <div className="fixed inset-0 z-10" onClick={() => setShowProfileMenu(false)} />
-                    <div className="absolute right-0 mt-3 w-56 bg-white rounded-2xl shadow-2xl border border-[var(--gray-border)] p-2 z-20 animate-in fade-in zoom-in-95 duration-200">
-                      <Link 
-                        to="/dashboard"
-                        className="flex items-center gap-3 px-4 py-3.5 rounded-xl hover:bg-[var(--cream)] text-[var(--gray-text)] hover:text-[var(--primary)] transition-all font-bold text-xs"
-                      >
-                        <LayoutDashboard className="w-4 h-4" />
-                        Voltar ao Dashboard?
-                      </Link>
-                      <div className="h-px bg-[var(--gray-border)] my-1" />
-                      <Link 
-                        to="/"
-                        className="flex items-center gap-3 px-4 py-3.5 rounded-xl hover:bg-rose-50 text-rose-500 transition-all font-bold text-xs cursor-pointer"
-                      >
-                        <LogOut className="w-4 h-4 " />
-                        Sair do Portal
-                      </Link>
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-          </header>
-
-          {activeTab === 'geral' && (
-            <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <Card className="bg-white border-none shadow-xl shadow-black/5 rounded-[32px] overflow-hidden group">
-                  <CardContent className="p-8">
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="p-4 bg-[var(--primary-pale)] text-[var(--primary)] rounded-[20px] group-hover:scale-110 transition-transform">
-                        <Store className="w-6 h-6" />
-                      </div>
-                      <span className="text-[10px] font-black text-green-600 bg-green-50 px-2.5 py-1 rounded-full">+12%</span>
-                    </div>
-                    <h3 className="text-4xl font-black text-[var(--black)] mb-1">{totalLojas}</h3>
-                    <p className="text-[11px] font-black text-[var(--gray-text)] uppercase tracking-widest">Comércios Ativos</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-white border-none shadow-xl shadow-black/5 rounded-[32px] overflow-hidden group">
-                  <CardContent className="p-8">
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="p-4 bg-[var(--secondary-pale)] text-[var(--secondary)] rounded-[20px] group-hover:scale-110 transition-transform">
-                        <Users className="w-6 h-6" />
-                      </div>
-                      <span className="text-[10px] font-black text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full">-2.4%</span>
-                    </div>
-                    <h3 className="text-4xl font-black text-[var(--black)] mb-1">12.4k</h3>
-                    <p className="text-[11px] font-black text-[var(--gray-text)] uppercase tracking-widest">Fluxo / Dia</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-white border-none shadow-xl shadow-black/5 rounded-[32px] overflow-hidden group">
-                  <CardContent className="p-8">
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="p-4 bg-orange-50 text-orange-600 rounded-[20px] group-hover:scale-110 transition-transform">
-                        <AlertTriangle className="w-6 h-6" />
-                      </div>
-                      <span className="text-[10px] font-black text-orange-600 bg-orange-50 px-2.5 py-1 rounded-full">2 Urgentes</span>
-                    </div>
-                    <h3 className="text-4xl font-black text-[var(--black)] mb-1">{mockDenuncias.filter(d => d.status === 'pendente').length}</h3>
-                    <p className="text-[11px] font-black text-[var(--gray-text)] uppercase tracking-widest">Pendências</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-white border-none shadow-xl shadow-black/5 rounded-[32px] overflow-hidden group">
-                  <CardContent className="p-8">
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="p-4 bg-blue-50 text-blue-600 rounded-[20px] group-hover:scale-110 transition-transform">
-                        <Car className="w-6 h-6" />
-                      </div>
-                      <span className="text-[10px] font-black text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">78% Ocup.</span>
-                    </div>
-                    <h3 className="text-4xl font-black text-[var(--black)] mb-1">842</h3>
-                    <p className="text-[11px] font-black text-[var(--gray-text)] uppercase tracking-widest">Vagas Livres</p>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <Card className="lg:col-span-2 bg-white border-none shadow-xl shadow-black/5 rounded-[40px] p-8">
-                  <CardHeader className="px-0 pt-0 pb-8 flex flex-row items-center justify-between">
-                    <div>
-                      <CardTitle className="text-2xl font-black text-[var(--black)]" style={{ fontFamily: "'Georgia', serif" }}>Volume por Região</CardTitle>
-                      <p className="text-[11px] text-[var(--gray-text)] font-bold uppercase tracking-widest mt-1">Dados consolidados do último mês</p>
-                    </div>
-                    <div className="flex gap-2">
-                      {['S', 'M', 'T'].map(p => (
-                        <button key={p} className={`w-8 h-8 rounded-lg text-[10px] font-black transition-all ${p === 'M' ? 'bg-[var(--primary)] text-white shadow-lg shadow-[var(--primary)]/20' : 'bg-[var(--cream)] text-[var(--gray-text)] hover:bg-[var(--gray-border)]'}`}>
-                          {p}
-                        </button>
-                      ))}
-                    </div>
-                  </CardHeader>
-                  <CardContent className="px-0 pb-0">
-                    <div className="h-72 flex items-end justify-between gap-6 pt-12 relative border-b border-[var(--gray-border)] pb-4 overflow-x-auto no-scrollbar">
-                      {[
-                        { label: 'Centro', val: 80, color: 'var(--primary)' },
-                        { label: 'Orla', val: 65, color: 'var(--secondary)' },
-                        { label: 'Jardins', val: 95, color: 'var(--primary-dark)' },
-                        { label: 'Mercado', val: 45, color: 'var(--secondary-mid)' },
-                        { label: 'Sul', val: 30, color: 'var(--gray-text)' },
-                      ].map((bar, i) => (
-                        <div key={i} className="flex-1 min-w-[60px] flex flex-col items-center gap-4 group relative">
-                          <div 
-                            className="w-full max-w-[50px] rounded-2xl transition-all duration-700 hover:brightness-110 cursor-help relative"
-                            style={{ height: `${bar.val}%`, backgroundColor: bar.color }}
-                          >
-                            <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-[var(--black)] text-white text-[10px] px-3 py-1.5 rounded-xl opacity-0 group-hover:opacity-100 transition-all whitespace-nowrap font-black shadow-xl">
-                                R$ {bar.val * 5}k
-                            </div>
-                          </div>
-                          <span className="text-[10px] font-black text-[var(--gray-text)] uppercase tracking-tighter text-center">{bar.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-white border-none shadow-xl shadow-black/5 rounded-[40px] p-8">
-                  <CardHeader className="px-0 pt-0 pb-8">
-                    <CardTitle className="text-2xl font-black text-[var(--black)]" style={{ fontFamily: "'Georgia', serif" }}>Categorias</CardTitle>
-                  </CardHeader>
-                  <CardContent className="px-0 pb-0 space-y-6">
-                    {[
-                      { label: 'Alimentação', count: 45, color: 'var(--primary)' },
-                      { label: 'Vestuário', count: 32, color: 'var(--secondary)' },
-                      { label: 'Serviços', count: 18, color: 'var(--primary-light)' },
-                      { label: 'Artesanato', count: 12, color: 'var(--secondary-mid)' },
-                    ].map((cat, i) => (
-                      <div key={i} className="space-y-2">
-                        <div className="flex justify-between text-[11px] font-black uppercase tracking-widest">
-                          <span className="text-[var(--gray-text)]">{cat.label}</span>
-                          <span className="text-[var(--black)]">{cat.count}%</span>
-                        </div>
-                        <div className="w-full h-2.5 bg-[var(--cream)] rounded-full overflow-hidden">
-                          <div 
-                            className="h-full rounded-full transition-all duration-1000" 
-                            style={{ width: `${cat.count}%`, backgroundColor: cat.color }} 
-                          />
-                        </div>
-                      </div>
-                    ))}
-                    <div className="pt-8">
-                      <Button className="w-full h-14 bg-[var(--secondary)] hover:bg-[var(--secondary-mid)] text-white rounded-2xl text-[10px] font-black uppercase tracking-widest shadow-lg shadow-[var(--secondary)]/10 cursor-pointer">
-                        Ver Relatório Completo
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'mapa' && (
-            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                <div className="flex items-center gap-6 overflow-x-auto no-scrollbar pb-2">
-                  {[
-                    { label: 'Crítico', color: 'bg-rose-500' },
-                    { label: 'Alto', color: 'bg-orange-500' },
-                    { label: 'Normal', color: 'bg-green-500' },
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[var(--gray-text)] whitespace-nowrap">
-                      <div className={`w-2 h-2 ${item.color} rounded-full`} /> {item.label}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="h-[500px] lg:h-[700px] w-full bg-white rounded-[40px] overflow-hidden border border-[var(--gray-border)] shadow-2xl relative">
-                <MapContainer center={[-10.9105, -37.0503]} zoom={15} className="w-full h-full z-0">
-                  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                  
-                  {heatmapPoints.map((point, i) => (
-                    <Circle 
-                      key={i}
-                      center={point.pos}
-                      radius={point.intensity / 1.5}
-                      pathOptions={{ 
-                        color: point.intensity > 400 ? 'var(--primary)' : 'var(--secondary)', 
-                        fillColor: point.intensity > 400 ? 'var(--primary)' : 'var(--secondary)', 
-                        fillOpacity: 0.4 
-                      }}
-                    >
-                      <Popup>
-                        <div className="p-3">
-                          <p className="font-black text-sm mb-1">{point.label}</p>
-                          <p className="text-[10px] text-[var(--gray-text)] font-bold uppercase tracking-widest">Fluxo: {point.intensity} p/min</p>
-                        </div>
-                      </Popup>
-                    </Circle>
-                  ))}
-
-                  {comercios.map(c => (
-                    <Marker key={c.id} position={[c.latitude, c.longitude]}>
-                      <Popup>
-                        <div className="p-3">
-                          <p className="font-black text-sm mb-1">{c.nome}</p>
-                          <p className="text-[10px] font-black text-[var(--primary)] uppercase tracking-widest">Alvará: Ativo</p>
-                        </div>
-                      </Popup>
-                    </Marker>
-                  ))}
-                </MapContainer>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'denuncias' && (
-            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                <div className="relative w-full sm:w-96">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--gray-text)] w-5 h-5" />
-                  <input 
-                    placeholder="Filtrar por estabelecimento..." 
-                    className="w-full pl-12 pr-4 py-4 h-14 bg-white rounded-2xl border border-[var(--gray-border)] shadow-sm text-sm font-medium outline-none focus:ring-4 focus:ring-[var(--primary)]/10 focus:border-[var(--primary)] transition-all"
-                  />
-                </div>
-              </div>
-
-              <Card className="border-none shadow-xl shadow-black/5 overflow-hidden rounded-[40px] bg-white">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left min-w-[600px]">
-                    <thead className="bg-[var(--cream)] text-[10px] font-black text-[var(--gray-text)] uppercase tracking-[0.2em] border-b border-[var(--gray-border)]">
-                      <tr>
-                        <th className="px-8 py-6">Estabelecimento</th>
-                        <th className="px-8 py-6 hidden md:table-cell">Motivo da Ocorrência</th>
-                        <th className="px-8 py-6">Status</th>
-                        <th className="px-8 py-6 text-right">Ação</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[var(--gray-border)]">
-                      {mockDenuncias.map((d) => (
-                        <tr key={d.id} className="hover:bg-[var(--cream)]/30 transition-colors group">
-                          <td className="px-8 py-6">
-                            <p className="text-base font-black text-[var(--black)]">{d.loja}</p>
-                            <p className="text-[11px] text-[var(--gray-text)] font-bold md:hidden mt-1">{d.motivo}</p>
-                          </td>
-                          <td className="px-8 py-6 hidden md:table-cell">
-                            <div className="flex items-start gap-3">
-                              <Info className="w-4 h-4 text-[var(--gray-text)]/40 mt-0.5" />
-                              <div>
-                                <p className="text-sm text-[var(--gray-text)] font-bold">{d.motivo}</p>
-                                <div className="flex items-center gap-2 mt-1.5 text-[10px] text-[var(--gray-text)]/60 font-black uppercase tracking-widest">
-                                  <Clock className="w-3 h-3" />
-                                  {d.data}
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-8 py-6">
-                            <span className={`text-[10px] px-3 py-1.5 rounded-xl font-black uppercase tracking-widest ${
-                              d.status === 'pendente' ? 'bg-orange-50 text-orange-600 border border-orange-100' : 
-                              d.status === 'resolvido' ? 'bg-green-50 text-green-600 border border-green-100' : 'bg-blue-50 text-blue-600 border border-blue-100'
-                            }`}>
-                              {d.status}
-                            </span>
-                          </td>
-                          <td className="px-8 py-6 text-right">
-                            <button className="w-10 h-10 flex items-center justify-center bg-[var(--cream)] text-[var(--gray-text)] hover:bg-[var(--primary)] hover:text-white rounded-xl transition-all shadow-sm">
-                              <ChevronRight className="w-5 h-5" />
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </Card>
-            </div>
-          )}
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", height: "100vh", overflow: "hidden" }}>
+        <Header />
+        <main style={{
+          flex: 1, overflowY: "auto", padding: isMobile ? "16px" : "24px 28px",
+          scrollbarWidth: "thin",
+        }}>
+          <div style={{ maxWidth: 1400, margin: "0 auto" }}>
+            {activeTab === "geral"        && <TabGeral />}
+            {activeTab === "mapa"         && <TabMapa />}
+            {activeTab === "geomarketing" && <TabGeomarketing />}
+            {activeTab === "denuncias"    && <TabDenuncias />}
+            {activeTab === "relatorios"   && <TabRelatorios />}
+          </div>
         </main>
       </div>
-
-      <style>{`
-        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slide-in-from-bottom-4 { from { transform: translateY(1rem); } to { transform: translateY(0); } }
-        .animate-in { animation-duration: 0.5s; animation-fill-mode: both; }
-        .fade-in { animation-name: fade-in; }
-        .slide-in-from-bottom-4 { animation-name: slide-in-from-bottom-4; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
     </div>
   );
 }

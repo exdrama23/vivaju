@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Home, Map as MapIcon, Store, Calendar, User, Utensils } from 'lucide-react';
+import { Home, Map as MapIcon, Store, Calendar, User, Landmark } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { cn } from '@/utils/utils';
 import { NotificationManager } from './NotificationManager';
@@ -37,8 +37,7 @@ export function Layout() {
     { name: 'Mapa', path: '/mapa', icon: MapIcon },
     { name: 'Comércios', path: '/comercios', icon: Store },
     { name: 'Eventos', path: '/eventos', icon: Calendar },
-    // { name: 'Vagas', path: '/estacionamentos', icon: Car },
-    { name: 'Culinária', path: '/culinaria', icon: Utensils },
+    { name: 'Pontos Turísticos', path: '/pontos-turisticos', icon: Landmark },
   ];
 
   const isHome = location.pathname === '/';

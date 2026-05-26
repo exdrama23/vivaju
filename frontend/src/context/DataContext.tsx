@@ -145,22 +145,40 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const rawData = response.data || [];
       
       if (rawData.length > 0) {
-        const mapped = rawData.map((item: any) => ({
-          id: item.id,
-          nome: item.nome,
-          latitude: typeof item.latitude === 'number' ? item.latitude : -10.910501,
-          longitude: typeof item.longitude === 'number' ? item.longitude : -37.050332,
-          numeroVagas: 50,
-          vagasOcupadas: Math.floor(Math.random() * 50),
-          status: 'livre',
-          precoHora: item.lojaEstacionamento?.[0]?.preco ? parseFloat(item.lojaEstacionamento[0].preco) : 5.00,
-          tempoPreco: item.lojaEstacionamento?.[0]?.tempoPreco || 'hora'
-        } as Estacionamento));
+        const mappedFromApi = rawData.map((item: any) => {
+          const mockMatch = mockEstacionamentos.find(
+            (mock) => mock.nome.toLowerCase() === String(item.nome || '').toLowerCase()
+          );
+
+          return {
+            id: item.id,
+            nome: item.nome,
+            latitude: typeof item.latitude === 'number' ? item.latitude : (mockMatch?.latitude ?? -10.910501),
+            longitude: typeof item.longitude === 'number' ? item.longitude : (mockMatch?.longitude ?? -37.050332),
+            numeroVagas: mockMatch?.numeroVagas ?? 50,
+            vagasOcupadas: mockMatch?.vagasOcupadas ?? Math.floor(Math.random() * 50),
+            status: mockMatch?.status ?? 'livre',
+            precoHora: item.lojaEstacionamento?.[0]?.preco ? parseFloat(item.lojaEstacionamento[0].preco) : (mockMatch?.precoHora ?? 5.0),
+            tempoPreco: item.lojaEstacionamento?.[0]?.tempoPreco || mockMatch?.tempoPreco || 'hora',
+            horarioFuncionamento: mockMatch?.horarioFuncionamento
+          } as Estacionamento;
+        });
+
+        const apiNames = new Set(mappedFromApi.map((item: Estacionamento) => item.nome.toLowerCase()));
+        const missingMockParking = mockEstacionamentos.filter(
+          (mock) => !apiNames.has(mock.nome.toLowerCase())
+        );
+
+        const mapped = [...mappedFromApi, ...missingMockParking];
         setEstacionamentos(mapped);
         localStorage.setItem(CACHE_KEYS.ESTACIONAMENTOS, JSON.stringify(mapped));
+      } else {
+        setEstacionamentos(mockEstacionamentos);
+        localStorage.setItem(CACHE_KEYS.ESTACIONAMENTOS, JSON.stringify(mockEstacionamentos));
       }
     } catch (error) {
       console.error('Erro ao buscar estacionamentos:', error);
+      setEstacionamentos(mockEstacionamentos);
     } finally {
       setIsLoadingEstacionamentos(false);
     }

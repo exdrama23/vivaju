@@ -7,8 +7,14 @@ import { SuggestionsSlider } from '@/components/Global/SuggestionsSlider';
 import { EventoCarrossel } from '@/components/Global/EventoCarrossel';
 import { StoreCardSkeleton, EventSkeleton, CategorySkeleton } from '@/components/Global/Skeleton';
 import { mockHybridSliderData, getRestaurantesProximos } from '@/services/mockData';
-import { ArrowRight, Search, Star, MapPin, Bell, User, Store, Package } from 'lucide-react';
+import { ArrowRight, Search, Star, Store, Package } from 'lucide-react';
 import type { Produto } from '@/types/global';
+
+const normalizeText = (value: string) =>
+  (value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
 
 const T = {
   orange: "var(--primary)",
@@ -389,14 +395,14 @@ function CategoryGrid({ isLoading }: { isLoading?: boolean }) {
     );
   }
   const cats = [
-    { icon: "🍔", label: "Lanches", path: "/culinaria" },
-    { icon: "🍕", label: "Pizzas", path: "/culinaria" },
-    { icon: "🦀", label: "Frutos do Mar", path: "/culinaria" },
-    { icon: "🍣", label: "Japonesa", path: "/culinaria" },
-    { icon: "🔨", label: "Construção", path: "/culinaria" },
-    { icon: "🦾", label: "Tecnologia", path: "/comercios" },
-    { icon: "🎻", label: "Instrumentos", path: "/comercios" },
-    { icon: "💊", label: "Farmácia", path: "/comercios" },
+    { icon: "🍔", label: "Lanches", path: "/comercios?categoria=Hamburgueria&categoria=Pizzaria&categoria=Sushi&categoria=Frutos do Mar" },
+    { icon: "🍕", label: "Pizzas", path: "/comercios?categoria=Pizzaria" },
+    { icon: "🦀", label: "Frutos do Mar", path: "/comercios?categoria=Frutos do Mar" },
+    { icon: "🍣", label: "Japonesa", path: "/comercios?categoria=Sushi" },
+    { icon: "🔨", label: "Construção", path: "/comercios?categoria=Construção" },
+    { icon: "🦾", label: "Tecnologia", path: "/comercios?categoria=Informatica" },
+    { icon: "🎻", label: "Instrumentos", path: "/comercios?categoria=Instrumentos" },
+    { icon: "💊", label: "Farmácia", path: "/comercios?categoria=Farmácia" },
   ];
   return (
     <div className="grid grid-cols-4 gap-2.5 px-4">
@@ -563,17 +569,18 @@ export function Home() {
   const comerciosFiltrados = useMemo(() => {
     if (!searchTerm.trim()) return [];
     
-    const termo = searchTerm.toLowerCase();
+    const termo = normalizeText(searchTerm);
     return comercios.filter(c => 
-      (c.nome || '').toLowerCase().includes(termo) || 
-      (c.categoria && c.categoria.toLowerCase().includes(termo))
+      normalizeText(c.nome || '').includes(termo) || 
+      normalizeText(c.categoria || '').includes(termo) ||
+      normalizeText((c as { descricao?: string }).descricao || '').includes(termo)
     );
   }, [searchTerm, comercios]);
 
   const lojasExibidas =
     filtroAtual.name === 'Todos' || filtroAtual.name === 'Tudo'
       ? shuffledComercios
-      : shuffledComercios.filter(c => c.categoria === filtroAtual.name);
+      : shuffledComercios.filter(c => normalizeText(c.categoria || '').includes(normalizeText(filtroAtual.name)));
 
   const restaurantesList = lojasExibidas.filter(c => {
     const cat = (c.categoria || '').toString().toLowerCase();
@@ -720,7 +727,7 @@ export function Home() {
             )}
           </section>
 
-          <div className="h-12" />
+          <div className="h-10" />
 
           {isLoadingEventos ? (
               <EventSkeleton />

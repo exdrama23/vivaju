@@ -5,6 +5,12 @@ import { ChevronLeft, ChevronRight, Sparkles, ShoppingBag, Coffee, Utensils, Mus
 import { formatarCategoria } from '@/utils/utils';
 import gsap from 'gsap';
 
+const normalizeText = (value: string) =>
+  (value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
 export function Sugestoes() {
   const { comercios, randomCategories } = useData();
   const navigate = useNavigate();
@@ -40,7 +46,7 @@ export function Sugestoes() {
   const comerciosFiltrados =
     filtroAtual === 'Tudo'
       ? comercios
-      : comercios.filter(c => c.categoria === filtroAtual);
+      : comercios.filter(c => normalizeText(c.categoria).includes(normalizeText(filtroAtual)));
 
   const allCategories = ['Tudo', ...randomCategories];
 

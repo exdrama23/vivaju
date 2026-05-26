@@ -5,6 +5,12 @@ import { RecommendedFilters } from '@/components/Global/RecommendedFilters';
 import { Search, Star, MapPin, Clock, UtensilsCrossed } from 'lucide-react';
 import type { Comercio } from '@/types/global';
 
+const normalizeText = (value: string) =>
+  (value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
 type RestauranteItem = {
   id: string;
   nome: string;
@@ -78,12 +84,15 @@ export function Culinaria() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const restaurantesExibidos = restaurantes.filter((restaurante) => {
-    const matchesSegmento = filtroAtual.name === 'Tudo' || restaurante.categoria === filtroAtual.name;
-    const search = searchTerm.toLowerCase();
-    const matchesSearch = restaurante.nome.toLowerCase().includes(search) ||
-      restaurante.descricao.toLowerCase().includes(search) ||
-      restaurante.localizacao.toLowerCase().includes(search) ||
-      restaurante.especialidade.toLowerCase().includes(search);
+    const matchesSegmento =
+      filtroAtual.name === 'Tudo' ||
+      normalizeText(restaurante.categoria).includes(normalizeText(filtroAtual.name));
+    const search = normalizeText(searchTerm);
+    const matchesSearch =
+      normalizeText(restaurante.nome).includes(search) ||
+      normalizeText(restaurante.descricao).includes(search) ||
+      normalizeText(restaurante.localizacao).includes(search) ||
+      normalizeText(restaurante.especialidade).includes(search);
 
     return matchesSegmento && matchesSearch;
   });

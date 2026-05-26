@@ -1,60 +1,116 @@
 import type { Estacionamento } from '@/types/global';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/Global/Card';
-import { Car, MapPin, DollarSign } from 'lucide-react';
+import { MapPin, Car, DollarSign, Clock } from 'lucide-react';
 import { Button } from '@/components/Global/Button';
 import { Link } from 'react-router-dom';
-import { Badge } from '@/components/Global/Badge';
 
-export function EstacionamentoCard({ estacionamento }: { estacionamento: Estacionamento }) {
+interface EstacionamentoCardProps {
+  estacionamento: Estacionamento;
+}
+
+function statusConfig(status: Estacionamento['status']) {
+  const map = {
+    livre: { label: 'Aberto', cls: 'bg-[#EBF2E3] text-[#3D6B1F] border border-[#c5dba8]' },
+    médio: { label: 'Fechado', cls: 'bg-[#fce8e6] text-[#c5221f] border border-[#f5c6c4]' },
+    lotado: { label: 'Lotado', cls: 'bg-[#FDF0E8] text-[#E8611A] border border-[#FDDFC8]' },
+  } as const;
+
+  return map[status] ?? map.livre;
+}
+
+export function EstacionamentoCard({ estacionamento }: EstacionamentoCardProps) {
+  const { label, cls } = statusConfig(estacionamento.status);
   const vagasLivres = estacionamento.numeroVagas - estacionamento.vagasOcupadas;
-  
-  const statusVariant = 
-    estacionamento.status === 'livre' ? 'default' :
-    estacionamento.status === 'médio' ? 'secondary' :
-    'destructive';
+  const ocupacao = Math.round((vagasLivres / estacionamento.numeroVagas) * 100);
+  const isFechado = estacionamento.status === 'médio';
+  const horarioFuncionamento = estacionamento.horarioFuncionamento ?? '24h disponível';
 
   return (
-    <Card className="flex flex-col h-full hover:shadow-md transition-shadow rounded-2xl border-[#dadce0]">
-      <CardHeader className="p-5 pb-3 flex flex-row items-start justify-between">
-        <div className="flex-1">
-          <CardTitle className="text-base font-medium text-[#202124] line-clamp-1">{estacionamento.nome}</CardTitle>
-          <p className="text-xs text-[#5f6368] mt-1 flex items-center gap-1">
-            <MapPin className="w-3 h-3" /> Aracaju, Centro
+    <Card className="flex h-full flex-col rounded-3xl border-[1.5px] border-[#E8E0D0] bg-[#F7F0E4] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(232,97,26,0.13),0_0_0_1.5px_#FDDFC8]">
+      <CardHeader className="flex flex-row items-start justify-between gap-2 p-4.5 pb-3">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5 mb-1">
+            <span className="inline-block h-[1.5px] w-4 shrink-0 rounded-full bg-[#E8611A]" />
+          </div>
+          <CardTitle
+            className="text-[15px] font-black text-[#0A0A0A] line-clamp-1 leading-tight"
+            style={{ fontFamily: "'Georgia', serif" }}
+          >
+            {estacionamento.nome}
+          </CardTitle>
+          <p className="text-[11px] text-[#7A6E60] mt-1 flex items-center gap-1">
+            <MapPin className="h-2.75 w-2.75" />
+            Aracaju, Centro
           </p>
         </div>
-        <Badge variant={statusVariant} className="text-[10px] uppercase tracking-wider px-2 py-0.5">
-          {estacionamento.status}
-        </Badge>
+        <span className={`inline-flex shrink-0 items-center rounded-full px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] ${cls}`}>
+          {label}
+        </span>
       </CardHeader>
-      <CardContent className="p-5 pt-0 flex-1 space-y-4">
-        <div className="flex items-center justify-between text-sm bg-[#f8f9fa] p-3 rounded-xl border border-[#dadce0]">
-          <div className="flex items-center gap-2 text-[#202124]">
-            <Car className="w-5 h-5 text-[#1a73e8]" />
-            <span className="font-medium">{vagasLivres} vagas livres</span>
+
+      <div className="mx-4.5 h-px bg-[#E8E0D0]" />
+
+      <CardContent className="flex-1 space-y-3 p-4.5 pt-3">
+        <div className={`flex items-center justify-between rounded-[14px] border border-[#E8E0D0] bg-white p-3 ${isFechado ? 'opacity-50' : ''}`}>
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-7.5 w-7.5 shrink-0 items-center justify-center rounded-[10px] ">
+              <Car className="h-5.5 w-5.5 text-[#E8611A]" />
+            </div>
+            <div>
+              <p className="text-[13px] font-black text-[#0A0A0A] leading-none">
+                {vagasLivres} vagas livres
+              </p>
+              <div className="mt-1.5 h-1.25 w-24 overflow-hidden rounded-full bg-[#EDE3D0]">
+                <div
+                  className="h-full rounded-full bg-linear-to-r from-[#3D6B1F] to-[#E8611A] transition-all duration-500"
+                  style={{ width: `${ocupacao}%` }}
+                />
+              </div>
+            </div>
           </div>
-          <span className="text-[11px] text-[#5f6368]">Total: {estacionamento.numeroVagas}</span>
+          <span className="text-[10px] text-[#7A6E60] font-semibold">
+            / {estacionamento.numeroVagas}
+          </span>
         </div>
-        
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 text-xs text-[#5f6368]">
-            <DollarSign className="w-3.5 h-3.5 text-[#1e8e3e]" />
-            <span className="font-medium text-[#202124]">R$ {estacionamento.precoHora.toFixed(2)} / {estacionamento.tempoPreco}</span>
+
+        <div className="flex items-center gap-2">
+          <div className="flex h-6.5 w-6.5 shrink-0 items-center justify-center rounded-lg border border-[#c5dba8] bg-[#EBF2E3]">
+            <DollarSign className="w-3 h-3 text-[#3D6B1F]" />
           </div>
-          <div className="flex items-center gap-2 text-xs text-[#5f6368]">
-            <Clock className="w-3.5 h-3.5" />
-            <span>24h disponível</span>
+          <span className="text-[12px] font-bold text-[#0A0A0A]">
+            R$ {estacionamento.precoHora.toFixed(2)}{' '}
+            <span className="font-normal text-[#7A6E60]">/ {estacionamento.tempoPreco}</span>
+          </span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <div className="flex h-6.5 w-6.5 shrink-0 items-center justify-center rounded-lg border border-[#E8E0D0] bg-[#EDE3D0]">
+            <Clock className="w-3 h-3 text-[#7A6E60]" />
           </div>
+          <span className="text-[12px] text-[#7A6E60]">{horarioFuncionamento}</span>
         </div>
       </CardContent>
-      <CardFooter className="p-5 pt-0 mt-auto">
-         <Link to="/mapa" className="w-full">
-            <Button variant="outline" className="w-full rounded-full border-[#dadce0] text-[#1a73e8] hover:bg-[#e8f0fe] hover:border-transparent">
-              Ver no Mapa
+
+      <CardFooter className="mt-auto p-4.5 pt-0">
+        {isFechado ? (
+          <Button
+            variant="outline"
+            disabled
+            className="w-full rounded-full border-[1.5px] border-[#E8E0D0] bg-white text-[#E8611A] text-[12px] font-black tracking-[0.04em] transition-all disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Ver no Mapa →
+          </Button>
+        ) : (
+          <Link to="/mapa" className="w-full">
+            <Button
+              variant="outline"
+              className="w-full rounded-full border-[1.5px] border-[#E8E0D0] bg-white text-[#E8611A] text-[12px] font-black tracking-[0.04em] transition-all hover:bg-[#E8611A] hover:text-white hover:border-[#E8611A] active:scale-[0.98]"
+            >
+              Ver no Mapa →
             </Button>
-         </Link>
+          </Link>
+        )}
       </CardFooter>
     </Card>
   );
 }
-
-import { Clock } from 'lucide-react';
