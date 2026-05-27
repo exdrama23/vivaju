@@ -37,7 +37,7 @@ export function Layout() {
     { name: 'Mapa', path: '/mapa', icon: MapIcon },
     { name: 'Comércios', path: '/comercios', icon: Store },
     { name: 'Eventos', path: '/eventos', icon: Calendar },
-    { name: 'Pontos Turísticos', path: '/pontos-turisticos', icon: Landmark },
+    { name: 'Atrativos', path: '/pontos-turisticos', icon: Landmark },
   ];
 
   const isHome = location.pathname === '/';
